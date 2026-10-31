@@ -1,0 +1,59 @@
+{
+  "id": "the-xol/unit/gravitron",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Gravitron",
+  "description": "A caster unit that can warp time to slow down units’ Attack and Movespeed in an area.",
+  "hotkey": "D",
+  "cost": {
+    "hexite": 125,
+    "flux": 100
+  },
+  "count": 1,
+  "buildTime": 24,
+  "supply": 3,
+  "hp": 200,
+  "shields": 200,
+  "armorType": "medium",
+  "speed": 400,
+  "vision": 1600,
+  "size": 160,
+  "transportSlots": 5,
+  "weapons": [
+    {
+      "name": "Collapsing Pulse",
+      "damage": 6,
+      "cooldown": 1.2,
+      "burst": 1,
+      "burstCooldown": 0.6,
+      "range": 750,
+      "projectileSpeed": 5000,
+      "dps": 10
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Reverberate",
+      "description": "Lands the Gravitron. Nearby enemies attack and move speed are slowed. Slow radius increases over {sec} seconds.",
+      "values": {
+        "sec": 5
+      },
+      "hotkey": "F",
+      "cooldown": 0.5
+    },
+    {
+      "name": "UnReverberate",
+      "description": "Unsiege",
+      "hotkey": "F",
+      "cooldown": 0.6
+    }
+  ],
+  "requires": [
+    "the-xol/building/world-forge"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 18.5
+  },
+  "portrait": "Troop_Xol_Ripple",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Ripple"
+}

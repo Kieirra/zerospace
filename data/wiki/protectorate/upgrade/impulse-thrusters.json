@@ -1,0 +1,21 @@
+{
+  "id": "protectorate/upgrade/impulse-thrusters",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Impulse Thrusters",
+  "description": "-{cd}% Jetpack cooldown.\n+{range}% Jetpack range.",
+  "values": {
+    "cd": 33,
+    "range": 42
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 40,
+  "exclusiveGroup": "local.prot.commando.specialize1",
+  "appliesTo": [
+    "protectorate/unit/commando"
+  ],
+  "portrait": "TGUI_icon_skill_hero_ability_cooldown",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Commando_ImprovedJump"
+}

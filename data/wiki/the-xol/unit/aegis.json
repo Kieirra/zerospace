@@ -1,0 +1,55 @@
+{
+  "id": "the-xol/unit/aegis",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Aegis",
+  "description": "Nearby allies take reduced damage as long as its shield holds.",
+  "hotkey": "G",
+  "cost": {
+    "hexite": 275,
+    "flux": 100
+  },
+  "count": 1,
+  "buildTime": 24,
+  "supply": 6,
+  "hp": 600,
+  "shields": 300,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 540,
+  "vision": 1600,
+  "size": 320,
+  "pushTier": 5,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Mass Driver",
+      "damage": 22,
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 1000,
+      "warmup": 0.12,
+      "projectileSpeed": 5000,
+      "dps": 22
+    },
+    {
+      "name": "Fulmination Cascade",
+      "damage": 65,
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 1400,
+      "warmup": 0.12,
+      "dps": 65
+    }
+  ],
+  "requires": [
+    "the-xol/building/world-forge"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 29
+  },
+  "portrait": "Troop_Xol_Aegis",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Aegis"
+}

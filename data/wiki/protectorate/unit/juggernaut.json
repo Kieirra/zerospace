@@ -1,0 +1,56 @@
+{
+  "id": "protectorate/unit/juggernaut",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Juggernaut",
+  "description": "Heavy tank that gains thermal charge as it attacks. Heat can be vented to deal area damage. Deals bonus damage to Massive.",
+  "hotkey": "A",
+  "cost": {
+    "hexite": 175,
+    "flux": 125
+  },
+  "count": 1,
+  "buildTime": 60,
+  "supply": 8,
+  "hp": 1000,
+  "armorRating": 2,
+  "armorType": "heavy",
+  "energy": 7,
+  "speed": 450,
+  "vision": 1600,
+  "size": 203.125,
+  "pushTier": 101,
+  "transportSlots": 8,
+  "weapons": [
+    {
+      "name": "Dual TL-7 Mag Accelerator Cannons",
+      "damage": 120,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 2.2,
+      "range": 700,
+      "dps": 54.5455
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Incineration Protocol",
+      "description": "Deals 300 damage to nearby enemies over 5 seconds\nCannot move while active",
+      "hotkey": "Z",
+      "energyCost": 7
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/war-foundry"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/heavy-plating",
+    "protectorate/upgrade/mobile-discharge"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 4,
+    "protectorate/topbar/protective-shield": 14.9063
+  },
+  "portrait": "Troop_Prot_Juggernaut",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_P_Juggernaut"
+}

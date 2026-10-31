@@ -1,0 +1,24 @@
+{
+  "id": "grell/building/young-canopy",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Young Canopy",
+  "description": "Research structure for units produced from the {broodwomb}.\n Unlocks: {mandragor}",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "buildTime": 25,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "grell/building/broodwomb"
+  ],
+  "unlocks": [
+    "grell/building/incubator",
+    "grell/unit/mandragora"
+  ],
+  "portrait": "TGUI_icon_grell_building_research_portrait02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_Research_2"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "the-xol/upgrade/damage",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Damage",
+  "description": "+{x}% weapon damage to units",
+  "values": {
+    "x": [
+      10,
+      20,
+      30,
+      40
+    ]
+  },
+  "hotkey": "A",
+  "cost": {
+    "flux": 200
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Research.T1",
+  "portrait": "TGUI_icon_skill_explosion",
+  "asset": "Archetypes_ResearchItems/Xol/Upgrades/RI_Xol_Army_Damage"
+}

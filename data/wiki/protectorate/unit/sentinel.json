@@ -1,0 +1,58 @@
+{
+  "id": "protectorate/unit/sentinel",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Sentinel",
+  "description": "Ranged infantry equipped with a railgun. Deals bonus damage to Heavy.",
+  "hotkey": "E",
+  "cost": {
+    "hexite": 75,
+    "flux": 75
+  },
+  "count": 1,
+  "buildTime": 36,
+  "supply": 3,
+  "hp": 180,
+  "armorRating": 0,
+  "armorType": "light",
+  "speed": 550,
+  "vision": 1600,
+  "size": 86.02,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "HR-7 Rail Cannon",
+      "damage": 30,
+      "cooldown": 2.6,
+      "burst": 1,
+      "burstCooldown": 2.6,
+      "range": 1300,
+      "warmup": 0.08,
+      "projectileSpeed": 5000,
+      "dps": 11.5385,
+      "bonuses": [
+        {
+          "vs": "Heavy",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/barracks"
+  ],
+  "requires": [
+    "protectorate/building/research-lab"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/hyperdense-rounds",
+    "protectorate/upgrade/longshot-calibration"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 1.5,
+    "protectorate/topbar/protective-shield": 7.5938
+  },
+  "portrait": "Troop_Prot_MP_HeavyRail",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Units/RI_Prot_Troop_MP_Rocket"
+}

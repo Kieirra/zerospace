@@ -1,0 +1,17 @@
+{
+  "id": "grell/upgrade/thermal-carapace",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Thermal Carapace",
+  "description": "+2 Armor",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 40,
+  "exclusiveGroup": "Local.Grell.Harbinger.Specialize1",
+  "appliesTo": [
+    "grell/unit/harbinger"
+  ],
+  "portrait": "TGUI_icon_skill_vehicle_armor",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Harbinger_T2Armor"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "arandi/unit/arandi-chronowarper",
+  "kind": "unit",
+  "faction": "arandi",
+  "name": "Arandi Chronowarper",
+  "description": "Flying unit that can teleport friendly units to its location.\nCan enter phase mode, slowing enemy units in an area.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 75,
+    "flux": 175
+  },
+  "count": 1,
+  "supply": 6,
+  "hp": 350,
+  "armorType": "medium",
+  "speed": 500,
+  "vision": 1800,
+  "size": 110,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "Temporal Beam",
+      "damage": 15,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 0.7,
+      "range": 1200,
+      "warmup": 0,
+      "dps": 21.4286
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Phase",
+      "description": "Slow attack and movement speed of enemy units in area (-30%)",
+      "hotkey": "N",
+      "cooldown": 2.5,
+      "range": 2500
+    },
+    {
+      "name": "Unphase",
+      "description": "Stop phasing location.",
+      "hotkey": "N",
+      "cooldown": 0.3
+    }
+  ],
+  "producedBy": [
+    "arandi/building/arandi-penumbra"
+  ],
+  "portrait": "TGUI_icon_unit_arandi_phaser",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Arandi_Sphere"
+}

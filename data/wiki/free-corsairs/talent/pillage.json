@@ -1,0 +1,12 @@
+{
+  "id": "free-corsairs/talent/pillage",
+  "kind": "talent",
+  "faction": "free-corsairs",
+  "name": "Pillage",
+  "description": "Destroying Harvesters and Buildings provides Hexite.",
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_pillage",
+  "asset": "Archetypes_ResearchItems/Dread/RI_HeroXP_Dread_Pillage"
+}

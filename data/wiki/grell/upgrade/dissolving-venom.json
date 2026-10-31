@@ -1,0 +1,23 @@
+{
+  "id": "grell/upgrade/dissolving-venom",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Dissolving Venom",
+  "description": "Attacks deal {DPS} damage per second and slow move speed by {slow}%.\nLasts for {dur} seconds.",
+  "values": {
+    "DPS": 6,
+    "slow": 25,
+    "dur": 5
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Grell.Stinger.Specialize2",
+  "appliesTo": [
+    "grell/unit/stinger"
+  ],
+  "portrait": "TGUI_icon_skill_infused_lifesteal",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Stinger_PoisonSting"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "grell/upgrade/extensor-adaptation",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Extensor Adaptation",
+  "description": "+{Speed} movement speed.",
+  "values": {
+    "Speed": 200
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 60,
+  "tier": "T1",
+  "exclusiveGroup": "Local.Grell.Stinger.Specialize1",
+  "appliesTo": [
+    "grell/unit/stinger"
+  ],
+  "portrait": "TGUI_icon_skill_movement_speed",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Stinger_MovementSpeed"
+}

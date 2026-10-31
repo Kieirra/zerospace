@@ -1,0 +1,41 @@
+{
+  "id": "the-xol/unit/roller",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Roller",
+  "description": "Short range unit that can roll when moving.",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 50
+  },
+  "count": 2,
+  "supply": 1,
+  "hp": 80,
+  "armorType": "light",
+  "speed": 375,
+  "vision": 1600,
+  "size": 68,
+  "pushTier": 5,
+  "transportSlots": 1,
+  "weapons": [
+    {
+      "name": "Sentinel Ray",
+      "damage": 4,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 200,
+      "warmup": 0.3,
+      "projectileSpeed": 100,
+      "dps": 10
+    }
+  ],
+  "producedBy": [
+    "the-xol/building/gyroforge"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 2.75
+  },
+  "portrait": "Troop_Xol_Rumbler",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Rumbler"
+}

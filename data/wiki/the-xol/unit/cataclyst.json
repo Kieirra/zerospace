@@ -1,0 +1,67 @@
+{
+  "id": "the-xol/unit/cataclyst",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Cataclyst",
+  "description": "Ultimate flying unit with destructive abilities.\nLimit of 1.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 525,
+    "flux": 450
+  },
+  "count": 1,
+  "buildTime": 50,
+  "supply": 15,
+  "hp": 1000,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 350,
+  "vision": 1800,
+  "size": 500,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Arc Cascade",
+      "damage": 15,
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 0.25,
+      "range": 1200,
+      "warmup": 0,
+      "dps": 60
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Ground Ripper",
+      "description": "Fires a laser sweeping across the ground, dealing {initialdamage} to enemy ground units and an additional {dps} damage per second to units that remain under the laser.",
+      "values": {
+        "initialdamage": 75,
+        "dps": 50
+      },
+      "hotkey": "T",
+      "range": 1600
+    },
+    {
+      "name": "Entropy Bloom",
+      "description": "Fires a laser under it dealing massive damage. Creates a ripple effect of electric-dust spreading in a large radius.\nEnemies directly under the laser take {damage} damage per second.\nEnemies hit by the shockwave are slowed by {slowpercent}% and lose {debuffdps}% of their health per second for {debuffduration} seconds. Stuns structures.",
+      "values": {
+        "damage": 400,
+        "slowpercent": 50,
+        "debuffdps": 5,
+        "debuffduration": 5
+      },
+      "hotkey": "C",
+      "cooldown": 120,
+      "range": 1500
+    }
+  ],
+  "requires": [
+    "the-xol/building/world-forge"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 77.125
+  },
+  "portrait": "Troop_Xol_Catalyst",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Catalyst"
+}

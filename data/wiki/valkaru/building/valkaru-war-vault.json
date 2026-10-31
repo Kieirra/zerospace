@@ -1,0 +1,23 @@
+{
+  "id": "valkaru/building/valkaru-war-vault",
+  "kind": "building",
+  "faction": "valkaru",
+  "name": "Valkaru War Vault",
+  "description": "Recruits Mercenaries",
+  "hotkey": "T",
+  "cost": {
+    "hexite": 125
+  },
+  "buildTime": 50,
+  "hp": 1200,
+  "armorRating": 1,
+  "produces": [
+    "valkaru/unit/valkaru-flame-walker",
+    "valkaru/unit/valkaru-hound",
+    "valkaru/unit/valkaru-mortar-brute",
+    "valkaru/unit/valkaru-shock-trooper",
+    "valkaru/unit/valkaru-tow-bot"
+  ],
+  "portrait": "TGUI_portrait_building_valkaru_tavern",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Valkaru"
+}

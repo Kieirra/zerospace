@@ -1,0 +1,30 @@
+---
+import EntitySection from '../entity-section/entity-section.astro';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import type { Weapon } from '../../wiki.types.ts';
+import { toWeaponTiles } from './entity-weapons.helpers.ts';
+
+interface Props {
+  weapons?: Weapon[];
+}
+
+const { weapons = [] } = Astro.props;
+---
+
+{
+  weapons.length > 0 && (
+    <EntitySection title="Weapons">
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {weapons.map((weapon) => (
+          <li class="bevel-sm bg-surface p-3">
+            <h3 class="mb-2 flex flex-wrap items-center gap-2 font-semibold">
+              {weapon.name}
+              {weapon.melee && <span class="bg-surface-raised px-1.5 text-xs font-normal text-muted">Melee</span>}
+            </h3>
+            <StatTiles tiles={toWeaponTiles(weapon)} isNested />
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}

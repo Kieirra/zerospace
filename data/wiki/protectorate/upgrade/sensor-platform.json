@@ -1,0 +1,10 @@
+{
+  "id": "protectorate/upgrade/sensor-platform",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Sensor Platform",
+  "description": "Upgrade to provide vision over a large area.\nProvides high ground vision.",
+  "hotkey": "W",
+  "portrait": "Building_Platform_Vision",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradePlatVision"
+}

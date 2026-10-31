@@ -1,0 +1,56 @@
+{
+  "id": "protectorate/unit/bastion",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Bastion",
+  "description": "Infantry with a short range flamethrower. Deals bonus damage to Light.",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 75,
+    "flux": 25
+  },
+  "count": 1,
+  "buildTime": 30,
+  "supply": 3,
+  "hp": 275,
+  "armorRating": 1,
+  "armorType": "medium",
+  "speed": 540,
+  "vision": 1600,
+  "size": 108.9,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "G53 Flamethrower",
+      "damage": 16,
+      "cooldown": 1.5,
+      "burst": 1,
+      "burstCooldown": 1.5,
+      "range": 225,
+      "warmup": 0.15,
+      "dps": 10.6667,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/barracks"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/kinectic-mode",
+    "protectorate/upgrade/overpressure-nozzle",
+    "protectorate/upgrade/reactive-armor",
+    "protectorate/upgrade/retribution-protocol"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 1.5,
+    "protectorate/topbar/protective-shield": 4.7813
+  },
+  "portrait": "Troop_Prot_Bastion",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_P_Bastion"
+}

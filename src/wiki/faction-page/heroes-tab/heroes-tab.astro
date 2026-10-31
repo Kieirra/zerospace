@@ -1,0 +1,52 @@
+---
+import { getFactionEntities } from '../../wiki.data.ts';
+import GameImage from '../../game-image/game-image.astro';
+import CostValue from '../../cost-value/cost-value.astro';
+import { entityHref, formatCost, formatOptionalNumber } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  factionId: string;
+}
+
+const { factionId } = Astro.props;
+const heroes = await getFactionEntities(factionId, 'hero');
+
+const toStats = (hero: Entity) =>
+  [
+    { label: 'HP', value: formatOptionalNumber(hero.hp) },
+    { label: 'Cost', value: formatCost(hero.cost), isDesktopOnly: true },
+    { label: 'Speed', value: formatOptionalNumber(hero.speed), isDesktopOnly: true },
+    { label: 'Abilities', value: formatOptionalNumber(hero.abilities?.length), isDesktopOnly: true },
+  ].filter(({ value }) => value !== undefined);
+---
+
+<ul class="grid gap-3 md:grid-cols-3">
+  {
+    heroes.map((hero) => (
+      <li>
+        <a
+          href={entityHref(hero.id)}
+          class="flex min-h-12 items-center justify-between gap-3 bevel-sm bg-surface px-4 py-3 hover:bg-surface-hover md:block"
+        >
+          <span class="flex min-w-0 items-center gap-3 font-semibold">
+            <span class="w-10 shrink-0">
+              <GameImage id={hero.id} name={hero.name} size="card" />
+            </span>
+            <span class="min-w-0 break-words">{hero.name}</span>
+          </span>
+          <dl class="flex gap-4 tabular-nums md:mt-3 md:grid md:grid-cols-2 md:gap-2">
+            {toStats(hero).map(({ label, value, isDesktopOnly }) => (
+              <div class={isDesktopOnly ? 'hidden md:block' : undefined}>
+                <dt class="text-xs text-muted uppercase">{label}</dt>
+                <dd>
+                  <CostValue value={value} />
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </a>
+      </li>
+    ))
+  }
+</ul>

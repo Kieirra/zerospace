@@ -1,0 +1,18 @@
+{
+  "id": "the-xol/topbar/replicate",
+  "kind": "topbar",
+  "faction": "the-xol",
+  "name": "Replicate",
+  "description": "Create copies of the targeted friendly units.\nCost is increased by {extracost}% on non-Xol units.",
+  "values": {
+    "extracost": 20
+  },
+  "energyCost": {
+    "unitCostMultiplier": 0.07,
+    "base": 1,
+    "fluxWeight": 1.25
+  },
+  "researchTime": 20,
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetype_Abilities/Troop_Abilities/Multiplayer/Xol/Topbar_Replicate/RI_Xol_TopbarAbility_MP_Replicate"
+}

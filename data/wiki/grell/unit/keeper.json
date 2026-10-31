@@ -1,0 +1,49 @@
+{
+  "id": "grell/unit/keeper",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Keeper",
+  "description": "Tanky melee unit which spawns temporary Arkanids upon taking damage.",
+  "hotkey": "G",
+  "cost": {
+    "hexite": 150,
+    "flux": 50
+  },
+  "count": 2,
+  "buildTime": 40,
+  "supply": 2,
+  "hp": 225,
+  "armorType": "medium",
+  "speed": 550,
+  "vision": 1600,
+  "size": 105.82,
+  "pushTier": 5,
+  "transportSlots": 1,
+  "weapons": [
+    {
+      "name": "Keeper Talons",
+      "damage": 20,
+      "cooldown": 1.3,
+      "burst": 1,
+      "burstCooldown": 1.3,
+      "range": 140,
+      "warmup": 0.15,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 15.3846
+    }
+  ],
+  "producedBy": [
+    "grell/building/incubator"
+  ],
+  "upgrades": [
+    "grell/upgrade/accelerated-mitosis",
+    "grell/upgrade/cytokinin-surge",
+    "grell/upgrade/exoskeleton-reinforcement"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 5.3125
+  },
+  "portrait": "TGUI_portrait_unit_grell_spiderling01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_GrellingBig"
+}

@@ -1,0 +1,73 @@
+{
+  "id": "the-xol",
+  "kind": "faction",
+  "name": "The Xol",
+  "color": "#d5b800",
+  "heroes": [
+    "the-xol/hero/anrubic"
+  ],
+  "topbar": [
+    "the-xol/topbar/havoc",
+    "the-xol/topbar/orbital-laser",
+    "the-xol/topbar/recall",
+    "the-xol/topbar/replicate",
+    "the-xol/topbar/ri-topbar-xolmerge",
+    "the-xol/topbar/unmerge"
+  ],
+  "talents": [
+    "the-xol/talent/efficient-replication",
+    "the-xol/talent/havoc",
+    "the-xol/talent/improved-systems",
+    "the-xol/talent/instant-power-core",
+    "the-xol/talent/jump-start",
+    "the-xol/talent/orbital-laser",
+    "the-xol/talent/overclocked-production",
+    "the-xol/talent/resource-warfare",
+    "the-xol/talent/t2-upgrades",
+    "the-xol/talent/the-stars-in-our-reach",
+    "the-xol/talent/unmerge"
+  ],
+  "passiveIncome": [
+    {
+      "level": 1,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusInitial"
+    },
+    {
+      "level": 2,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 3,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 4,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 5,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 6,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 7,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 8,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 9,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 10,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    }
+  ],
+  "asset": "Archetypes_Factions/Faction_Xol"
+}

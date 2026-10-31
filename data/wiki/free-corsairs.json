@@ -1,0 +1,18 @@
+{
+  "id": "free-corsairs",
+  "kind": "mercenary",
+  "name": "Free Corsairs",
+  "color": "#6e0000",
+  "heroes": [
+    "free-corsairs/hero/yearl"
+  ],
+  "topbar": [
+    "free-corsairs/topbar/sandbags"
+  ],
+  "talents": [
+    "free-corsairs/talent/entrenched-hideouts",
+    "free-corsairs/talent/pillage",
+    "free-corsairs/talent/plundered-optics"
+  ],
+  "asset": "Archetypes_Factions/Merc_DreadRaider"
+}

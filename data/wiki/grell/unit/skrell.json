@@ -1,0 +1,60 @@
+{
+  "id": "grell/unit/skrell",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Skrell",
+  "description": "Light skirmish flier that poisons enemies. Deals bonus damage to Harvesters and Air.",
+  "hotkey": "T",
+  "cost": {
+    "hexite": 50,
+    "flux": 50
+  },
+  "count": 3,
+  "buildTime": 30,
+  "supply": 1,
+  "hp": 70,
+  "armorType": "light",
+  "speed": 800,
+  "vision": 1400,
+  "size": 67.6,
+  "transportSlots": 1,
+  "weapons": [
+    {
+      "name": "Astral Blight",
+      "damage": 6,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 100,
+      "warmup": 0,
+      "dps": 6,
+      "bonuses": [
+        {
+          "vs": "Air",
+          "value": 150,
+          "unit": "%"
+        },
+        {
+          "vs": "Medium",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "grell/building/broodwomb"
+  ],
+  "requires": [
+    "grell/building/skyclutch"
+  ],
+  "upgrades": [
+    "grell/upgrade/thoracic-sacs",
+    "grell/upgrade/volatile-acids"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 1.875
+  },
+  "portrait": "TGUI_portrait_unit_grell_skrelling07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_GrellSkrelling"
+}

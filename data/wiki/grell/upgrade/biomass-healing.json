@@ -1,0 +1,14 @@
+{
+  "id": "grell/upgrade/biomass-healing",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Biomass Healing",
+  "description": "Biomass heals units for {Health} health per second.",
+  "values": {
+    "Health": 1
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_skill_bio_nourishment",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Grell_CreepRegenInnate"
+}

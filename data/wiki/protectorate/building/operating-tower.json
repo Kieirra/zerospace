@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/building/operating-tower",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Operating Tower",
+  "description": "Mining outpost which builds extractors to mine Hexite.\nCan be upgraded with a turret.",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 400
+  },
+  "buildTime": 60,
+  "hp": 2500,
+  "armorRating": 0,
+  "produces": [
+    "protectorate/unit/prospector",
+    "protectorate/unit/recon-drone"
+  ],
+  "portrait": "Building_Prot_ExtractorOperatingTower",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_OperatingTower"
+}

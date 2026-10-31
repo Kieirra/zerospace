@@ -1,0 +1,27 @@
+---
+import EntitySection from '../entity-section/entity-section.astro';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import { formatOptionalDistance, formatOptionalNumber, formatOptionalSeconds, keepFilledTiles } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  area?: Entity['area'];
+}
+
+const { area } = Astro.props;
+const tiles = keepFilledTiles([
+  { label: 'Damage', value: formatOptionalNumber(area?.damage) },
+  { label: 'Interval', value: formatOptionalSeconds(area?.interval) },
+  { label: 'Radius', value: formatOptionalDistance(area?.radius) },
+  { label: 'Duration', value: formatOptionalSeconds(area?.duration) },
+  { label: 'Shots', value: formatOptionalNumber(area?.shots) },
+]);
+---
+
+{
+  tiles.length > 0 && (
+    <EntitySection title="Area">
+      <StatTiles tiles={tiles} />
+    </EntitySection>
+  )
+}

@@ -1,0 +1,9 @@
+{
+  "id": "the-legion/upgrade/ri-legion-turretupgrade1",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "RI_Legion_TurretUpgrade1",
+  "hotkey": "U",
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Legion_TurretUpgrade1"
+}

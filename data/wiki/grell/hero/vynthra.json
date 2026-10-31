@@ -1,0 +1,63 @@
+{
+  "id": "grell/hero/vynthra",
+  "kind": "hero",
+  "faction": "grell",
+  "name": "Vynthra",
+  "description": "Hero that can slow and damage enemy units, burrow to biomass, and consume self or allies to heal and gain movespeed.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 280,
+  "speed": 525,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Nebula Toxin",
+      "damage": 30,
+      "cooldown": 1.8,
+      "burst": 1,
+      "burstCooldown": 1.8,
+      "range": 1200,
+      "warmup": 0.14,
+      "projectileSpeed": 2000,
+      "dps": 16.6667
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Deadly Vines",
+      "description": "On impact, creates an area where enemy ground units are slowed by {slow}% and take {Damage} damage per second.\nLasts {Duration} seconds.",
+      "values": {
+        "slow": 50,
+        "Damage": 12,
+        "Duration": 6
+      },
+      "hotkey": "Z",
+      "cooldown": 15,
+      "range": 2000
+    },
+    {
+      "name": "Root Passage",
+      "description": "Tunnel to a visible location on biomass.",
+      "hotkey": "W",
+      "cooldown": 30,
+      "range": 1000000
+    },
+    {
+      "name": "Life Harvest",
+      "description": "Consume {Health} health from a friendly unit.\nVynthra heals, and gains {Speed}% increased movement speed for {Duration} seconds.\nOn self-cast, affect nearby friendly units instead.",
+      "values": {
+        "Health": 250,
+        "Speed": 20,
+        "Duration": 10
+      },
+      "hotkey": "E",
+      "cooldown": 45
+    }
+  ],
+  "portrait": "Troop_MPHero_Vynthra",
+  "asset": "Archetypes_Heroes/RI_Hero_Vynthra"
+}

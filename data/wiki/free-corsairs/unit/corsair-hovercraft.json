@@ -1,0 +1,51 @@
+{
+  "id": "free-corsairs/unit/corsair-hovercraft",
+  "kind": "unit",
+  "faction": "free-corsairs",
+  "name": "Corsair Hovercraft",
+  "description": "Medium hovercraft which can lay mines which explode upon contact with enemies.",
+  "hotkey": "N",
+  "cost": {
+    "hexite": 200,
+    "flux": 125
+  },
+  "count": 2,
+  "buildTime": 10,
+  "supply": 4,
+  "hp": 375,
+  "armorType": "medium",
+  "speed": 550,
+  "vision": 1600,
+  "size": 140,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Improvised Krakatoa Rockets",
+      "cooldown": 0.04,
+      "burst": 3,
+      "burstCooldown": 3,
+      "range": 900,
+      "warmup": 0,
+      "projectileSpeed": 1500
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Lay Mines",
+      "description": "Lay {N} mines which deal {Damage} damage and slow enemies upon contact.",
+      "values": {
+        "N": 3,
+        "Damage": 30
+      },
+      "hotkey": "N",
+      "cooldown": 75,
+      "range": 300,
+      "charges": 2
+    }
+  ],
+  "producedBy": [
+    "free-corsairs/building/free-corsair-mercenary-outpost"
+  ],
+  "portrait": "TGUI_icon_unit_dread_raider2_portrait",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Dread_Craft"
+}

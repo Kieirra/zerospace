@@ -1,0 +1,53 @@
+{
+  "id": "the-legion/unit/dark-disciple",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Dark Disciple",
+  "description": "Light ranged infantry. \nIts damage increases the longer it attacks a single target. Loses half of bonus damage upon switching target. Deals bonus damage to Heavy.",
+  "hotkey": "E",
+  "cost": {
+    "hexite": 50,
+    "flux": 100
+  },
+  "count": 1,
+  "buildTime": 48,
+  "supply": 4,
+  "hp": 180,
+  "armorType": "light",
+  "speed": 450,
+  "vision": 1600,
+  "size": 99.09901,
+  "weapons": [
+    {
+      "name": "Oblivion's Call",
+      "damage": 6,
+      "cooldown": 0.8,
+      "burst": 1,
+      "burstCooldown": 0.8,
+      "range": 1400,
+      "warmup": 0.13,
+      "dps": 7.5,
+      "bonuses": [
+        {
+          "vs": "Heavy",
+          "value": 75,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/barracks"
+  ],
+  "requires": [
+    "the-legion/building/citadel"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/frenzy"
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 7
+  },
+  "portrait": "TGUI_portrait_unit_empire_psyker01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_DarkDisciple"
+}

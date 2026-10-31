@@ -1,0 +1,23 @@
+{
+  "id": "the-legion/talent/improved-conduits",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "Improved Conduits",
+  "description": "-{Reduction}% Conduit build time.\n+{Increase}% Conduit starting energy, max energy, and energy recharge rate.",
+  "values": {
+    "Reduction": 50,
+    "Increase": 100
+  },
+  "stats": [
+    {
+      "label": "Energy Regen",
+      "value": 1.5,
+      "unit": "/s"
+    }
+  ],
+  "researchTime": 0,
+  "level": 1,
+  "position": "B",
+  "portrait": "TGUI_icon_empire_SupplyDepot02",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Empire_Conduits"
+}

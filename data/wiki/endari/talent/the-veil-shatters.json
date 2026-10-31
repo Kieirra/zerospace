@@ -1,0 +1,28 @@
+{
+  "id": "endari/talent/the-veil-shatters",
+  "kind": "talent",
+  "faction": "endari",
+  "name": "The Veil Shatters",
+  "description": "Doubles The Veil Cracks' duration, and {deepone}'s damage and health.\n-{vision}% enemy vision during the darkness.",
+  "values": {
+    "deepone": "Silent Hollow",
+    "vision": 20
+  },
+  "stats": [
+    {
+      "label": "Damage",
+      "value": 100,
+      "unit": "%"
+    },
+    {
+      "label": "Max Health",
+      "value": 100,
+      "unit": "%"
+    }
+  ],
+  "researchTime": 0,
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_valkaru_stronger_hero",
+  "asset": "Archetypes_ResearchItems/Endari/RI_HeroXP_Endari_T6_Night"
+}

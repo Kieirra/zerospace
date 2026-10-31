@@ -1,0 +1,11 @@
+---
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import type { Entity } from '../../wiki.types.ts';
+import { buildStatTiles } from './entity-stats.helpers.ts';
+
+interface Props {
+  entity: Entity;
+}
+---
+
+<StatTiles tiles={buildStatTiles(Astro.props.entity)} />

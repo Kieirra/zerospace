@@ -1,0 +1,38 @@
+---
+import { findImageUrl } from '../game-image/game-image.helpers.ts';
+import type { CostSegment } from '../wiki.types.ts';
+
+interface Props {
+  value?: string | CostSegment[];
+}
+
+const { value } = Astro.props;
+---
+
+{
+  typeof value === 'string'
+    ? value
+    : value?.map(({ amount, resource }, index) => {
+        const iconUrl = findImageUrl(`icons/${resource}`);
+        return (
+          <>
+            {index > 0 && ' '}
+            <span class="whitespace-nowrap">
+              {amount}
+              {iconUrl ? (
+                <img
+                  src={iconUrl}
+                  alt={resource}
+                  width="16"
+                  height="16"
+                  decoding="async"
+                  class="ml-0.5 inline-block size-[1em] max-w-none align-[-0.15em]"
+                />
+              ) : (
+                ` ${resource}`
+              )}
+            </span>
+          </>
+        );
+      })
+}

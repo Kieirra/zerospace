@@ -1,0 +1,18 @@
+{
+  "id": "endari",
+  "kind": "mercenary",
+  "name": "Endari",
+  "color": "#4100d5",
+  "heroes": [
+    "endari/hero/umbra"
+  ],
+  "topbar": [
+    "endari/topbar/the-veil-cracks"
+  ],
+  "talents": [
+    "endari/talent/the-veil-shatters",
+    "endari/talent/they-writhe",
+    "endari/talent/unceasing-violence"
+  ],
+  "asset": "Archetypes_Factions/Merc_Endari"
+}

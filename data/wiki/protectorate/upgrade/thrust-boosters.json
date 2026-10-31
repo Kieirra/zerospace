@@ -1,0 +1,21 @@
+{
+  "id": "protectorate/upgrade/thrust-boosters",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Thrust Boosters",
+  "description": "+{speed} movement speed.",
+  "values": {
+    "speed": 250
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 50,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Prot.Gunship.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/ironwing"
+  ],
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Upgrades/Ironwing/RI_Prot_MP_Ironwing_MovespeedUpgrade"
+}

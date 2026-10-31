@@ -1,0 +1,18 @@
+{
+  "id": "protectorate/topbar/protective-shield",
+  "kind": "topbar",
+  "faction": "protectorate",
+  "name": "Protective Shield",
+  "description": "Grant a unit {base} + {percent}% of max health as a shield.",
+  "values": {
+    "base": 50,
+    "percent": 45
+  },
+  "energyCost": {
+    "unitCostMultiplier": 0.045,
+    "fluxWeight": 1.25
+  },
+  "researchTime": 20,
+  "portrait": "TGUI_icon_skill_galavax_lightningshield",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Prot_Shield/RI_TopbarAbility_ProtShield"
+}

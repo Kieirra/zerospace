@@ -1,0 +1,20 @@
+{
+  "id": "free-corsairs/topbar/sandbags",
+  "kind": "topbar",
+  "faction": "free-corsairs",
+  "name": "Sandbags",
+  "description": "Drop sandbags at targeted location.\nSandbags block enemy shots and movement.",
+  "energyCost": 0.5,
+  "charges": 10,
+  "summons": [
+    {
+      "name": "Sandbags",
+      "kind": "building",
+      "hp": 125
+    }
+  ],
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_skill_placeholder",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Dread_Sandbags/RI_Topbar_Dread_Sandbags"
+}

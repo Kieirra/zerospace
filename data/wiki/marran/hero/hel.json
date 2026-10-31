@@ -1,0 +1,57 @@
+{
+  "id": "marran/hero/hel",
+  "kind": "hero",
+  "faction": "marran",
+  "name": "Hel",
+  "description": "A long range hero, Hel can launch units away with his Shockwave Grenade, enter stealth, and Snipe enemies.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 130,
+  "shields": 130,
+  "speed": 500,
+  "vision": 2000,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Pulse Rifle",
+      "damage": 28,
+      "cooldown": 1.8,
+      "burst": 1,
+      "burstCooldown": 1.8,
+      "range": 1600,
+      "warmup": 0.04,
+      "projectileSpeed": 1500,
+      "dps": 15.5556
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Shockwave Grenade",
+      "description": "Fire a grenade that pushes all units away. Enemy units also take 25 damage and are slowed.",
+      "hotkey": "Q",
+      "cooldown": 18,
+      "range": 1600
+    },
+    {
+      "name": "Stealth",
+      "description": "Stealth and +40% movement speed for 10s",
+      "hotkey": "W"
+    },
+    {
+      "name": "Snipe",
+      "description": "Deal 2x weapon damage and reduces the targets move speed and damage mitigation by {Amount}% for {Duration} seconds.",
+      "values": {
+        "Amount": 40,
+        "Duration": 3
+      },
+      "hotkey": "E",
+      "cooldown": 25,
+      "range": 1900
+    }
+  ],
+  "portrait": "Troop_MPHero_Hel",
+  "asset": "Archetypes_Heroes/RI_Hero_Hel"
+}

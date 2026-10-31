@@ -1,0 +1,20 @@
+{
+  "id": "grell/upgrade/biomass-submersion",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Biomass Submersion",
+  "description": "+{speed} move speed and stealth on friendly Biomass.",
+  "values": {
+    "speed": 300
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Grell.Stinger.Specialize1",
+  "appliesTo": [
+    "grell/unit/stinger"
+  ],
+  "portrait": "TGUI_icon_skill_cloak_buff",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grelling_StealthCreep"
+}

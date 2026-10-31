@@ -1,0 +1,20 @@
+---
+import EntityFacts from '../entity-facts/entity-facts.astro';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  entity: Entity;
+}
+
+const { producedBy, produces, requires, unlocks } = Astro.props.entity;
+const toLinks = (ids?: string[]) => ids?.map((id) => ({ id }));
+---
+
+<EntityFacts
+  facts={[
+    { label: 'Produced by', links: toLinks(producedBy) },
+    { label: 'Produces', links: toLinks(produces) },
+    { label: 'Requires', links: toLinks(requires) },
+    { label: 'Unlocks', links: toLinks(unlocks) },
+  ]}
+/>

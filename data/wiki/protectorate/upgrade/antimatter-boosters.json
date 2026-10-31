@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/antimatter-boosters",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Antimatter Boosters",
+  "description": "+{x} attack range.",
+  "values": {
+    "x": 3
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Prot.Atlas.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/titan"
+  ],
+  "portrait": "TGUI_icon_skill_rapid_reinforcement",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Atlas_Attack_Range_All"
+}

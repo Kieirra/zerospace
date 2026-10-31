@@ -1,0 +1,15 @@
+---
+import { findImageUrl } from '../../game-image/game-image.helpers.ts';
+import { TITLE_ART_ID } from '../../wiki.constants.ts';
+
+const src = TITLE_ART_ID && findImageUrl(TITLE_ART_ID);
+---
+
+{
+  src && (
+    <div class="relative h-[28vh] overflow-hidden md:h-[40vh]">
+      <img src={src} alt="" decoding="async" fetchpriority="high" class="size-full object-cover" />
+      <div class="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-b from-transparent to-bg" />
+    </div>
+  )
+}

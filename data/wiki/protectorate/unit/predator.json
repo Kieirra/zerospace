@@ -1,0 +1,53 @@
+{
+  "id": "protectorate/unit/predator",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Predator",
+  "description": "Fast vehicle. Deals bonus damage to harvesters.",
+  "hotkey": "R",
+  "cost": {
+    "hexite": 75
+  },
+  "count": 1,
+  "buildTime": 24,
+  "supply": 3,
+  "hp": 140,
+  "armorType": "light",
+  "speed": 800,
+  "vision": 1600,
+  "size": 110.4,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "SKT-23 Shock Cannon",
+      "damage": 26,
+      "cooldown": 1.6,
+      "burst": 1,
+      "burstCooldown": 1.6,
+      "range": 700,
+      "warmup": 0,
+      "projectileSpeed": 3500,
+      "dps": 16.25,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/assembly-plant"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/proximity-mine",
+    "protectorate/upgrade/reinforced-matrix"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 1.5,
+    "protectorate/topbar/protective-shield": 3.375
+  },
+  "portrait": "Troop_Prot_Predator",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Units/RI_Prot_Troop_MP_Predator"
+}

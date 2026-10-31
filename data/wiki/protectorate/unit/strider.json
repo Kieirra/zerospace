@@ -1,0 +1,67 @@
+{
+  "id": "protectorate/unit/strider",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Strider",
+  "description": "Massive walker that can load infantry inside, allowing them to attack with bonus range. Can enter Fortress Mode to provide an aura bonus. Attacks while moving. Heals units inside.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 225,
+    "flux": 225
+  },
+  "count": 1,
+  "buildTime": 60,
+  "supply": 6,
+  "hp": 1000,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 400,
+  "vision": 1600,
+  "size": 490,
+  "weapons": [
+    {
+      "name": "120mm LR Rampart Cannon",
+      "damage": 12,
+      "cooldown": 0.1,
+      "burst": 5,
+      "burstCooldown": 3,
+      "range": 600,
+      "warmup": 0.01,
+      "dps": 20
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Unload",
+      "description": "Unload troops",
+      "hotkey": "U",
+      "cooldown": 0.2
+    },
+    {
+      "name": "Fortress Mode",
+      "description": "Makes the Strider immoble and reduces incoming damage by {damagereduc}%.\nGrant +{armor} Armor and +{damage} Damage to nearby units.\nCan reinforce nearby.",
+      "values": {
+        "damagereduc": 30,
+        "armor": 1,
+        "damage": 3
+      },
+      "hotkey": "C",
+      "cooldown": 2
+    },
+    {
+      "name": "Strider Mode",
+      "description": "Return the strider to its mobile form.",
+      "hotkey": "C",
+      "cooldown": 0.8
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/war-foundry"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 3,
+    "protectorate/topbar/protective-shield": 22.7813
+  },
+  "portrait": "Troop_Prot_Strider",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_P_Strider"
+}

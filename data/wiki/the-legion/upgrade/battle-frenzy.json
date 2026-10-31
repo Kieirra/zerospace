@@ -1,0 +1,23 @@
+{
+  "id": "the-legion/upgrade/battle-frenzy",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Battle Frenzy",
+  "description": "Gain +{AS}% attack speed each attack. Maximum of {max}%.",
+  "details": "Lose 1 stack per {Duration} seconds when out of combat.",
+  "values": {
+    "AS": 15,
+    "max": 75,
+    "Duration": 2.5
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 40,
+  "exclusiveGroup": "Local.Legion.Infantry.Thrall.Specialize1",
+  "appliesTo": [
+    "the-legion/unit/thrall"
+  ],
+  "portrait": "TGUI_icon_skill_rapid_reinforcement",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Thrall_T1A"
+}

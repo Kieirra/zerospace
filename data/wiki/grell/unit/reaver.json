@@ -1,0 +1,59 @@
+{
+  "id": "grell/unit/reaver",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Reaver",
+  "description": "Heavy armored melee unit that can charge, knocking back enemies and dealing damage.",
+  "hotkey": "A",
+  "cost": {
+    "hexite": 200,
+    "flux": 100
+  },
+  "count": 1,
+  "buildTime": 80,
+  "supply": 8,
+  "hp": 900,
+  "armorRating": 3,
+  "armorType": "heavy",
+  "energy": 15,
+  "speed": 525,
+  "vision": 1600,
+  "size": 193.752,
+  "pushTier": 50,
+  "transportSlots": 8,
+  "weapons": [
+    {
+      "name": "Colossal Scythes",
+      "damage": 51,
+      "cooldown": 0.5,
+      "burst": 2,
+      "burstCooldown": 2,
+      "range": 175,
+      "warmup": 0.2,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 51
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Ravage",
+      "description": "Charge into enemies knocking them back and dealing 80 damage",
+      "hotkey": "R",
+      "energyCost": 15,
+      "range": 1600
+    }
+  ],
+  "producedBy": [
+    "grell/building/elderwomb"
+  ],
+  "upgrades": [
+    "grell/upgrade/elder-carapace",
+    "grell/upgrade/fluxblood-surge"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 16.25
+  },
+  "portrait": "TGUI_portrait_unit_grell_reaver07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_GrellReaver"
+}

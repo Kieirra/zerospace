@@ -1,0 +1,36 @@
+---
+import { getFactions } from '../wiki.data.ts';
+import FactionCard from './faction-card/faction-card.astro';
+
+const factions = await getFactions();
+const mainFactions = factions.filter(({ kind }) => kind === 'faction');
+const mercenaries = factions.filter(({ kind }) => kind === 'mercenary');
+---
+
+<div class="md:mb-[3vh]">
+  <h1 class="sr-only">Wiki</h1>
+  <section>
+    <h2 class="mb-4 text-xs text-muted label-caps">Factions</h2>
+    <ul class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+      {
+        mainFactions.map((faction) => (
+          <li>
+            <FactionCard faction={faction} isLarge />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section class="mt-10">
+    <h2 class="mb-4 text-xs text-muted label-caps">Mercenaries</h2>
+    <ul class="grid grid-cols-3 gap-2 md:grid-cols-6 md:gap-3">
+      {
+        mercenaries.map((faction) => (
+          <li>
+            <FactionCard faction={faction} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</div>

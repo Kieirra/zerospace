@@ -1,0 +1,63 @@
+{
+  "id": "protectorate/unit/ironwing",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Ironwing",
+  "description": "Fast gunship. Deals bonus damage to Harvesters.",
+  "hotkey": "D",
+  "cost": {
+    "hexite": 75,
+    "flux": 75
+  },
+  "count": 1,
+  "buildTime": 40,
+  "supply": 5,
+  "hp": 175,
+  "armorType": "medium",
+  "speed": 650,
+  "vision": 1800,
+  "size": 140,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "AKUTA 40mm Autocannons",
+      "damage": 8,
+      "cooldown": 0.2,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1000,
+      "warmup": 0,
+      "projectileSpeed": 3000,
+      "dps": 8,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Sunder Missile",
+      "description": "Grant the Ironwing the Sunder Missile ability.",
+      "hotkey": "T",
+      "cooldown": 30,
+      "range": 2000
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/skydock"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/crippling-payload",
+    "protectorate/upgrade/thrust-boosters"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 2.5,
+    "protectorate/topbar/protective-shield": 7.5938
+  },
+  "portrait": "Troop_Prot_Gunship",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_ProtIronwing"
+}

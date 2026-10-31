@@ -1,0 +1,73 @@
+{
+  "id": "grell",
+  "kind": "faction",
+  "name": "Grell",
+  "color": "#588400",
+  "heroes": [
+    "grell/hero/marv",
+    "grell/hero/mera",
+    "grell/hero/vynthra"
+  ],
+  "topbar": [
+    "grell/topbar/deep-nest",
+    "grell/topbar/infusion",
+    "grell/topbar/tree-of-life",
+    "grell/topbar/underground-transport"
+  ],
+  "talents": [
+    "grell/talent/adaptive-mitosis",
+    "grell/talent/bloom-fasciation",
+    "grell/talent/catalyzed-infusion",
+    "grell/talent/deep-nest",
+    "grell/talent/koru-symbiosis",
+    "grell/talent/mycelial-reach",
+    "grell/talent/pheromone-invigoration",
+    "grell/talent/rapid-germination",
+    "grell/talent/resource-warfare",
+    "grell/talent/the-stars-in-our-reach",
+    "grell/talent/tree-of-life"
+  ],
+  "passiveIncome": [
+    {
+      "level": 1,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusInitial"
+    },
+    {
+      "level": 2,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 3,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 4,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 5,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 6,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 7,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 8,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 9,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 10,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    }
+  ],
+  "asset": "Archetypes_Factions/Faction_Grell"
+}

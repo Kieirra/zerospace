@@ -1,0 +1,40 @@
+{
+  "id": "valkaru/unit/valkaru-mortar-brute",
+  "kind": "unit",
+  "faction": "valkaru",
+  "name": "Valkaru Mortar Brute",
+  "description": "Walker with an area of effect attack.",
+  "hotkey": "U",
+  "cost": {
+    "hexite": 150,
+    "flux": 150
+  },
+  "count": 1,
+  "buildTime": 7,
+  "supply": 4,
+  "hp": 500,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 450,
+  "vision": 1600,
+  "size": 220,
+  "transportSlots": 16,
+  "weapons": [
+    {
+      "name": "Archeotech Mortar",
+      "damage": 75,
+      "cooldown": 15,
+      "burst": 1,
+      "burstCooldown": 3,
+      "range": 2000,
+      "warmup": 0,
+      "projectileSpeed": 1200,
+      "dps": 25
+    }
+  ],
+  "producedBy": [
+    "valkaru/building/valkaru-war-vault"
+  ],
+  "portrait": "TGUI_portrait_unit_valkaru_hound01",
+  "asset": "Archetypes_Troops/Multiplayer/Valkaru/Cannoneer/RI_Troop_Valkaru_MP_Cannoneer"
+}

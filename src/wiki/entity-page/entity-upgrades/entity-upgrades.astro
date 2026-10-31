@@ -1,0 +1,64 @@
+---
+import DetailCard from '../detail-card/detail-card.astro';
+import EntitySection from '../entity-section/entity-section.astro';
+import { getEntityMap } from '../../wiki.data.ts';
+import { formatCost, formatOptionalSeconds, interpolate, keepFilledTiles, toGameStatTiles } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+import { groupUpgradeRows } from './entity-upgrades.helpers.ts';
+
+interface Props {
+  ids?: string[];
+}
+
+const { ids = [] } = Astro.props;
+const entities = await getEntityMap();
+const rows = groupUpgradeRows(ids.flatMap((id) => entities.get(id) ?? []));
+const unresolvedIds = ids.filter((id) => !entities.has(id));
+
+const toTiles = (upgrade: Entity) =>
+  keepFilledTiles([
+    { label: 'Tier', value: upgrade.tier },
+    { label: 'Cost', value: formatCost(upgrade.cost) },
+    { label: 'Research time', value: formatOptionalSeconds(upgrade.researchTime) },
+  ]);
+---
+
+{
+  ids.length > 0 && (
+    <EntitySection title="Upgrades">
+      <div class="grid gap-x-2 gap-y-4 sm:grid-cols-2 sm:gap-y-2">
+        {rows.map(({ isChoice, upgrades }) =>
+          isChoice ? (
+            <ul class="flex flex-col gap-2 sm:col-span-2 sm:flex-row sm:items-stretch">
+              {upgrades.map((upgrade, index) => (
+                <>
+                  {index > 0 && <li class="self-center text-sm text-muted">or</li>}
+                  <li class="min-w-0 flex-1">
+                    <DetailCard
+                      name={upgrade.name}
+                      linkId={upgrade.id}
+                      tiles={toTiles(upgrade)}
+                      description={upgrade.description && interpolate(upgrade.description, upgrade.values)}
+                stats={toGameStatTiles(upgrade.stats)}
+                    />
+                  </li>
+                </>
+              ))}
+            </ul>
+          ) : (
+            upgrades.map((upgrade) => (
+              <DetailCard
+                name={upgrade.name}
+                linkId={upgrade.id}
+                tiles={toTiles(upgrade)}
+                description={upgrade.description && interpolate(upgrade.description, upgrade.values)}
+                stats={toGameStatTiles(upgrade.stats)}
+              />
+            ))
+          ),
+        )}
+        {unresolvedIds.length > 0 && <p class="text-sm text-muted">{unresolvedIds.join(', ')}</p>}
+      </div>
+    </EntitySection>
+  )
+}

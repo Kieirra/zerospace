@@ -1,0 +1,24 @@
+{
+  "id": "the-xol/unit/scouting-drone",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Scouting Drone",
+  "description": "Light flying scouting drone. Limit of {limit}.",
+  "hotkey": "J",
+  "cost": {
+    "hexite": 25
+  },
+  "count": 1,
+  "buildTime": 10,
+  "supply": 0,
+  "hp": 75,
+  "armorType": "light",
+  "speed": 650,
+  "vision": 1800,
+  "size": 80,
+  "producedBy": [
+    "the-xol/building/world-engine"
+  ],
+  "portrait": "Troop_Xol_ScoutingDrone",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Units/RI_Troop_Xol_MP_ScoutingDrone"
+}

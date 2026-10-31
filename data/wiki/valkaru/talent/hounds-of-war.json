@@ -1,0 +1,12 @@
+{
+  "id": "valkaru/talent/hounds-of-war",
+  "kind": "talent",
+  "faction": "valkaru",
+  "name": "Hounds of War",
+  "description": "Spawn an extra Hound when a mercenary squad is purchased.",
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "Valk_hound",
+  "asset": "Archetypes_ResearchItems/Valkaru/RI_HeroXP_Valkaru_HoundsOfWar"
+}

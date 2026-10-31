@@ -1,0 +1,32 @@
+---
+import EntityFacts from '../entity-facts/entity-facts.astro';
+import { getEntities } from '../../wiki.data.ts';
+import { describeEnergyCost, formatOptionalNumber } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  entity: Entity;
+}
+
+const { entity } = Astro.props;
+const exclusiveIds = entity.exclusiveGroup
+  ? (await getEntities())
+      .filter(({ id, exclusiveGroup }) => exclusiveGroup === entity.exclusiveGroup && id !== entity.id)
+      .map(({ id }) => id)
+  : [];
+const energyCostChanges = Object.entries(entity.energyCostChanges ?? {}).map(([id, change]) => ({
+  id,
+  suffix: ` → ${describeEnergyCost(change).join(', ')}`,
+}));
+---
+
+<EntityFacts
+  facts={[
+    { label: 'Level', text: formatOptionalNumber(entity.level) },
+    { label: 'Position', text: entity.position },
+    { label: 'Tier', text: entity.tier },
+    { label: 'Exclusive with', links: exclusiveIds.map((id) => ({ id })) },
+    { label: 'Applies to', links: entity.appliesTo?.map((id) => ({ id })) },
+    { label: 'Energy cost', links: energyCostChanges },
+  ]}
+/>

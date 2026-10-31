@@ -1,0 +1,16 @@
+{
+  "id": "the-legion/talent/war-experience",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "War Experience",
+  "description": "Gain experience by destroying enemy units.",
+  "details": "{XP}% cost as XP.\nDoes not grant XP after reaching max level.",
+  "values": {
+    "XP": 15
+  },
+  "researchTime": 0,
+  "level": 1,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_hero_ability_cooldown",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_EmpireXPKills"
+}

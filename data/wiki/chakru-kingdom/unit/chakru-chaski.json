@@ -1,0 +1,46 @@
+{
+  "id": "chakru-kingdom/unit/chakru-chaski",
+  "kind": "unit",
+  "faction": "chakru-kingdom",
+  "name": "Cha'Kru Chas'ki",
+  "description": "Ranged skirmisher that moves faster out of combat.\nDeals bonus damage to Harvesters.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 250
+  },
+  "count": 3,
+  "buildTime": 35,
+  "supply": 3,
+  "hp": 200,
+  "armorType": "light",
+  "speed": 625,
+  "vision": 1600,
+  "size": 75,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Sacred Knives",
+      "damage": 18,
+      "cooldown": 1.6,
+      "burst": 1,
+      "burstCooldown": 1.6,
+      "range": 1100,
+      "warmup": 0.2,
+      "projectileSpeed": 2500,
+      "dps": 11.25,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "chakru-kingdom/building/temple-of-anqas",
+    "chakru-kingdom/building/temple-of-stars"
+  ],
+  "portrait": "TGUI_Kingdom_BloodWarrior",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Kingdom_Warrior"
+}

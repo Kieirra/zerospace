@@ -1,0 +1,44 @@
+---
+import EntityRows from '../entity-rows/entity-rows.astro';
+import { groupEntities } from '../faction-page.helpers.ts';
+import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
+import { formatDps, formatOptionalDistance, formatOptionalNumber, formatUnitCost } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  factionId: string;
+}
+
+const { factionId } = Astro.props;
+const units = await getFactionEntities(factionId, 'unit');
+const groups = groupEntities(units, ({ producedBy }) => producedBy?.[0], await getEntityMap());
+
+const columns = [
+  { label: 'Cost', width: '8.5rem' },
+  { label: 'Supply' },
+  { label: 'HP', isDesktopOnly: true },
+  { label: 'Shields', isDesktopOnly: true },
+  { label: 'DPS', isDesktopOnly: true },
+  { label: 'Range', isDesktopOnly: true },
+  { label: 'Speed', isDesktopOnly: true },
+];
+
+const toRow = (unit: Entity) => {
+  const weapon = unit.weapons?.[0];
+  return {
+    id: unit.id,
+    name: unit.name,
+    cells: [
+      formatUnitCost(unit),
+      formatOptionalNumber(unit.supply),
+      formatOptionalNumber(unit.hp),
+      formatOptionalNumber(unit.shields),
+      weapon && formatDps(weapon),
+      formatOptionalDistance(weapon?.range),
+      formatOptionalNumber(unit.speed),
+    ],
+  };
+};
+---
+
+<EntityRows columns={columns} groups={groups.map(({ title, entities }) => ({ title, rows: entities.map(toRow) }))} />

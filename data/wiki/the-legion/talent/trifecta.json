@@ -1,0 +1,15 @@
+{
+  "id": "the-legion/talent/trifecta",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "Trifecta",
+  "description": "Allows a 3rd Hero to be built.\nIncrease Hero move speed by {ms}.",
+  "values": {
+    "ms": 100
+  },
+  "researchTime": 0,
+  "level": 3,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Empire_ReanimateHero"
+}

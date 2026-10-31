@@ -1,0 +1,25 @@
+{
+  "id": "the-xol/building/xyther-assembler",
+  "kind": "building",
+  "faction": "the-xol",
+  "name": "Xyther Assembler",
+  "description": "Basic unit production structure",
+  "hotkey": "F",
+  "cost": {
+    "hexite": 100
+  },
+  "buildTime": 50,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "the-xol/unit/xyther"
+  ],
+  "requires": [
+    "the-xol/building/power-core"
+  ],
+  "unlocks": [
+    "the-xol/building/molten-core"
+  ],
+  "portrait": "Building_Xol_MP_XytherProducer",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_XytherProducer"
+}

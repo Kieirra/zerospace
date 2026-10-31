@@ -1,0 +1,45 @@
+{
+  "id": "the-xol/unit/xyther",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Xyther",
+  "description": "Melee unit. Shield takes reduced damage over certain amount.",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 75
+  },
+  "count": 1,
+  "buildTime": 30,
+  "supply": 2,
+  "hp": 150,
+  "shields": 100,
+  "armorRating": 0,
+  "armorType": "medium",
+  "speed": 540,
+  "vision": 1600,
+  "size": 115,
+  "pushTier": 30,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "Nexus Sever",
+      "damage": 24,
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 110,
+      "warmup": 0.12,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 12
+    }
+  ],
+  "producedBy": [
+    "the-xol/building/xyther-assembler"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 6.25
+  },
+  "portrait": "Troop_Xol_Xyther",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Xyther"
+}

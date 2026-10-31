@@ -1,0 +1,18 @@
+{
+  "id": "grell/upgrade/wide-mandibles",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Wide Mandibles",
+  "description": "+50% Splash Radius",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Grell.Beetle.Specialize1",
+  "appliesTo": [
+    "grell/unit/mandragora"
+  ],
+  "portrait": "TGUI_icon_logo_grell",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Beetle_SplashWeapon"
+}

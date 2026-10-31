@@ -1,0 +1,19 @@
+{
+  "id": "grell/building/bloomwell",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Bloomwell",
+  "description": "Mining outpost which builds extractors to mine Hexite.\nCan be upgraded to attack.",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 400
+  },
+  "buildTime": 60,
+  "hp": 2500,
+  "armorRating": 0,
+  "produces": [
+    "grell/unit/gatherer"
+  ],
+  "portrait": "TGUI_icon_grell_building_colony_portrait02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_Colony"
+}

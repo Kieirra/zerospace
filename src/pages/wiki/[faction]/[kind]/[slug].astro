@@ -1,0 +1,13 @@
+---
+import Layout from '../../../../shared/layout/layout.astro';
+import EntityPage from '../../../../wiki/entity-page/entity-page.astro';
+import { getEntityPaths } from '../../../../wiki/wiki.data.ts';
+
+export const getStaticPaths = getEntityPaths;
+
+const { entity } = Astro.props;
+---
+
+<Layout title={entity.name}>
+  <EntityPage entity={entity} />
+</Layout>

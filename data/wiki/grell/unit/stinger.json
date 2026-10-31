@@ -1,0 +1,49 @@
+{
+  "id": "grell/unit/stinger",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Stinger",
+  "description": "Fast small melee unit.",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 75
+  },
+  "count": 3,
+  "buildTime": 30,
+  "supply": 1,
+  "hp": 100,
+  "armorType": "light",
+  "speed": 600,
+  "vision": 1600,
+  "size": 60.5,
+  "pushTier": 5,
+  "transportSlots": 1,
+  "weapons": [
+    {
+      "name": "Feral Claws",
+      "damage": 6,
+      "cooldown": 0.65,
+      "burst": 1,
+      "burstCooldown": 0.65,
+      "range": 100,
+      "warmup": 0.06,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 9.2308
+    }
+  ],
+  "producedBy": [
+    "grell/building/broodwomb"
+  ],
+  "upgrades": [
+    "grell/upgrade/biomass-submersion",
+    "grell/upgrade/dissolving-venom",
+    "grell/upgrade/extensor-adaptation",
+    "grell/upgrade/pouncing-reflex"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 1.25
+  },
+  "portrait": "TGUI_portrait_unit_grell_stinger07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Stinger"
+}

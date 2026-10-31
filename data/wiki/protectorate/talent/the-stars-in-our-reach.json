@@ -1,0 +1,22 @@
+{
+  "id": "protectorate/talent/the-stars-in-our-reach",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "The Stars in Our Reach",
+  "description": "Further gained XP is converted into top bar power.",
+  "details": "{percent} XP gained as Power.",
+  "values": {
+    "percent": 10
+  },
+  "stats": [
+    {
+      "label": "Energy per 100 XP",
+      "value": 10
+    }
+  ],
+  "researchTime": 20,
+  "level": 7,
+  "position": "B",
+  "portrait": "ControlTowerEnemy",
+  "asset": "Archetypes_ResearchItems/T7_Talents/RI_T7_EnergyFromTowers"
+}

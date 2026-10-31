@@ -1,0 +1,39 @@
+{
+  "id": "valkaru/unit/valkaru-hound",
+  "kind": "unit",
+  "faction": "valkaru",
+  "name": "Valkaru Hound",
+  "description": "Ironclad melee hound.",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 250
+  },
+  "count": 4,
+  "buildTime": 7,
+  "supply": 2,
+  "hp": 310,
+  "armorRating": 1,
+  "armorType": "medium",
+  "speed": 500,
+  "vision": 1600,
+  "size": 100,
+  "weapons": [
+    {
+      "name": "Metalfused Claws",
+      "damage": 17,
+      "cooldown": 1.3125,
+      "burst": 1,
+      "burstCooldown": 1.31251,
+      "range": 120,
+      "warmup": 0.213,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 12.9523
+    }
+  ],
+  "producedBy": [
+    "valkaru/building/valkaru-war-vault"
+  ],
+  "portrait": "TGUI_portrait_unit_valkaru_hound01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Valkaru_Hounds"
+}

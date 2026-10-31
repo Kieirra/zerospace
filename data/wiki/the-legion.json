@@ -1,0 +1,73 @@
+{
+  "id": "the-legion",
+  "kind": "faction",
+  "name": "The Legion",
+  "color": "#573284",
+  "heroes": [
+    "the-legion/hero/galavax",
+    "the-legion/hero/inquisitress",
+    "the-legion/hero/kraegar"
+  ],
+  "topbar": [
+    "the-legion/topbar/reanimate",
+    "the-legion/topbar/recall",
+    "the-legion/topbar/ritual",
+    "the-legion/topbar/spawn-monolith"
+  ],
+  "talents": [
+    "the-legion/talent/efficient-upgrades",
+    "the-legion/talent/improved-conduits",
+    "the-legion/talent/improved-spellcasting",
+    "the-legion/talent/resource-warfare",
+    "the-legion/talent/ritual",
+    "the-legion/talent/spawn-monolith",
+    "the-legion/talent/summoning-obelisk",
+    "the-legion/talent/the-stars-in-our-reach",
+    "the-legion/talent/trifecta",
+    "the-legion/talent/unending-army",
+    "the-legion/talent/war-experience"
+  ],
+  "passiveIncome": [
+    {
+      "level": 1,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusInitial"
+    },
+    {
+      "level": 2,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 3,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 4,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 5,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 6,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 7,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 8,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 9,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 10,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    }
+  ],
+  "asset": "Archetypes_Factions/Faction_Legion"
+}

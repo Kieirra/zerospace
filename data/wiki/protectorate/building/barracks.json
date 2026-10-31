@@ -1,0 +1,30 @@
+{
+  "id": "protectorate/building/barracks",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Barracks",
+  "description": "Basic infantry production structure.",
+  "hotkey": "D",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 35,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "protectorate/unit/bastion",
+    "protectorate/unit/commando",
+    "protectorate/unit/sentinel"
+  ],
+  "requires": [
+    "protectorate/building/supply-platform"
+  ],
+  "unlocks": [
+    "protectorate/building/assembly-plant",
+    "protectorate/building/research-lab",
+    "protectorate/building/skydock",
+    "protectorate/upgrade/operating-tower-turret"
+  ],
+  "portrait": "Building_Prot_Factory_Barracks",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingBarracks"
+}

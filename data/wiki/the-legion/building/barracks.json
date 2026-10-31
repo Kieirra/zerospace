@@ -1,0 +1,31 @@
+{
+  "id": "the-legion/building/barracks",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Barracks",
+  "description": "Basic unit production structure.",
+  "hotkey": "D",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 35,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "the-legion/unit/dark-disciple",
+    "the-legion/unit/steelsworn",
+    "the-legion/unit/storm-bringer",
+    "the-legion/unit/thrall"
+  ],
+  "requires": [
+    "the-legion/building/idal-conduit"
+  ],
+  "unlocks": [
+    "the-legion/building/citadel",
+    "the-legion/building/guardian-obelisk",
+    "the-legion/building/healing-obelisk",
+    "the-legion/upgrade/garrison-tower-turret"
+  ],
+  "portrait": "TGUI_icon_empire_Barracks_02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Barracks"
+}

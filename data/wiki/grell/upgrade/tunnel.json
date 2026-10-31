@@ -1,0 +1,17 @@
+{
+  "id": "grell/upgrade/tunnel",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Tunnel",
+  "description": "Tunnel to a target location.",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "Local.Grell.Beetle.Specialize1",
+  "appliesTo": [
+    "grell/unit/mandragora"
+  ],
+  "portrait": "TGUI_icon_skill_deepburrow",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Beetle_Burrow"
+}

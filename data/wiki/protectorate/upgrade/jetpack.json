@@ -1,0 +1,17 @@
+{
+  "id": "protectorate/upgrade/jetpack",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Jetpack",
+  "description": "Jump to a target location, ignoring terrain.",
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Prot.Atlas.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/titan"
+  ],
+  "portrait": "SGUI_CommandoJump",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Atlas_Jump"
+}

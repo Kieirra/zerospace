@@ -1,0 +1,17 @@
+{
+  "id": "chakru-kingdom/talent/blood-for-blood",
+  "kind": "talent",
+  "faction": "chakru-kingdom",
+  "name": "Blood for Blood",
+  "description": "+{Armor} Armor.\n+{Lifesteal}% Lifesteal.",
+  "values": {
+    "Armor": 1,
+    "Lifesteal": 30
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_skill_HeavyFocus",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Kingdom_T4LifeArmor"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/building/guardian-obelisk",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Guardian Obelisk",
+  "description": "A defensive structure. \nConsumes energy to deal bonus damage.",
+  "hotkey": "E",
+  "cost": {
+    "hexite": 125
+  },
+  "buildTime": 25,
+  "hp": 400,
+  "vision": 1800,
+  "requires": [
+    "the-legion/building/barracks",
+    "the-legion/building/bestiary"
+  ],
+  "portrait": "TGUI_icon_empire_GuardianObelisk02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Rift_Defensive"
+}

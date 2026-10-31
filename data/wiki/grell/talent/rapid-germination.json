@@ -1,0 +1,15 @@
+{
+  "id": "grell/talent/rapid-germination",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Rapid Germination",
+  "description": "+{Increase}% faster building construction.",
+  "values": {
+    "Increase": 35
+  },
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_essence_collector",
+  "asset": "Archetypes_ResearchItems/Valkaru/RI_HeroXP_Grell_FasterConstruction"
+}

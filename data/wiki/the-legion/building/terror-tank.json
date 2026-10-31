@@ -1,0 +1,19 @@
+{
+  "id": "the-legion/building/terror-tank",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Terror Tank",
+  "description": "Construct a Terror Tank.\nTerror Tanks are heavy tanks with installable turrets.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 250,
+    "flux": 150
+  },
+  "buildTime": 90,
+  "hp": 1300,
+  "requires": [
+    "the-legion/building/terror-tower"
+  ],
+  "portrait": "TGUI_portrait_unit_empire_terror_tank05",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Armory"
+}

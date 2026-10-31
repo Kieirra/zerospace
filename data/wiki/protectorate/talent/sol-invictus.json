@@ -1,0 +1,44 @@
+{
+  "id": "protectorate/talent/sol-invictus",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Sol Invictus",
+  "description": "Call down a powerful mech that explodes on death and sets the ground on fire.",
+  "cooldown": 150,
+  "range": 2000,
+  "summons": [
+    {
+      "name": "Sol Invictus",
+      "kind": "unit",
+      "hp": 3000,
+      "armorType": "heavy",
+      "speed": 300,
+      "vision": 1800,
+      "weapons": [
+        {
+          "name": "Earthdawn Spike",
+          "damage": 160,
+          "cooldown": 2,
+          "burst": 1,
+          "burstCooldown": 2,
+          "range": 180,
+          "warmup": 0.14,
+          "projectileSpeed": 5000,
+          "melee": true,
+          "dps": 80
+        }
+      ]
+    }
+  ],
+  "area": {
+    "damage": 35,
+    "interval": 0.5,
+    "radius": 1000
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 5,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_weapon_x",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_WeaponX/RI_TopBar_WeaponX"
+}

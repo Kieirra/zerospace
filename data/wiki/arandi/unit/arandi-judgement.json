@@ -1,0 +1,38 @@
+{
+  "id": "arandi/unit/arandi-judgement",
+  "kind": "unit",
+  "faction": "arandi",
+  "name": "Arandi Judgement",
+  "description": "Killed friendly units nearby spawn hallucination on death.",
+  "hotkey": "U",
+  "cost": {
+    "hexite": 100,
+    "flux": 200
+  },
+  "count": 1,
+  "buildTime": 7,
+  "supply": 6,
+  "hp": 500,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 550,
+  "vision": 1600,
+  "size": 140,
+  "weapons": [
+    {
+      "name": "Chronobind",
+      "damage": 20,
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 1.7,
+      "range": 1100,
+      "warmup": 0.5,
+      "dps": 11.7647
+    }
+  ],
+  "producedBy": [
+    "arandi/building/arandi-penumbra"
+  ],
+  "portrait": "Troop_Arandi_Judgement",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Arandi/Units/RI_Troop_Arandi_MP_Judgement"
+}

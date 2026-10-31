@@ -1,0 +1,17 @@
+{
+  "id": "grell/upgrade/exoskeleton-reinforcement",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Exoskeleton Reinforcement",
+  "description": "+75 HP",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "Local.Grell.BroodGuard.Specialize1",
+  "appliesTo": [
+    "grell/unit/keeper"
+  ],
+  "portrait": "TGUI_icon_skill_infused_lifesteal",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_BroodGuard_HPUpgrade"
+}

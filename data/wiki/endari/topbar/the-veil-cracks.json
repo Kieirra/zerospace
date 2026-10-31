@@ -1,0 +1,15 @@
+{
+  "id": "endari/topbar/the-veil-cracks",
+  "kind": "topbar",
+  "faction": "endari",
+  "name": "The Veil Cracks",
+  "description": "Plundges the worlds into deep darkness for {x} seconds.\nThe Silent Hollow awakens and roams freely.\nEndari units become stronger (+{ms}% move speed, +{as}% damage, {cdr}% ability cooldowns).",
+  "values": {
+    "as": 25,
+    "cdr": -20
+  },
+  "energyCost": 25,
+  "cooldown": 120,
+  "portrait": "TGUI_icon_skill_Sacrifice",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Endari_Night/RI_Ability_Endari_Night"
+}

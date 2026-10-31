@@ -1,0 +1,26 @@
+{
+  "id": "the-xol/talent/resource-warfare",
+  "kind": "talent",
+  "faction": "the-xol",
+  "name": "Resource Warfare",
+  "description": "Further gained XP is converted into Hexite and Flux.",
+  "details": "{percent} XP gained as Hexite and Flux.",
+  "values": {
+    "percent": 25
+  },
+  "stats": [
+    {
+      "label": "Hexite per 100 XP",
+      "value": 25
+    },
+    {
+      "label": "Flux per 100 XP",
+      "value": 25
+    }
+  ],
+  "researchTime": 20,
+  "level": 7,
+  "position": "A",
+  "portrait": "ControlTowerCaptured",
+  "asset": "Archetypes_ResearchItems/T7_Talents/RI_T7_ResourceFromTowers"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "protectorate/talent/reinforcements",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Reinforcements",
+  "description": "Call down reinforcements of the selected type.",
+  "cooldown": 60,
+  "range": 2000,
+  "charges": 3,
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 3,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_reinforcement",
+  "asset": "Maguro/CustomHero/Reinforcements/RI_TopBar_EnableReinforcements"
+}

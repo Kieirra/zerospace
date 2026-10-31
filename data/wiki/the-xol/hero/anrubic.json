@@ -1,0 +1,56 @@
+{
+  "id": "the-xol/hero/anrubic",
+  "kind": "hero",
+  "faction": "the-xol",
+  "name": "Anrubic",
+  "description": "Powerful hero that can grapple enemies and merge with other Xol units to augment its abilities.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 250,
+  "speed": 500,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Morph Blade",
+      "damage": 23,
+      "cooldown": 1.2,
+      "burst": 1,
+      "burstCooldown": 1.2,
+      "range": 200,
+      "warmup": 0.27,
+      "melee": true,
+      "dps": 19.1667
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Merge",
+      "description": "Merge with a first tier Xol unit, gaining an ability and stats based on the unit type, healing {heal}% of the unit's health, and Overclocks the Xol hero for {overclock} seconds.\nWhen targeting an enemy unit, deal damage and heal for {damage}+{damage_percent}% of the target's health.",
+      "values": {
+        "heal": 50,
+        "overclock": 5,
+        "damage": 30,
+        "damage_percent": 10
+      },
+      "hotkey": "Q",
+      "cooldown": 16,
+      "range": 500
+    },
+    {
+      "name": "Grapple",
+      "description": "Pulls to the target, rooting it and dealing {damage} damage to the target and any units on the way.",
+      "values": {
+        "damage": 40
+      },
+      "hotkey": "W",
+      "cooldown": 14,
+      "range": 2000
+    }
+  ],
+  "portrait": "Troop_Hero_MP_XolHero",
+  "asset": "Archetypes_Heroes/Multiplayer/RI_Hero_MP_XolHero"
+}

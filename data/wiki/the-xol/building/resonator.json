@@ -1,0 +1,18 @@
+{
+  "id": "the-xol/building/resonator",
+  "kind": "building",
+  "faction": "the-xol",
+  "name": "Resonator",
+  "description": "Transformable defensive structure\n\n+{Roller} - Laser weapon attacking ground and air \n+{Spectron} - Area effect projectile weapon\n+{Xyther} - Heals all around\n+{Drone} - Increased vision and detecting enemies in wide radius",
+  "hotkey": "E",
+  "cost": {
+    "hexite": 150
+  },
+  "buildTime": 22,
+  "hp": 600,
+  "requires": [
+    "the-xol/building/power-core"
+  ],
+  "portrait": "Building_Xol_MP_PowerBeam",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_PowerBeam"
+}

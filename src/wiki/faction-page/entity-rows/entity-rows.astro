@@ -1,0 +1,79 @@
+---
+import clsx from 'clsx';
+import GameImage from '../../game-image/game-image.astro';
+import CostValue from '../../cost-value/cost-value.astro';
+import { entityHref } from '../../wiki.helpers.ts';
+import { hasLongWord, keepFilledColumns, toGridTemplate } from './entity-rows.helpers.ts';
+import type { RowColumn, RowGroup } from './entity-rows.helpers.ts';
+
+interface Props {
+  columns: RowColumn[];
+  groups: RowGroup[];
+}
+
+const { columns, groups } = keepFilledColumns(Astro.props.columns, Astro.props.groups);
+const mobileTemplate = toGridTemplate(columns.filter(({ isDesktopOnly }) => !isDesktopOnly));
+const desktopTemplate = toGridTemplate(columns, true);
+---
+
+<div
+  class="grid grid-cols-(--cols) gap-x-0.5 sm:gap-x-1 md:grid-cols-(--cols-md)"
+  style={`--cols: ${mobileTemplate}; --cols-md: ${desktopTemplate}`}
+>
+  <div aria-hidden="true" class="col-span-full grid grid-cols-subgrid px-2 text-xs text-muted uppercase sm:px-3">
+    <span></span>
+    {
+      columns.map(({ label, isDesktopOnly, isWide }, index) => (
+        <span
+          class={clsx(
+            'px-1.5 pt-2 pb-1.5 sm:px-2',
+            isDesktopOnly && 'hidden md:block',
+            !isWide && 'text-right',
+            index % 2 === 0 && 'bg-white/[0.03]',
+          )}
+        >
+          {label}
+        </span>
+      ))
+    }
+  </div>
+  {
+    groups.map(({ title, rows }) => (
+      <>
+        {title && <h2 class="col-span-full mt-6 mb-2 px-2 text-sm font-semibold text-muted sm:px-3">{title}</h2>}
+        {rows.map(({ id, name, cells }, rowIndex) => (
+          <a
+            href={entityHref(id)}
+            class={clsx(
+              'col-span-full grid min-h-12 grid-cols-subgrid px-2 text-sm sm:px-3 sm:text-base',
+              rowIndex % 2 === 0 ? 'bg-surface/70' : 'bg-surface/25',
+              'hover:bg-surface-hover',
+            )}
+          >
+            <span class="flex min-w-0 items-center gap-2 py-2 font-medium sm:gap-3">
+              <span class="w-8 shrink-0 max-[359px]:hidden">
+                <GameImage id={id} name={name} size="thumb" />
+              </span>
+              <span class={clsx('min-w-0 break-words', hasLongWord(name) && 'wrap-anywhere')}>{name}</span>
+            </span>
+            {cells.map((cell, index) => (
+              <span
+                class={clsx(
+                  'flex items-center px-1.5 py-2 tabular-nums sm:px-2',
+                  columns[index].isDesktopOnly && 'hidden md:flex',
+                  columns[index].isWide ? 'text-sm whitespace-pre-line text-muted' : 'justify-end text-right',
+                  index % 2 === 0 && 'bg-white/[0.03]',
+                )}
+              >
+                <span>
+                  {cell !== undefined && <span class="sr-only">{columns[index].label} </span>}
+                  <CostValue value={cell} />
+                </span>
+              </span>
+            ))}
+          </a>
+        ))}
+      </>
+    ))
+  }
+</div>

@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/heavy-plating",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Heavy Plating",
+  "description": "+{armor} armor.",
+  "values": {
+    "armor": 3
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Prot.Juggernaut.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/juggernaut"
+  ],
+  "portrait": "TGUI_icon_skill_vehicle_armor",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Upgrades/Juggernaut/RI_Prot_MP_Juggernaut_Armor"
+}

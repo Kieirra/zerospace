@@ -1,0 +1,25 @@
+---
+import clsx from 'clsx';
+import { STEAM_BUILD_ID } from '../site.constants.ts';
+import { buildIssueUrl } from './report-button.helpers.ts';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const href = buildIssueUrl({ id, steamBuildId: STEAM_BUILD_ID, url: Astro.url.pathname });
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={clsx(
+    'inline-flex h-10 shrink-0 items-center px-4 bevel-sm',
+    'bg-text text-xs font-bold tracking-[.16em] text-bg uppercase transition-colors',
+    'hover:bg-accent hover:text-text focus-visible:bg-accent focus-visible:text-text focus-visible:outline-none',
+  )}
+>
+  Report
+</a>

@@ -1,0 +1,35 @@
+---
+import '@fontsource/oxanium/latin-400.css';
+import '@fontsource/oxanium/latin-600.css';
+import '@fontsource/oxanium/latin-700.css';
+import '@fontsource/chakra-petch/latin-600.css';
+import clsx from 'clsx';
+import '../../styles/global.css';
+import Footer from '../footer/footer.astro';
+import Nav from '../nav/nav.astro';
+import { SITE_NAME } from '../site.constants.ts';
+
+interface Props {
+  title?: string;
+  isCentered?: boolean;
+}
+
+const { title, isCentered } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} · ${SITE_NAME}` : SITE_NAME}</title>
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <Nav />
+    <slot name="hero" />
+    <main class={clsx('mx-auto w-full max-w-6xl flex-1 px-4 py-6', isCentered && 'flex flex-col justify-center')}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

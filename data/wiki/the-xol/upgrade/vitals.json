@@ -1,0 +1,23 @@
+{
+  "id": "the-xol/upgrade/vitals",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Vitals",
+  "description": "+{x}% health and shields to units",
+  "values": {
+    "x": [
+      10,
+      20,
+      30,
+      40
+    ]
+  },
+  "hotkey": "D",
+  "cost": {
+    "flux": 200
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Research.T1",
+  "portrait": "TGUI_icon_skill_infused_lifesteal",
+  "asset": "Archetypes_ResearchItems/Xol/Upgrades/RI_Xol_Army_Vitals"
+}

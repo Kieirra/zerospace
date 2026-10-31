@@ -1,0 +1,60 @@
+{
+  "id": "the-xol/unit/eradicator",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Eradicator",
+  "description": "A towering mech-like unit. Can launch nearby rollers.",
+  "hotkey": "F",
+  "cost": {
+    "hexite": 125,
+    "flux": 250
+  },
+  "count": 1,
+  "buildTime": 24,
+  "supply": 6,
+  "hp": 750,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 400,
+  "vision": 1600,
+  "size": 275,
+  "pushTier": 90,
+  "transportSlots": 8,
+  "weapons": [
+    {
+      "name": "Aether Shockwave",
+      "damage": 18,
+      "cooldown": 3,
+      "burst": 1,
+      "burstCooldown": 3,
+      "range": 1300,
+      "warmup": 0.13,
+      "dps": 30
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Launch Rollers",
+      "description": "Grab and throw up to {n} Rollers, dealing {damage} (+{buildingmul}% vs Buildings) damage for each Roller and slowing enemies by {slow}% for {slowdur} seconds.\nRollers are overclocked upon landing for {overclockdur}s.",
+      "values": {
+        "n": 15,
+        "damage": 15,
+        "buildingmul": 50,
+        "slow": 50,
+        "slowdur": 2,
+        "overclockdur": 5
+      },
+      "hotkey": "X",
+      "cooldown": 12,
+      "range": 4000
+    }
+  ],
+  "requires": [
+    "the-xol/building/world-forge"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 31.625
+  },
+  "portrait": "Troop_Xol_Eradicator",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Eradicator"
+}

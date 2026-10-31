@@ -1,0 +1,39 @@
+{
+  "id": "free-corsairs/unit/corsair-rover",
+  "kind": "unit",
+  "faction": "free-corsairs",
+  "name": "Corsair Rover",
+  "description": "Light vehicle which can shoot while moving.\nGains bonus attack speed against nearby units.",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 200,
+    "flux": 50
+  },
+  "count": 2,
+  "buildTime": 10,
+  "supply": 3,
+  "hp": 320,
+  "armorType": "light",
+  "speed": 700,
+  "vision": 1600,
+  "size": 120,
+  "pushTier": 10,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "M12 Gatling Gun",
+      "damage": 4,
+      "cooldown": 0.43,
+      "burst": 50,
+      "burstCooldown": 0.1,
+      "range": 700,
+      "warmup": 0,
+      "dps": 18.6047
+    }
+  ],
+  "producedBy": [
+    "free-corsairs/building/free-corsair-mercenary-outpost"
+  ],
+  "portrait": "TGUI_portrait_unit_dread_rover01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_D_Rover"
+}

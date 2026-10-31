@@ -1,0 +1,23 @@
+{
+  "id": "grell/talent/tree-of-life",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Tree of Life",
+  "description": "Heals friendly units and Revives recently lost units.",
+  "cooldown": 200,
+  "range": 2000,
+  "summons": [
+    {
+      "name": "Tree of Life",
+      "kind": "building",
+      "hp": 1000,
+      "armorRating": 1
+    }
+  ],
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 5,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_tree_of_life",
+  "asset": "Archetype_Abilities/Troop_Abilities/Grell_Tree/RI_TopBar_GrellTreeOfLife"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "the-xol/talent/overclocked-production",
+  "kind": "talent",
+  "faction": "the-xol",
+  "name": "Overclocked Production",
+  "description": "Increase production charge replenish rate by {rate}% and maximum charges by {charges}.",
+  "values": {
+    "rate": 25,
+    "charges": 1
+  },
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_marran_unit_energy_regeneration",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Talents/RI_Talent_Xol_MP_ProductionChargeUpgrade_2"
+}

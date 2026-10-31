@@ -1,0 +1,28 @@
+{
+  "id": "protectorate/building/skydock",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Skydock",
+  "description": "Aircraft production structure.",
+  "hotkey": "R",
+  "cost": {
+    "hexite": 100,
+    "flux": 50
+  },
+  "buildTime": 45,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "protectorate/unit/griffin",
+    "protectorate/unit/hauler",
+    "protectorate/unit/ironwing"
+  ],
+  "requires": [
+    "protectorate/building/barracks"
+  ],
+  "unlocks": [
+    "protectorate/building/mechanical-research-lab"
+  ],
+  "portrait": "Building_Prot_MP_Starport",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Buildings/RI_Prot_Building_MP_Starport"
+}

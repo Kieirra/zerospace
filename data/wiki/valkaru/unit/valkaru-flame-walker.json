@@ -1,0 +1,61 @@
+{
+  "id": "valkaru/unit/valkaru-flame-walker",
+  "kind": "unit",
+  "faction": "valkaru",
+  "name": "Valkaru Flame Walker",
+  "description": "Heavy flame infantry which deals damage in a line.\nCan leap to slow units. Explodes on death. Deals bonus damage to Light.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 100,
+    "flux": 200
+  },
+  "count": 1,
+  "buildTime": 7,
+  "supply": 6,
+  "hp": 800,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 400,
+  "vision": 1600,
+  "size": 166,
+  "pushTier": 40,
+  "transportSlots": 10,
+  "weapons": [
+    {
+      "name": "Remnant Flames",
+      "damage": 3,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 950,
+      "warmup": 0.01,
+      "projectileSpeed": 100,
+      "dps": 30,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 150,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Leap-Smash",
+      "description": "Jumps to the target location after a small delay.\nStuns nearby enemies for {stun} second then slows enemies for {slow} second upon landing.",
+      "values": {
+        "stun": 1,
+        "slow": 1
+      },
+      "hotkey": "N",
+      "cooldown": 15,
+      "range": 1400
+    }
+  ],
+  "producedBy": [
+    "valkaru/building/valkaru-war-vault"
+  ],
+  "portrait": "TGUI_portrait_unit_valkaru_flamewalker01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Valkaru_FlameWalker"
+}

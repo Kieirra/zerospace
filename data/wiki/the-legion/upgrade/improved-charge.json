@@ -1,0 +1,21 @@
+{
+  "id": "the-legion/upgrade/improved-charge",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Improved Charge",
+  "description": "+{range}% Charge range.\nCharge now has {num} cast charges.",
+  "values": {
+    "range": 25,
+    "num": 2
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Legion.Hero.Hero1.Specialize1",
+  "appliesTo": [
+    "the-legion/hero/inquisitress"
+  ],
+  "portrait": "TGUI_icon_skill_valkaru_valkaru_rage",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Hero1_ImprovedCharge"
+}

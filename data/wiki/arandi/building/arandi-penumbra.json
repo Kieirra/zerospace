@@ -1,0 +1,24 @@
+{
+  "id": "arandi/building/arandi-penumbra",
+  "kind": "building",
+  "faction": "arandi",
+  "name": "Arandi Penumbra",
+  "description": "Flying Arandi base that recruits mercenaries.\nOccasionally will Abduct light infantry units under it.",
+  "hotkey": "T",
+  "cost": {
+    "hexite": 75,
+    "flux": 50
+  },
+  "buildTime": 50,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "arandi/unit/arandi-asterion",
+    "arandi/unit/arandi-chronowarper",
+    "arandi/unit/arandi-ethermancer",
+    "arandi/unit/arandi-judgement",
+    "arandi/unit/arandi-phoenix-guard"
+  ],
+  "portrait": "TGUI_portrait_building_arandi_mothership",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Arandi"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/upgrade/boundless-atonement",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Boundless Atonement",
+  "description": "Doubles heal radius and rate of healing for Sacrificial Spear.",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Legion.Hero.hero3.Specialize1",
+  "appliesTo": [
+    "the-legion/hero/galavax"
+  ],
+  "portrait": "TGUI_icon_skill_infused_lifesteal",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Hero3_ImprovedSacrificeHealing"
+}

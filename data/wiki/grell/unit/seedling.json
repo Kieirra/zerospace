@@ -1,0 +1,20 @@
+{
+  "id": "grell/unit/seedling",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Seedling",
+  "description": "Can build structures on biomass.\nWhen infused, becomes a fast flying scout unit, still capable of building structures.",
+  "hotkey": "T",
+  "count": 1,
+  "supply": 0,
+  "hp": 20,
+  "armorType": "light",
+  "speed": 225,
+  "vision": 1400,
+  "size": 70,
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 2
+  },
+  "portrait": "TGUI_portrait_unit_grell_seedling07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Grell_Seedling"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "grell/talent/catalyzed-infusion",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Catalyzed Infusion",
+  "description": "{Multiplier}x faster Infuse.\n+{Buff}% attack and movement speed for {duration} seconds.",
+  "values": {
+    "Multiplier": 3,
+    "Buff": 40,
+    "duration": 10
+  },
+  "researchTime": 0,
+  "level": 3,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_recycling_biomass",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Grell_Infuse_Buff"
+}

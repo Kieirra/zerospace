@@ -1,0 +1,71 @@
+{
+  "id": "the-legion/hero/galavax",
+  "kind": "hero",
+  "faction": "the-legion",
+  "name": "Galavax",
+  "description": "Ranged caster hero with Fireball and Sacrificial Spear abilities.",
+  "hotkey": "D",
+  "cost": {
+    "hexite": 150,
+    "flux": 150
+  },
+  "buildTime": 45,
+  "supply": 10,
+  "hp": 260,
+  "energy": 100,
+  "speed": 525,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "The Emperor's Reach",
+      "damage": 22,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 1.4,
+      "range": 1200,
+      "warmup": 0.4,
+      "projectileSpeed": 2000,
+      "dps": 15.7143
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Fireball",
+      "description": "Hurl a fireball that slowly moves across battlefield and burns enemy units and structures.\nInitial hit deals {Initial} damage, further contact deals {tick} damage per second.",
+      "values": {
+        "Initial": 90,
+        "tick": 40
+      },
+      "hotkey": "D",
+      "cooldown": 14,
+      "energyCost": 40,
+      "range": 2000
+    },
+    {
+      "name": "Sacrificial Spear",
+      "description": "Deal {Damage} damage and slow an enemy unit for {Slow Duration} seconds.\nOR\nSacrifices a friendly Thrall, healing nearby biological units for {Healing Duration} seconds.",
+      "values": {
+        "Damage": 80,
+        "Slow Duration": 5,
+        "Healing Duration": 15
+      },
+      "hotkey": "F",
+      "cooldown": 10,
+      "energyCost": 20,
+      "range": 1500
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/altar"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/boundless-atonement",
+    "the-legion/upgrade/burning-fireball",
+    "the-legion/upgrade/fast-fireball",
+    "the-legion/upgrade/lightning-spear"
+  ],
+  "portrait": "Troop_Coop_Galavax",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_Galavax"
+}

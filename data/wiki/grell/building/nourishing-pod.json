@@ -1,0 +1,22 @@
+{
+  "id": "grell/building/nourishing-pod",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Nourishing Pod",
+  "description": "Provides {supply} Supply.\nHeals nearby units.",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 12,
+  "hp": 400,
+  "armorRating": 1,
+  "unlocks": [
+    "grell/building/broodwomb"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 5.25
+  },
+  "portrait": "TGUI_icon_grell_building_nourishingpod_portrait02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_SupplyDepot"
+}

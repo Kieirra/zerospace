@@ -1,0 +1,14 @@
+{
+  "id": "the-legion/topbar/recall",
+  "kind": "topbar",
+  "faction": "the-legion",
+  "name": "Recall",
+  "description": "Recalls units to a Garrison Tower.",
+  "energyCost": 5,
+  "cooldown": 90,
+  "range": 2000,
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_skill_improved_recall",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_TopBar_Recall"
+}

@@ -1,0 +1,38 @@
+---
+import EntityRows from '../entity-rows/entity-rows.astro';
+import { groupEntities } from '../faction-page.helpers.ts';
+import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
+import { byTierThenName, formatCost, formatOptionalSeconds, interpolate } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  factionId: string;
+}
+
+const { factionId } = Astro.props;
+const upgrades = await getFactionEntities(factionId, 'upgrade');
+const groups = groupEntities(upgrades, ({ appliesTo }) => appliesTo?.[0], await getEntityMap());
+
+const columns = [
+  { label: 'Tier', width: '4rem' },
+  { label: 'Cost', width: '8.5rem' },
+  { label: 'Research time', width: '7rem' },
+  { label: 'Description', isDesktopOnly: true, isWide: true },
+];
+
+const toRow = (upgrade: Entity) => ({
+  id: upgrade.id,
+  name: upgrade.name,
+  cells: [
+    upgrade.tier,
+    formatCost(upgrade.cost),
+    formatOptionalSeconds(upgrade.researchTime),
+    upgrade.description && interpolate(upgrade.description, upgrade.values),
+  ],
+});
+---
+
+<EntityRows
+  columns={columns}
+  groups={groups.map(({ title, entities }) => ({ title, rows: entities.sort(byTierThenName).map(toRow) }))}
+/>

@@ -1,0 +1,25 @@
+---
+import { findImageUrl } from '../game-image/game-image.helpers.ts';
+
+interface Props {
+  factionId: string;
+}
+
+const artUrl = findImageUrl(`art/${Astro.props.factionId}`);
+---
+
+<div class="relative -mx-2 bevel bg-panel/95 sm:mx-0">
+  {
+    artUrl && (
+      <img
+        src={artUrl}
+        alt=""
+        decoding="async"
+        class="pointer-events-none absolute inset-x-0 top-0 h-30 w-full object-cover object-top opacity-40 mask-b-from-10% mask-b-to-100%"
+      />
+    )
+  }
+  <div class="relative p-4 md:p-6">
+    <slot />
+  </div>
+</div>

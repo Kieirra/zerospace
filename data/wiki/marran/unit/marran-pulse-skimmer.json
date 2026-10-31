@@ -1,0 +1,46 @@
+{
+  "id": "marran/unit/marran-pulse-skimmer",
+  "kind": "unit",
+  "faction": "marran",
+  "name": "Marran Pulse Skimmer",
+  "description": "Fast moving hovertank with quickly recharging shields. Deals bonus damage to Harvesters.",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 225
+  },
+  "count": 2,
+  "buildTime": 10,
+  "supply": 3,
+  "hp": 100,
+  "shields": 200,
+  "armorType": "medium",
+  "speed": 750,
+  "vision": 1600,
+  "size": 100,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Pulse Blaster",
+      "damage": 8,
+      "cooldown": 0.6,
+      "burst": 1,
+      "burstCooldown": 0.6,
+      "range": 600,
+      "warmup": 0.01,
+      "projectileSpeed": 3000,
+      "dps": 13.3333,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "marran/building/marran-bulwark"
+  ],
+  "portrait": "TGUI_portrait_unit_marran_hovertank01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Marran_HoverTank"
+}

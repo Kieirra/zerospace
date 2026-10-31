@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/upgrade/flame-turret",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Flame Turret",
+  "description": "Adds a Flame turret that attacks nearby ground targets.\n\nPassive: The Terror Tank main gun deals {Damage} damage in a small radius. More turrets increase splash radius.",
+  "values": {
+    "Damage": 35
+  },
+  "stats": [
+    {
+      "label": "Bonus vs Light",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
+  "hotkey": "Q",
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToFlameTurret"
+}

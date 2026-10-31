@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/longshot-calibration",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Longshot Calibration",
+  "description": "+{Range} attack range.",
+  "values": {
+    "Range": 4
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "Local.Prot.Rocket.specialize1",
+  "appliesTo": [
+    "protectorate/unit/sentinel"
+  ],
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_RocketTrooper_AttackRange"
+}

@@ -1,0 +1,59 @@
+---
+import clsx from 'clsx';
+import CostValue from '../../cost-value/cost-value.astro';
+import StatIcon from '../stat-icon/stat-icon.astro';
+import type { StatTile } from '../../wiki.types.ts';
+import { toBatchPrefix, toShortLabel } from './stat-tiles.helpers.ts';
+
+interface Props {
+  tiles: StatTile[];
+  isNested?: boolean;
+}
+
+const { tiles, isNested } = Astro.props;
+---
+
+{
+  tiles.length > 0 && (
+    <dl
+      class={clsx(
+        'grid gap-1.5 tabular-nums',
+        isNested ? 'grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))]' : 'grid-cols-[repeat(auto-fill,minmax(6.5rem,1fr))]',
+      )}
+    >
+      {tiles.map(({ label, value, batch, isAccent }) => (
+        <div class={clsx('min-w-0 bevel-sm px-2.5 py-1.5', isNested ? 'bg-surface-raised' : 'bg-surface')}>
+          <dt class="flex items-center gap-1 font-label text-[10px] font-semibold tracking-[.12em] text-muted uppercase">
+            <StatIcon label={label} />
+            <span class="min-w-0 truncate" title={label} aria-hidden={toShortLabel(label) !== label ? 'true' : undefined}>
+              {toShortLabel(label)}
+            </span>
+            {toShortLabel(label) !== label && <span class="sr-only">{label}</span>}
+          </dt>
+          <dd class={clsx('font-semibold', isNested ? 'text-sm' : 'text-base', isAccent && 'text-accent-soft')}>
+            {typeof value === 'string' ? (
+              value.split('/').map((part, index) => (
+                <>
+                  {index > 0 && (
+                    <>
+                      /<wbr />
+                    </>
+                  )}
+                  {part}
+                </>
+              ))
+            ) : (
+              <CostValue value={value} />
+            )}
+          </dd>
+          {batch && (
+            <dd class="text-[11px] text-muted">
+              {toBatchPrefix(batch.count)}
+              <CostValue value={batch.cost} />
+            </dd>
+          )}
+        </div>
+      ))}
+    </dl>
+  )
+}

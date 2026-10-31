@@ -1,0 +1,18 @@
+{
+  "id": "arandi",
+  "kind": "mercenary",
+  "name": "Arandi",
+  "color": "#8915d5",
+  "heroes": [
+    "arandi/hero/iolin"
+  ],
+  "topbar": [
+    "arandi/topbar/penumbra-recall"
+  ],
+  "talents": [
+    "arandi/talent/ghostplane-sight",
+    "arandi/talent/lore-of-flux",
+    "arandi/talent/penumbra-ascendant"
+  ],
+  "asset": "Archetypes_Factions/Merc_Arandi"
+}

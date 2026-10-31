@@ -1,0 +1,48 @@
+{
+  "id": "valkaru/unit/valkaru-tow-bot",
+  "kind": "unit",
+  "faction": "valkaru",
+  "name": "Valkaru Tow Bot",
+  "description": "Heavy walker which can pull units towards itself.\nHeals friendly units.",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 100,
+    "flux": 150
+  },
+  "count": 1,
+  "buildTime": 7,
+  "supply": 6,
+  "hp": 425,
+  "armorType": "heavy",
+  "speed": 600,
+  "vision": 1600,
+  "size": 170,
+  "pushTier": 50,
+  "transportSlots": 8,
+  "weapons": [
+    {
+      "name": "Utility Laser",
+      "damage": 6,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 0.01,
+      "range": 800,
+      "projectileSpeed": 100,
+      "dps": 12
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Pull",
+      "description": "Pulls all units in targeted area towards the Tow Bot.",
+      "hotkey": "V",
+      "cooldown": 30,
+      "range": 1500
+    }
+  ],
+  "producedBy": [
+    "valkaru/building/valkaru-war-vault"
+  ],
+  "portrait": "TGUI_icon_valkaru_unit_grabber_portrait",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Valkaru_Grabber"
+}

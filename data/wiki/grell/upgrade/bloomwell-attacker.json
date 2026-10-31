@@ -1,0 +1,10 @@
+{
+  "id": "grell/upgrade/bloomwell-attacker",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Bloomwell Attacker",
+  "description": "Allows the Bloomwell to attack enemies.",
+  "hotkey": "E",
+  "portrait": "TGUI_icon_skill_vehicle_armor",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradeRootColonyTurret"
+}

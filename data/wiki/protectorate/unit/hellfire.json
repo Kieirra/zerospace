@@ -1,0 +1,64 @@
+{
+  "id": "protectorate/unit/hellfire",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Hellfire",
+  "description": "Area damage artillery vehicle.",
+  "hotkey": "Y",
+  "cost": {
+    "hexite": 150,
+    "flux": 100
+  },
+  "count": 1,
+  "buildTime": 50,
+  "supply": 6,
+  "hp": 300,
+  "armorType": "medium",
+  "speed": 400,
+  "vision": 1600,
+  "size": 129.375,
+  "transportSlots": 6,
+  "weapons": [
+    {
+      "name": "Ifrit Scatter Missile",
+      "damage": 16,
+      "cooldown": 0.2,
+      "burst": 6,
+      "burstCooldown": 4,
+      "range": 1400,
+      "warmup": 0,
+      "projectileSpeed": 2000,
+      "dps": 24
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Siege Mode",
+      "description": "Enables siege mode.\n+40% range when sieged.",
+      "details": "Sieged units cannot move.",
+      "hotkey": "C",
+      "cooldown": 2.5
+    },
+    {
+      "name": "Mobile Configuration",
+      "description": "Allows the Hellfire to move.",
+      "hotkey": "C",
+      "cooldown": 0.8
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/war-foundry"
+  ],
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/resonant-missiles"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 3,
+    "protectorate/topbar/protective-shield": 12.375
+  },
+  "portrait": "Troop_Prot_Hellfire",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Units/RI_Prot_Troop_MP_Hellfire"
+}

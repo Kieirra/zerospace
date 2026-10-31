@@ -1,0 +1,72 @@
+{
+  "id": "protectorate/hero/mera",
+  "kind": "hero",
+  "faction": "protectorate",
+  "name": "Mera",
+  "description": "Hero that can switch between a sword and a sidearm. Attacking units with her sword grants her temporary attack speed. Can dash through enemies and create an armor field around her.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 150,
+  "shields": 150,
+  "speed": 500,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Valora",
+      "damage": 24,
+      "cooldown": 1.2,
+      "burst": 1,
+      "burstCooldown": 1.3,
+      "range": 150,
+      "warmup": 0.25,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 18.4615
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Kinetic Dash",
+      "description": "Dashes forward, dealing her attack damage to enemies in path.\nRecharges shields equal to {shieldpercent}% of damage dealt.",
+      "values": {
+        "shieldpercent": 50
+      },
+      "hotkey": "W",
+      "cooldown": 17,
+      "range": 1500,
+      "charges": 2
+    },
+    {
+      "name": "Bulwark Field",
+      "description": "Nearby friendly units gain {shields} shields for {duration} seconds.",
+      "values": {
+        "shields": 20,
+        "duration": 5
+      },
+      "hotkey": "Q",
+      "cooldown": 40,
+      "range": 1700
+    },
+    {
+      "name": "Weapon Switch",
+      "description": "Mera switches between ranged and melee weapons.",
+      "details": "Valora: Melee Weapon with splash damage and grants {speed}% attack speed on attack for {asdur}s.\nPulse Pistol: Ranged weapon which slows enemies by {slow}% for {slowdur}s.",
+      "values": {
+        "speed": 10,
+        "asdur": 14,
+        "slow": 10,
+        "slowdur": 2
+      },
+      "hotkey": "E"
+    }
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/protective-shield": 9.9
+  },
+  "portrait": "Troop_MPHero_Mera",
+  "asset": "Archetypes_Heroes/RI_Hero_Mera"
+}

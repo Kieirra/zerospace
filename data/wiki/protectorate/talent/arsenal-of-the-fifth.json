@@ -1,0 +1,15 @@
+{
+  "id": "protectorate/talent/arsenal-of-the-fifth",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Arsenal of the Fifth",
+  "description": "+{Percent}% damage and range.",
+  "values": {
+    "Percent": 15
+  },
+  "researchTime": 0,
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Prot_T4Weapon"
+}

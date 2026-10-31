@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/hyperdense-rounds",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Hyperdense Rounds",
+  "description": "+{damagebonus}% damage to Heavy.",
+  "values": {
+    "damagebonus": 100
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "Local.Prot.Rocket.specialize1",
+  "appliesTo": [
+    "protectorate/unit/sentinel"
+  ],
+  "portrait": "TGUI_icon_skill_explosion",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_RocketTrooper_HeavyAttack"
+}

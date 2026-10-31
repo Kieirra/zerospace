@@ -1,0 +1,28 @@
+{
+  "id": "protectorate/building/assembly-plant",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Assembly Plant",
+  "description": "Basic vehicle production structure.",
+  "hotkey": "F",
+  "cost": {
+    "hexite": 100,
+    "flux": 50
+  },
+  "buildTime": 45,
+  "hp": 1200,
+  "armorRating": 1,
+  "produces": [
+    "protectorate/unit/cyclops",
+    "protectorate/unit/predator",
+    "protectorate/unit/titan"
+  ],
+  "requires": [
+    "protectorate/building/barracks"
+  ],
+  "unlocks": [
+    "protectorate/building/mechanical-research-lab"
+  ],
+  "portrait": "Building_Prot_Factory_Med",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingFactoryMed"
+}

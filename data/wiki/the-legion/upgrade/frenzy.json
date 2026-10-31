@@ -1,0 +1,22 @@
+{
+  "id": "the-legion/upgrade/frenzy",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Frenzy",
+  "description": "Thralls that die nearby increase attack speed by 35% for 10s",
+  "details": "Each stack lasts {Duration} seconds.\nMax {Count} stacks.",
+  "values": {
+    "Duration": 10,
+    "Count": 14
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Legion.Infantry.DarkDisciple.Spec1",
+  "appliesTo": [
+    "the-legion/unit/dark-disciple"
+  ],
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Leg_Psyker_Frenzy"
+}

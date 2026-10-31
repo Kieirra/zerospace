@@ -1,0 +1,16 @@
+{
+  "id": "valkaru/talent/relic-plating",
+  "kind": "talent",
+  "faction": "valkaru",
+  "name": "Relic Plating",
+  "description": "+{Armor} armor.\n+{HP}% health.",
+  "values": {
+    "Armor": 1,
+    "HP": 25
+  },
+  "researchTime": 0,
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_skill_HeavyFocus",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Valkaru_T4Armor"
+}

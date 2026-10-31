@@ -1,0 +1,32 @@
+---
+import EntityLink from '../../entity-link/entity-link.astro';
+import EntitySection from '../entity-section/entity-section.astro';
+import { describeEnergyCost, formatNumber } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  energyCost?: Entity['energyCost'];
+}
+
+const { energyCost } = Astro.props;
+const rule = typeof energyCost === 'object' ? energyCost : undefined;
+const lines = rule ? describeEnergyCost(rule) : [];
+const targets = Object.entries(rule?.targets ?? {});
+---
+
+{
+  (lines.length > 0 || targets.length > 0) && (
+    <EntitySection title="Energy cost">
+      <ul class="grid gap-1 tabular-nums">
+        {lines.map((line) => (
+          <li>{line}</li>
+        ))}
+        {targets.map(([id, value]) => (
+          <li>
+            <EntityLink id={id} />: {formatNumber(value)}
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}

@@ -1,0 +1,20 @@
+{
+  "id": "the-xol/building/world-engine",
+  "kind": "building",
+  "faction": "the-xol",
+  "name": "World Engine",
+  "description": "Mining outpost which builds extractors to mine Hexite\nCan be upgraded to attack",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 400
+  },
+  "buildTime": 60,
+  "hp": 2500,
+  "armorRating": 0,
+  "produces": [
+    "the-xol/unit/scouting-drone",
+    "the-xol/unit/xol-harvester"
+  ],
+  "portrait": "Building_Xol_MP_WorldEngine",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_WorldEngine"
+}

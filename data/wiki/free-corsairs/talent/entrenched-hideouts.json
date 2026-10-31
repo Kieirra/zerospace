@@ -1,0 +1,22 @@
+{
+  "id": "free-corsairs/talent/entrenched-hideouts",
+  "kind": "talent",
+  "faction": "free-corsairs",
+  "name": "Entrenched Hideouts",
+  "description": "Mercenary Outposts act can garrison infantry and gain +{HP} Health, -{Build Time}% build time, & limit increased to {Limit}.\nMercenary Outposts each spawn a {raidername} every {spawncd} seconds.\n{sandbagsname} gain {bonushp} Health and land {landspeed}% faster.",
+  "values": {
+    "HP": 600,
+    "Build Time": 50,
+    "Limit": 3,
+    "raidername": "Corsair Raider",
+    "spawncd": 30,
+    "sandbagsname": "Sandbags",
+    "bonushp": 125,
+    "landspeed": 50
+  },
+  "researchTime": 0,
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_cloak_buff",
+  "asset": "Archetypes_ResearchItems/Dread/RI_HeroXP_Dread_T6DreadBunker"
+}

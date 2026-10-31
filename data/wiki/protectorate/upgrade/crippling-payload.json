@@ -1,0 +1,23 @@
+{
+  "id": "protectorate/upgrade/crippling-payload",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Crippling Payload",
+  "description": "Increases {abilityname} radius by {radiusinc}% and armor reduction by {armorreducinc}.",
+  "values": {
+    "abilityname": "Sunder Missile",
+    "radiusinc": 100,
+    "armorreducinc": 2
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 50,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Prot.Gunship.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/ironwing"
+  ],
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Upgrades/Ironwing/RI_Prot_MP_Ironwing_SunderMissileUpgrade"
+}

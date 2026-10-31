@@ -1,0 +1,25 @@
+{
+  "id": "the-legion/building/altar",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Altar",
+  "description": "Hero production structure.",
+  "hotkey": "G",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "buildTime": 25,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "the-legion/hero/galavax",
+    "the-legion/hero/inquisitress",
+    "the-legion/hero/kraegar"
+  ],
+  "requires": [
+    "the-legion/building/citadel"
+  ],
+  "portrait": "TGUI_icon_empire_HeroBarracks02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_HeroHall"
+}

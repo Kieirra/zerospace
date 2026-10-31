@@ -1,0 +1,21 @@
+{
+  "id": "the-legion/topbar/reanimate",
+  "kind": "topbar",
+  "faction": "the-legion",
+  "name": "Reanimate",
+  "description": "The targeted unit gains +{attackspeed}% attack speed and +{movespeed}% move speed.\nIf it's killed, it's reanimated with -{attackspeedreduce}% attack and -{movespeedreduce}% move speed.",
+  "values": {
+    "attackspeed": 40,
+    "movespeed": 15,
+    "attackspeedreduce": 30,
+    "movespeedreduce": 25
+  },
+  "energyCost": {
+    "unitCostMultiplier": 0.04,
+    "fluxWeight": 1.25,
+    "massive": 30
+  },
+  "researchTime": 20,
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Reanimate/RI_TopbarAbility_Reanimate"
+}

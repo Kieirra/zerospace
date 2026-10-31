@@ -1,0 +1,21 @@
+{
+  "id": "protectorate/upgrade/emp",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "EMP",
+  "description": "Drains {Energy} energy and {Shields} shields, knocks back and briefly slows enemy units.",
+  "values": {
+    "Energy": 50,
+    "Shields": 50
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Prot.AirCaster.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/griffin"
+  ],
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetype_Abilities/Troop_Abilities/Artemis_EMP/RI_Prot_Artemis_EMP"
+}

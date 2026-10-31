@@ -1,0 +1,25 @@
+{
+  "id": "chakru-kingdom/building/temple-of-stars",
+  "kind": "building",
+  "faction": "chakru-kingdom",
+  "name": "Temple of Stars",
+  "description": "Recruits Mercenaries.",
+  "hotkey": "Y",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "buildTime": 50,
+  "hp": 1200,
+  "armorRating": 1,
+  "produces": [
+    "chakru-kingdom/unit/chakru-chaski",
+    "chakru-kingdom/unit/chakru-clakjaw",
+    "chakru-kingdom/unit/chakru-ghost-crab",
+    "chakru-kingdom/unit/chakru-hatun",
+    "chakru-kingdom/unit/chakru-pako",
+    "chakru-kingdom/unit/chakru-saqchi"
+  ],
+  "portrait": "TGUI_portrait_building_chakru_water",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_ChakruB"
+}

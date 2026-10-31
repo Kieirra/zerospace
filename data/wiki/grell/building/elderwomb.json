@@ -1,0 +1,33 @@
+{
+  "id": "grell/building/elderwomb",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Elderwomb",
+  "description": "Advanced unit production structure.",
+  "hotkey": "G",
+  "cost": {
+    "hexite": 125,
+    "flux": 75
+  },
+  "buildTime": 60,
+  "hp": 1400,
+  "armorRating": 1,
+  "produces": [
+    "grell/unit/behemoth",
+    "grell/unit/reaver",
+    "grell/unit/thresher"
+  ],
+  "requires": [
+    "grell/building/synapse-canopy"
+  ],
+  "unlocks": [
+    "grell/upgrade/accelerated-mitosis",
+    "grell/upgrade/coagulated-membrane",
+    "grell/upgrade/hemal-vents"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 15.3125
+  },
+  "portrait": "TGUI_icon_grell_building_largeincubator_portrait02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_Prod_Spc"
+}

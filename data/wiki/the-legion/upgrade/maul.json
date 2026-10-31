@@ -1,0 +1,51 @@
+{
+  "id": "the-legion/upgrade/maul",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Maul",
+  "description": "Attacks deal bonus damage and slow.",
+  "stats": [
+    {
+      "label": "Bonus Damage",
+      "value": 12
+    },
+    {
+      "label": "Bonus Damage vs Medium",
+      "value": 50,
+      "unit": "%"
+    },
+    {
+      "label": "Slow",
+      "value": 69.997,
+      "unit": "%"
+    },
+    {
+      "label": "Duration",
+      "value": 2.5,
+      "unit": "s"
+    },
+    {
+      "label": "Energy Cost",
+      "value": 10
+    },
+    {
+      "label": "Max Energy",
+      "value": 10
+    },
+    {
+      "label": "Energy Regen",
+      "value": 1.5,
+      "unit": "/s"
+    }
+  ],
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Infantry.Rhino.Specialize1",
+  "appliesTo": [
+    "the-legion/unit/exalted"
+  ],
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Rhino_Maul"
+}

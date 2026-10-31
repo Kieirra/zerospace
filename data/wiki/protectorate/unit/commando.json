@@ -1,0 +1,55 @@
+{
+  "id": "protectorate/unit/commando",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Commando",
+  "description": "Ranged infantry equipped with a jetpack.",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 50
+  },
+  "count": 1,
+  "buildTime": 24,
+  "supply": 2,
+  "hp": 125,
+  "armorType": "light",
+  "speed": 550,
+  "vision": 1600,
+  "size": 85,
+  "weapons": [
+    {
+      "name": "S-10 Combat Rifle",
+      "damage": 7,
+      "cooldown": 0.84,
+      "burst": 1,
+      "burstCooldown": 0.78,
+      "range": 700,
+      "warmup": 0.01,
+      "projectileSpeed": 5000,
+      "dps": 8.9744
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Jetpack",
+      "description": "Jump to a target location, ignoring terrain.",
+      "hotkey": "D",
+      "cooldown": 18,
+      "range": 1200
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/barracks"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/eagle-tactics",
+    "protectorate/upgrade/impulse-thrusters",
+    "protectorate/upgrade/magnetic-rifiling"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 1,
+    "protectorate/topbar/protective-shield": 2.25
+  },
+  "portrait": "Troop_Prot_Commando",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_P_Commando"
+}

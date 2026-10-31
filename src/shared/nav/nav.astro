@@ -1,0 +1,14 @@
+---
+import { Search } from '../search/search.tsx';
+import { SITE_NAME } from '../site.constants.ts';
+---
+
+<header class="sticky top-0 z-30 bg-bg/75 backdrop-blur">
+  <nav class="relative mx-auto flex h-12 max-w-6xl items-center gap-4 px-4">
+    <a href="/wiki" class="font-bold tracking-wide uppercase">{SITE_NAME}</a>
+    <a href="/wiki" class="text-muted hover:text-text">Wiki</a>
+    <div class="ml-auto">
+      <Search client:idle />
+    </div>
+  </nav>
+</header>

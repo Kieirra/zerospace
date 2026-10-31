@@ -1,0 +1,40 @@
+{
+  "id": "arandi/unit/arandi-asterion",
+  "kind": "unit",
+  "faction": "arandi",
+  "name": "Arandi Asterion",
+  "description": "Weapon projectiles are slow but pass through enemies damaging all on its way.",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 125,
+    "flux": 125
+  },
+  "count": 1,
+  "buildTime": 35,
+  "supply": 4,
+  "hp": 300,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 500,
+  "vision": 1600,
+  "size": 160,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Phantom Sphere",
+      "damage": 60,
+      "cooldown": 3,
+      "burst": 1,
+      "burstCooldown": 3,
+      "range": 1300,
+      "warmup": 0.15,
+      "projectileSpeed": 600,
+      "dps": 20
+    }
+  ],
+  "producedBy": [
+    "arandi/building/arandi-penumbra"
+  ],
+  "portrait": "TGUI_icon_unit_arandi_prison",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Arandi_Prison"
+}

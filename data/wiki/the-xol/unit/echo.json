@@ -1,0 +1,48 @@
+{
+  "id": "the-xol/unit/echo",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Echo",
+  "description": "Flying harassment unit.",
+  "hotkey": "E",
+  "cost": {
+    "hexite": 50,
+    "flux": 50
+  },
+  "count": 1,
+  "buildTime": 16,
+  "supply": 2,
+  "hp": 125,
+  "armorType": "medium",
+  "speed": 800,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Nebula Pulse",
+      "damage": 13,
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 500,
+      "warmup": 0,
+      "dps": 6.5,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "requires": [
+    "the-xol/building/molten-core"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 8.875
+  },
+  "portrait": "Troop_Xol_Echo",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Echo"
+}

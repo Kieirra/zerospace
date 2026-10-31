@@ -1,0 +1,21 @@
+{
+  "id": "protectorate/upgrade/medbays",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Medbays",
+  "description": "+{rate}% Healing rate\n+{radius}% Healing Radius",
+  "values": {
+    "rate": 25,
+    "radius": 25
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 30,
+  "exclusiveGroup": "Local.Prot.Hammerhead.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/hauler"
+  ],
+  "portrait": "TGUI_icon_skill_bio_nourishment",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Hauler_Upg_Healing"
+}

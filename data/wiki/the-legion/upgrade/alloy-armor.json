@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/upgrade/alloy-armor",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Alloy Armor",
+  "description": "+1 Armor & +50 HP",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 40,
+  "exclusiveGroup": "Local.Legion.Infantry.Thrall.Armored.Specialize1",
+  "appliesTo": [
+    "the-legion/unit/steelsworn"
+  ],
+  "portrait": "TGUI_icon_skill_vehicle_armor",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_ThrallArmored_T1A"
+}

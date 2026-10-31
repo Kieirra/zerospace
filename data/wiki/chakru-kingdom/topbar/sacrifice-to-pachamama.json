@@ -1,0 +1,16 @@
+{
+  "id": "chakru-kingdom/topbar/sacrifice-to-pachamama",
+  "kind": "topbar",
+  "faction": "chakru-kingdom",
+  "name": "Sacrifice to Pachamama",
+  "description": "Create an earthquake around a target unit.\nEnemy units nearby are slowed and take damage.\nGrants the targeted unit {Shields} shields.\nAfter {Duration} seconds the targeted unit dies.",
+  "values": {
+    "Shields": 400,
+    "Duration": 10
+  },
+  "energyCost": 12,
+  "cooldown": 120,
+  "researchTime": 20,
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Chakru_Sacrifice/RI_TobarAbility_Chakru_SacrificeA"
+}

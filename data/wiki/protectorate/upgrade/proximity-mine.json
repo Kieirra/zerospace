@@ -1,0 +1,18 @@
+{
+  "id": "protectorate/upgrade/proximity-mine",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Proximity Mine",
+  "description": "Grants the Predator the Proximity Mine ability.",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "tier": "T1",
+  "exclusiveGroup": "Local.Prot.Predator.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/predator"
+  ],
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Predator_MineUpgrade"
+}

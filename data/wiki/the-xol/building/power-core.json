@@ -1,0 +1,22 @@
+{
+  "id": "the-xol/building/power-core",
+  "kind": "building",
+  "faction": "the-xol",
+  "name": "Power Core",
+  "description": "Provides supply. Enables building for Xol structures nearby. Produced units teleported to the location.",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 50
+  },
+  "buildTime": 3,
+  "hp": 350,
+  "armorRating": 1,
+  "unlocks": [
+    "the-xol/building/gyroforge",
+    "the-xol/building/resonator",
+    "the-xol/building/spectral-foundry",
+    "the-xol/building/xyther-assembler"
+  ],
+  "portrait": "Building_Xol_MP_PowerCore",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_PowerCore"
+}

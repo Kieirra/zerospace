@@ -1,0 +1,20 @@
+{
+  "id": "grell/upgrade/cytokinin-surge",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Cytokinin Surge",
+  "description": "+{Regen} health regeneration.",
+  "values": {
+    "Regen": 3
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "Local.Grell.BroodGuard.Specialize1",
+  "appliesTo": [
+    "grell/unit/keeper"
+  ],
+  "portrait": "TGUI_icon_skill_bio_nourishment",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_BroodGuard_RegenUpgrade"
+}

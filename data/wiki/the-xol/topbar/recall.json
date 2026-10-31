@@ -1,0 +1,13 @@
+{
+  "id": "the-xol/topbar/recall",
+  "kind": "topbar",
+  "faction": "the-xol",
+  "name": "Recall",
+  "description": "Recall units to anywhere inside power fields",
+  "energyCost": 5,
+  "cooldown": 90,
+  "range": 2000,
+  "researchTime": 0,
+  "portrait": "TGUI_icon_skill_improved_recall",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Xol_Recall/RI_TopBar_Recall_Xol"
+}

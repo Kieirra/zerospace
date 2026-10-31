@@ -1,0 +1,13 @@
+{
+  "id": "the-legion/upgrade/bomb-bay",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Bomb Bay",
+  "description": "Increases the amount of bombs dropped during Bombardment by {N}.",
+  "values": {
+    "N": 4
+  },
+  "hotkey": "Q",
+  "portrait": "TGUI_icon_skill_incendiary_bomb",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Legion_APlatformToBombBay"
+}

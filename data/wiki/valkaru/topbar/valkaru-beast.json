@@ -1,0 +1,45 @@
+{
+  "id": "valkaru/topbar/valkaru-beast",
+  "kind": "topbar",
+  "faction": "valkaru",
+  "name": "Valkaru Beast",
+  "description": "Summon a Valkaru Beast.",
+  "details": "Gains {levelhealth} health per player level.",
+  "values": {
+    "levelhealth": 50
+  },
+  "energyCost": 22,
+  "cooldown": 45,
+  "range": 2000,
+  "charges": 1,
+  "summons": [
+    {
+      "name": "Valkaru Beast",
+      "kind": "unit",
+      "id": "valkaru/unit/valkaru-beast",
+      "hp": 800,
+      "armorRating": 1,
+      "armorType": "heavy",
+      "speed": 575,
+      "vision": 1600,
+      "weapons": [
+        {
+          "name": "Pulverizing Fists",
+          "damage": 130,
+          "cooldown": 2.5,
+          "burst": 1,
+          "burstCooldown": 2.5,
+          "range": 150,
+          "warmup": 0.4,
+          "projectileSpeed": 5000,
+          "melee": true,
+          "dps": 52
+        }
+      ]
+    }
+  ],
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_portrait_unit_valkaru_beast01",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Valkaru_Beast/RI_Topbar_Valkaru_Beast"
+}

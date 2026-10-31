@@ -1,0 +1,68 @@
+{
+  "id": "the-legion/hero/inquisitress",
+  "kind": "hero",
+  "faction": "the-legion",
+  "name": "Inquisitress",
+  "description": "Melee hero who can charge through enemies or cleave them apart.",
+  "hotkey": "A",
+  "cost": {
+    "hexite": 150,
+    "flux": 150
+  },
+  "buildTime": 45,
+  "supply": 10,
+  "hp": 350,
+  "energy": 100,
+  "speed": 500,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Sylthar",
+      "damage": 31,
+      "cooldown": 1.05,
+      "burst": 1,
+      "burstCooldown": 1.05,
+      "range": 150,
+      "warmup": 0.3028,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 29.5238
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Cleave",
+      "description": "Deal 65 damage and slows by 50% for 2 seconds to enemy units in front of the hero",
+      "hotkey": "Q",
+      "cooldown": 5,
+      "energyCost": 23
+    },
+    {
+      "name": "Charge",
+      "description": "Charge to a location dealing {Damage} damage to enemies along the path.\nGain +{Speed} movement speed for {Duration} seconds.",
+      "values": {
+        "Damage": 25,
+        "Speed": 150,
+        "Duration": 5
+      },
+      "hotkey": "W",
+      "cooldown": 7,
+      "energyCost": 14,
+      "range": 1500,
+      "charges": 1
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/altar"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/improved-charge",
+    "the-legion/upgrade/improved-cleave",
+    "the-legion/upgrade/one-life-for-another",
+    "the-legion/upgrade/wake-of-fire"
+  ],
+  "portrait": "Troop_Empire_Inquisitress",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_Inquisitress"
+}

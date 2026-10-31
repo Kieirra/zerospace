@@ -1,0 +1,47 @@
+{
+  "id": "marran/unit/marran-heavy-trooper",
+  "kind": "unit",
+  "faction": "marran",
+  "name": "Marran Heavy Trooper",
+  "description": "Long range infantry. Deals bonus damage to Heavy.",
+  "hotkey": "U",
+  "cost": {
+    "hexite": 100,
+    "flux": 200
+  },
+  "count": 2,
+  "buildTime": 7,
+  "supply": 4,
+  "hp": 150,
+  "shields": 150,
+  "armorRating": 1,
+  "armorType": "light",
+  "speed": 450,
+  "vision": 1600,
+  "size": 104,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Railgun",
+      "damage": 40,
+      "cooldown": 2.2,
+      "burst": 1,
+      "burstCooldown": 1.7,
+      "range": 900,
+      "projectileSpeed": 5000,
+      "dps": 23.5294,
+      "bonuses": [
+        {
+          "vs": "Heavy",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "marran/building/marran-bulwark"
+  ],
+  "portrait": "TGUI_portrait_unit_marran_sharposhooter01",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Marran/Units/RI_Troop_Marran_MP_HeavyTrooper"
+}

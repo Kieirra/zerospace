@@ -1,0 +1,21 @@
+{
+  "id": "grell/upgrade/koru-neuropaths",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Koru Neuropaths",
+  "description": "+{Range}% Cast Range.",
+  "values": {
+    "Range": 25
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Grell.Keeper.Specialize1",
+  "appliesTo": [
+    "grell/unit/weaver"
+  ],
+  "portrait": "TGUI_icon_skill_cultivator_range",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Weaver_CastRange"
+}

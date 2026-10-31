@@ -1,0 +1,66 @@
+{
+  "id": "marran/unit/marran-sharpshooter",
+  "kind": "unit",
+  "faction": "marran",
+  "name": "Marran Sharpshooter",
+  "description": "Long ranged infantry which can deploy to attack with extra range and attack speed in a limited arc",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 100,
+    "flux": 200
+  },
+  "count": 3,
+  "buildTime": 7,
+  "supply": 3,
+  "hp": 80,
+  "shields": 80,
+  "armorType": "light",
+  "speed": 450,
+  "vision": 1800,
+  "size": 80,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Seeker Lance",
+      "damage": 14,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1200,
+      "warmup": 0.01,
+      "projectileSpeed": 5000,
+      "dps": 14,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Firing Position",
+      "description": "Gain +{range}% range and +{AS}% attack speed against units in a limited arc.\nCannot move while in Firing Position.",
+      "values": {
+        "range": 100,
+        "AS": 50
+      },
+      "hotkey": "V",
+      "cooldown": 1,
+      "range": 2500
+    },
+    {
+      "name": "Pack Up",
+      "description": "Exit Firing Position, allowing the Sharpshooter to move.",
+      "hotkey": "V",
+      "cooldown": 1.3
+    }
+  ],
+  "producedBy": [
+    "marran/building/marran-bulwark"
+  ],
+  "portrait": "TGUI_portrait_unit_marran_sharposhooter01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Marran_Trooper"
+}

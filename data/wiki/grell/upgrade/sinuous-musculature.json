@@ -1,0 +1,20 @@
+{
+  "id": "grell/upgrade/sinuous-musculature",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Sinuous Musculature",
+  "description": "+{Speed} movement speed.",
+  "values": {
+    "Speed": 125
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Grell.Lasher.Specialize1",
+  "appliesTo": [
+    "grell/unit/lasher"
+  ],
+  "portrait": "TGUI_icon_skill_movement_speed",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Lasher_MovementSpeed"
+}

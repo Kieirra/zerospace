@@ -1,0 +1,17 @@
+{
+  "id": "the-xol/talent/improved-systems",
+  "kind": "talent",
+  "faction": "the-xol",
+  "name": "Improved Systems",
+  "description": "+{duration}% Overclock duration.\n-{merge_time}% Merging time.",
+  "values": {
+    "duration": 100,
+    "merge_time": 50
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_marran_energy_buff",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Talents/RI_Talent_Xol_MP_T4OverclockBuff"
+}

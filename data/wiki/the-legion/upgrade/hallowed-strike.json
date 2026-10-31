@@ -1,0 +1,21 @@
+{
+  "id": "the-legion/upgrade/hallowed-strike",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Hallowed Strike",
+  "description": "+{Range} Attack Range.\n+{Damage}% Damage against Air.",
+  "values": {
+    "Range": 4,
+    "Damage": 50
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Infantry.Rhino.Specialize1",
+  "appliesTo": [
+    "the-legion/unit/exalted"
+  ],
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Rhino_HallowedStrike"
+}

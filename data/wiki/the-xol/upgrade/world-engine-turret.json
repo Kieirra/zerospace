@@ -1,0 +1,10 @@
+{
+  "id": "the-xol/upgrade/world-engine-turret",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "World Engine Turret",
+  "description": "Upgrade to attach a defensive turret\nCannot be attacked while upgrading",
+  "hotkey": "E",
+  "portrait": "Building_Xol_MP_WorldEngine_Turret",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/BuildingUpgrades/RI_Xol_BuildingUpgrade_MP_WorldEngine_Turret"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "arandi/talent/lore-of-flux",
+  "kind": "talent",
+  "faction": "arandi",
+  "name": "Lore of Flux",
+  "description": "+{N} {N}|plural(one=Harvester,other=Harvesters).\n+{income}% Flux income.",
+  "values": {
+    "income": 10
+  },
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_valkaru_stronger_hero",
+  "asset": "Archetypes_ResearchItems/Arandi/RI_HeroXP_Arandi_AdditionalHarvester"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "protectorate/unit/hauler",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Hauler",
+  "description": "Air transport. Heals biological units inside.\nCan land to heal biological units nearby.\nMust land to load and unload units.",
+  "hotkey": "F",
+  "cost": {
+    "hexite": 100,
+    "flux": 100
+  },
+  "count": 1,
+  "buildTime": 40,
+  "supply": 4,
+  "hp": 500,
+  "armorRating": 2,
+  "armorType": "heavy",
+  "speed": 600,
+  "vision": 1800,
+  "size": 180,
+  "abilities": [
+    {
+      "name": "Combat Landing",
+      "description": "Land the Hammerhead, unloading loaded units and healing nearby biological units for {Heal} health per second.",
+      "values": {
+        "Heal": 8
+      },
+      "hotkey": "X",
+      "cooldown": 0.5
+    },
+    {
+      "name": "Liftoff",
+      "description": "Lift the Hammerhead back into the air.",
+      "hotkey": "X",
+      "cooldown": 0.5
+    },
+    {
+      "name": "Unload",
+      "description": "Unload troops",
+      "hotkey": "U",
+      "cooldown": 0.2
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/skydock"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/medbays",
+    "protectorate/upgrade/transport"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 2,
+    "protectorate/topbar/protective-shield": 10.125
+  },
+  "portrait": "Troop_Prot_MP_Hammerhead",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Units/RI_Prot_Troop_MP_Hauler"
+}

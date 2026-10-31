@@ -1,0 +1,16 @@
+{
+  "id": "grell/talent/pheromone-invigoration",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Pheromone Invigoration",
+  "description": "+{attackspeed}% attack and +{movespeed}% movement speed.",
+  "values": {
+    "attackspeed": 20,
+    "movespeed": 10
+  },
+  "researchTime": 0,
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_movement_speed",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Grell_T4Speed"
+}

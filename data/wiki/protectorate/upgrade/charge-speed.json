@@ -1,0 +1,17 @@
+{
+  "id": "protectorate/upgrade/charge-speed",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Charge Speed",
+  "description": "High-Flux Capacitor",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Prot.Disrupter.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/cyclops"
+  ],
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Disrupter_ChargeTime"
+}

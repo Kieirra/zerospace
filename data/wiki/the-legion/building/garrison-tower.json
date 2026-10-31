@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/building/garrison-tower",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Garrison Tower",
+  "description": "Mining outpost which builds extractors to mine Hexite.\nCan be upgraded to attack.",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 400
+  },
+  "buildTime": 60,
+  "hp": 2500,
+  "armorRating": 0,
+  "produces": [
+    "the-legion/unit/legion-labourer",
+    "the-legion/unit/scouting-drone"
+  ],
+  "portrait": "TGUI_icon_empire_OT02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_OT"
+}

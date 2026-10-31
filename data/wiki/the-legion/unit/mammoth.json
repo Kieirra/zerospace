@@ -1,0 +1,56 @@
+{
+  "id": "the-legion/unit/mammoth",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Mammoth",
+  "description": "Heavy beast that can be mounted by Legion infantry units.\nCan walk over allied infantry. Deals {dmg} damage in a line upon killing a unit. Deals bonus damage to Buildings.",
+  "hotkey": "Y",
+  "cost": {
+    "hexite": 175,
+    "flux": 100
+  },
+  "count": 1,
+  "buildTime": 48,
+  "supply": 6,
+  "hp": 1000,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 400,
+  "vision": 1600,
+  "size": 245.05,
+  "pushTier": 200,
+  "weapons": [
+    {
+      "name": "Unstoppable Ram",
+      "damage": 90,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 250,
+      "warmup": 0.58,
+      "melee": true,
+      "dps": 45,
+      "bonuses": [
+        {
+          "vs": "Building",
+          "value": 150,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/bestiary"
+  ],
+  "requires": [
+    "the-legion/building/citadel"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/ironhide-accord"
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 12
+  },
+  "portrait": "TGUI_portrait_unit_empire_mammoth05",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_Mammoth"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "the-legion/unit/scouting-drone",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Scouting Drone",
+  "description": "Light flying scouting drone.",
+  "hotkey": "J",
+  "cost": {
+    "hexite": 25
+  },
+  "count": 1,
+  "buildTime": 10,
+  "supply": 0,
+  "hp": 75,
+  "armorType": "light",
+  "speed": 650,
+  "vision": 1800,
+  "size": 60,
+  "producedBy": [
+    "the-legion/building/garrison-tower"
+  ],
+  "portrait": "Troop_ScoutingDrone",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_ScoutingDrone_Legion"
+}

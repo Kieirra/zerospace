@@ -1,0 +1,47 @@
+{
+  "id": "free-corsairs/unit/corsair-deadeye",
+  "kind": "unit",
+  "faction": "free-corsairs",
+  "name": "Corsair Deadeye",
+  "description": "Long range infantry that deals bonus damage against light units.",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 100,
+    "flux": 175
+  },
+  "count": 2,
+  "buildTime": 7,
+  "supply": 4,
+  "hp": 100,
+  "shields": 100,
+  "armorType": "light",
+  "speed": 425,
+  "vision": 2000,
+  "size": 90,
+  "transportSlots": 5,
+  "weapons": [
+    {
+      "name": "H-52 Eagleshot",
+      "damage": 25,
+      "cooldown": 0.1,
+      "burst": 1,
+      "burstCooldown": 2.2,
+      "range": 2000,
+      "warmup": 0.05,
+      "projectileSpeed": 5000,
+      "dps": 11.3636,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "free-corsairs/building/free-corsair-mercenary-outpost"
+  ],
+  "portrait": "TGUI_portrait_unit_dread_sniper01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Dread_Sniper"
+}

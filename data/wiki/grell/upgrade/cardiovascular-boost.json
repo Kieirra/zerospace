@@ -1,0 +1,17 @@
+{
+  "id": "grell/upgrade/cardiovascular-boost",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Cardiovascular Boost",
+  "description": "+200 Move Speed",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 40,
+  "exclusiveGroup": "Local.Grell.Harbinger.Specialize1",
+  "appliesTo": [
+    "grell/unit/harbinger"
+  ],
+  "portrait": "TGUI_icon_skill_movement_speed",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Harbinger_T2Speed"
+}

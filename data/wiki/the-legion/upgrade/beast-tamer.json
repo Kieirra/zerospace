@@ -1,0 +1,21 @@
+{
+  "id": "the-legion/upgrade/beast-tamer",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Beast Tamer",
+  "description": "{heroname} gains an additional {sabretoothname} companion.",
+  "values": {
+    "heroname": "Kraegar",
+    "sabretoothname": "Krag'vorn"
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Hero.hero2.Specialize2",
+  "appliesTo": [
+    "the-legion/hero/kraegar"
+  ],
+  "portrait": "TGUI_icon_skill_bio_nourishment",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Hero2_MoreDogs"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "the-xol/talent/instant-power-core",
+  "kind": "talent",
+  "faction": "the-xol",
+  "name": "Instant Power Core",
+  "description": "Power Cores build instantly.",
+  "researchTime": 0,
+  "level": 1,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_improved_recall",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Talents/RI_Talent_Xol_MP_InstantPowerCore"
+}

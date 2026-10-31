@@ -1,0 +1,16 @@
+{
+  "id": "grell/talent/adaptive-mitosis",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Adaptive Mitosis",
+  "description": "+{Range} range for infused ranged units.\n+{Health}% health for infused melee units.",
+  "values": {
+    "Range": 2.5,
+    "Health": 20
+  },
+  "researchTime": 0,
+  "level": 3,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_unit_vision",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Grell_InfuseRange"
+}

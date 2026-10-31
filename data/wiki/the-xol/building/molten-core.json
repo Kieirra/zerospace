@@ -1,0 +1,28 @@
+{
+  "id": "the-xol/building/molten-core",
+  "kind": "building",
+  "faction": "the-xol",
+  "name": "Molten Core",
+  "description": "Upgrades individual units but has limited energy. Gains additional energy when an enemy unit dies on top of it.\nDeals damage to enemies that walk over it. \n\n{Roller} - {Roller_molten}\n{Xyther} - {Xyther_molten}\n{Spectron} - {Spectron_molten}",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 50,
+    "flux": 25
+  },
+  "buildTime": 40,
+  "hp": 1250,
+  "armorRating": 1,
+  "requires": [
+    "the-xol/building/gyroforge",
+    "the-xol/building/spectral-foundry",
+    "the-xol/building/xyther-assembler"
+  ],
+  "unlocks": [
+    "the-xol/building/world-forge",
+    "the-xol/unit/defiant",
+    "the-xol/unit/echo",
+    "the-xol/unit/synapse"
+  ],
+  "portrait": "Building_Xol_MP_Replicator",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_Replicator"
+}

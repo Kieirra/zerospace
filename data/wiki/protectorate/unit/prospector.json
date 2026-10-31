@@ -1,0 +1,40 @@
+{
+  "id": "protectorate/unit/prospector",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Prospector",
+  "description": "Harvests flux. Can release a healing wave.\nHarvesters respawn {Time} seconds after being destroyed.",
+  "hotkey": "H",
+  "cost": {
+    "hexite": 100
+  },
+  "count": 1,
+  "buildTime": 18,
+  "supply": 0,
+  "hp": 275,
+  "armorType": "medium",
+  "speed": 500,
+  "vision": 1600,
+  "size": 90,
+  "pushTier": 101,
+  "abilities": [
+    {
+      "name": "Repairnites",
+      "description": "Heal nearby biological units for {health}.",
+      "values": {
+        "health": 65
+      },
+      "hotkey": "G",
+      "cooldown": 60,
+      "range": 900
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/operating-tower"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/protective-shield": 4.5
+  },
+  "portrait": "Troop_Prot_Harvester",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_P_Harvester_Limited"
+}

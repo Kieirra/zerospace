@@ -1,0 +1,82 @@
+{
+  "id": "grell/unit/weaver",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Weaver",
+  "description": "Ranged spellcaster. Deals bonus damage to Air.",
+  "hotkey": "E",
+  "cost": {
+    "hexite": 100,
+    "flux": 200
+  },
+  "count": 1,
+  "buildTime": 40,
+  "supply": 4,
+  "hp": 200,
+  "armorType": "medium",
+  "energy": 100,
+  "speed": 650,
+  "vision": 1600,
+  "size": 138.8625,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "Mephitic Spit",
+      "damage": 20,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 1200,
+      "warmup": 0.26,
+      "projectileSpeed": 2500,
+      "dps": 10,
+      "bonuses": [
+        {
+          "vs": "Air",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Acid Blight",
+      "description": "Create an acid puddle at target location.\nPuddle poisons enemy units. Lasts {duration} seconds.",
+      "details": "Poisoned units take {damage} damage per second for {Duration} seconds and spawn an Arkanid on death.",
+      "values": {
+        "duration": 10,
+        "damage": 10,
+        "Duration": 2
+      },
+      "hotkey": "F",
+      "energyCost": 75,
+      "range": 1600
+    },
+    {
+      "name": "Siphon Life",
+      "description": "Drain enemy health, slowing them by {Slow}%, and poisoning them.\nOR\nHeal allies and grant them {Armor} Armor.",
+      "details": "Poisoned units take {damage} damage per second for {Duration} seconds and spawn an Arkanid on death.",
+      "values": {
+        "Slow": 20,
+        "Armor": 1,
+        "damage": 10,
+        "Duration": 2
+      },
+      "hotkey": "Y",
+      "energyCost": 10,
+      "range": 1700
+    }
+  ],
+  "producedBy": [
+    "grell/building/incubator"
+  ],
+  "upgrades": [
+    "grell/upgrade/koru-neuropaths"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 17.5
+  },
+  "portrait": "TGUI_portrait_unit_grell_weaver07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_GrellWeaver"
+}

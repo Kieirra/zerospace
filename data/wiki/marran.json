@@ -1,0 +1,18 @@
+{
+  "id": "marran",
+  "kind": "mercenary",
+  "name": "Marran",
+  "color": "#d58640",
+  "heroes": [
+    "marran/hero/hel"
+  ],
+  "topbar": [
+    "marran/topbar/pulse-barrage"
+  ],
+  "talents": [
+    "marran/talent/bulwark-amplification",
+    "marran/talent/life-path",
+    "marran/talent/pulse-capacitors"
+  ],
+  "asset": "Archetypes_Factions/Merc_Marran"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "marran/talent/life-path",
+  "kind": "talent",
+  "faction": "marran",
+  "name": "Life Path",
+  "description": "+{Percent}% Experience Gain.",
+  "values": {
+    "Percent": 25
+  },
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_marran_energy_buff",
+  "asset": "Archetypes_ResearchItems/Marran/RI_HeroXP_Marran_MoreXP"
+}

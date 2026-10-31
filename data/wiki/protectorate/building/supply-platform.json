@@ -1,0 +1,19 @@
+{
+  "id": "protectorate/building/supply-platform",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Supply Platform",
+  "description": "Provides 12 Supply.\nCan be upgraded to provide additional utility.",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 12,
+  "hp": 500,
+  "armorRating": 1,
+  "unlocks": [
+    "protectorate/building/barracks"
+  ],
+  "portrait": "Building_Platform",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingPlatform"
+}

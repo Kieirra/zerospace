@@ -1,0 +1,16 @@
+{
+  "id": "the-legion/upgrade/shield-generator",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Shield Generator",
+  "description": "Nearby friendly units in combat gain a {Shield} shield for {Duration} seconds.",
+  "details": "Turret can store {N} charges.",
+  "values": {
+    "Shield": 75,
+    "Duration": 8,
+    "N": 4
+  },
+  "hotkey": "R",
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToShieldGenerator"
+}

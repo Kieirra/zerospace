@@ -1,0 +1,59 @@
+{
+  "id": "endari/unit/endari-needler",
+  "kind": "unit",
+  "faction": "endari",
+  "name": "Endari Needler",
+  "description": "Swift ranged attacker that deals heavy burst damage.",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 175,
+    "flux": 50
+  },
+  "count": 2,
+  "supply": 2,
+  "hp": 225,
+  "armorType": "light",
+  "speed": 650,
+  "vision": 1600,
+  "size": 100,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "Impossible Shards",
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 0.3,
+      "range": 775,
+      "warmup": 0.11,
+      "projectileSpeed": 3750,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 75,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "name": "Impossible Shards",
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 0.3,
+      "range": 775,
+      "warmup": 0.11,
+      "projectileSpeed": 3750,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 75,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "endari/building/silent-hollow"
+  ],
+  "portrait": "Troop_Endari_Needler",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Endari/Units/RI_Troop_Endari_MP_Needler"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "grell/building/skyclutch",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Skyclutch",
+  "description": "Enables the production of Skrell and Behemoths.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "buildTime": 25,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "grell/building/broodwomb"
+  ],
+  "unlocks": [
+    "grell/building/incubator",
+    "grell/unit/behemoth",
+    "grell/unit/skrell",
+    "grell/upgrade/thoracic-sacs",
+    "grell/upgrade/volatile-acids"
+  ],
+  "portrait": "TGUI_icon_grell_building_root_portrait",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Grell/Buildings/RI_Building_Grell_SkrellingNest"
+}

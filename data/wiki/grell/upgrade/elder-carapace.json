@@ -1,0 +1,21 @@
+{
+  "id": "grell/upgrade/elder-carapace",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Elder Carapace",
+  "description": "+{Armor} armor.",
+  "values": {
+    "Armor": 3
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Grell.Reaver.Specialize1",
+  "appliesTo": [
+    "grell/unit/reaver"
+  ],
+  "portrait": "TGUI_icon_skill_vehicle_armor",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Reaver_ArmorRating"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "protectorate/upgrade/turret-platform",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Turret Platform",
+  "description": "Attach a missile launcher to the platform.",
+  "hotkey": "E",
+  "portrait": "Building_PlatformTurret",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_UpgardePlatTurret"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "marran/unit/marran-badger",
+  "kind": "unit",
+  "faction": "marran",
+  "name": "Marran Badger",
+  "description": "Tank which deals bonus area damage after attacking a target {N} times.",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 200,
+    "flux": 175
+  },
+  "count": 3,
+  "buildTime": 35,
+  "supply": 3,
+  "hp": 150,
+  "shields": 150,
+  "armorType": "heavy",
+  "speed": 450,
+  "vision": 1600,
+  "size": 130,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Pulse Charge",
+      "damage": 16,
+      "cooldown": 1.7,
+      "burst": 1,
+      "burstCooldown": 1.7,
+      "range": 1500,
+      "projectileSpeed": 3000,
+      "dps": 9.4118,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "marran/building/marran-bulwark"
+  ],
+  "portrait": "TGUI_portrait_unit_marran_badger01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Marran_Badger"
+}

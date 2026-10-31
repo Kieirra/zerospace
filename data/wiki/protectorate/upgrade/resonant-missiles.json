@@ -1,0 +1,21 @@
+{
+  "id": "protectorate/upgrade/resonant-missiles",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Resonant Missiles",
+  "description": "+{speed}% missile speed.\n+{missile}% missile damage.",
+  "values": {
+    "speed": 50,
+    "missile": 25
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Prot.Striker.Specialize2",
+  "appliesTo": [
+    "protectorate/unit/hellfire"
+  ],
+  "portrait": "TGUI_icon_skill_rapid_reinforcement",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Striker_ResonantMissiles"
+}

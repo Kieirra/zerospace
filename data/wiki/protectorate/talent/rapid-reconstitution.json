@@ -1,0 +1,16 @@
+{
+  "id": "protectorate/talent/rapid-reconstitution",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Rapid Reconstitution",
+  "description": "-{Delay}% Beam Up delay.\n+{Heal}% healed amount.",
+  "values": {
+    "Delay": 70,
+    "Heal": 100
+  },
+  "researchTime": 0,
+  "level": 1,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_improved_recall",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Prot_ImprovedRecall"
+}

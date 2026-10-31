@@ -1,0 +1,22 @@
+{
+  "id": "grell/upgrade/endorphic-frenzy",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Endorphic Frenzy",
+  "description": "Mandragoras gain {attackspeed}% attack speed for every {health}% of missing health.",
+  "values": {
+    "attackspeed": 20,
+    "health": 10
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Grell.Beetle.Specialize2",
+  "appliesTo": [
+    "grell/unit/mandragora"
+  ],
+  "portrait": "TGUI_icon_logo_dread_raiders",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Beetle_KillStim"
+}

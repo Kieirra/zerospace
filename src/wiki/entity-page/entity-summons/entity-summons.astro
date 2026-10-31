@@ -1,0 +1,46 @@
+---
+import DetailCard from '../detail-card/detail-card.astro';
+import EntitySection from '../entity-section/entity-section.astro';
+import { getEntityMap } from '../../wiki.data.ts';
+import { formatArmor, formatOptionalDistance, formatOptionalNumber, formatOptionalSeconds, keepFilledTiles } from '../../wiki.helpers.ts';
+import type { Summon } from '../../wiki.types.ts';
+
+interface Props {
+  summons?: Summon[];
+}
+
+const { summons = [] } = Astro.props;
+const entities = await getEntityMap();
+
+const toTiles = (summon: Summon) =>
+  keepFilledTiles([
+    { label: 'Count', value: formatOptionalNumber(summon.count) },
+    { label: 'Duration', value: formatOptionalSeconds(summon.duration) },
+    { label: 'HP', value: formatOptionalNumber(summon.hp) },
+    { label: 'Shields', value: formatOptionalNumber(summon.shields) },
+    { label: 'Armor rating', value: formatOptionalNumber(summon.armorRating) },
+    { label: 'Armor type', value: formatArmor(summon) },
+    { label: 'Speed', value: formatOptionalNumber(summon.speed) },
+    { label: 'Vision', value: formatOptionalDistance(summon.vision) },
+  ]);
+---
+
+{
+  summons.length > 0 && (
+    <EntitySection title="Summons">
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {summons.map((summon) => (
+          <li>
+            <DetailCard
+              name={summon.name}
+              linkId={summon.id && entities.has(summon.id) ? summon.id : undefined}
+              subtitle={[summon.kind, ...(summon.abilities ?? []).map(({ name }) => name)].filter(Boolean).join(' · ')}
+              tiles={toTiles(summon)}
+              weapons={summon.weapons}
+            />
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}

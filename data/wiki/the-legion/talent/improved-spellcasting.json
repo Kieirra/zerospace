@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/talent/improved-spellcasting",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "Improved Spellcasting",
+  "description": "+{energy}% energy regeneration.\n-{cdr}% ability cooldown.",
+  "values": {
+    "energy": 50,
+    "cdr": 29.9999
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_marran_energy_buff",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Legion_T4EnergyCD"
+}

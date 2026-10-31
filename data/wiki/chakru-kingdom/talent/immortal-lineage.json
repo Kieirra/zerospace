@@ -1,0 +1,13 @@
+{
+  "id": "chakru-kingdom/talent/immortal-lineage",
+  "kind": "talent",
+  "faction": "chakru-kingdom",
+  "name": "Immortal Lineage",
+  "description": "Cha'Kru units revive at their temples.",
+  "details": "Cha'Kru Ghost Crab",
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_skill_LightFocus",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Kingdom_T4_Revive"
+}

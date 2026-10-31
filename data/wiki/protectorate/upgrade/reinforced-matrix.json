@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/reinforced-matrix",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Reinforced Matrix",
+  "description": "+{shield} shields.",
+  "values": {
+    "shield": 50
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "Local.Prot.Predator.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/predator"
+  ],
+  "portrait": "TGUI_icon_skill_vehicle_armor",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Predator_PermShield"
+}

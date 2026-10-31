@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/building/strider",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Strider",
+  "description": "Massive walker that can load infantry inside, allowing them to attack with bonus range. Can enter Fortress Mode to provide an aura bonus. Attacks while moving. Heals units inside.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 225,
+    "flux": 225
+  },
+  "buildTime": 60,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
+  "portrait": "Building_Prot_Strider",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Buildings/RI_Prot_Building_Strider"
+}

@@ -1,0 +1,43 @@
+---
+import EntitySection from '../entity-section/entity-section.astro';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import { interpolate, toGameStatTiles } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+import { buildAbilityMeta } from './entity-abilities.helpers.ts';
+
+interface Props {
+  abilities?: Entity['abilities'];
+}
+
+const { abilities = [] } = Astro.props;
+---
+
+{
+  abilities.length > 0 && (
+    <EntitySection title="Abilities">
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {abilities.map((ability) => (
+          <li class="bevel-sm bg-surface p-3">
+            <h3 class="font-semibold">{ability.name}</h3>
+            <dl class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm tabular-nums">
+              {buildAbilityMeta(ability).map(({ label, value }) => (
+                <div class="flex gap-1">
+                  <dt class="text-muted">{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+            {ability.description && (
+              <p class="mt-2 text-sm whitespace-pre-line">{interpolate(ability.description, ability.values)}</p>
+            )}
+            {ability.stats && ability.stats.length > 0 && (
+              <div class="mt-2">
+                <StatTiles tiles={toGameStatTiles(ability.stats)} isNested />
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}

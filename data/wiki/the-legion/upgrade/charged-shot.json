@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/upgrade/charged-shot",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Charged Shot",
+  "description": "Every 10s fires an extra attack",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 40,
+  "exclusiveGroup": "Local.Legion.Infantry.Thrall.Specialize1",
+  "appliesTo": [
+    "the-legion/unit/thrall"
+  ],
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Thrall_T1B"
+}

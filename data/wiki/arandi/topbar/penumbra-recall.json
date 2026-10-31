@@ -1,0 +1,13 @@
+{
+  "id": "arandi/topbar/penumbra-recall",
+  "kind": "topbar",
+  "faction": "arandi",
+  "name": "Penumbra Recall",
+  "description": "Teleports targeted units to your Arandi Penumbra.",
+  "energyCost": 10,
+  "cooldown": 90,
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_skill_improved_recall",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Arandi_MothershipTeleport/RI_TopBar_Arandi_MothershipTeleport"
+}

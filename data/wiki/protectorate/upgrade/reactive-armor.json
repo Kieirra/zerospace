@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/reactive-armor",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Reactive Armor",
+  "description": "+{HP}% health.\n+{Armor} armor.",
+  "values": {
+    "Armor": 1
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Research.Local.Prot.MedMech.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/bastion"
+  ],
+  "portrait": "TGUI_icon_skill_infantry_armor",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_MedMech_Armor"
+}

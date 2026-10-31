@@ -1,0 +1,21 @@
+{
+  "id": "grell/upgrade/accelerated-mitosis",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Accelerated Mitosis",
+  "description": "Reduce Health loss per Arkanid from {starting} to {upgraded}",
+  "values": {
+    "starting": 20,
+    "upgraded": 15
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Grell.BroodGuard.Specialize2",
+  "appliesTo": [
+    "grell/unit/keeper"
+  ],
+  "portrait": "TGUI_icon_grell_unit_grelling_portrait",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_BroodGuard_MoreSpiderlings"
+}

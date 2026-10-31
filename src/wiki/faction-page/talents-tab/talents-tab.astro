@@ -1,0 +1,74 @@
+---
+import { getMercenaryChoices, groupByLevel } from '../faction-page.helpers.ts';
+import { getEntities, getFactionEntities, getFactions } from '../../wiki.data.ts';
+import GameImage from '../../game-image/game-image.astro';
+import { entityHref, interpolate } from '../../wiki.helpers.ts';
+import { OTHER_GROUP } from '../../wiki.constants.ts';
+
+interface Props {
+  factionId: string;
+}
+
+const { factionId } = Astro.props;
+const levels = groupByLevel(await getFactionEntities(factionId, 'talent'));
+const factions = await getFactions();
+const mercenaryNames = new Map(factions.filter(({ kind }) => kind === 'mercenary').map(({ id, name }) => [id, name]));
+const isMainFaction = factions.some(({ id, kind }) => id === factionId && kind === 'faction');
+const mercenaryTalents = isMainFaction
+  ? (await getEntities()).filter(({ kind, faction }) => kind === 'talent' && mercenaryNames.has(faction))
+  : [];
+const mercenaryChoices = getMercenaryChoices(levels, mercenaryTalents);
+---
+
+{
+  levels.map(({ level, entities }) => (
+    <section class="mb-6">
+      <h2 class="mb-2 text-sm font-semibold text-muted">{level === undefined ? OTHER_GROUP : `Level ${level}`}</h2>
+      <ul class="flex items-stretch gap-2">
+        {entities.map((talent, index) => (
+          <>
+            {index > 0 && (
+              <li class="self-center text-sm text-muted">or</li>
+            )}
+            <li class="min-w-0 flex-1">
+              <a
+                href={entityHref(talent.id)}
+                class="block h-full bevel-sm bg-surface p-3 hover:bg-surface-hover"
+              >
+                <span class="block w-8">
+                  <GameImage id={talent.id} name={talent.name} size="thumb" />
+                </span>
+                <span class="mt-2 block text-sm font-semibold break-words sm:text-base">{talent.name}</span>
+                {talent.description && (
+                  <p class="mt-1 text-sm break-words whitespace-pre-line text-muted">
+                    {interpolate(talent.description, talent.values)}
+                  </p>
+                )}
+              </a>
+            </li>
+          </>
+        ))}
+        {mercenaryChoices.has(level) && (
+          <>
+            <li class="self-center text-sm text-muted">or</li>
+            <li class="min-w-0 flex-1">
+              <div class="h-full bevel-sm bg-surface/40 p-3">
+                <p class="text-sm font-semibold text-muted sm:text-base">Mercenary talent</p>
+                <ul class="mt-2 grid gap-1.5 text-sm">
+                  {mercenaryChoices.get(level)?.map(({ id, name, faction }) => (
+                    <li class="break-words">
+                      <a href={entityHref(id)} class="text-accent-soft hover:underline">
+                        {name}
+                      </a>{' '}
+                      <span class="text-xs text-muted">{mercenaryNames.get(faction)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          </>
+        )}
+      </ul>
+    </section>
+  ))
+}

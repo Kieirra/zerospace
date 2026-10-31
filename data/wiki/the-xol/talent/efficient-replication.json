@@ -1,0 +1,15 @@
+{
+  "id": "the-xol/talent/efficient-replication",
+  "kind": "talent",
+  "faction": "the-xol",
+  "name": "Efficient Replication",
+  "description": "Reduce time of Replication by {timereduc}%.",
+  "values": {
+    "timereduc": 62.5
+  },
+  "researchTime": 0,
+  "level": 3,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_improved_repair",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Talents/RI_Talent_Xol_MP_ReplicateTimeReduce"
+}

@@ -1,0 +1,13 @@
+---
+import { GITHUB_URL, STEAM_BUILD_ID } from '../site.constants.ts';
+---
+
+<footer class="bg-bg/60">
+  <p class="mx-auto flex min-h-8 max-w-6xl flex-wrap items-center gap-x-2 px-4 py-1.5 text-xs text-muted">
+    <span>Fan site, not affiliated with Starlance Studios</span>
+    <span aria-hidden="true">·</span>
+    <span>Data: ZeroSpace build {STEAM_BUILD_ID}</span>
+    <span aria-hidden="true">·</span>
+    <a href={GITHUB_URL} class="underline hover:text-text">GitHub</a>
+  </p>
+</footer>

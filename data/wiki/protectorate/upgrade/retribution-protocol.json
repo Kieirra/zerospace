@@ -1,0 +1,21 @@
+{
+  "id": "protectorate/upgrade/retribution-protocol",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Retribution Protocol",
+  "description": "Explodes on death, dealing {dps} damage per second to nearby enemies.\nLasts {duration} seconds.",
+  "values": {
+    "dps": 30,
+    "duration": 5
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Research.Local.Prot.MedMech.Specialize2",
+  "appliesTo": [
+    "protectorate/unit/bastion"
+  ],
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Upgrades/Bastion/RI_Prot_MP_Bastion_SelfDestruct"
+}

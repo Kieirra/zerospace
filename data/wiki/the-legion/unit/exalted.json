@@ -1,0 +1,57 @@
+{
+  "id": "the-legion/unit/exalted",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Exalted",
+  "description": "Fast moving short range raider. \nCan jump down cliffs, stunning nearby enemies. Deals bonus damage to Medium.",
+  "hotkey": "T",
+  "cost": {
+    "hexite": 75
+  },
+  "count": 1,
+  "buildTime": 28,
+  "supply": 2,
+  "hp": 200,
+  "armorType": "medium",
+  "speed": 650,
+  "vision": 1800,
+  "size": 111.375,
+  "pushTier": 15,
+  "weapons": [
+    {
+      "name": "Spear of the Chosen",
+      "damage": 24,
+      "cooldown": 1.9,
+      "burst": 1,
+      "burstCooldown": 1.9,
+      "range": 500,
+      "warmup": 0.17,
+      "projectileSpeed": 5000,
+      "dps": 12.6316,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 50,
+          "unit": "%"
+        },
+        {
+          "vs": "Air",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/bestiary"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/hallowed-strike",
+    "the-legion/upgrade/maul"
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 3
+  },
+  "portrait": "TGUI_portrait_unit_empire_rhino05",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Troop_Legion_Rhino"
+}

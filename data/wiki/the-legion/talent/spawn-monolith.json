@@ -1,0 +1,40 @@
+{
+  "id": "the-legion/talent/spawn-monolith",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "Spawn Monolith",
+  "description": "Summon a powerful structure that lasts {Duration} seconds.\nNearby Thrall deaths cause bonus attacks to occur.",
+  "values": {
+    "Duration": 45
+  },
+  "cooldown": 200,
+  "range": 2000,
+  "summons": [
+    {
+      "name": "Monolith",
+      "kind": "building",
+      "duration": 45,
+      "hp": 1000,
+      "vision": 3000,
+      "weapons": [
+        {
+          "name": "Annihlation",
+          "damage": 70,
+          "cooldown": 0.5,
+          "burst": 1,
+          "burstCooldown": 0.7,
+          "range": 1700,
+          "warmup": 0,
+          "projectileSpeed": 2000,
+          "dps": 100
+        }
+      ]
+    }
+  ],
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 5,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_valkaru_valkaru_rage",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_MonolithSpawn/RI_Topbar_EmpireMonolith"
+}

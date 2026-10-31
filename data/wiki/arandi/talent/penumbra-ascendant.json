@@ -1,0 +1,32 @@
+{
+  "id": "arandi/talent/penumbra-ascendant",
+  "kind": "talent",
+  "faction": "arandi",
+  "name": "Penumbra Ascendant",
+  "description": "+{healthspeed}% Penumbra Speed and Health.\nGrants an area of effect attack which stuns enemies for {stunduration} seconds.\nAbduct cooldown reduced to {CDto} seconds.",
+  "values": {
+    "stunduration": 1.5,
+    "CDto": 5
+  },
+  "stats": [
+    {
+      "label": "Splash Radius",
+      "value": 2.5
+    },
+    {
+      "label": "Movement Speed",
+      "value": 50,
+      "unit": "%"
+    },
+    {
+      "label": "Max Health",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
+  "researchTime": 0,
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_valkaru_valkaru_rage",
+  "asset": "Archetypes_ResearchItems/Arandi/RI_HeroXP_Arandi_T6TavernBonus"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "endari/talent/unceasing-violence",
+  "kind": "talent",
+  "faction": "endari",
+  "name": "Unceasing Violence",
+  "description": "{CDR}% ability cooldowns.\n+{AS}% attack damage.",
+  "values": {
+    "CDR": -20,
+    "AS": 15
+  },
+  "researchTime": 0,
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_valkaru_valkaru_rage",
+  "asset": "Archetypes_ResearchItems/Endari/RI_HeroXP_Endari_T4_Stats"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "the-legion/unit/steelsworn",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Steelsworn",
+  "description": "Tanky melee infantry.",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 50
+  },
+  "count": 1,
+  "buildTime": 24,
+  "supply": 2,
+  "hp": 200,
+  "armorRating": 1,
+  "armorType": "medium",
+  "speed": 550,
+  "vision": 1600,
+  "size": 103.5,
+  "pushTier": 20,
+  "weapons": [
+    {
+      "name": "Steel Pincers",
+      "damage": 15,
+      "cooldown": 1.37,
+      "burst": 1,
+      "burstCooldown": 1.37,
+      "range": 120,
+      "warmup": 0.15,
+      "melee": true,
+      "dps": 10.9489
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/barracks"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/alloy-armor",
+    "the-legion/upgrade/performance-enhancers-steelsworn",
+    "the-legion/upgrade/saw"
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 2
+  },
+  "portrait": "TGUI_portrait_unit_empire_thrall_armored05",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_Steelsworn"
+}

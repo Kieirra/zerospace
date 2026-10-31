@@ -1,0 +1,57 @@
+{
+  "id": "the-xol/unit/spectron",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Spectron",
+  "description": "Range unit that charges up its projectile dealing more damage.",
+  "hotkey": "E",
+  "cost": {
+    "hexite": 25,
+    "flux": 50
+  },
+  "count": 1,
+  "supply": 2,
+  "hp": 120,
+  "armorType": "light",
+  "speed": 600,
+  "vision": 1600,
+  "size": 110,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Singularity Orb",
+      "damage": 18,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1.4,
+      "range": 800,
+      "warmup": 0.143,
+      "projectileSpeed": 2300,
+      "dps": 12.8571,
+      "bonuses": [
+        {
+          "vs": "Heavy",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Disassimilate",
+      "description": "Quickly moves the Spectron to a target point, making it invulnerable while moving.",
+      "hotkey": "D",
+      "cooldown": 12,
+      "range": 1500
+    }
+  ],
+  "producedBy": [
+    "the-xol/building/spectral-foundry"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 7.125
+  },
+  "portrait": "Troop_Xol_Spectron",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Spectron"
+}

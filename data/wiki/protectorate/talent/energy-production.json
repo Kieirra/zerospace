@@ -1,0 +1,15 @@
+{
+  "id": "protectorate/talent/energy-production",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Energy Production",
+  "description": "Increases passive faction power gain by {power}% for each Operating Tower.",
+  "values": {
+    "power": 50
+  },
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_marran_unit_energy_regeneration",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Talents/RI_Talent_Prot_MP_TopbarPower"
+}

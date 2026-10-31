@@ -1,0 +1,11 @@
+{
+  "id": "protectorate/upgrade/veterancy",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Veterancy",
+  "description": "Units gain Veterancy from kills.\nVeterancy grants increased damage, health, and energy regeneration.",
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_skill_hero_ability_cooldown",
+  "asset": "Archetype_Abilities/Veterancy/RI_HeroXP_Veterancy"
+}

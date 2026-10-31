@@ -1,0 +1,33 @@
+{
+  "id": "grell/unit/arkanid",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Arkanid",
+  "description": "Small and weak unit spawned by other Grell units.\nTemporary unit with timed life.",
+  "hotkey": "J",
+  "count": 1,
+  "buildTime": 16,
+  "supply": 0,
+  "hp": 5,
+  "armorType": "light",
+  "speed": 725,
+  "vision": 1200,
+  "size": 50,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Arkanid Piercer",
+      "damage": 4,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 100,
+      "warmup": 0,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 4
+    }
+  ],
+  "portrait": "TGUI_portrait_unit_grell_spiderling01",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Grell/Units/RI_Troop_Grell_MP_Spiderling"
+}

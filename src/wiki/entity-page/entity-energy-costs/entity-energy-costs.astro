@@ -1,0 +1,25 @@
+---
+import EntityLink from '../../entity-link/entity-link.astro';
+import EntitySection from '../entity-section/entity-section.astro';
+import { formatNumber } from '../../wiki.helpers.ts';
+
+interface Props {
+  costs?: Record<string, number>;
+}
+
+const costs = Object.entries(Astro.props.costs ?? {});
+---
+
+{
+  costs.length > 0 && (
+    <EntitySection title="Energy costs">
+      <ul class="grid gap-1 tabular-nums">
+        {costs.map(([id, value]) => (
+          <li>
+            <EntityLink id={id} />: {formatNumber(value)}
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}

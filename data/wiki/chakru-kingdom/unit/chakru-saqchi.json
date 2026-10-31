@@ -1,0 +1,42 @@
+{
+  "id": "chakru-kingdom/unit/chakru-saqchi",
+  "kind": "unit",
+  "faction": "chakru-kingdom",
+  "name": "Cha'Kru Saq'chi",
+  "description": "Medium melee brawler. Slams ground every 4th attack, damaging and slowing nearby enemy units.",
+  "hotkey": "M",
+  "cost": {
+    "hexite": 225,
+    "flux": 125
+  },
+  "count": 2,
+  "buildTime": 35,
+  "supply": 4,
+  "hp": 625,
+  "armorRating": 1,
+  "armorType": "medium",
+  "energy": 4,
+  "speed": 550,
+  "vision": 1600,
+  "size": 110,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Blood Slam",
+      "damage": 50,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 1.8,
+      "range": 100,
+      "warmup": 0.15,
+      "melee": true,
+      "dps": 27.7778
+    }
+  ],
+  "producedBy": [
+    "chakru-kingdom/building/temple-of-anqas",
+    "chakru-kingdom/building/temple-of-stars"
+  ],
+  "portrait": "TGUI_Kingdom_Rageborn",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Kingdom_Rageborn"
+}

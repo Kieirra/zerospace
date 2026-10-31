@@ -1,0 +1,68 @@
+{
+  "id": "grell/topbar/infusion",
+  "kind": "topbar",
+  "faction": "grell",
+  "name": "Infusion",
+  "description": "Increases target's health, attack damage, health and energy regeneration.\nThe target heals while infusing.",
+  "stats": [
+    {
+      "label": "Damage",
+      "value": [
+        45,
+        45,
+        90,
+        135,
+        180,
+        225
+      ],
+      "unit": "%"
+    },
+    {
+      "label": "Health Regen",
+      "value": [
+        45,
+        45,
+        90,
+        135,
+        180,
+        225
+      ],
+      "unit": "%"
+    },
+    {
+      "label": "Shield Regen",
+      "value": [
+        45,
+        45,
+        90,
+        135,
+        180,
+        225
+      ],
+      "unit": "%"
+    },
+    {
+      "label": "Energy Regen",
+      "value": [
+        45,
+        45,
+        90,
+        135,
+        180,
+        225
+      ],
+      "unit": "%"
+    }
+  ],
+  "energyCost": {
+    "unitCostMultiplier": 0.05,
+    "structureCostMultiplier": 0.07,
+    "fluxWeight": 1.25,
+    "targets": {
+      "grell/unit/seedling": 2
+    }
+  },
+  "range": 2000,
+  "portrait": "TGUI_icon_skill_infused_lifesteal",
+  "asset": "Maguro/CustomHero/InfuseEssence/RI_TopBar_InfuseEssence"
+}

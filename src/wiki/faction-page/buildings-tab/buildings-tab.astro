@@ -1,0 +1,33 @@
+---
+import EntityRows from '../entity-rows/entity-rows.astro';
+import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
+import { formatCost, formatOptionalNumber, formatOptionalSeconds } from '../../wiki.helpers.ts';
+
+interface Props {
+  factionId: string;
+}
+
+const { factionId } = Astro.props;
+const buildings = await getFactionEntities(factionId, 'building');
+const entities = await getEntityMap();
+
+const columns = [
+  { label: 'Cost', width: '8.5rem' },
+  { label: 'Build time', width: '6rem' },
+  { label: 'HP', isDesktopOnly: true },
+  { label: 'Produces', isDesktopOnly: true, isWide: true },
+];
+
+const rows = buildings.map((building) => ({
+  id: building.id,
+  name: building.name,
+  cells: [
+    formatCost(building.cost),
+    formatOptionalSeconds(building.buildTime),
+    formatOptionalNumber(building.hp),
+    building.produces?.map((id) => entities.get(id)?.name ?? id).join(', ') || undefined,
+  ],
+}));
+---
+
+<EntityRows columns={columns} groups={[{ rows }]} />

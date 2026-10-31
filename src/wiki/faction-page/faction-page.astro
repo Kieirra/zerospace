@@ -1,0 +1,63 @@
+---
+import clsx from 'clsx';
+import ReportButton from '../../shared/report-button/report-button.astro';
+import DensePanel from '../dense-panel/dense-panel.astro';
+import GameImage from '../game-image/game-image.astro';
+import { getFactionTabs } from '../wiki.data.ts';
+import { tabHref } from '../wiki.helpers.ts';
+import type { Faction, Tab } from '../wiki.types.ts';
+import BuildingsTab from './buildings-tab/buildings-tab.astro';
+import HeroesTab from './heroes-tab/heroes-tab.astro';
+import TalentsTab from './talents-tab/talents-tab.astro';
+import TopbarTab from './topbar-tab/topbar-tab.astro';
+import UnitsTab from './units-tab/units-tab.astro';
+import UpgradesTab from './upgrades-tab/upgrades-tab.astro';
+
+interface Props {
+  faction: Faction;
+  tab: Tab;
+}
+
+const { faction, tab } = Astro.props;
+const tabs = await getFactionTabs(faction.id);
+---
+
+<DensePanel factionId={faction.id}>
+  <a href="/wiki" class="text-sm text-muted hover:text-text">‹ Wiki</a>
+  <div class="mt-2 flex items-center justify-between gap-3">
+    <div class="flex min-w-0 items-center gap-3">
+      <GameImage id={faction.id} name={faction.name} size="logo" isEager />
+      <h1 class="text-2xl font-bold break-words">{faction.name}</h1>
+    </div>
+    <ReportButton id={faction.id} />
+  </div>
+  <nav aria-label={faction.name} class="-mx-4 mt-4 overflow-x-auto px-4 md:-mx-6 md:px-6">
+    <ul class="flex gap-2 py-1">
+      {
+        tabs.map(({ slug, label }) => (
+          <li>
+            <a
+              href={tabHref(faction.id, slug)}
+              aria-current={slug === tab.slug ? 'page' : undefined}
+              class={clsx(
+                'flex h-10 items-center px-4 text-sm whitespace-nowrap bevel-sm',
+                slug === tab.slug && 'bg-text font-semibold text-bg',
+                slug !== tab.slug && 'bg-surface text-muted hover:bg-surface-hover hover:text-text',
+              )}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <div class="mt-6">
+    {tab.kind === 'unit' && <UnitsTab factionId={faction.id} />}
+    {tab.kind === 'hero' && <HeroesTab factionId={faction.id} />}
+    {tab.kind === 'building' && <BuildingsTab factionId={faction.id} />}
+    {tab.kind === 'topbar' && <TopbarTab factionId={faction.id} />}
+    {tab.kind === 'talent' && <TalentsTab factionId={faction.id} />}
+    {tab.kind === 'upgrade' && <UpgradesTab factionId={faction.id} />}
+  </div>
+</DensePanel>

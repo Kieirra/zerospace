@@ -1,0 +1,22 @@
+{
+  "id": "the-legion/upgrade/wake-of-fire",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Wake of Fire",
+  "description": "Charge leaves behind a fire trail, dealing {dps} damage per second. Lasts {fireduration} seconds.\nCharge also grants +{armor} armor in addition to move speed after Charge completes.",
+  "values": {
+    "dps": 30,
+    "fireduration": 5,
+    "armor": 3
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Hero.Hero1.Specialize2",
+  "appliesTo": [
+    "the-legion/hero/inquisitress"
+  ],
+  "portrait": "TGUI_icon_skill_explosion_red",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Legion/Upgrades/Inquisitress/RI_Legion_MP_Inquisitress_ChargeFire"
+}

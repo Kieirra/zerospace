@@ -1,0 +1,14 @@
+{
+  "id": "grell/topbar/underground-transport",
+  "kind": "topbar",
+  "faction": "grell",
+  "name": "Underground Transport",
+  "description": "Call a worm to transport your units to any Bloomwell.",
+  "energyCost": 5,
+  "cooldown": 120,
+  "range": 2000,
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_logo_grell",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_TopBar_Recall_Grell"
+}

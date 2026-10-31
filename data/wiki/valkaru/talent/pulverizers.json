@@ -1,0 +1,24 @@
+{
+  "id": "valkaru/talent/pulverizers",
+  "kind": "talent",
+  "faction": "valkaru",
+  "name": "Pulverizers",
+  "description": "Valkaru Beast ability cooldown and power cost reduced. Gains {maxcharges} charges.\nValkaru Beast gains Taunt and Pulverize abilities.",
+  "details": "Cooldown reduced to {newcooldown}\nPower cost reduced to {newpowercost}",
+  "values": {
+    "maxcharges": 3,
+    "newcooldown": 30,
+    "newpowercost": 15
+  },
+  "energyCostChanges": {
+    "valkaru/topbar/valkaru-beast": {
+      "energyCost": 15
+    }
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_valkaru_valkaru_rage",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Valkaru_Buff"
+}

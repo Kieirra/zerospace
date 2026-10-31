@@ -1,0 +1,22 @@
+{
+  "id": "grell/upgrade/anchoring-tendrils",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Anchoring Tendrils",
+  "description": "Rooting and uprooting is {siege}% faster.\n+{movespeed}% movement speed.",
+  "values": {
+    "siege": 50,
+    "movespeed": 30
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Grell.Thresher.Specialize1",
+  "appliesTo": [
+    "grell/unit/thresher"
+  ],
+  "portrait": "thresherSiege",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Thresher_FastSiege"
+}

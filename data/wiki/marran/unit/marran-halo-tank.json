@@ -1,0 +1,47 @@
+{
+  "id": "marran/unit/marran-halo-tank",
+  "kind": "unit",
+  "faction": "marran",
+  "name": "Marran Halo Tank",
+  "description": "Tank that can attack while moving.\nEach attack charges up a powerful laser, dealing damage in a line after {N} attacks.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 150,
+    "flux": 225
+  },
+  "count": 1,
+  "buildTime": 25,
+  "supply": 7,
+  "hp": 350,
+  "shields": 350,
+  "armorType": "heavy",
+  "energy": 4,
+  "speed": 400,
+  "vision": 1600,
+  "size": 140,
+  "transportSlots": 6,
+  "weapons": [
+    {
+      "name": "Obliterator",
+      "damage": 50,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1.3,
+      "range": 1400,
+      "warmup": 0,
+      "dps": 38.4615
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Halo Linear AOE",
+      "cooldown": 0.1,
+      "energyCost": 4
+    }
+  ],
+  "producedBy": [
+    "marran/building/marran-bulwark"
+  ],
+  "portrait": "TGUI_portrait_unit_marran_halotank01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Marran_Halo"
+}

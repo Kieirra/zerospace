@@ -1,0 +1,68 @@
+{
+  "id": "grell/unit/thresher",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Thresher",
+  "description": "Heavy long range siege unit with splash damage. Deals bonus damage to Buildings.",
+  "hotkey": "S",
+  "cost": {
+    "hexite": 100,
+    "flux": 200
+  },
+  "count": 1,
+  "buildTime": 50,
+  "supply": 6,
+  "hp": 350,
+  "armorType": "heavy",
+  "speed": 450,
+  "vision": 1600,
+  "size": 219.7,
+  "pushTier": 50,
+  "transportSlots": 6,
+  "weapons": [
+    {
+      "name": "Void Bomb",
+      "damage": 120,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 3.3,
+      "range": 2700,
+      "warmup": 0.45,
+      "projectileSpeed": 1250,
+      "dps": 36.3636,
+      "bonuses": [
+        {
+          "vs": "Building",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Take Root",
+      "description": "Rooted Threshers gain a long range aoe attack.",
+      "hotkey": "C",
+      "cooldown": 1.25
+    },
+    {
+      "name": "Uproot",
+      "description": "Uproots the Thresher.",
+      "hotkey": "C",
+      "cooldown": 1.2
+    }
+  ],
+  "producedBy": [
+    "grell/building/elderwomb"
+  ],
+  "upgrades": [
+    "grell/upgrade/anchoring-tendrils",
+    "grell/upgrade/corroding-expulsion"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 17.5
+  },
+  "portrait": "TGUI_portrait_unit_grell_thresher07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Grell_Thresher"
+}

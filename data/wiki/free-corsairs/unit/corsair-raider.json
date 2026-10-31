@@ -1,0 +1,57 @@
+{
+  "id": "free-corsairs/unit/corsair-raider",
+  "kind": "unit",
+  "faction": "free-corsairs",
+  "name": "Corsair Raider",
+  "description": "Light infantry which can steal Hexite from enemy harvesters and extractors.\nCan jump up and down cliffs. Deals bonus damage to Harvesters.",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 175
+  },
+  "count": 3,
+  "buildTime": 7,
+  "supply": 2,
+  "hp": 150,
+  "armorType": "light",
+  "speed": 650,
+  "vision": 1600,
+  "size": 80,
+  "weapons": [
+    {
+      "name": "S-2 Marksman",
+      "damage": 12,
+      "cooldown": 0.62,
+      "burst": 1,
+      "burstCooldown": 1.5,
+      "range": 1000,
+      "warmup": 0,
+      "projectileSpeed": 5000,
+      "dps": 8,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Thieve",
+      "description": "Steals {hex} hexite from the target extractor or {flux} flux from harvesters. The other player does not lose resources.",
+      "values": {
+        "hex": 50,
+        "flux": 35
+      },
+      "hotkey": "N",
+      "cooldown": 60,
+      "range": 200
+    }
+  ],
+  "producedBy": [
+    "free-corsairs/building/free-corsair-mercenary-outpost"
+  ],
+  "portrait": "TGUI_portrait_unit_dread_raider01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Dread_Demolition"
+}

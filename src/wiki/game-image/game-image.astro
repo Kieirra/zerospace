@@ -1,0 +1,52 @@
+---
+import clsx from 'clsx';
+import { toInitial } from '../wiki.helpers.ts';
+import { findImageUrl, IMAGE_SIZES } from './game-image.helpers.ts';
+import type { ImageSize } from './game-image.helpers.ts';
+
+interface Props {
+  id: string;
+  name: string;
+  size: ImageSize;
+  isEager?: boolean;
+}
+
+const { id, name, size, isEager } = Astro.props;
+const src = findImageUrl(id);
+const pixels = IMAGE_SIZES[size];
+---
+
+{
+  src ? (
+    <img
+      src={src}
+      alt={name}
+      width={pixels}
+      height={pixels}
+      loading={isEager ? 'eager' : 'lazy'}
+      decoding="async"
+      class={clsx(
+        'max-w-none shrink-0 object-contain',
+        size === 'thumb' && 'size-8',
+        size === 'card' && 'size-10',
+        size === 'logo' && 'size-12',
+        size === 'header' && 'size-16',
+        size === 'tile' && 'size-20',
+      )}
+    />
+  ) : (
+    <span
+      aria-hidden="true"
+      class={clsx(
+        'grid shrink-0 place-items-center bg-surface-raised font-bold text-muted',
+        size === 'thumb' && 'size-8 text-sm',
+        size === 'card' && 'size-10 text-base',
+        size === 'logo' && 'size-12 text-xl',
+        size === 'header' && 'size-16 text-2xl',
+        size === 'tile' && 'size-20 text-4xl',
+      )}
+    >
+      {toInitial(name)}
+    </span>
+  )
+}

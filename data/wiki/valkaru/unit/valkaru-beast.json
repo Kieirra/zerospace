@@ -1,0 +1,36 @@
+{
+  "id": "valkaru/unit/valkaru-beast",
+  "kind": "unit",
+  "faction": "valkaru",
+  "name": "Valkaru Beast",
+  "description": "Tanky melee unit",
+  "cost": {
+    "hexite": 200,
+    "flux": 150
+  },
+  "count": 1,
+  "supply": 6,
+  "hp": 800,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 575,
+  "vision": 1600,
+  "size": 210,
+  "pushTier": 80,
+  "weapons": [
+    {
+      "name": "Pulverizing Fists",
+      "damage": 130,
+      "cooldown": 2.5,
+      "burst": 1,
+      "burstCooldown": 2.5,
+      "range": 150,
+      "warmup": 0.4,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 52
+    }
+  ],
+  "portrait": "TGUI_portrait_unit_valkaru_beast01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Valkaru_Beast"
+}

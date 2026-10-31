@@ -1,0 +1,39 @@
+{
+  "id": "chakru-kingdom/unit/chakru-clakjaw",
+  "kind": "unit",
+  "faction": "chakru-kingdom",
+  "name": "Cha'Kru Clakjaw",
+  "description": "Heavily armored melee unit, reducing incoming damage by {armor}.",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 225
+  },
+  "count": 2,
+  "supply": 3,
+  "hp": 275,
+  "armorRating": 5,
+  "armorType": "heavy",
+  "speed": 500,
+  "vision": 1600,
+  "size": 125,
+  "pushTier": 40,
+  "weapons": [
+    {
+      "name": "Stonesplitting Pincers",
+      "damage": 18,
+      "cooldown": 0.8,
+      "burst": 1,
+      "burstCooldown": 0.8,
+      "range": 140,
+      "warmup": 0.215,
+      "melee": true,
+      "dps": 22.5
+    }
+  ],
+  "producedBy": [
+    "chakru-kingdom/building/temple-of-anqas",
+    "chakru-kingdom/building/temple-of-stars"
+  ],
+  "portrait": "TGUI_Kingdom_Crab",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Kingdom_Crab"
+}

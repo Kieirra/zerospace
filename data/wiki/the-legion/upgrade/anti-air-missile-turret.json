@@ -1,0 +1,19 @@
+{
+  "id": "the-legion/upgrade/anti-air-missile-turret",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Anti-air Missile Turret",
+  "description": "Turret that can attack while moving.\n\nPassive: +{Speed}% Dreadnought movement speed.",
+  "values": {
+    "Speed": 15
+  },
+  "stats": [
+    {
+      "label": "Splash Radius",
+      "value": 1.5
+    }
+  ],
+  "hotkey": "R",
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Legion_APlatformToTurretAA"
+}

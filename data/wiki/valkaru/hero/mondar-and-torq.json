@@ -1,0 +1,53 @@
+{
+  "id": "valkaru/hero/mondar-and-torq",
+  "kind": "hero",
+  "faction": "valkaru",
+  "name": "Mondar and Torq",
+  "description": "Dual heroes. One melee, one ranged. Each has a unique ranged weapon. Mondar and Torq can pass each other their hammer and become enraged when the other dies.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 5,
+  "hp": 280,
+  "speed": 600,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Brother's Fury",
+      "damage": 12,
+      "cooldown": 1.2,
+      "burst": 1,
+      "burstCooldown": 1.2,
+      "range": 150,
+      "warmup": 0.12,
+      "melee": true,
+      "dps": 10
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Hammer Throw",
+      "description": "Throw the hammer to the other hero. Hammer damages enemy units on its path for {Damage} damage.\nEach hit increases the attack speed of the hero with hammer by {Percent}% (up to +{Max}%). Lasts {Duration} seconds.",
+      "values": {
+        "Damage": 20,
+        "Percent": 8,
+        "Max": 80,
+        "Duration": 5
+      },
+      "stats": [
+        {
+          "label": "Slow",
+          "value": 50,
+          "unit": "%"
+        }
+      ],
+      "hotkey": "Q",
+      "cooldown": 7,
+      "range": 100000
+    }
+  ],
+  "portrait": "Troop_MPHero_Mondar",
+  "asset": "Archetypes_Heroes/RI_Hero_Mondar"
+}

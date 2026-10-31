@@ -1,0 +1,33 @@
+{
+  "id": "protectorate/building/mechanical-research-lab",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Mechanical Research Lab",
+  "description": "Research structure for units produced from the Assembly Plant and Skydock.",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "buildTime": 30,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "protectorate/building/assembly-plant",
+    "protectorate/building/skydock"
+  ],
+  "unlocks": [
+    "protectorate/building/strider",
+    "protectorate/building/war-foundry",
+    "protectorate/unit/griffin",
+    "protectorate/unit/hellfire",
+    "protectorate/upgrade/eagle-tactics",
+    "protectorate/upgrade/medbays",
+    "protectorate/upgrade/overpressure-nozzle",
+    "protectorate/upgrade/reinforced-matrix",
+    "protectorate/upgrade/retribution-protocol",
+    "protectorate/upgrade/transport"
+  ],
+  "portrait": "Building_Prot_ResearchAdv",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingResearchAdv"
+}

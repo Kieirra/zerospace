@@ -1,0 +1,39 @@
+{
+  "id": "valkaru/unit/valkaru-shock-trooper",
+  "kind": "unit",
+  "faction": "valkaru",
+  "name": "Valkaru Shock Trooper",
+  "description": "Medium ranged infantry with splash damage.",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 175,
+    "flux": 75
+  },
+  "count": 2,
+  "buildTime": 7,
+  "supply": 4,
+  "hp": 375,
+  "armorType": "medium",
+  "speed": 450,
+  "vision": 1600,
+  "size": 105,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "Ionic Coil",
+      "damage": 30,
+      "cooldown": 3,
+      "burst": 1,
+      "burstCooldown": 3,
+      "range": 1250,
+      "warmup": 0.4,
+      "projectileSpeed": 1620,
+      "dps": 10
+    }
+  ],
+  "producedBy": [
+    "valkaru/building/valkaru-war-vault"
+  ],
+  "portrait": "TGUI_portrait_unit_valkaru_shocktrooper01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Valkaru_ShockTrooper"
+}

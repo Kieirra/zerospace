@@ -1,0 +1,29 @@
+{
+  "id": "grell/building/synapse-canopy",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Synapse Canopy",
+  "description": "Research structure for units produced from the Elderwomb.\nUnlocks: second tier Incubator unit upgrades",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 100,
+    "flux": 75
+  },
+  "buildTime": 40,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "grell/building/incubator"
+  ],
+  "unlocks": [
+    "grell/building/elderwomb",
+    "grell/upgrade/accelerated-mitosis",
+    "grell/upgrade/camouflage",
+    "grell/upgrade/corrosive-secretion",
+    "grell/upgrade/dissolving-venom",
+    "grell/upgrade/endorphic-frenzy",
+    "grell/upgrade/pouncing-reflex"
+  ],
+  "portrait": "TGUI_icon_grell_building_research_special_portrait02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_SpecialResearch_2"
+}

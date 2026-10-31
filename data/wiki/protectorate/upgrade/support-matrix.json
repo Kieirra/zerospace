@@ -1,0 +1,18 @@
+{
+  "id": "protectorate/upgrade/support-matrix",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Support Matrix",
+  "description": "Adds a second Support Matrix",
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Prot.AirCaster.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/griffin"
+  ],
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Upgrades/Griffin/RI_Prot_MP_Griffin_UpgradeHealTurret"
+}

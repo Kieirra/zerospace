@@ -1,0 +1,52 @@
+{
+  "id": "protectorate/unit/cyclops",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Cyclops",
+  "description": "Fast tank equipped with a long range laser that deals more damage as it fires. Deals bonus damage to Heavy targets. Attacks while moving.",
+  "hotkey": "S",
+  "cost": {
+    "hexite": 100,
+    "flux": 150
+  },
+  "count": 1,
+  "buildTime": 45,
+  "supply": 6,
+  "hp": 350,
+  "armorType": "medium",
+  "speed": 600,
+  "vision": 1600,
+  "size": 145.2,
+  "transportSlots": 5,
+  "weapons": [
+    {
+      "name": "Spherewalker Particle Cannon",
+      "damage": 4,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1300,
+      "projectileSpeed": 100,
+      "dps": 10,
+      "bonuses": [
+        {
+          "vs": "Heavy",
+          "value": 75,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/assembly-plant"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/charge-speed"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 3,
+    "protectorate/topbar/protective-shield": 12.9375
+  },
+  "portrait": "Troop_Prot_Disruptor",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Protectorate/Units/RI_Prot_Troop_MP_Cyclone"
+}

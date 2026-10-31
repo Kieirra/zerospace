@@ -1,0 +1,47 @@
+{
+  "id": "the-legion/unit/thrall",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Thrall",
+  "description": "Expendable ranged infantry.",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 50
+  },
+  "count": 3,
+  "buildTime": 30,
+  "supply": 1,
+  "hp": 70,
+  "armorRating": 0,
+  "armorType": "light",
+  "speed": 525,
+  "vision": 1600,
+  "size": 71.28001,
+  "transportSlots": 1,
+  "weapons": [
+    {
+      "name": "Galynx Assault Cannon",
+      "damage": 7,
+      "cooldown": 1.5,
+      "burst": 1,
+      "burstCooldown": 1.5,
+      "range": 700,
+      "warmup": 0.06,
+      "projectileSpeed": 5000,
+      "dps": 4.6667
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/barracks"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/battle-frenzy",
+    "the-legion/upgrade/charged-shot",
+    "the-legion/upgrade/performance-enhancers"
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 0.6667
+  },
+  "portrait": "TGUI_portrait_unit_empire_thrall05",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_Thrall"
+}

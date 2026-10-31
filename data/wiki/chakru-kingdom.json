@@ -1,0 +1,18 @@
+{
+  "id": "chakru-kingdom",
+  "kind": "mercenary",
+  "name": "Cha'Kru Kingdom",
+  "color": "#6baed5",
+  "heroes": [
+    "chakru-kingdom/hero/loikru"
+  ],
+  "topbar": [
+    "chakru-kingdom/topbar/sacrifice-to-pachamama"
+  ],
+  "talents": [
+    "chakru-kingdom/talent/blood-for-blood",
+    "chakru-kingdom/talent/children-of-the-leviathan",
+    "chakru-kingdom/talent/immortal-lineage"
+  ],
+  "asset": "Archetypes_Factions/Merc_Kingdom"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "the-xol/unit/xol-harvester",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Xol Harvester",
+  "description": "Harvests flux\nHarvesters respawn {respawn_dur}s after being destroyed.",
+  "hotkey": "H",
+  "cost": {
+    "hexite": 175
+  },
+  "count": 1,
+  "buildTime": 30,
+  "supply": 0,
+  "hp": 400,
+  "armorType": "medium",
+  "speed": 400,
+  "vision": 1800,
+  "size": 115,
+  "abilities": [
+    {
+      "name": "Overclock",
+      "description": "Gives the Overclock buff to nearby units, granting them {damage}% bonus damage and move speed for {second} seconds.",
+      "values": {
+        "damage": 35,
+        "second": 5
+      },
+      "hotkey": "G",
+      "cooldown": 30,
+      "range": 800
+    }
+  ],
+  "producedBy": [
+    "the-xol/building/world-engine"
+  ],
+  "portrait": "Troop_Xol_Harvester",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Units/RI_Troop_Xol_MP_Harvester"
+}

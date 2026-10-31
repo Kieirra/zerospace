@@ -1,0 +1,60 @@
+{
+  "id": "the-legion/talent/summoning-obelisk",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "Summoning Obelisk",
+  "description": "Creates a Summoning Obelisk on the battlefield that summons Thralls over time.",
+  "cooldown": 30,
+  "charges": 3,
+  "summons": [
+    {
+      "name": "Portal Obelisk",
+      "kind": "building",
+      "duration": 150,
+      "hp": 250,
+      "vision": 1800,
+      "weapons": [
+        {
+          "damage": 8,
+          "cooldown": 0.5,
+          "burst": 1,
+          "burstCooldown": 0.8,
+          "range": 1000,
+          "warmup": 0,
+          "projectileSpeed": 1800,
+          "dps": 10
+        }
+      ]
+    },
+    {
+      "name": "Thrall",
+      "kind": "unit",
+      "id": "the-legion/unit/thrall",
+      "count": 12,
+      "hp": 70,
+      "armorRating": 0,
+      "armorType": "light",
+      "speed": 525,
+      "vision": 1600,
+      "weapons": [
+        {
+          "name": "Galynx Assault Cannon",
+          "damage": 7,
+          "cooldown": 1.5,
+          "burst": 1,
+          "burstCooldown": 1.5,
+          "range": 700,
+          "warmup": 0.06,
+          "projectileSpeed": 5000,
+          "dps": 4.6667
+        }
+      ]
+    }
+  ],
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 3,
+  "position": "A",
+  "portrait": "TGUI_icon_empire_DebuffObelisk02",
+  "asset": "Archetype_Abilities/Troop_Abilities/Multiplayer/Legion/Topbar_SummoningObelisk/RI_Xol_TopbarAbility_MP_SummoningObelisk"
+}

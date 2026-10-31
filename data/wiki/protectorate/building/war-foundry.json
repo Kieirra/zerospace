@@ -1,0 +1,25 @@
+{
+  "id": "protectorate/building/war-foundry",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "War Foundry",
+  "description": "Advanced vehicle production structure.",
+  "hotkey": "G",
+  "cost": {
+    "hexite": 125,
+    "flux": 75
+  },
+  "buildTime": 45,
+  "hp": 1400,
+  "armorRating": 1,
+  "produces": [
+    "protectorate/unit/hellfire",
+    "protectorate/unit/juggernaut",
+    "protectorate/unit/strider"
+  ],
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
+  "portrait": "Building_Prot_Factory_Adv",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingAdvFactory"
+}

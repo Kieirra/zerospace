@@ -1,0 +1,45 @@
+{
+  "id": "chakru-kingdom/unit/chakru-ghost-crab",
+  "kind": "unit",
+  "faction": "chakru-kingdom",
+  "name": "Cha'Kru Ghost Crab",
+  "description": "Light melee unit which explodes, dealing area damage. \nDeals bonus damage to Light.",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 75,
+    "flux": 100
+  },
+  "count": 5,
+  "supply": 1,
+  "hp": 60,
+  "armorType": "light",
+  "speed": 650,
+  "vision": 1600,
+  "size": 55,
+  "weapons": [
+    {
+      "name": "Explosive Carapace",
+      "damage": 40,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 100,
+      "warmup": 0,
+      "melee": true,
+      "dps": 40,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "chakru-kingdom/building/temple-of-anqas",
+    "chakru-kingdom/building/temple-of-stars"
+  ],
+  "portrait": "TGUI_Kingdom_GhostCrab",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Kingdom_CrabSmall"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/upgrade/ironhide-accord",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Ironhide Accord",
+  "description": "Doubles all troop bonuses.",
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Legion.Infantry.Mammoth.Specialize1",
+  "appliesTo": [
+    "the-legion/unit/mammoth"
+  ],
+  "portrait": "TGUI_icon_skill_hero_ability_cooldown",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Mammoth_DoubleStats"
+}

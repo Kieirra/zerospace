@@ -1,0 +1,38 @@
+{
+  "id": "the-legion/unit/legion-labourer",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Legion Labourer",
+  "description": "Harvests flux.\nCan build and repair mechanical units and structures.",
+  "hotkey": "H",
+  "cost": {
+    "hexite": 75
+  },
+  "count": 1,
+  "buildTime": 12,
+  "supply": 0,
+  "hp": 150,
+  "armorType": "medium",
+  "speed": 500,
+  "vision": 1600,
+  "size": 50,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Tools of Labour",
+      "damage": 26,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 1.33,
+      "range": 100,
+      "warmup": 0,
+      "melee": true,
+      "dps": 19.5489
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/garrison-tower"
+  ],
+  "portrait": "TGUI_portrait_unit_empire_harvester05",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Legion_Harvester_Limited"
+}

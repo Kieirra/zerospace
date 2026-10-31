@@ -1,0 +1,49 @@
+{
+  "id": "the-legion/talent/ritual",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "Ritual",
+  "description": "Unlock a ritual that summons a temporal projection of the Emperor.",
+  "cooldown": 200,
+  "summons": [
+    {
+      "name": "Sacrificial site",
+      "kind": "building",
+      "duration": 45,
+      "hp": 1000
+    },
+    {
+      "name": "Emperor Projection",
+      "kind": "unit",
+      "hp": 5000,
+      "armorRating": 2,
+      "armorType": "medium",
+      "speed": 600,
+      "vision": 1800,
+      "weapons": [
+        {
+          "damage": 100,
+          "cooldown": 2,
+          "burst": 1,
+          "burstCooldown": 1.4,
+          "range": 300,
+          "warmup": 0.6878,
+          "dps": 71.4286,
+          "bonuses": [
+            {
+              "vs": "Building",
+              "value": 100,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 5,
+  "position": "A",
+  "portrait": "TGUI_icon_logo_dread_raiders",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Ritual/RI_TopBar_Empire_Ritual"
+}

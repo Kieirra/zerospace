@@ -1,0 +1,60 @@
+---
+import clsx from 'clsx';
+import alarmClock from 'lucide-static/icons/alarm-clock.svg?raw';
+import clock from 'lucide-static/icons/clock.svg?raw';
+import crosshair from 'lucide-static/icons/crosshair.svg?raw';
+import drumstick from 'lucide-static/icons/drumstick.svg?raw';
+import eye from 'lucide-static/icons/eye.svg?raw';
+import flame from 'lucide-static/icons/flame.svg?raw';
+import gauge from 'lucide-static/icons/gauge.svg?raw';
+import heart from 'lucide-static/icons/heart.svg?raw';
+import hourglass from 'lucide-static/icons/hourglass.svg?raw';
+import layers from 'lucide-static/icons/layers.svg?raw';
+import shield from 'lucide-static/icons/shield.svg?raw';
+import sword from 'lucide-static/icons/sword.svg?raw';
+import timer from 'lucide-static/icons/timer.svg?raw';
+import zap from 'lucide-static/icons/zap.svg?raw';
+
+interface Props {
+  label: string;
+}
+
+interface StatIcon {
+  svg: string;
+  isFilled?: boolean;
+}
+
+// Keys are lower case: labels of the game stats come with their own casing.
+const ICONS: Record<string, StatIcon> = {
+  'build time': { svg: clock },
+  'research time': { svg: clock },
+  'supply': { svg: drumstick },
+  'hp': { svg: heart },
+  'shields': { svg: shield },
+  'armor type': { svg: shield, isFilled: true },
+  'armor rating': { svg: shield, isFilled: true },
+  'speed': { svg: gauge },
+  'vision': { svg: eye },
+  'energy': { svg: zap },
+  'energy cost': { svg: zap },
+  'damage': { svg: sword },
+  'dps': { svg: flame },
+  'range': { svg: crosshair },
+  'cooldown': { svg: hourglass },
+  'charges': { svg: layers },
+  'duration': { svg: timer },
+  'warmup': { svg: alarmClock },
+};
+
+const icon = ICONS[Astro.props.label.toLowerCase()];
+---
+
+{
+  icon && (
+    <span
+      aria-hidden="true"
+      class={clsx('inline-flex shrink-0 [&>svg]:size-3', icon.isFilled && '[&_path]:fill-current')}
+      set:html={icon.svg}
+    />
+  )
+}

@@ -1,0 +1,13 @@
+{
+  "id": "the-legion/talent/unending-army",
+  "kind": "talent",
+  "faction": "the-legion",
+  "name": "Unending Army",
+  "description": "Producing any unit spawns an additional Thrall.",
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_marran_xptower",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Legion_T6ZombieBuff"
+}

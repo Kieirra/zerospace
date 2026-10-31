@@ -1,0 +1,23 @@
+{
+  "id": "the-xol/upgrade/casting-range",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Casting Range",
+  "description": "+{x}% casting range to units",
+  "values": {
+    "x": [
+      20,
+      40,
+      60,
+      80
+    ]
+  },
+  "hotkey": "W",
+  "cost": {
+    "flux": 200
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Research.T1",
+  "portrait": "TGUI_icon_skill_valkaru_valkaru_rage",
+  "asset": "Archetypes_ResearchItems/Xol/Upgrades/RI_Xol_Army_CastRange"
+}

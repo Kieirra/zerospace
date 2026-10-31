@@ -1,0 +1,73 @@
+{
+  "id": "protectorate",
+  "kind": "faction",
+  "name": "Protectorate",
+  "color": "#f0b100",
+  "heroes": [
+    "protectorate/hero/marv",
+    "protectorate/hero/mera",
+    "protectorate/hero/prefect-aster"
+  ],
+  "topbar": [
+    "protectorate/topbar/airstrike",
+    "protectorate/topbar/beam-up",
+    "protectorate/topbar/protective-shield",
+    "protectorate/topbar/sol-invictus"
+  ],
+  "talents": [
+    "protectorate/talent/airstrike",
+    "protectorate/talent/arsenal-of-the-fifth",
+    "protectorate/talent/battle-hardened",
+    "protectorate/talent/energy-production",
+    "protectorate/talent/force-multiplier",
+    "protectorate/talent/prioras-finest",
+    "protectorate/talent/rapid-reconstitution",
+    "protectorate/talent/reinforcements",
+    "protectorate/talent/resource-warfare",
+    "protectorate/talent/sol-invictus",
+    "protectorate/talent/the-stars-in-our-reach"
+  ],
+  "passiveIncome": [
+    {
+      "level": 1,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusInitial"
+    },
+    {
+      "level": 2,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 3,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 4,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 5,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 6,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 7,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 8,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 9,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    },
+    {
+      "level": 10,
+      "researchItem": "Archetypes_ResearchItems/HeroXP/RI_DripResPlusOne"
+    }
+  ],
+  "asset": "Archetypes_Factions/Faction_Protectorate"
+}

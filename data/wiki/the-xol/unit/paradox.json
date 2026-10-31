@@ -1,0 +1,55 @@
+{
+  "id": "the-xol/unit/paradox",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Paradox",
+  "description": "A large caster that can manipulate time, offering potentially game-changing effects.",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 250,
+    "flux": 250
+  },
+  "count": 1,
+  "buildTime": 50,
+  "supply": 10,
+  "hp": 750,
+  "shields": 750,
+  "armorType": "heavy",
+  "speed": 450,
+  "vision": 1800,
+  "size": 220,
+  "pushTier": 90,
+  "weapons": [
+    {
+      "name": "Cosmic Charge",
+      "damage": 50,
+      "cooldown": 2.5,
+      "burst": 1,
+      "burstCooldown": 3.5,
+      "range": 1300,
+      "warmup": 0.22,
+      "projectileSpeed": 1400,
+      "dps": 14.2857
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Paradox",
+      "description": "Targets units, marking their current position and status\nAfter {sec} seconds the units are restored to their previous state",
+      "values": {
+        "sec": 6
+      },
+      "hotkey": "Z",
+      "cooldown": 90,
+      "range": 1500
+    }
+  ],
+  "requires": [
+    "the-xol/building/world-forge"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 40.375
+  },
+  "portrait": "Troop_Xol_TimeBender",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Paradox"
+}

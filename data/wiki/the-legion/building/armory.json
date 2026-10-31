@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/building/armory",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Armory",
+  "description": "Research structure for Legion heroes.",
+  "hotkey": "X",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "buildTime": 25,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
+  "portrait": "TGUI_icon_empire_Research02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingLegionResearch1"
+}

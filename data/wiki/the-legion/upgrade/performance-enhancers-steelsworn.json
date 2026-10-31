@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/upgrade/performance-enhancers-steelsworn",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Performance Enhancers",
+  "description": "+{movespeed} movement speed.",
+  "values": {
+    "movespeed": 125
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "Local.Legion.Infantry.Thrall.Armored.Specialize2",
+  "appliesTo": [
+    "the-legion/unit/steelsworn"
+  ],
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetypes_ResearchItems/Legion/RI_AThrall_T2Speed"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "grell/talent/mycelial-reach",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Mycelial Reach",
+  "description": "{gatherer} {spawncultivator} cooldown -{cooldownreduction} seconds.\n{gatherer} {spawncultivator} cast range +{castrangebuff}%.",
+  "values": {
+    "gatherer": "Gatherer",
+    "spawncultivator": "Spawn Cultivator",
+    "cooldownreduction": 45,
+    "castrangebuff": 250
+  },
+  "researchTime": 20,
+  "level": 1,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_cultivator_range",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Grell_GathererCultivatorBuff"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/mobile-discharge",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Mobile Discharge",
+  "description": "Allows the Juggernaut to move while {Ability} is active.",
+  "values": {
+    "Ability": "Incineration Protocol"
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Prot.Juggernaut.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/juggernaut"
+  ],
+  "portrait": "TGUI_icon_skill_marran_energy_buff",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Juggernaut_HeatDischargeMoveCast"
+}

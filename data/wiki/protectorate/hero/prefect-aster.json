@@ -1,0 +1,62 @@
+{
+  "id": "protectorate/hero/prefect-aster",
+  "kind": "hero",
+  "faction": "protectorate",
+  "name": "Prefect Aster",
+  "description": "Can stun enemy units, use Jetpack, and deploy a turret on the battlefield.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 130,
+  "shields": 130,
+  "speed": 550,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "VX-9 Ion Carbine",
+      "damage": 21,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1100,
+      "warmup": 0.01,
+      "projectileSpeed": 5000,
+      "dps": 21
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Deploy Turret",
+      "description": "Slows enemies on-hit by -{ms}% movement speed.\nLasts {duration} seconds.",
+      "values": {
+        "ms": 33,
+        "duration": 120
+      },
+      "hotkey": "E",
+      "cooldown": 90,
+      "range": 500
+    },
+    {
+      "name": "Jetpack",
+      "description": "Jump to a target location, ignoring terrain.",
+      "hotkey": "D",
+      "cooldown": 18,
+      "range": 1200
+    },
+    {
+      "name": "Plasma Blast",
+      "description": "[Dynamic]",
+      "hotkey": "Q",
+      "cooldown": 18,
+      "range": 950
+    }
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/protective-shield": 9.9
+  },
+  "portrait": "Troop_MPHero_Aster",
+  "asset": "Archetypes_Heroes/RI_Hero_Aster"
+}

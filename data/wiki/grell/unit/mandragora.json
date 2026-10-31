@@ -1,0 +1,52 @@
+{
+  "id": "grell/unit/mandragora",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Mandragora",
+  "description": "Melee unit with long reach that deals area damage.",
+  "hotkey": "F",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "count": 1,
+  "buildTime": 35,
+  "supply": 3,
+  "hp": 350,
+  "armorRating": 1,
+  "armorType": "medium",
+  "speed": 550,
+  "vision": 1600,
+  "size": 121,
+  "pushTier": 25,
+  "weapons": [
+    {
+      "name": "Savage Maw",
+      "damage": 32,
+      "cooldown": 1.78,
+      "burst": 1,
+      "burstCooldown": 1.78,
+      "range": 275,
+      "warmup": 0.25,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 17.9775
+    }
+  ],
+  "producedBy": [
+    "grell/building/broodwomb"
+  ],
+  "requires": [
+    "grell/building/young-canopy"
+  ],
+  "upgrades": [
+    "grell/upgrade/endorphic-frenzy",
+    "grell/upgrade/tunnel",
+    "grell/upgrade/wide-mandibles"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 6.5625
+  },
+  "portrait": "TGUI_portrait_unit_grell_man_eater07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Grell_Beetle"
+}

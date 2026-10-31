@@ -1,0 +1,15 @@
+{
+  "id": "endari/talent/they-writhe",
+  "kind": "talent",
+  "faction": "endari",
+  "name": "They Writhe",
+  "description": "Spawn {count} Shadow Leeches.",
+  "values": {
+    "count": 4
+  },
+  "researchTime": 0,
+  "level": 2,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_valkaru_merc_cooldown",
+  "asset": "Archetypes_ResearchItems/Endari/RI_HeroXP_Endari_T2_ShadowLeeches"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "protectorate/unit/griffin",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Griffin",
+  "description": "Fast airship that can repair mechanical units. Detector.",
+  "hotkey": "G",
+  "cost": {
+    "hexite": 125,
+    "flux": 175
+  },
+  "count": 1,
+  "buildTime": 53,
+  "supply": 6,
+  "hp": 200,
+  "armorRating": 1,
+  "armorType": "medium",
+  "speed": 650,
+  "vision": 1800,
+  "size": 143.75,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "Magellan Light Pulse Cannon",
+      "damage": 12,
+      "cooldown": 1.1,
+      "burst": 1,
+      "burstCooldown": 1.1,
+      "range": 1400,
+      "warmup": 0.01,
+      "projectileSpeed": 5000,
+      "dps": 10.9091
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/skydock"
+  ],
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/emp",
+    "protectorate/upgrade/support-matrix"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 3,
+    "protectorate/topbar/protective-shield": 15.4688
+  },
+  "portrait": "Troop_Prot_Griffin",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Griffin"
+}

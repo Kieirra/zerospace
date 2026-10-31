@@ -1,0 +1,60 @@
+{
+  "id": "the-legion/unit/storm-bringer",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Storm Bringer",
+  "description": "Caster that can use a Tempest ability.\nGains extra energy by attacking",
+  "hotkey": "R",
+  "cost": {
+    "hexite": 50,
+    "flux": 125
+  },
+  "count": 1,
+  "buildTime": 48,
+  "supply": 4,
+  "hp": 150,
+  "armorType": "light",
+  "energy": 100,
+  "speed": 450,
+  "vision": 1600,
+  "size": 99.09901,
+  "weapons": [
+    {
+      "name": "Blightstorm",
+      "damage": 4,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1200,
+      "warmup": 0,
+      "dps": 10
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Tempest",
+      "description": "Casts a storm at a target location, dealing {Damage} damage per second to enemies in the area.\nLasts for {x} seconds.",
+      "values": {
+        "Damage": 40,
+        "x": 5
+      },
+      "hotkey": "G",
+      "energyCost": 50,
+      "range": 1400
+    }
+  ],
+  "producedBy": [
+    "the-legion/building/barracks"
+  ],
+  "requires": [
+    "the-legion/building/terror-tower"
+  ],
+  "upgrades": [
+    "the-legion/upgrade/energy-siphon"
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 8.25
+  },
+  "portrait": "Troop_Legion_MP_StormBringer",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Legion/Units/RI_Troop_Legion_MP_StormBringer"
+}

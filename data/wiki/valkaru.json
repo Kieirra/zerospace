@@ -1,0 +1,18 @@
+{
+  "id": "valkaru",
+  "kind": "mercenary",
+  "name": "Valkaru",
+  "color": "#684c71",
+  "heroes": [
+    "valkaru/hero/mondar-and-torq"
+  ],
+  "topbar": [
+    "valkaru/topbar/valkaru-beast"
+  ],
+  "talents": [
+    "valkaru/talent/hounds-of-war",
+    "valkaru/talent/pulverizers",
+    "valkaru/talent/relic-plating"
+  ],
+  "asset": "Archetypes_Factions/Merc_Valkaru"
+}

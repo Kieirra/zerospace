@@ -1,0 +1,43 @@
+{
+  "id": "the-xol/talent/orbital-laser",
+  "kind": "talent",
+  "faction": "the-xol",
+  "name": "Orbital Laser",
+  "description": "Spawn a controllable laser for {duration} seconds.",
+  "values": {
+    "duration": 15
+  },
+  "cooldown": 120,
+  "range": 2000,
+  "summons": [
+    {
+      "name": "Orbital Laser",
+      "kind": "unit",
+      "duration": 15,
+      "hp": 100,
+      "speed": 450,
+      "vision": 1000,
+      "weapons": [
+        {
+          "name": "Laser",
+          "damage": 40,
+          "cooldown": 0.3,
+          "burst": 1,
+          "burstCooldown": 0.3,
+          "melee": true,
+          "dps": 133.3333
+        }
+      ]
+    }
+  ],
+  "area": {
+    "damage": 40,
+    "interval": 0.3,
+    "radius": 200
+  },
+  "researchTime": 0,
+  "level": 5,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_explosion_red",
+  "asset": "Archetype_Abilities/Troop_Abilities/Multiplayer/Xol/Topbar_OrbitalLaser/RI_Xol_TopbarAbility_MP_OrbitalLaser"
+}

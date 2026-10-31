@@ -1,0 +1,24 @@
+{
+  "id": "free-corsairs/building/free-corsair-mercenary-outpost",
+  "kind": "building",
+  "faction": "free-corsairs",
+  "name": "Free Corsair Mercenary Outpost",
+  "description": "Recruits Mercenaries.",
+  "hotkey": "T",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "buildTime": 50,
+  "hp": 1200,
+  "armorRating": 1,
+  "produces": [
+    "free-corsairs/unit/corsair-deadeye",
+    "free-corsairs/unit/corsair-flamer",
+    "free-corsairs/unit/corsair-hovercraft",
+    "free-corsairs/unit/corsair-raider",
+    "free-corsairs/unit/corsair-rover"
+  ],
+  "portrait": "TGUI_portrait_building_dread_bunker",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Dread"
+}

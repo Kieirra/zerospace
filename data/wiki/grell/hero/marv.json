@@ -1,0 +1,68 @@
+{
+  "id": "grell/hero/marv",
+  "kind": "hero",
+  "faction": "grell",
+  "name": "Marv",
+  "description": "Can slow and damage enemies in line, teleport or swap with other units, and grant a shield to friendly units.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 130,
+  "shields": 130,
+  "speed": 500,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "T-228 \"Star Lance\" Fluxball Rifle",
+      "damage": 14,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1200,
+      "warmup": 0.01,
+      "projectileSpeed": 5000,
+      "dps": 14
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Energy Conduit",
+      "description": "Deals {damage} damage to enemies in a line.\nTargets are slowed by {slowpercent}% for {slowduration} seconds.",
+      "values": {
+        "damage": 60,
+        "slowpercent": 50,
+        "slowduration": 4
+      },
+      "hotkey": "Q",
+      "cooldown": 25,
+      "range": 2200
+    },
+    {
+      "name": "Transposition",
+      "description": "If Transposition hits an enemy unit, swap locations, otherwise teleport to the location.\nUpon arrival, gain Guardian Link for {duration} seconds.",
+      "values": {
+        "duration": 5
+      },
+      "hotkey": "W",
+      "cooldown": 15,
+      "range": 2000
+    },
+    {
+      "name": "Guardian Link",
+      "description": "Grant a neutral or friendly unit +{shield} shields.",
+      "details": "Shield bonus increased by +{shieldbuff} per player level.\nCan be used to take control over small enemy non-player units.",
+      "values": {
+        "shield": 100,
+        "shieldbuff": 25
+      },
+      "hotkey": "E",
+      "cooldown": 30,
+      "range": 1500
+    }
+  ],
+  "portrait": "Troop_MPHero_Tech",
+  "asset": "Archetypes_Heroes/RI_Hero_Tech"
+}

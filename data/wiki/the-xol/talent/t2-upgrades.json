@@ -1,0 +1,12 @@
+{
+  "id": "the-xol/talent/t2-upgrades",
+  "kind": "talent",
+  "faction": "the-xol",
+  "name": "T2 Upgrades",
+  "description": "Doubles the effectiveness of Xol Army upgrades.",
+  "researchTime": 0,
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_marran_xptower",
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Talents/RI_Talent_Xol_MP_T3Upgrades"
+}

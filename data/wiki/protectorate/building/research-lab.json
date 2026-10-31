@@ -1,0 +1,23 @@
+{
+  "id": "protectorate/building/research-lab",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Research Lab",
+  "description": "Research structure for units produced from the Barracks.\nUnlocks: Heavy Rail",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 75,
+    "flux": 25
+  },
+  "buildTime": 22,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "protectorate/building/barracks"
+  ],
+  "unlocks": [
+    "protectorate/unit/sentinel"
+  ],
+  "portrait": "Building_Prot_Research",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingResearch"
+}

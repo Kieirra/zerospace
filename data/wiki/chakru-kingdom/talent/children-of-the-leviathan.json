@@ -1,0 +1,18 @@
+{
+  "id": "chakru-kingdom/talent/children-of-the-leviathan",
+  "kind": "talent",
+  "faction": "chakru-kingdom",
+  "name": "Children of the Leviathan",
+  "description": "+{Amount}% damage & heal for Cha'Kru topbar ability.\n+{Damage}% damage for Cha'Kru units.\n+{PowerGainBonus}% power gain for lost units and structures.",
+  "values": {
+    "Amount": 25,
+    "Damage": 25,
+    "PowerGainBonus": 100
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_skill_ABES",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Kingdom_T6ChakruBuff"
+}

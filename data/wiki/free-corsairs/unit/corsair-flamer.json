@@ -1,0 +1,47 @@
+{
+  "id": "free-corsairs/unit/corsair-flamer",
+  "kind": "unit",
+  "faction": "free-corsairs",
+  "name": "Corsair Flamer",
+  "description": "Heavy tank with short range area damage.\nDeals bonus damage against light units.",
+  "hotkey": "V",
+  "cost": {
+    "hexite": 125,
+    "flux": 175
+  },
+  "count": 1,
+  "buildTime": 35,
+  "supply": 6,
+  "hp": 1000,
+  "armorRating": 2,
+  "armorType": "heavy",
+  "speed": 450,
+  "vision": 1600,
+  "size": 144,
+  "transportSlots": 4,
+  "weapons": [
+    {
+      "name": "Rigged G17 Flamespitter",
+      "damage": 8,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 350,
+      "warmup": 0.01,
+      "projectileSpeed": 100,
+      "dps": 64,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "free-corsairs/building/free-corsair-mercenary-outpost"
+  ],
+  "portrait": "TGUI_portrait_unit_dread_flamer01",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_D_Flame"
+}

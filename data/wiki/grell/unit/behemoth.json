@@ -1,0 +1,59 @@
+{
+  "id": "grell/unit/behemoth",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Behemoth",
+  "description": "Heavy flying brawler, periodically launches a fireball dealing area damage. Spawns Skrell on death. Deals bonus damage to Heavy.",
+  "hotkey": "D",
+  "cost": {
+    "hexite": 100,
+    "flux": 200
+  },
+  "count": 1,
+  "buildTime": 70,
+  "supply": 8,
+  "hp": 700,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "energy": 5,
+  "speed": 475,
+  "vision": 1800,
+  "size": 196,
+  "pushTier": 50,
+  "transportSlots": 6,
+  "weapons": [
+    {
+      "name": "Plasma Torrent",
+      "damage": 35,
+      "cooldown": 0.05,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 1100,
+      "warmup": 0.3,
+      "projectileSpeed": 2000,
+      "dps": 17.5,
+      "bonuses": [
+        {
+          "vs": "Heavy",
+          "value": 100,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "grell/building/elderwomb"
+  ],
+  "requires": [
+    "grell/building/skyclutch"
+  ],
+  "upgrades": [
+    "grell/upgrade/colossal-maw",
+    "grell/upgrade/deathbloom"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 17.5
+  },
+  "portrait": "TGUI_portrait_unit_grell_behemoth07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_GrellBehemoth"
+}

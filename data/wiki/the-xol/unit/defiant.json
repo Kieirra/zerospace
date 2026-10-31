@@ -1,0 +1,51 @@
+{
+  "id": "the-xol/unit/defiant",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Defiant",
+  "description": "Tanky Melee, semi-fast. Deals area damage to enemies when attacked",
+  "hotkey": "Q",
+  "cost": {
+    "hexite": 150,
+    "flux": 50
+  },
+  "count": 1,
+  "buildTime": 16,
+  "supply": 4,
+  "hp": 500,
+  "armorRating": 2,
+  "armorType": "medium",
+  "energy": 6,
+  "speed": 575,
+  "vision": 1600,
+  "size": 150,
+  "pushTier": 40,
+  "weapons": [
+    {
+      "name": "Vector Slash",
+      "damage": 36,
+      "cooldown": 1.25,
+      "burst": 1,
+      "burstCooldown": 1.25,
+      "range": 150,
+      "warmup": 0.175,
+      "melee": true,
+      "dps": 28.8,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "requires": [
+    "the-xol/building/molten-core"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 15.875
+  },
+  "portrait": "Troop_Xol_Defiant",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Defiant"
+}

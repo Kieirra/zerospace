@@ -1,0 +1,63 @@
+{
+  "id": "free-corsairs/hero/yearl",
+  "kind": "hero",
+  "faction": "free-corsairs",
+  "name": "Yearl",
+  "description": "Hero that can cliffwalk, fire a disrupting projectile, throw sticky bombs, and become drop a mine while becoming invisible.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 150,
+  "shields": 150,
+  "speed": 500,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "\"Dolly\"",
+      "damage": 21,
+      "cooldown": 1.35,
+      "burst": 1,
+      "burstCooldown": 1.35,
+      "range": 1200,
+      "warmup": 0,
+      "projectileSpeed": 5000,
+      "dps": 15.5556
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Disrupting Shot",
+      "description": "The blast deals 30 damage, slows enemies, and prevents them from using attacking or using abilities for 3s.",
+      "hotkey": "Z",
+      "range": 2000
+    },
+    {
+      "name": "Shadow Walk",
+      "description": "Stealth and +40% movement speed for 10s.\nLeaves a mine at location. Only one mine can be active.\n(30 damage, 3s duration slow)",
+      "details": "Mine deals {Damage} damage and slows for {Seconds} seconds.\nOnly one mine can be active at a time.",
+      "values": {
+        "Damage": 30,
+        "Seconds": 3
+      },
+      "hotkey": "W"
+    },
+    {
+      "name": "Sticky Bomb",
+      "description": "Throw a sticky bomb. After {Delay} seconds it explodes dealing {Damage} damage and stunning them for {Stun time} seconds.",
+      "details": "Explodes after delay or on unit death.\nDamage radius increases until explosion.",
+      "values": {
+        "Delay": 5,
+        "Damage": 50,
+        "Stun time": 4
+      },
+      "hotkey": "E",
+      "cooldown": 45,
+      "range": 1600
+    }
+  ],
+  "portrait": "Troop_MPHero_Dread",
+  "asset": "Archetypes_Heroes/RI_Hero_Dread"
+}

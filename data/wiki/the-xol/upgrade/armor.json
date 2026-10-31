@@ -1,0 +1,23 @@
+{
+  "id": "the-xol/upgrade/armor",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Armor",
+  "description": "+{x} armor to units",
+  "values": {
+    "x": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "hotkey": "Q",
+  "cost": {
+    "flux": 200
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Research.T1",
+  "portrait": "TGUI_icon_skill_infantry_armor",
+  "asset": "Archetypes_ResearchItems/Xol/Upgrades/RI_Xol_Army_Armor"
+}

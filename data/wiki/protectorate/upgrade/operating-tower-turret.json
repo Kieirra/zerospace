@@ -1,0 +1,10 @@
+{
+  "id": "protectorate/upgrade/operating-tower-turret",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Operating Tower Turret",
+  "description": "Upgrade to attach a defensive turret.",
+  "hotkey": "E",
+  "portrait": "Building_Prot_ExtractorOperatingTower_Armed",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradeOperatingTowerTurret"
+}

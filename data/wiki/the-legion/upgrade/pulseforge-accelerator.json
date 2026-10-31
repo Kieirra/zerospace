@@ -1,0 +1,14 @@
+{
+  "id": "the-legion/upgrade/pulseforge-accelerator",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Pulseforge Accelerator",
+  "description": "Passive: Boosts the main gun with +{Speed}% attack speed and +{Range} range.\nEffect stacks from more turrets.",
+  "values": {
+    "Speed": 25,
+    "Range": 1
+  },
+  "hotkey": "E",
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToGunEnhancer"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/building/idal-conduit",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Idal Conduit",
+  "description": "Provides 12 Supply.\nRecharges Energy of nearby units.",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 12,
+  "hp": 500,
+  "armorRating": 1,
+  "unlocks": [
+    "the-legion/building/barracks",
+    "the-legion/building/bestiary"
+  ],
+  "portrait": "TGUI_icon_empire_SupplyDepot02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Supply"
+}

@@ -1,0 +1,137 @@
+{
+  "id": "the-legion/unit/terror-tank",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Terror Tank",
+  "description": "Massive heavy tank with 4 slots for installable turrets.\nTurrets have 500 health and split damage with the Terror Tank one turret at a time",
+  "cost": {
+    "hexite": 200,
+    "flux": 200
+  },
+  "count": 1,
+  "buildTime": 90,
+  "supply": 15,
+  "hp": 1000,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 400,
+  "vision": 1600,
+  "size": 330,
+  "pushTier": 255,
+  "transportSlots": 8,
+  "weapons": [
+    {
+      "name": "Truthbringer Turret",
+      "damage": 38,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 0.9,
+      "range": 1200,
+      "dps": 42.2222
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Upgrade Turrets",
+      "description": "Choose which turret you'd like to attach to the Terror Tank.",
+      "hotkey": "X"
+    }
+  ],
+  "maxTurrets": 4,
+  "turrets": [
+    {
+      "name": "Flame Turret",
+      "description": "Adds a Flame turret that attacks nearby ground targets.\n\nPassive: The Terror Tank main gun deals {Damage} damage in a small radius. More turrets increase splash radius.",
+      "values": {
+        "Damage": 35
+      },
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 250,
+      "armorType": "heavy",
+      "weapons": [
+        {
+          "damage": 25,
+          "cooldown": 1,
+          "burst": 1,
+          "burstCooldown": 2,
+          "range": 1100,
+          "warmup": 0,
+          "projectileSpeed": 1500,
+          "dps": 12.5,
+          "bonuses": [
+            {
+              "vs": "Light",
+              "value": 50,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gatling Gun",
+      "description": "Adds a Gattling Turret that deals bonus damage vs air.",
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 250,
+      "armorType": "heavy",
+      "weapons": [
+        {
+          "damage": 11,
+          "cooldown": 0.2,
+          "burst": 1,
+          "burstCooldown": 0.5,
+          "range": 1500,
+          "warmup": 0,
+          "dps": 22,
+          "bonuses": [
+            {
+              "vs": "Air",
+              "value": 50,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pulseforge Accelerator",
+      "description": "Passive: Boosts the main gun with +{Speed}% attack speed and +{Range} range.\nEffect stacks from more turrets.",
+      "values": {
+        "Speed": 25,
+        "Range": 1
+      },
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 250,
+      "armorType": "heavy"
+    },
+    {
+      "name": "Shield Generator",
+      "description": "Nearby friendly units in combat gain a {Shield} shield for {Duration} seconds.",
+      "values": {
+        "Shield": 75,
+        "Duration": 8,
+        "N": 4
+      },
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 250,
+      "armorType": "heavy"
+    }
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 30
+  },
+  "portrait": "TGUI_portrait_unit_empire_terror_tank05",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_TerrorTank"
+}

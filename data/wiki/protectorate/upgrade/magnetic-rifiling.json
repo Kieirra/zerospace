@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/magnetic-rifiling",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Magnetic Rifiling",
+  "description": "+{range} attack range.",
+  "values": {
+    "range": 3
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 45,
+  "exclusiveGroup": "local.prot.commando.specialize1",
+  "appliesTo": [
+    "protectorate/unit/commando"
+  ],
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Com_Range"
+}

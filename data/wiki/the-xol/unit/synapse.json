@@ -1,0 +1,57 @@
+{
+  "id": "the-xol/unit/synapse",
+  "kind": "unit",
+  "faction": "the-xol",
+  "name": "Synapse",
+  "description": "Flying support unit which periodically heals nearby friendly units",
+  "hotkey": "W",
+  "cost": {
+    "hexite": 50,
+    "flux": 150
+  },
+  "count": 1,
+  "buildTime": 16,
+  "supply": 4,
+  "hp": 250,
+  "armorRating": 0,
+  "armorType": "medium",
+  "speed": 675,
+  "vision": 1800,
+  "size": 145,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Stellaris Lash",
+      "damage": 20,
+      "cooldown": 1.8,
+      "burst": 1,
+      "burstCooldown": 1.8,
+      "range": 550,
+      "warmup": 0.16,
+      "projectileSpeed": 5000,
+      "melee": true,
+      "dps": 11.1111
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Overclock",
+      "description": "Gives the Overclock buff to nearby units, granting them {damage}% bonus damage and move speed for {second} seconds.",
+      "values": {
+        "damage": 35,
+        "second": 5
+      },
+      "hotkey": "G",
+      "cooldown": 30,
+      "range": 800
+    }
+  ],
+  "requires": [
+    "the-xol/building/molten-core"
+  ],
+  "topbarEnergyCosts": {
+    "the-xol/topbar/replicate": 17.625
+  },
+  "portrait": "Troop_Xol_Synapse",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Synapse"
+}

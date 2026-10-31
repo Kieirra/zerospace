@@ -1,0 +1,29 @@
+{
+  "id": "the-legion/building/bestiary",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Bestiary",
+  "description": "Beast production structure.",
+  "hotkey": "F",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 35,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "the-legion/unit/exalted",
+    "the-legion/unit/mammoth"
+  ],
+  "requires": [
+    "the-legion/building/idal-conduit"
+  ],
+  "unlocks": [
+    "the-legion/building/citadel",
+    "the-legion/building/guardian-obelisk",
+    "the-legion/building/healing-obelisk",
+    "the-legion/upgrade/garrison-tower-turret"
+  ],
+  "portrait": "TGUI_icon_empire_bestiary_3",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Beastiary"
+}

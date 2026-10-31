@@ -1,0 +1,20 @@
+{
+  "id": "marran/topbar/pulse-barrage",
+  "kind": "topbar",
+  "faction": "marran",
+  "name": "Pulse Barrage",
+  "description": "The Marran Bulwark  fires a barrage to targeted location. Enemy units take damage and are slowed.",
+  "energyCost": 15,
+  "cooldown": 30,
+  "area": {
+    "damage": 45,
+    "interval": 0.2,
+    "radius": 250,
+    "duration": 3,
+    "shots": 15
+  },
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_skill_incendiary_bomb",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Marran_Bombing/RI_Topbar_Marran_Bombing"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/upgrade/burning-fireball",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Burning Fireball",
+  "description": "Fireball explodes when it reaches the target setting the ground on fire.",
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Hero.hero3.Specialize2",
+  "appliesTo": [
+    "the-legion/hero/galavax"
+  ],
+  "portrait": "TGUI_icon_skill_explosion_red",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Hero3_ImprovedFireball"
+}

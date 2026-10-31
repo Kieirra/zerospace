@@ -1,0 +1,23 @@
+{
+  "id": "protectorate/upgrade/eagle-tactics",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Eagle Tactics",
+  "description": "After using {AbilityName} for {duration} seconds:\n+{AS}% attack speed\n+{MS}% movement speed.",
+  "values": {
+    "AbilityName": "Jetpack",
+    "duration": 4,
+    "AS": 40
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Prot.Commando.Specialize3",
+  "appliesTo": [
+    "protectorate/unit/commando"
+  ],
+  "portrait": "TGUI_icon_skill_hero_ability_cooldown",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_Commando_LandStim"
+}

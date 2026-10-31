@@ -1,0 +1,72 @@
+---
+import clsx from 'clsx';
+import { findImageUrl } from '../../game-image/game-image.helpers.ts';
+import { tabHref, toInitial } from '../../wiki.helpers.ts';
+import { FACTION_ACCENTS, TABS } from '../../wiki.constants.ts';
+import type { Faction } from '../../wiki.types.ts';
+
+interface Props {
+  faction: Faction;
+  isLarge?: boolean;
+}
+
+const { faction, isLarge } = Astro.props;
+const src = findImageUrl(`art/${faction.id}`);
+const accent = FACTION_ACCENTS[faction.id] ?? faction.color ?? 'var(--color-accent)';
+---
+
+<a
+  href={tabHref(faction.id, TABS[0].slug)}
+  style={`--faction: ${accent}`}
+  class={clsx(
+    'group block p-0.5 transition-colors',
+    'hover:bg-(--faction) focus-visible:bg-(--faction) focus-visible:outline-none',
+    isLarge ? 'bevel' : 'bevel-sm',
+  )}
+>
+  <div
+    class={clsx(
+      'relative aspect-[3/4] overflow-hidden bg-surface',
+      isLarge ? 'bevel' : 'bevel-sm',
+    )}
+  >
+    {
+      src ? (
+        <img
+          src={src}
+          alt=""
+          width="600"
+          height="800"
+          loading={isLarge ? 'eager' : 'lazy'}
+          decoding="async"
+          class="absolute inset-0 size-full object-cover object-top transition-transform duration-350 group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
+        />
+      ) : (
+        <span
+          aria-hidden="true"
+          class={clsx(
+            'absolute inset-0 grid place-items-center pb-[20%] font-bold text-text/70',
+            isLarge ? 'text-7xl' : 'text-4xl',
+          )}
+        >
+          {toInitial(faction.name)}
+        </span>
+      )
+    }
+    <div
+      class={clsx(
+        'absolute inset-0',
+        'bg-[linear-gradient(to_top,rgb(3_3_5/0.9),rgb(3_3_5/0.7)_30%,transparent_60%),linear-gradient(to_top,color-mix(in_srgb,var(--faction)_30%,transparent),transparent_45%)]',
+      )}
+    >
+    </div>
+    <span
+      class={clsx(
+        'absolute inset-x-0 bottom-0 font-bold break-words uppercase md:tracking-wide',
+        isLarge ? 'p-3 text-sm sm:text-lg md:p-4 md:text-2xl' : 'p-2 text-xs md:text-sm',
+      )}
+    >
+      {faction.name}
+    </span>
+  </div>
+</a>

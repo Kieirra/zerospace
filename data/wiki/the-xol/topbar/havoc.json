@@ -1,0 +1,36 @@
+{
+  "id": "the-xol/topbar/havoc",
+  "kind": "topbar",
+  "faction": "the-xol",
+  "name": "Havoc",
+  "description": "Transform a {Roller} into a {Havoc}.",
+  "values": {
+    "Roller": "Roller",
+    "Havoc": "Havoc"
+  },
+  "energyCost": 10,
+  "cooldown": 60,
+  "charges": 3,
+  "summons": [
+    {
+      "name": "Havoc",
+      "kind": "unit",
+      "hp": 400,
+      "armorRating": 1,
+      "armorType": "medium",
+      "speed": 900,
+      "vision": 1600,
+      "abilities": [
+        {
+          "name": "Crash",
+          "description": "Launches the Havoc forward into the air, exploding on impact dealing area damage and launching all loaded Rollers",
+          "hotkey": "C",
+          "cooldown": 10
+        }
+      ]
+    }
+  ],
+  "researchTime": 0,
+  "portrait": "Troop_Xol_Havoc",
+  "asset": "Archetype_Abilities/Troop_Abilities/Multiplayer/Xol/Topbar_Havoc/RI_Topbar_Xol_Havoc"
+}

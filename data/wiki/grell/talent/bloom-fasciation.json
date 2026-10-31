@@ -1,0 +1,15 @@
+{
+  "id": "grell/talent/bloom-fasciation",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Bloom Fasciation",
+  "description": "Units can be Infused a second time.\n+{Power} current and max Power.",
+  "values": {
+    "Power": 50
+  },
+  "researchTime": 0,
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_recycling_biomass",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Grell_T6_InfuseBuff"
+}

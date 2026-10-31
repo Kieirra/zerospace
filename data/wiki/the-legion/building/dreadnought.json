@@ -1,0 +1,19 @@
+{
+  "id": "the-legion/building/dreadnought",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Dreadnought",
+  "description": "Construct a Dreadnought.\nDreadnoughts are heavy aircraft with installable turrets.",
+  "hotkey": "H",
+  "cost": {
+    "hexite": 150,
+    "flux": 250
+  },
+  "buildTime": 80,
+  "hp": 800,
+  "requires": [
+    "the-legion/building/terror-tower"
+  ],
+  "portrait": "TGUI_portrait_unit_empire_dreadnought05",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Stardock"
+}

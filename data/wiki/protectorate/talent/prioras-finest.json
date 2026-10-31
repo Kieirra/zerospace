@@ -1,0 +1,16 @@
+{
+  "id": "protectorate/talent/prioras-finest",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Priora's Finest",
+  "description": "Increases current level of all units by {level}.\nUnits now spawn at level {level}.\n+{x}% Faster Veterancy gain.",
+  "values": {
+    "level": 1,
+    "x": 100
+  },
+  "researchTime": 0,
+  "level": 6,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_rapid_reinforcement",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Prot_T6Veterancy"
+}

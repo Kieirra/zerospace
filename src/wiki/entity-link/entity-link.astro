@@ -1,0 +1,21 @@
+---
+import { getEntry } from 'astro:content';
+import { entityHref } from '../wiki.helpers.ts';
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const entry = await getEntry('entities', id);
+---
+
+{
+  entry ? (
+    <a href={entityHref(id)} class="text-accent-soft underline-offset-2 hover:underline">
+      {entry.data.name}
+    </a>
+  ) : (
+    <span>{id}</span>
+  )
+}

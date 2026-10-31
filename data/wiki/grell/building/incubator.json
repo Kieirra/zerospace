@@ -1,0 +1,32 @@
+{
+  "id": "grell/building/incubator",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Incubator",
+  "description": "Medium unit production structure.",
+  "hotkey": "F",
+  "cost": {
+    "hexite": 100,
+    "flux": 50
+  },
+  "buildTime": 45,
+  "hp": 1200,
+  "armorRating": 1,
+  "produces": [
+    "grell/unit/harbinger",
+    "grell/unit/keeper",
+    "grell/unit/weaver"
+  ],
+  "requires": [
+    "grell/building/skyclutch",
+    "grell/building/young-canopy"
+  ],
+  "unlocks": [
+    "grell/building/synapse-canopy"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 11.375
+  },
+  "portrait": "TGUI_icon_grell_building_production_portrait02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_Prod_Adv"
+}

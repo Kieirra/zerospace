@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/upgrade/one-life-for-another",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "One Life For Another",
+  "description": "When taking fatal damage, sacrifice a nearby Thrall and heal instead. Each sacrifice consumes a green orb. Orbs regenerate when not attacked.",
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Hero.Hero1.Specialize2",
+  "appliesTo": [
+    "the-legion/hero/inquisitress"
+  ],
+  "portrait": "TGUI_icons_empire_thrall",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Hero1_OneLifeForAnother"
+}

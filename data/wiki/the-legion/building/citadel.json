@@ -1,0 +1,28 @@
+{
+  "id": "the-legion/building/citadel",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Citadel",
+  "description": "Unlocks Dark Disciples, Mammoths and the last mercenary unit.\nThralls can be sacrificed on it to increase research speed by +{x}% for {s}s.",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 125,
+    "flux": 50
+  },
+  "buildTime": 45,
+  "hp": 2000,
+  "armorRating": 1,
+  "requires": [
+    "the-legion/building/barracks",
+    "the-legion/building/bestiary"
+  ],
+  "unlocks": [
+    "the-legion/building/altar",
+    "the-legion/building/armory",
+    "the-legion/building/terror-tower",
+    "the-legion/unit/dark-disciple",
+    "the-legion/unit/mammoth"
+  ],
+  "portrait": "TGUI_icon_empire_citadel",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Citadel"
+}

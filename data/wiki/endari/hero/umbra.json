@@ -1,0 +1,63 @@
+{
+  "id": "endari/hero/umbra",
+  "kind": "hero",
+  "faction": "endari",
+  "name": "Umbra",
+  "description": "Mobile hero who can cloak and jump to ambush enemies. Can temporarily transform into an Twisted Visage, which deals devastating melee damage.",
+  "cost": {
+    "hexite": 220
+  },
+  "supply": 10,
+  "hp": 250,
+  "speed": 500,
+  "vision": 1800,
+  "size": 100,
+  "pushTier": 101,
+  "weapons": [
+    {
+      "name": "Shattered One's Grasp",
+      "damage": 23,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 1.5,
+      "range": 1200,
+      "projectileSpeed": 3000,
+      "dps": 15.3333
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Jump",
+      "description": "Jump to a location and deal {x} damage in area\nTargets are slowed by {slow}% for {slowduration} seconds",
+      "values": {
+        "x": 50,
+        "slow": 50,
+        "slowduration": 2
+      },
+      "hotkey": "Q",
+      "cooldown": 13,
+      "range": 1400
+    },
+    {
+      "name": "Transform",
+      "description": "Transform into Twisted Visage form for {x} seconds\nInstantly heals {healpercent}% of max health, and refreshes Jump cooldown upon transforming",
+      "values": {
+        "x": 20,
+        "healpercent": 20
+      },
+      "hotkey": "W",
+      "cooldown": 100
+    },
+    {
+      "name": "Cloak",
+      "description": "Targeted unit gains cloak and +{speed}% movement speed for {duration} seconds.",
+      "values": {
+        "duration": 8
+      },
+      "hotkey": "E",
+      "range": 1500
+    }
+  ],
+  "portrait": "Troop_MPHero_Endari",
+  "asset": "Archetypes_Heroes/RI_Hero_Endari"
+}

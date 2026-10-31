@@ -1,0 +1,13 @@
+---
+import Layout from '../../../shared/layout/layout.astro';
+import FactionPage from '../../../wiki/faction-page/faction-page.astro';
+import { getFactionTabPaths } from '../../../wiki/wiki.data.ts';
+
+export const getStaticPaths = getFactionTabPaths;
+
+const { faction, tab } = Astro.props;
+---
+
+<Layout title={`${tab.label} · ${faction.name}`}>
+  <FactionPage faction={faction} tab={tab} />
+</Layout>

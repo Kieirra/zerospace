@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/upgrade/transport",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Transport",
+  "description": "+{capacity}% Transport capacity\n+{speed}% Movement speed out of combat\nAllows units to be loaded while flying",
+  "values": {
+    "capacity": 50
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 30,
+  "exclusiveGroup": "Local.Prot.Hammerhead.Specialize1",
+  "appliesTo": [
+    "protectorate/unit/hauler"
+  ],
+  "portrait": "TGUI_icon_skill_improved_recall",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Hauler_Upg_Transport"
+}

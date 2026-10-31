@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/building/healing-obelisk",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Healing Obelisk",
+  "description": "Heals friendly units.\nConsumes energy to heal more.",
+  "hotkey": "R",
+  "cost": {
+    "hexite": 125
+  },
+  "buildTime": 25,
+  "hp": 400,
+  "vision": 1800,
+  "requires": [
+    "the-legion/building/barracks",
+    "the-legion/building/bestiary"
+  ],
+  "portrait": "TGUI_icon_empire_HealingObelisk02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_Rift_Healing"
+}

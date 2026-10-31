@@ -1,0 +1,16 @@
+{
+  "id": "free-corsairs/talent/plundered-optics",
+  "kind": "talent",
+  "faction": "free-corsairs",
+  "name": "Plundered Optics",
+  "description": "+{Vision}% vision.\n+{Speed}% movement speed.",
+  "values": {
+    "Vision": 75,
+    "Speed": 15
+  },
+  "researchTime": 0,
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_cloak_buff",
+  "asset": "Archetypes_ResearchItems/Dread/RI_HeroXP_Dread_VisionSpeed"
+}

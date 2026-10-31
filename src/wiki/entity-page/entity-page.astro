@@ -1,0 +1,68 @@
+---
+import clsx from 'clsx';
+import { getEntry } from 'astro:content';
+import DensePanel from '../dense-panel/dense-panel.astro';
+import { interpolate, toGameStatTiles } from '../wiki.helpers.ts';
+import type { Entity } from '../wiki.types.ts';
+import EntityAbilities from './entity-abilities/entity-abilities.astro';
+import EntityArea from './entity-area/entity-area.astro';
+import EntityChoice from './entity-choice/entity-choice.astro';
+import EntityEnergyCosts from './entity-energy-costs/entity-energy-costs.astro';
+import EntityEnergyRule from './entity-energy-rule/entity-energy-rule.astro';
+import EntityHeader from './entity-header/entity-header.astro';
+import { hasInfoColumn } from './entity-page.helpers.ts';
+import EntityRelations from './entity-relations/entity-relations.astro';
+import EntityStats from './entity-stats/entity-stats.astro';
+import StatTiles from './stat-tiles/stat-tiles.astro';
+import EntitySummons from './entity-summons/entity-summons.astro';
+import EntityTurrets from './entity-turrets/entity-turrets.astro';
+import EntityUpgrades from './entity-upgrades/entity-upgrades.astro';
+import EntityWeapons from './entity-weapons/entity-weapons.astro';
+
+interface Props {
+  entity: Entity;
+}
+
+const { entity } = Astro.props;
+const faction = (await getEntry('factions', entity.faction))?.data;
+const hasInfo = hasInfoColumn(entity);
+---
+
+<DensePanel factionId={entity.faction}>
+  <article class="flex flex-col gap-8">
+    <div>
+      <EntityHeader entity={entity} faction={faction} />
+      {entity.description && <p class="mt-4 whitespace-pre-line">{interpolate(entity.description, entity.values)}</p>}
+      {entity.details && <p class="mt-2 text-sm whitespace-pre-line text-muted">{interpolate(entity.details, entity.values)}</p>}
+    </div>
+    <StatTiles tiles={toGameStatTiles(entity.stats)} />
+    <div
+      class={clsx(
+        'flex flex-col gap-8',
+        hasInfo && 'lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:grid-rows-[auto_1fr] lg:gap-x-10',
+      )}
+    >
+      <div class="flex flex-col gap-8 empty:hidden lg:col-start-1">
+        <EntityStats entity={entity} />
+        <EntityWeapons weapons={entity.weapons} />
+      </div>
+      {
+        hasInfo && (
+          <aside class="flex flex-col gap-6 bevel-sm bg-surface/60 p-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
+            <EntityRelations entity={entity} />
+            <EntityChoice entity={entity} />
+            <EntityEnergyCosts costs={entity.topbarEnergyCosts} />
+            <EntityEnergyRule energyCost={entity.energyCost} />
+          </aside>
+        )
+      }
+      <div class="flex flex-col gap-8 empty:hidden lg:col-start-1">
+        <EntityAbilities abilities={entity.abilities} />
+        <EntityUpgrades ids={entity.upgrades} />
+        <EntityTurrets turrets={entity.turrets} maxTurrets={entity.maxTurrets} />
+        <EntitySummons summons={entity.summons} />
+        <EntityArea area={entity.area} />
+      </div>
+    </div>
+  </article>
+</DensePanel>

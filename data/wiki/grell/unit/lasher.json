@@ -1,0 +1,47 @@
+{
+  "id": "grell/unit/lasher",
+  "kind": "unit",
+  "faction": "grell",
+  "name": "Lasher",
+  "description": "Light ranged combat unit. Deals bonus damage to Medium.",
+  "hotkey": "R",
+  "cost": {
+    "hexite": 100,
+    "flux": 25
+  },
+  "count": 2,
+  "buildTime": 36,
+  "supply": 2,
+  "hp": 110,
+  "armorType": "light",
+  "speed": 575,
+  "vision": 1800,
+  "size": 78.5,
+  "weapons": [
+    {
+      "name": "Acidic Spines",
+      "damage": 11,
+      "cooldown": 1.2,
+      "burst": 1,
+      "burstCooldown": 1.2,
+      "range": 700,
+      "warmup": 0.12,
+      "projectileSpeed": 2500,
+      "dps": 9.1667
+    }
+  ],
+  "producedBy": [
+    "grell/building/broodwomb"
+  ],
+  "upgrades": [
+    "grell/upgrade/camouflage",
+    "grell/upgrade/caustic-spines",
+    "grell/upgrade/corrosive-secretion",
+    "grell/upgrade/sinuous-musculature"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 3.2813
+  },
+  "portrait": "TGUI_portrait_unit_grell_lasher07",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_GrellLasher"
+}

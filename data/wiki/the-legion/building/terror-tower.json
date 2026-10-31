@@ -1,0 +1,33 @@
+{
+  "id": "the-legion/building/terror-tower",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Terror Tower",
+  "description": "Unlocks Terror Tanks and Dreadnoughts.\nBoosts the construction speed of one adjacent Massive Vehicle at a time (+{boost}%).",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 100,
+    "flux": 100
+  },
+  "buildTime": 60,
+  "hp": 1000,
+  "armorRating": 1,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
+  "unlocks": [
+    "the-legion/building/dreadnought",
+    "the-legion/building/terror-tank",
+    "the-legion/unit/storm-bringer",
+    "the-legion/upgrade/beast-tamer",
+    "the-legion/upgrade/burning-fireball",
+    "the-legion/upgrade/explosive-warhead",
+    "the-legion/upgrade/fast-fireball",
+    "the-legion/upgrade/one-life-for-another",
+    "the-legion/upgrade/performance-enhancers",
+    "the-legion/upgrade/performance-enhancers-steelsworn",
+    "the-legion/upgrade/wake-of-fire"
+  ],
+  "portrait": "TGUI_icons_empire_terrortower02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_TerrorTower"
+}

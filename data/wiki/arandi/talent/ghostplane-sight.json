@@ -1,0 +1,16 @@
+{
+  "id": "arandi/talent/ghostplane-sight",
+  "kind": "talent",
+  "faction": "arandi",
+  "name": "Ghostplane Sight",
+  "description": "+{range}% casting range.\n-{cdr}% ability cooldown.",
+  "values": {
+    "range": 25,
+    "cdr": 29.9999
+  },
+  "researchTime": 0,
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_valkaru_valkaru_rage",
+  "asset": "Archetypes_ResearchItems/Arandi/RI_HeroXP_Arandi_T4RangeCD"
+}

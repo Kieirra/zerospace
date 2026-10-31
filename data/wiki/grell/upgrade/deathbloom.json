@@ -1,0 +1,23 @@
+{
+  "id": "grell/upgrade/deathbloom",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Deathbloom",
+  "description": "Deals {damage} damage and heals {heal} health per second to nearby ground units upon death.\nLasts {duration} seconds.",
+  "values": {
+    "damage": 50,
+    "heal": 50,
+    "duration": 5
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "tier": "T3",
+  "exclusiveGroup": "Local.Grell.Behemoth.Specialize1",
+  "appliesTo": [
+    "grell/unit/behemoth"
+  ],
+  "portrait": "TGUI_icon_skill_bio_nourishment",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Behemoth_Sacrifice"
+}

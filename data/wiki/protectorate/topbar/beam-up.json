@@ -1,0 +1,20 @@
+{
+  "id": "protectorate/topbar/beam-up",
+  "kind": "topbar",
+  "faction": "protectorate",
+  "name": "Beam Up",
+  "description": "Teleport a unit to any Operating Tower and Heal it by {Heal}.",
+  "details": "Costs {Power} Power per Supply.\nBeam Up will default to your primariy Operating Tower. Click on minimap after casting to choose an alternate one.\nCan't target heroes or harvesters.",
+  "values": {
+    "Heal": 100,
+    "Power": 0.5
+  },
+  "energyCost": {
+    "supplyCostMultiplier": 0.5
+  },
+  "range": 2000,
+  "researchTime": 0,
+  "tier": "T3",
+  "portrait": "TGUI_icon_skill_improved_recall",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Beamup/RI_TopBar_BeamUp"
+}

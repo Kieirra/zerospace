@@ -1,0 +1,17 @@
+{
+  "id": "the-legion/upgrade/gatling-gun",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Gatling Gun",
+  "description": "Adds a Gattling Turret that deals bonus damage vs air.",
+  "stats": [
+    {
+      "label": "Bonus vs Air",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
+  "hotkey": "W",
+  "portrait": "TGUI_icon_skill_rapid_reinforcement",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToGatlingGun"
+}

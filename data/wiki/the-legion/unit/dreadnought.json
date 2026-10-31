@@ -1,0 +1,104 @@
+{
+  "id": "the-legion/unit/dreadnought",
+  "kind": "unit",
+  "faction": "the-legion",
+  "name": "Dreadnought",
+  "description": "Massive heavy aircraft with 2 slots installable turrets.\nTurrets have 200 health and split damage with the Dreadnought one turret at a time",
+  "cost": {
+    "hexite": 150,
+    "flux": 250
+  },
+  "count": 1,
+  "buildTime": 80,
+  "supply": 15,
+  "hp": 800,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 500,
+  "vision": 1800,
+  "size": 420,
+  "transportSlots": 3,
+  "abilities": [
+    {
+      "name": "Bombardment",
+      "description": "Bombard the area under Dreadnought.\nDrops 4 bombs on targets (+{N} for each Bomb Bay).\nBombs deal {Damage} damage in a small radius.",
+      "values": {
+        "N": 4,
+        "Damage": 70
+      },
+      "hotkey": "T",
+      "cooldown": 60,
+      "range": 350
+    },
+    {
+      "name": "Upgrade Bays",
+      "description": "Choose which turret you'd like to attach to the Dreadnought.",
+      "hotkey": "C"
+    }
+  ],
+  "maxTurrets": 2,
+  "turrets": [
+    {
+      "name": "Anti-air Missile Turret",
+      "description": "Turret that can attack while moving.\n\nPassive: +{Speed}% Dreadnought movement speed.",
+      "values": {
+        "Speed": 15
+      },
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 400,
+      "armorType": "heavy",
+      "weapons": [
+        {
+          "damage": 27,
+          "cooldown": 0.15,
+          "burst": 2,
+          "burstCooldown": 2,
+          "range": 2000,
+          "warmup": 0,
+          "dps": 27
+        }
+      ]
+    },
+    {
+      "name": "Bomb Bay",
+      "description": "Increases the amount of bombs dropped during Bombardment by {N}.",
+      "values": {
+        "N": 4
+      },
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 400,
+      "armorType": "heavy"
+    },
+    {
+      "name": "Command Module",
+      "description": "Adds advanced sensor array and enables teleport ability.\nMultiple Command Modules increase sensor range and max teleport charges.",
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 400,
+      "armorType": "heavy"
+    },
+    {
+      "name": "Dreadnought Shield Generator",
+      "description": "Dreadnought Shield Generator.",
+      "cost": {
+        "flux": 100
+      },
+      "buildTime": 20,
+      "hp": 400,
+      "armorType": "heavy"
+    }
+  ],
+  "topbarEnergyCosts": {
+    "the-legion/topbar/reanimate": 30
+  },
+  "portrait": "TGUI_portrait_unit_empire_dreadnought05",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_Dreadnaught"
+}

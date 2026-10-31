@@ -1,0 +1,20 @@
+{
+  "id": "grell/upgrade/volatile-acids",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Volatile Acids",
+  "description": "When killed, deal {Damage} damage to nearby enemy air units.",
+  "values": {
+    "Damage": 50
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Grell.Skrelling",
+  "appliesTo": [
+    "grell/unit/skrell"
+  ],
+  "portrait": "TGUI_icon_skill_flowers",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Skrelling_SelfExplode"
+}

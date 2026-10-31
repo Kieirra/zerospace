@@ -1,0 +1,25 @@
+---
+import EntityRows from '../entity-rows/entity-rows.astro';
+import { getFactionEntities } from '../../wiki.data.ts';
+import { formatEnergyCost } from '../../wiki.helpers.ts';
+
+interface Props {
+  factionId: string;
+}
+
+const { factionId } = Astro.props;
+const topbars = await getFactionEntities(factionId, 'topbar');
+
+const columns = [
+  { label: 'Energy cost', width: '6.5rem' },
+  { label: 'Hotkey', isDesktopOnly: true },
+];
+
+const rows = topbars.map((topbar) => ({
+  id: topbar.id,
+  name: topbar.name,
+  cells: [formatEnergyCost(topbar.energyCost), topbar.hotkey],
+}));
+---
+
+<EntityRows columns={columns} groups={[{ rows }]} />

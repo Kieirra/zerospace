@@ -1,0 +1,16 @@
+{
+  "id": "marran/talent/pulse-capacitors",
+  "kind": "talent",
+  "faction": "marran",
+  "name": "Pulse Capacitors",
+  "description": "+{ShieldRegen}% shield recharge rate.\n+{Range}% Range.",
+  "values": {
+    "ShieldRegen": 100,
+    "Range": 20
+  },
+  "researchTime": 0,
+  "level": 4,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_explosion_red",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Marran_T4RangePower"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "protectorate/unit/titan",
+  "kind": "unit",
+  "faction": "protectorate",
+  "name": "Titan",
+  "description": "Mobile mech equipped with a powerful secondary anti-air weapon. Main weapon deals bonus damage to Medium.",
+  "hotkey": "T",
+  "cost": {
+    "hexite": 125,
+    "flux": 75
+  },
+  "count": 1,
+  "buildTime": 40,
+  "supply": 5,
+  "hp": 425,
+  "armorType": "medium",
+  "speed": 550,
+  "vision": 1600,
+  "size": 132,
+  "transportSlots": 6,
+  "weapons": [
+    {
+      "name": "Dual GSP-114 30mm Rotary Cannon",
+      "damage": 8,
+      "burst": 1,
+      "burstCooldown": 0.5,
+      "range": 1000,
+      "warmup": 0,
+      "projectileSpeed": 3000,
+      "dps": 64,
+      "bonuses": [
+        {
+          "vs": "Light",
+          "value": 25,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "name": "STX Fanus Twin Missile",
+      "damage": 20,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1400,
+      "projectileSpeed": 3000,
+      "dps": 80
+    }
+  ],
+  "producedBy": [
+    "protectorate/building/assembly-plant"
+  ],
+  "upgrades": [
+    "protectorate/upgrade/antimatter-boosters",
+    "protectorate/upgrade/jetpack"
+  ],
+  "topbarEnergyCosts": {
+    "protectorate/topbar/beam-up": 2.5,
+    "protectorate/topbar/protective-shield": 9.8438
+  },
+  "portrait": "Troop_Prot_Atlas",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_P_Atlas"
+}

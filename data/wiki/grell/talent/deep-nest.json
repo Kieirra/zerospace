@@ -1,0 +1,28 @@
+{
+  "id": "grell/talent/deep-nest",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Deep Nest",
+  "description": "A {nest} will appear at the location spawning {Spiderling}s and {Boomer}s.\nThe {nest} loses health over time.",
+  "values": {
+    "nest": "Deep Nest",
+    "Spiderling": "Arkanid",
+    "Boomer": "Boomer"
+  },
+  "cooldown": 60,
+  "charges": 3,
+  "summons": [
+    {
+      "name": "Deep Nest",
+      "kind": "building",
+      "hp": 300,
+      "vision": 2000
+    }
+  ],
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 5,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_spiderling",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_DeepNest/RI_Topbar_DeepNest"
+}

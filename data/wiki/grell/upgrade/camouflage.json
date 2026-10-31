@@ -1,0 +1,21 @@
+{
+  "id": "grell/upgrade/camouflage",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Camouflage",
+  "description": "+{Speed}% Movement Speed & Cloak for {Duration} seconds.",
+  "values": {
+    "Speed": 25,
+    "Duration": 6
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Grell.Lasher.Specialize3",
+  "appliesTo": [
+    "grell/unit/lasher"
+  ],
+  "portrait": "TGUI_icon_skill_cloak_buff",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Lasher_Camo"
+}

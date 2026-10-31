@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/upgrade/fast-fireball",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Fast Fireball",
+  "description": "+{Speed}% Fireball speed.",
+  "values": {
+    "Speed": 75
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Hero.hero3.Specialize2",
+  "appliesTo": [
+    "the-legion/hero/galavax"
+  ],
+  "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Hero3_FastFireball"
+}

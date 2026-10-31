@@ -1,0 +1,49 @@
+{
+  "id": "chakru-kingdom/unit/chakru-hatun",
+  "kind": "unit",
+  "faction": "chakru-kingdom",
+  "name": "Cha'Kru Hat'un",
+  "description": "Large melee unit that can create a Rift, blocking unit pathing.",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 125,
+    "flux": 200
+  },
+  "count": 1,
+  "supply": 7,
+  "hp": 1000,
+  "armorRating": 1,
+  "armorType": "heavy",
+  "speed": 625,
+  "vision": 1600,
+  "size": 186,
+  "pushTier": 60,
+  "weapons": [
+    {
+      "name": "Rift Breaker",
+      "damage": 65,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 110,
+      "warmup": 0.26,
+      "melee": true,
+      "dps": 65
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Rift",
+      "description": "Create a rift that pushes all units away and creates unpathable area for 7s",
+      "hotkey": "N",
+      "cooldown": 50,
+      "range": 3000
+    }
+  ],
+  "producedBy": [
+    "chakru-kingdom/building/temple-of-anqas",
+    "chakru-kingdom/building/temple-of-stars"
+  ],
+  "portrait": "TGUI_Kingdom_Wurm",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Kingdom_Wurm"
+}

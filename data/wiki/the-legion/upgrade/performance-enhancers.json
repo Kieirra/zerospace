@@ -1,0 +1,20 @@
+{
+  "id": "the-legion/upgrade/performance-enhancers",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Performance Enhancers",
+  "description": "+{Amount}% attack & movevent speed.",
+  "values": {
+    "Amount": 15
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Legion.Infantry.Thrall.Specialize2",
+  "appliesTo": [
+    "the-legion/unit/thrall"
+  ],
+  "portrait": "TGUI_icon_skill_improved_crisis_response",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Thrall_T2Speed"
+}

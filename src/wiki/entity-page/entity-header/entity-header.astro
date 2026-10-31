@@ -1,0 +1,29 @@
+---
+import ReportButton from '../../../shared/report-button/report-button.astro';
+import { KIND_LABELS } from '../../wiki.constants.ts';
+import GameImage from '../../game-image/game-image.astro';
+import { kindTabHref } from '../../wiki.helpers.ts';
+import type { Entity, Faction } from '../../wiki.types.ts';
+
+interface Props {
+  entity: Entity;
+  faction?: Faction;
+}
+
+const { entity, faction } = Astro.props;
+---
+
+<header class="flex items-start gap-4">
+  <GameImage id={entity.id} name={entity.name} size="header" isEager />
+  <div class="min-w-0 flex-1">
+    <h1 class="text-2xl font-bold break-words">{entity.name}</h1>
+    <p class="mt-1 text-sm text-muted">
+      {KIND_LABELS[entity.kind]} · <a href={kindTabHref(entity.faction, entity.kind)} class="text-accent-soft hover:underline"
+        >{faction?.name ?? entity.faction}</a
+      >
+      {entity.tier && <span> · Tier {entity.tier}</span>}
+      {entity.hotkey && <span> · Hotkey {entity.hotkey}</span>}
+    </p>
+  </div>
+  <ReportButton id={entity.id} />
+</header>

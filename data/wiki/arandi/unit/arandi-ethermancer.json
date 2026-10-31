@@ -1,0 +1,48 @@
+{
+  "id": "arandi/unit/arandi-ethermancer",
+  "kind": "unit",
+  "faction": "arandi",
+  "name": "Arandi Ethermancer",
+  "description": "Can mind-control enemy units.",
+  "hotkey": "C",
+  "cost": {
+    "hexite": 50,
+    "flux": 175
+  },
+  "count": 1,
+  "supply": 5,
+  "hp": 200,
+  "armorType": "light",
+  "energy": 100,
+  "speed": 500,
+  "vision": 1600,
+  "size": 90,
+  "pushTier": 5,
+  "weapons": [
+    {
+      "name": "Chronobind",
+      "damage": 20,
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 1200,
+      "warmup": 0.5,
+      "dps": 10
+    }
+  ],
+  "abilities": [
+    {
+      "name": "Mind Control",
+      "description": "Take over enemy unit.\nConsumes energy when channeling.",
+      "hotkey": "V",
+      "cooldown": 10,
+      "energyCost": 10,
+      "range": 1400
+    }
+  ],
+  "producedBy": [
+    "arandi/building/arandi-penumbra"
+  ],
+  "portrait": "TGUI_icon_unit_arandi_amplifier",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Arandi_Amplifier"
+}

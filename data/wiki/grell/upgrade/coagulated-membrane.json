@@ -1,0 +1,20 @@
+{
+  "id": "grell/upgrade/coagulated-membrane",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Coagulated Membrane",
+  "description": "Reduce Eruption cost to {hp} health.",
+  "values": {
+    "hp": 50
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Grell.Harbinger.Specialize2",
+  "appliesTo": [
+    "grell/unit/harbinger"
+  ],
+  "portrait": "TGUI_icon_skill_deepburrow",
+  "asset": "Archetypes_ResearchItems/RI_Ability_Eruption_CostReduce"
+}

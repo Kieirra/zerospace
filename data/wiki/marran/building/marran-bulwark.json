@@ -1,0 +1,23 @@
+{
+  "id": "marran/building/marran-bulwark",
+  "kind": "building",
+  "faction": "marran",
+  "name": "Marran Bulwark",
+  "description": "Mobile Marran base that recruits mercenaries.",
+  "hotkey": "T",
+  "cost": {
+    "hexite": 125
+  },
+  "buildTime": 50,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "marran/unit/marran-badger",
+    "marran/unit/marran-halo-tank",
+    "marran/unit/marran-heavy-trooper",
+    "marran/unit/marran-pulse-skimmer",
+    "marran/unit/marran-sharpshooter"
+  ],
+  "portrait": "Troop_Marran_Mothership",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Marran"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "protectorate/talent/battle-hardened",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Battle-Hardened",
+  "description": "+{x}% Faster Veterancy gain.\nHeroes can gain veterancy.",
+  "values": {
+    "x": 25
+  },
+  "researchTime": 0,
+  "level": 1,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_rapid_reinforcement",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Prot_VeterancyBonus"
+}

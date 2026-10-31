@@ -1,0 +1,22 @@
+{
+  "id": "grell/upgrade/fluxblood-surge",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Fluxblood Surge",
+  "description": "{Cast TIme}% cast time.\n+{Damage}% damage dealt.\n+{Range}% cast range.",
+  "values": {
+    "Cast TIme": 50,
+    "Damage": 50,
+    "Range": 50
+  },
+  "cost": {
+    "flux": 100
+  },
+  "researchTime": 50,
+  "exclusiveGroup": "Local.Grell.Reaver.Specialize1",
+  "appliesTo": [
+    "grell/unit/reaver"
+  ],
+  "portrait": "TGUI_icon_skill_movement_speed",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grell_Reaver_ImprovedCharge"
+}

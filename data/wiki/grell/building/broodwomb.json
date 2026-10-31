@@ -1,0 +1,35 @@
+{
+  "id": "grell/building/broodwomb",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Broodwomb",
+  "description": "Basic unit production structure.",
+  "hotkey": "D",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 35,
+  "hp": 1000,
+  "armorRating": 1,
+  "produces": [
+    "grell/unit/lasher",
+    "grell/unit/mandragora",
+    "grell/unit/skrell",
+    "grell/unit/stinger"
+  ],
+  "requires": [
+    "grell/building/nourishing-pod"
+  ],
+  "unlocks": [
+    "grell/building/skyclutch",
+    "grell/building/young-canopy",
+    "grell/upgrade/bloomwell-attacker",
+    "grell/upgrade/cultivator-defender",
+    "grell/upgrade/cultivator-defender-harvester-spawn"
+  ],
+  "topbarEnergyCosts": {
+    "grell/topbar/infusion": 5.25
+  },
+  "portrait": "TGUI_icon_grell_building_advanced_production_portrait02",
+  "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_Prod_Basic"
+}

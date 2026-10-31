@@ -1,0 +1,21 @@
+{
+  "id": "protectorate/upgrade/overpressure-nozzle",
+  "kind": "upgrade",
+  "faction": "protectorate",
+  "name": "Overpressure Nozzle",
+  "description": "+{splashrange}% Splash range.\n+{splashaoe}% Splash area of effect.",
+  "values": {
+    "splashrange": 25,
+    "splashaoe": 33
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Research.Local.Prot.MedMech.Specialize2",
+  "appliesTo": [
+    "protectorate/unit/bastion"
+  ],
+  "portrait": "TGUI_icon_skill_rapid_reinforcement",
+  "asset": "Archetypes_ResearchItems/Protectorate/RI_Prot_MedMech_Range"
+}

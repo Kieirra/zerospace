@@ -1,0 +1,18 @@
+{
+  "id": "protectorate/talent/airstrike",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Airstrike",
+  "description": "Calls down an Airstrike, dealing {dmg} damage to ground units.\nRequires Airstrips.",
+  "values": {
+    "dmg": 200
+  },
+  "range": 2000,
+  "charges": 10,
+  "researchTime": 0,
+  "tier": "T3",
+  "level": 3,
+  "position": "B",
+  "portrait": "TGUI_icon_skill_explosion",
+  "asset": "Archetype_Abilities/Troop_Abilities/Topbar_Airstrike/RI_Topbar_Airstrike"
+}

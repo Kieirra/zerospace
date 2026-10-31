@@ -1,0 +1,21 @@
+{
+  "id": "grell/upgrade/pouncing-reflex",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Pouncing Reflex",
+  "description": "Stingers can jump up and down cliffs.\nUpon landing, gain +{attackspeed}% attack speed for {duration} seconds.",
+  "values": {
+    "attackspeed": 50,
+    "duration": 5
+  },
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Grell.Stinger.Specialize2",
+  "appliesTo": [
+    "grell/unit/stinger"
+  ],
+  "portrait": "TGUI_icon_skill_spiderling",
+  "asset": "Archetypes_ResearchItems/Grell/RI_Grelling_JumpDownCliffs"
+}

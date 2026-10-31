@@ -1,0 +1,16 @@
+{
+  "id": "protectorate/talent/force-multiplier",
+  "kind": "talent",
+  "faction": "protectorate",
+  "name": "Force Multiplier",
+  "description": "-{cd}% cooldown for Reinfocement and Airstrike. +{rad}% Airstrike radius. Reinfocement can deploy heavy unit types.",
+  "values": {
+    "cd": 50,
+    "rad": 20
+  },
+  "researchTime": 0,
+  "level": 5,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_hero_ability_cooldown",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Prot_ForceMultiplier"
+}

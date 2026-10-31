@@ -1,0 +1,22 @@
+{
+  "id": "the-legion/upgrade/explosive-warhead",
+  "kind": "upgrade",
+  "faction": "the-legion",
+  "name": "Explosive Warhead",
+  "description": "The piercing shot explodes at the end dealing {dmg} damage, and an additional {dot} damage over {duration} seconds.\nHandling such heavy ammo increases cooldown and channel time.",
+  "values": {
+    "dmg": 250,
+    "dot": 150,
+    "duration": 5
+  },
+  "cost": {
+    "flux": 150
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Legion.Hero.hero2.Specialize2",
+  "appliesTo": [
+    "the-legion/hero/kraegar"
+  ],
+  "portrait": "TGUI_icon_skill_elite_infantry",
+  "asset": "Archetypes_ResearchItems/Legion/RI_Empire_Hero2_PiercingShotExplosion"
+}

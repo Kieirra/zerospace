@@ -1,0 +1,15 @@
+{
+  "id": "grell/talent/koru-symbiosis",
+  "kind": "talent",
+  "faction": "grell",
+  "name": "Koru Symbiosis",
+  "description": "+{Percent}% healing & health regen.",
+  "values": {
+    "Percent": 25
+  },
+  "researchTime": 0,
+  "level": 1,
+  "position": "A",
+  "portrait": "TGUI_icon_skill_bio_nourishment",
+  "asset": "Archetypes_ResearchItems/HeroXP/RI_HeroXP_Grell_T1HealBonus"
+}

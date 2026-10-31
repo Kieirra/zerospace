@@ -1,0 +1,44 @@
+{
+  "id": "arandi/unit/arandi-phoenix-guard",
+  "kind": "unit",
+  "faction": "arandi",
+  "name": "Arandi Phoenix Guard",
+  "description": "Mobile ranged infantry whose attacks slows targets.",
+  "hotkey": "Z",
+  "cost": {
+    "hexite": 225
+  },
+  "count": 2,
+  "buildTime": 35,
+  "supply": 2,
+  "hp": 160,
+  "armorType": "medium",
+  "speed": 600,
+  "vision": 1800,
+  "size": 100,
+  "transportSlots": 3,
+  "weapons": [
+    {
+      "name": "Void Blaster",
+      "damage": 7,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1000,
+      "warmup": 0,
+      "dps": 17.5,
+      "bonuses": [
+        {
+          "vs": "Medium",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "producedBy": [
+    "arandi/building/arandi-penumbra"
+  ],
+  "portrait": "Troop_Arandi_PhoenixGuard",
+  "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Arandi_PhoenixGuard"
+}

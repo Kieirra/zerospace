@@ -1,0 +1,21 @@
+{
+  "id": "grell/upgrade/hemal-vents",
+  "kind": "upgrade",
+  "faction": "grell",
+  "name": "Hemal Vents",
+  "description": "Increases Eruption radius by {rad}%.",
+  "values": {
+    "rad": 50
+  },
+  "hotkey": "T",
+  "cost": {
+    "flux": 125
+  },
+  "researchTime": 60,
+  "exclusiveGroup": "Local.Grell.Harbinger.Specialize2",
+  "appliesTo": [
+    "grell/unit/harbinger"
+  ],
+  "portrait": "TGUI_icon_skill_essence_collector",
+  "asset": "Archetypes_ResearchItems/RI_Ability_EruptionRadius2"
+}
