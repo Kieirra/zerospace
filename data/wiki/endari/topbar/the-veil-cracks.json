@@ -10,6 +10,7 @@
     "as": 25,
     "cdr": -20
   },
+  "order": 0,
   "energyCost": 25,
   "cooldown": 120,
   "portrait": "TGUI_icon_skill_Sacrifice",

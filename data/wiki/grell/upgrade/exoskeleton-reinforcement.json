@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Exoskeleton Reinforcement",
   "description": "+75 HP",
+  "order": 0,
   "cost": {
     "flux": 100
   },

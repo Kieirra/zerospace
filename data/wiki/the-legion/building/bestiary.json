@@ -5,6 +5,7 @@
   "name": "Bestiary",
   "description": "Beast production structure.",
   "hotkey": "F",
+  "order": 25,
   "cost": {
     "hexite": 75
   },

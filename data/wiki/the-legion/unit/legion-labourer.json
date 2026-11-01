@@ -5,6 +5,7 @@
   "name": "Legion Labourer",
   "description": "Harvests flux.\nCan build and repair mechanical units and structures.",
   "hotkey": "H",
+  "order": 52,
   "cost": {
     "hexite": 75
   },

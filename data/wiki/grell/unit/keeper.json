@@ -5,6 +5,7 @@
   "name": "Keeper",
   "description": "Tanky melee unit which spawns temporary Arkanids upon taking damage.",
   "hotkey": "G",
+  "order": 18,
   "cost": {
     "hexite": 150,
     "flux": 50

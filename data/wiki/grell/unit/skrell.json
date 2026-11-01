@@ -5,6 +5,7 @@
   "name": "Skrell",
   "description": "Light skirmish flier that poisons enemies. Deals bonus damage to Harvesters and Air.",
   "hotkey": "T",
+  "order": 17,
   "cost": {
     "hexite": 50,
     "flux": 50

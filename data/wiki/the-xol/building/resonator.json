@@ -11,6 +11,7 @@
     "Drone": "Scouting Drone"
   },
   "hotkey": "E",
+  "order": 12,
   "cost": {
     "hexite": 150
   },

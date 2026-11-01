@@ -7,6 +7,7 @@
   "values": {
     "Speed": 75
   },
+  "order": 4,
   "cost": {
     "flux": 150
   },

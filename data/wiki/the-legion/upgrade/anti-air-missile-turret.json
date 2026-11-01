@@ -14,6 +14,7 @@
     }
   ],
   "hotkey": "R",
+  "order": 13,
   "portrait": "TGUI_icon_skill_elite_infantry",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_APlatformToTurretAA"
 }

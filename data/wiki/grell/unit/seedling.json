@@ -5,6 +5,7 @@
   "name": "Seedling",
   "description": "Can build structures on biomass.\nWhen infused, becomes a fast flying scout unit, still capable of building structures.",
   "hotkey": "T",
+  "order": 10,
   "count": 1,
   "supply": 0,
   "hp": 20,

@@ -5,6 +5,7 @@
   "name": "Arandi Judgement",
   "description": "Killed friendly units nearby spawn hallucination on death.",
   "hotkey": "U",
+  "order": 86,
   "cost": {
     "hexite": 100,
     "flux": 200

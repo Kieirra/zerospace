@@ -5,6 +5,7 @@
   "name": "Lasher",
   "description": "Light ranged combat unit. Deals bonus damage to Medium.",
   "hotkey": "R",
+  "order": 15,
   "cost": {
     "hexite": 100,
     "flux": 25

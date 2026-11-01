@@ -5,6 +5,7 @@
   "name": "Commando",
   "description": "Ranged infantry equipped with a jetpack.",
   "hotkey": "Q",
+  "order": 10,
   "cost": {
     "hexite": 50
   },

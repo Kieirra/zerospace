@@ -5,6 +5,7 @@
   "name": "Marran Heavy Trooper",
   "description": "Long range infantry. Deals bonus damage to Heavy.",
   "hotkey": "U",
+  "order": 87,
   "cost": {
     "hexite": 100,
     "flux": 200

@@ -5,6 +5,7 @@
   "name": "Bloomwell Attacker",
   "description": "Allows the Bloomwell to attack enemies.",
   "hotkey": "E",
+  "order": 15,
   "cost": {
     "hexite": 150
   },

@@ -4,6 +4,7 @@
   "faction": "endari",
   "name": "Umbra",
   "description": "Mobile hero who can cloak and jump to ambush enemies. Can temporarily transform into an Twisted Visage, which deals devastating melee damage.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

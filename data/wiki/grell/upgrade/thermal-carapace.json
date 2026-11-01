@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Thermal Carapace",
   "description": "+2 Armor",
+  "order": 0,
   "cost": {
     "flux": 100
   },

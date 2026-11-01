@@ -8,6 +8,7 @@
     "boost": 100
   },
   "hotkey": "C",
+  "order": 39,
   "cost": {
     "hexite": 100,
     "flux": 100

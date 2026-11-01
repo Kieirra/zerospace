@@ -11,6 +11,7 @@
     "duration": 4
   },
   "hotkey": "M",
+  "order": 85,
   "cost": {
     "hexite": 225,
     "flux": 125

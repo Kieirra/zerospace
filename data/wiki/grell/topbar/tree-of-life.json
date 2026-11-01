@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Tree of Life",
   "description": "Heals friendly units and Revives recently lost units.",
+  "order": 3,
   "energyCost": 20,
   "cooldown": 200,
   "range": 2000,

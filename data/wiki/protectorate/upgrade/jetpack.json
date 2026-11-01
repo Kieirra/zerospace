@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Jetpack",
   "description": "Jump to a target location, ignoring terrain.",
+  "order": 0,
   "cost": {
     "flux": 125
   },

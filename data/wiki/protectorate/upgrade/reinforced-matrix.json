@@ -7,6 +7,7 @@
   "values": {
     "shield": 50
   },
+  "order": 0,
   "cost": {
     "flux": 100
   },

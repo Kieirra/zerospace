@@ -5,6 +5,7 @@
   "name": "Healing Obelisk",
   "description": "Heals friendly units.\nConsumes energy to heal more.",
   "hotkey": "R",
+  "order": 13,
   "cost": {
     "hexite": 125
   },

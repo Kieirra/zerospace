@@ -8,6 +8,7 @@
     "attackspeed": 50,
     "duration": 5
   },
+  "order": 3,
   "cost": {
     "flux": 125
   },

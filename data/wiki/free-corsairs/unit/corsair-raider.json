@@ -5,6 +5,7 @@
   "name": "Corsair Raider",
   "description": "Light infantry which can steal Hexite from enemy harvesters and extractors.\nCan jump up and down cliffs. Deals bonus damage to Harvesters.",
   "hotkey": "Z",
+  "order": 80,
   "cost": {
     "hexite": 175
   },

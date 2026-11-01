@@ -5,6 +5,7 @@
   "name": "Galavax",
   "description": "Ranged caster hero with Fireball and Sacrificial Spear abilities.",
   "hotkey": "D",
+  "order": 2,
   "cost": {
     "hexite": 150,
     "flux": 150

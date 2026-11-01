@@ -8,6 +8,7 @@
     "Energy": 50,
     "Shields": 50
   },
+  "order": 0,
   "cost": {
     "flux": 150
   },

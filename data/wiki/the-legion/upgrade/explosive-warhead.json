@@ -9,6 +9,7 @@
     "dot": 150,
     "duration": 5
   },
+  "order": 3,
   "cost": {
     "flux": 150
   },

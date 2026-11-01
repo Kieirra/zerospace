@@ -5,6 +5,7 @@
   "name": "Weaver",
   "description": "Ranged spellcaster. Deals bonus damage to Air.",
   "hotkey": "E",
+  "order": 20,
   "cost": {
     "hexite": 100,
     "flux": 200

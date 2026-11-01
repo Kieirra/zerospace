@@ -5,6 +5,7 @@
   "name": "Xyther",
   "description": "Melee unit. Shield takes reduced damage over certain amount.",
   "hotkey": "W",
+  "order": 10,
   "cost": {
     "hexite": 75
   },

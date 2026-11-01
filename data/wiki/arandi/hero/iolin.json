@@ -4,6 +4,7 @@
   "faction": "arandi",
   "name": "I'olin",
   "description": "Can create Singularity and Teleport herself over short distances.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

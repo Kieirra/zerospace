@@ -5,6 +5,7 @@
   "name": "Valkaru Flame Walker",
   "description": "Heavy flame infantry which deals damage in a line.\nCan leap to slow units. Explodes on death. Deals bonus damage to Light.",
   "hotkey": "V",
+  "order": 88,
   "cost": {
     "hexite": 100,
     "flux": 200

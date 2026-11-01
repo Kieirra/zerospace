@@ -4,6 +4,7 @@
   "faction": "marran",
   "name": "Pulse Barrage",
   "description": "The Marran Bulwark  fires a barrage to targeted location. Enemy units take damage and are slowed.",
+  "order": 0,
   "energyCost": 15,
   "cooldown": 30,
   "area": {

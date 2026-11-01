@@ -8,6 +8,7 @@
     "Health": 150
   },
   "hotkey": "E",
+  "order": 10,
   "cost": {
     "hexite": 50
   },

@@ -8,6 +8,7 @@
     "N": 4
   },
   "hotkey": "Q",
+  "order": 10,
   "portrait": "TGUI_icon_skill_incendiary_bomb",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_APlatformToBombBay"
 }

@@ -7,6 +7,7 @@
   "values": {
     "area": 100
   },
+  "order": 1,
   "cost": {
     "flux": 100
   },

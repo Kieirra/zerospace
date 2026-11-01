@@ -5,6 +5,7 @@
   "name": "Corsair Flamer",
   "description": "Heavy tank with short range area damage.\nDeals bonus damage against light units.",
   "hotkey": "V",
+  "order": 88,
   "cost": {
     "hexite": 125,
     "flux": 175

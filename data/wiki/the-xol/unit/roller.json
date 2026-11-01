@@ -5,6 +5,7 @@
   "name": "Roller",
   "description": "Short range unit that can roll when moving.",
   "hotkey": "Q",
+  "order": 10,
   "cost": {
     "hexite": 50
   },

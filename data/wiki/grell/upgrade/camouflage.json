@@ -8,6 +8,7 @@
     "Speed": 25,
     "Duration": 6
   },
+  "order": 4,
   "cost": {
     "flux": 150
   },

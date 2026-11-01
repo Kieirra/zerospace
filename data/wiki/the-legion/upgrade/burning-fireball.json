@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Burning Fireball",
   "description": "Fireball explodes when it reaches the target setting the ground on fire.",
+  "order": 3,
   "cost": {
     "flux": 150
   },

@@ -5,6 +5,7 @@
   "name": "Scouting Drone",
   "description": "Light flying scouting drone.",
   "hotkey": "J",
+  "order": 1000,
   "cost": {
     "hexite": 25
   },

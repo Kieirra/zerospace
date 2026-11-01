@@ -5,6 +5,7 @@
   "name": "Cataclyst",
   "description": "Ultimate flying unit with destructive abilities.\nLimit of 1.",
   "hotkey": "V",
+  "order": 10,
   "cost": {
     "hexite": 525,
     "flux": 450

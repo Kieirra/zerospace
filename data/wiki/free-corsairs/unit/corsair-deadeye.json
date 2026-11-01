@@ -5,6 +5,7 @@
   "name": "Corsair Deadeye",
   "description": "Long range infantry that deals bonus damage against light units.",
   "hotkey": "C",
+  "order": 84,
   "cost": {
     "hexite": 100,
     "flux": 175

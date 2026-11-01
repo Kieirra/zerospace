@@ -9,6 +9,7 @@
     "Damage": 50,
     "Range": 50
   },
+  "order": 0,
   "cost": {
     "flux": 100
   },

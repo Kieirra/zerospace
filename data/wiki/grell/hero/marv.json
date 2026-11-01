@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Marv",
   "description": "Can slow and damage enemies in line, teleport or swap with other units, and grant a shield to friendly units.",
+  "order": 2,
   "cost": {
     "hexite": 220
   },

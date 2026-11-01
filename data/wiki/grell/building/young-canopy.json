@@ -9,6 +9,7 @@
     "mandragor": "Mandragora"
   },
   "hotkey": "Z",
+  "order": 40,
   "cost": {
     "hexite": 100,
     "flux": 25

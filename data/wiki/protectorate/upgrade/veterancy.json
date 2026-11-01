@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Veterancy",
   "description": "Units gain Veterancy from kills.\nVeterancy grants increased damage, health, and energy regeneration.",
+  "order": 10,
   "researchTime": 0,
   "tier": "T3",
   "portrait": "TGUI_icon_skill_hero_ability_cooldown",

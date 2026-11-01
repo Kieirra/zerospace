@@ -8,6 +8,7 @@
     "base": 50,
     "percent": 45
   },
+  "order": 1,
   "energyCost": {
     "unitCostMultiplier": 0.045,
     "fluxWeight": 1.25

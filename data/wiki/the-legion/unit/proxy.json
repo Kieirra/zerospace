@@ -3,6 +3,7 @@
   "kind": "unit",
   "faction": "the-legion",
   "name": "Proxy",
+  "order": 10,
   "count": 1,
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Leg_HeroHallProxy"
 }

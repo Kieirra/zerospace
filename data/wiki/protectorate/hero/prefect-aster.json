@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Prefect Aster",
   "description": "Can stun enemy units, use Jetpack, and deploy a turret on the battlefield.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

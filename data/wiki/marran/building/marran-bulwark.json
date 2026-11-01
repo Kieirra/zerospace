@@ -5,6 +5,7 @@
   "name": "Marran Bulwark",
   "description": "Mobile Marran base that recruits mercenaries.",
   "hotkey": "T",
+  "order": 30,
   "cost": {
     "hexite": 125
   },

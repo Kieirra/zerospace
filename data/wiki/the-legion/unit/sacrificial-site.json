@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Sacrificial site",
   "hotkey": "N",
+  "order": 8,
   "count": 1,
   "supply": 0,
   "hp": 150,

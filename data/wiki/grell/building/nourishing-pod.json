@@ -8,6 +8,7 @@
     "supply": 12
   },
   "hotkey": "W",
+  "order": 19,
   "cost": {
     "hexite": 75
   },

@@ -5,6 +5,7 @@
   "name": "Endari Wyrm",
   "description": "Fast moving ambush flier that can strafe enemies in a line.",
   "hotkey": "C",
+  "order": 84,
   "cost": {
     "hexite": 125,
     "flux": 125

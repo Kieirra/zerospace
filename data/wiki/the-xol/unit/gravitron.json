@@ -5,6 +5,7 @@
   "name": "Gravitron",
   "description": "A caster unit that can warp time to slow down units’ Attack and Movespeed in an area.",
   "hotkey": "D",
+  "order": 10,
   "cost": {
     "hexite": 125,
     "flux": 100

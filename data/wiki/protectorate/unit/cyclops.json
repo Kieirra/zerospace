@@ -5,6 +5,7 @@
   "name": "Cyclops",
   "description": "Fast tank equipped with a long range laser that deals more damage as it fires. Deals bonus damage to Heavy targets. Attacks while moving.",
   "hotkey": "S",
+  "order": 35,
   "cost": {
     "hexite": 100,
     "flux": 150

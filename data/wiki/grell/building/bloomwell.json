@@ -5,6 +5,7 @@
   "name": "Bloomwell",
   "description": "Mining outpost which builds extractors to mine Hexite.\nCan be upgraded to attack.",
   "hotkey": "Q",
+  "order": 18,
   "cost": {
     "hexite": 400
   },

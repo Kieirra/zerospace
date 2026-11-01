@@ -8,6 +8,7 @@
     "Range": 4,
     "Damage": 50
   },
+  "order": 1,
   "cost": {
     "flux": 100
   },

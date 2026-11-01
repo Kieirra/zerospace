@@ -8,6 +8,7 @@
     "HP": 25,
     "Armor": 1
   },
+  "order": 0,
   "cost": {
     "flux": 100
   },

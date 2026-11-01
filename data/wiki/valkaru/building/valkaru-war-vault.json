@@ -5,6 +5,7 @@
   "name": "Valkaru War Vault",
   "description": "Recruits Mercenaries",
   "hotkey": "T",
+  "order": 30,
   "cost": {
     "hexite": 125
   },

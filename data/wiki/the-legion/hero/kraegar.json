@@ -5,6 +5,7 @@
   "name": "Kraegar",
   "description": "Ranged hero who can fire a powerful shot and activate a burst of speed.\nSpawns with his war-beast Krag'vorn, which grows by feeding on fallen beast allies.",
   "hotkey": "S",
+  "order": 1,
   "cost": {
     "hexite": 150,
     "flux": 150

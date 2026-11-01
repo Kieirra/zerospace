@@ -5,6 +5,7 @@
   "name": "Cha'Kru Hat'un",
   "description": "Large melee unit that can create a Rift, blocking unit pathing.",
   "hotkey": "C",
+  "order": 82,
   "cost": {
     "hexite": 125,
     "flux": 200

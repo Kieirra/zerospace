@@ -15,6 +15,7 @@
     }
   ],
   "hotkey": "Q",
+  "order": 10,
   "portrait": "TGUI_icon_skill_pillage_cooldown_reduction",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToFlameTurret"
 }

@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Ritual",
   "description": "Unlock a ritual that summons a temporal projection of the Emperor.",
+  "order": 2,
   "energyCost": 20,
   "cooldown": 200,
   "summons": [

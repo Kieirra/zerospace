@@ -12,6 +12,7 @@
     }
   ],
   "hotkey": "W",
+  "order": 11,
   "portrait": "TGUI_icon_skill_rapid_reinforcement",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToGatlingGun"
 }

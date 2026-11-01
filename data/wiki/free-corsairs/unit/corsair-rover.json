@@ -5,6 +5,7 @@
   "name": "Corsair Rover",
   "description": "Light vehicle which can shoot while moving.\nGains bonus attack speed against nearby units.",
   "hotkey": "X",
+  "order": 82,
   "cost": {
     "hexite": 200,
     "flux": 50

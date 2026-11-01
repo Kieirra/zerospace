@@ -4,6 +4,7 @@
   "faction": "valkaru",
   "name": "Mondar and Torq",
   "description": "Dual heroes. One melee, one ranged. Each has a unique ranged weapon. Mondar and Torq can pass each other their hammer and become enraged when the other dies.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

@@ -7,6 +7,7 @@
   "values": {
     "range": 5
   },
+  "order": 0,
   "cost": {
     "flux": 125
   },

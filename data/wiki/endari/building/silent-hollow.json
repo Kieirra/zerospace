@@ -5,6 +5,7 @@
   "name": "Silent Hollow",
   "description": "Produces Endari units.\nBecomes mobile during night",
   "hotkey": "T",
+  "order": 30,
   "cost": {
     "hexite": 125
   },

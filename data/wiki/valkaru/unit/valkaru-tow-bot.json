@@ -5,6 +5,7 @@
   "name": "Valkaru Tow Bot",
   "description": "Heavy walker which can pull units towards itself.\nHeals friendly units.",
   "hotkey": "C",
+  "order": 86,
   "cost": {
     "hexite": 100,
     "flux": 150

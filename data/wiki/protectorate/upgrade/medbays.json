@@ -8,6 +8,7 @@
     "rate": 25,
     "radius": 25
   },
+  "order": 0,
   "cost": {
     "flux": 100
   },

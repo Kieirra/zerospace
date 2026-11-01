@@ -5,6 +5,7 @@
   "name": "Defiant",
   "description": "Tanky Melee, semi-fast. Deals area damage to enemies when attacked",
   "hotkey": "Q",
+  "order": 10,
   "cost": {
     "hexite": 150,
     "flux": 50

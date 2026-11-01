@@ -5,6 +5,7 @@
   "name": "Power Core",
   "description": "Provides supply. Enables building for Xol structures nearby. Produced units teleported to the location.",
   "hotkey": "W",
+  "order": 10,
   "cost": {
     "hexite": 50
   },

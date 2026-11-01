@@ -5,6 +5,7 @@
   "name": "Armory",
   "description": "Research structure for Legion heroes.",
   "hotkey": "X",
+  "order": 37,
   "cost": {
     "hexite": 100,
     "flux": 25

@@ -5,6 +5,7 @@
   "name": "Predator",
   "description": "Fast vehicle. Deals bonus damage to harvesters.",
   "hotkey": "R",
+  "order": 20,
   "cost": {
     "hexite": 75
   },

@@ -5,6 +5,7 @@
   "name": "Sensor Platform",
   "description": "Upgrade to provide vision over a large area.\nProvides high ground vision.",
   "hotkey": "W",
+  "order": 10,
   "cost": {
     "hexite": 50
   },

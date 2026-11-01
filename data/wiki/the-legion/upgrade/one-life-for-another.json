@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "One Life For Another",
   "description": "When taking fatal damage, sacrifice a nearby Thrall and heal instead. Each sacrifice consumes a green orb. Orbs regenerate when not attacked.",
+  "order": 3,
   "cost": {
     "flux": 150
   },

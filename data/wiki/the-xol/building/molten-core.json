@@ -13,6 +13,7 @@
     "Spectron_molten": "Projectile deals area damage but is slow."
   },
   "hotkey": "Z",
+  "order": 35,
   "cost": {
     "hexite": 50,
     "flux": 25

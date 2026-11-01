@@ -8,6 +8,7 @@
     "x": 10
   },
   "hotkey": "D",
+  "order": 10,
   "cost": {
     "flux": 200
   },

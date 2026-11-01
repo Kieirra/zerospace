@@ -5,6 +5,7 @@
   "name": "Behemoth",
   "description": "Heavy flying brawler, periodically launches a fireball dealing area damage. Spawns Skrell on death. Deals bonus damage to Heavy.",
   "hotkey": "D",
+  "order": 45,
   "cost": {
     "hexite": 100,
     "flux": 200

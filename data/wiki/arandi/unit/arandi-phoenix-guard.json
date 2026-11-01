@@ -5,6 +5,7 @@
   "name": "Arandi Phoenix Guard",
   "description": "Mobile ranged infantry whose attacks slows targets.",
   "hotkey": "Z",
+  "order": 80,
   "cost": {
     "hexite": 225
   },

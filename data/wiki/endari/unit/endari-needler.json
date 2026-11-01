@@ -5,6 +5,7 @@
   "name": "Endari Needler",
   "description": "Swift ranged attacker that deals heavy burst damage.",
   "hotkey": "X",
+  "order": 83,
   "cost": {
     "hexite": 175,
     "flux": 50

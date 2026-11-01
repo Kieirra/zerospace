@@ -5,6 +5,7 @@
   "name": "Cha'Kru Ghost Crab",
   "description": "Light melee unit which explodes, dealing area damage. \nDeals bonus damage to Light.",
   "hotkey": "Z",
+  "order": 80,
   "cost": {
     "hexite": 75,
     "flux": 100

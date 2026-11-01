@@ -8,6 +8,7 @@
     "starting": 20,
     "upgraded": 15
   },
+  "order": 3,
   "cost": {
     "flux": 150
   },

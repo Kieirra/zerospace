@@ -5,6 +5,7 @@
   "name": "Gyroforge",
   "description": "Base unit production structure",
   "hotkey": "D",
+  "order": 20,
   "cost": {
     "hexite": 100
   },

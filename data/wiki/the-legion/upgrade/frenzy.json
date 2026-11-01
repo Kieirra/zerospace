@@ -9,6 +9,7 @@
     "Duration": 10,
     "Count": 14
   },
+  "order": 0,
   "cost": {
     "flux": 125
   },

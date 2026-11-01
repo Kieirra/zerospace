@@ -5,6 +5,7 @@
   "name": "Aegis",
   "description": "Nearby allies take reduced damage as long as its shield holds.",
   "hotkey": "G",
+  "order": 10,
   "cost": {
     "hexite": 275,
     "flux": 100

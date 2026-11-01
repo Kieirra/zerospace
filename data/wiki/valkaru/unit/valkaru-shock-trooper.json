@@ -5,6 +5,7 @@
   "name": "Valkaru Shock Trooper",
   "description": "Medium ranged infantry with splash damage.",
   "hotkey": "X",
+  "order": 82,
   "cost": {
     "hexite": 175,
     "flux": 75

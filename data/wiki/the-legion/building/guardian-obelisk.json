@@ -5,6 +5,7 @@
   "name": "Guardian Obelisk",
   "description": "A defensive structure. \nConsumes energy to deal bonus damage.",
   "hotkey": "E",
+  "order": 12,
   "cost": {
     "hexite": 125
   },

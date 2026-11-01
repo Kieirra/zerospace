@@ -5,6 +5,7 @@
   "name": "Cha'Kru Chas'ki",
   "description": "Ranged skirmisher that moves faster out of combat.\nDeals bonus damage to Harvesters.",
   "hotkey": "V",
+  "order": 83,
   "cost": {
     "hexite": 250
   },

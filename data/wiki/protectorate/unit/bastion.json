@@ -5,6 +5,7 @@
   "name": "Bastion",
   "description": "Infantry with a short range flamethrower. Deals bonus damage to Light.",
   "hotkey": "W",
+  "order": 15,
   "cost": {
     "hexite": 75,
     "flux": 25

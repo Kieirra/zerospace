@@ -5,6 +5,7 @@
   "name": "Valkaru Hound",
   "description": "Ironclad melee hound.",
   "hotkey": "Z",
+  "order": 80,
   "cost": {
     "hexite": 250
   },

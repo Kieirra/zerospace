@@ -5,6 +5,7 @@
   "name": "Harbinger",
   "description": "Durable short ranged unit that can spend health to create damaging eruptions. Deals bonus damage to Heavy.",
   "hotkey": "W",
+  "order": 30,
   "cost": {
     "hexite": 75,
     "flux": 50

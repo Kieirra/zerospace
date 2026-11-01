@@ -5,6 +5,7 @@
   "name": "Dreadnought",
   "description": "Construct a Dreadnought.\nDreadnoughts are heavy aircraft with installable turrets.",
   "hotkey": "H",
+  "order": 50,
   "cost": {
     "hexite": 150,
     "flux": 250

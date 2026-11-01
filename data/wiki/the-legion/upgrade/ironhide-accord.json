@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Ironhide Accord",
   "description": "Doubles all troop bonuses.",
+  "order": 0,
   "cost": {
     "flux": 100
   },

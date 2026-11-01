@@ -5,6 +5,7 @@
   "name": "Thresher",
   "description": "Heavy long range siege unit with splash damage. Deals bonus damage to Buildings.",
   "hotkey": "S",
+  "order": 32,
   "cost": {
     "hexite": 100,
     "flux": 200

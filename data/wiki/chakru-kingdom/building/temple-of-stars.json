@@ -5,6 +5,7 @@
   "name": "Temple of Stars",
   "description": "Recruits Mercenaries.",
   "hotkey": "Y",
+  "order": 30,
   "cost": {
     "hexite": 100,
     "flux": 25

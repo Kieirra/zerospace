@@ -5,6 +5,7 @@
   "name": "World Forge",
   "description": "A research structure. Upgrades affect all Xol units. Only 3 upgrade types can be researched.",
   "hotkey": "X",
+  "order": 39,
   "cost": {
     "hexite": 150,
     "flux": 150

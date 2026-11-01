@@ -5,6 +5,7 @@
   "name": "Incubator",
   "description": "Medium unit production structure.",
   "hotkey": "F",
+  "order": 30,
   "cost": {
     "hexite": 100,
     "flux": 50

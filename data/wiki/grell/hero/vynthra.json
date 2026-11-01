@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Vynthra",
   "description": "Hero that can slow and damage enemy units, burrow to biomass, and consume self or allies to heal and gain movespeed.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

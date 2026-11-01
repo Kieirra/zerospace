@@ -5,6 +5,7 @@
   "name": "Griffin",
   "description": "Fast airship that can repair mechanical units. Detector.",
   "hotkey": "G",
+  "order": 56,
   "cost": {
     "hexite": 125,
     "flux": 175

@@ -9,6 +9,7 @@
     "fireduration": 5,
     "armor": 3
   },
+  "order": 4,
   "cost": {
     "flux": 150
   },

@@ -5,6 +5,7 @@
   "name": "Hellfire",
   "description": "Area damage artillery vehicle.",
   "hotkey": "Y",
+  "order": 46,
   "cost": {
     "hexite": 150,
     "flux": 100

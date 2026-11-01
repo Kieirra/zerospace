@@ -5,6 +5,7 @@
   "name": "Endari Shade",
   "description": "Deadly melee entity. Can path through other units.",
   "hotkey": "Z",
+  "order": 80,
   "cost": {
     "hexite": 225
   },

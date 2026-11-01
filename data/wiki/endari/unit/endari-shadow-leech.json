@@ -13,6 +13,7 @@
     "leech": "Endari Shadow Leech"
   },
   "hotkey": "N",
+  "order": 81,
   "cost": {
     "hexite": 100,
     "flux": 100

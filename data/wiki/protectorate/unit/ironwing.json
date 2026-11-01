@@ -5,6 +5,7 @@
   "name": "Ironwing",
   "description": "Fast gunship. Deals bonus damage to Harvesters.",
   "hotkey": "D",
+  "order": 54,
   "cost": {
     "hexite": 75,
     "flux": 75

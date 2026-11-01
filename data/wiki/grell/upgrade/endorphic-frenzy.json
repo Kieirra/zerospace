@@ -8,6 +8,7 @@
     "attackspeed": 20,
     "health": 10
   },
+  "order": 3,
   "cost": {
     "flux": 125
   },

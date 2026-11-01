@@ -4,6 +4,7 @@
   "faction": "free-corsairs",
   "name": "Sandbags",
   "description": "Drop sandbags at targeted location.\nSandbags block enemy shots and movement.",
+  "order": 0,
   "energyCost": 0.5,
   "charges": 10,
   "summons": [

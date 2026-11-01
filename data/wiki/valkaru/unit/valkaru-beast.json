@@ -4,6 +4,7 @@
   "faction": "valkaru",
   "name": "Valkaru Beast",
   "description": "Tanky melee unit",
+  "order": 80,
   "cost": {
     "hexite": 200,
     "flux": 150

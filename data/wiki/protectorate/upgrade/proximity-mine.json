@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Proximity Mine",
   "description": "Grants the Predator the Proximity Mine ability.",
+  "order": 1,
   "cost": {
     "flux": 100
   },

@@ -5,6 +5,7 @@
   "name": "Cha'Kru Pak'o",
   "description": "Light infantry that heals allied biological units.",
   "hotkey": "N",
+  "order": 84,
   "cost": {
     "hexite": 100,
     "flux": 200

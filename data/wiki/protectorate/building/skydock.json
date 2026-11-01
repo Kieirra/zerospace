@@ -5,6 +5,7 @@
   "name": "Skydock",
   "description": "Aircraft production structure.",
   "hotkey": "R",
+  "order": 40,
   "cost": {
     "hexite": 100,
     "flux": 50

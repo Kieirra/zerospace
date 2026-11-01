@@ -9,6 +9,7 @@
     "Spiderling": "Arkanid",
     "Boomer": "Boomer"
   },
+  "order": 2,
   "energyCost": 18,
   "cooldown": 60,
   "charges": 3,

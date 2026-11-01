@@ -5,6 +5,7 @@
   "name": "Idal Conduit",
   "description": "Provides 12 Supply.\nRecharges Energy of nearby units.",
   "hotkey": "W",
+  "order": 10,
   "cost": {
     "hexite": 75
   },

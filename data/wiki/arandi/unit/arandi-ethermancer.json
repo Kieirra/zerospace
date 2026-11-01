@@ -5,6 +5,7 @@
   "name": "Arandi Ethermancer",
   "description": "Can mind-control enemy units.",
   "hotkey": "C",
+  "order": 85,
   "cost": {
     "hexite": 50,
     "flux": 175

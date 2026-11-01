@@ -7,6 +7,7 @@
   "values": {
     "dmg": 200
   },
+  "order": 2,
   "energyCost": 4,
   "range": 2000,
   "charges": 10,

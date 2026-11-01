@@ -9,6 +9,7 @@
     "slow": 25,
     "dur": 5
   },
+  "order": 4,
   "cost": {
     "flux": 125
   },

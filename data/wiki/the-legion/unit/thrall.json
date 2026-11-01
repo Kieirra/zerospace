@@ -5,6 +5,7 @@
   "name": "Thrall",
   "description": "Expendable ranged infantry.",
   "hotkey": "Q",
+  "order": 7,
   "cost": {
     "hexite": 50
   },

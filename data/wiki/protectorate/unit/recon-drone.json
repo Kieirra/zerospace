@@ -5,6 +5,7 @@
   "name": "Recon Drone",
   "description": "Flying scout.",
   "hotkey": "J",
+  "order": 1000,
   "cost": {
     "hexite": 25
   },

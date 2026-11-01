@@ -9,6 +9,7 @@
     "Range": 1
   },
   "hotkey": "E",
+  "order": 12,
   "portrait": "TGUI_icon_skill_elite_infantry",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToGunEnhancer"
 }

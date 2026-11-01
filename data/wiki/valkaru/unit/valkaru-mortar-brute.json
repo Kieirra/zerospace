@@ -5,6 +5,7 @@
   "name": "Valkaru Mortar Brute",
   "description": "Walker with an area of effect attack.",
   "hotkey": "U",
+  "order": 84,
   "cost": {
     "hexite": 150,
     "flux": 150

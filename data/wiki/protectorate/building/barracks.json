@@ -5,6 +5,7 @@
   "name": "Barracks",
   "description": "Basic infantry production structure.",
   "hotkey": "D",
+  "order": 20,
   "cost": {
     "hexite": 75
   },

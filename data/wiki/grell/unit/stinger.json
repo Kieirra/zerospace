@@ -5,6 +5,7 @@
   "name": "Stinger",
   "description": "Fast small melee unit.",
   "hotkey": "Q",
+  "order": 10,
   "cost": {
     "hexite": 75
   },

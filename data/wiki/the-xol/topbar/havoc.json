@@ -8,6 +8,7 @@
     "Roller": "Roller",
     "Havoc": "Havoc"
   },
+  "order": 2,
   "energyCost": 10,
   "cooldown": 60,
   "charges": 3,

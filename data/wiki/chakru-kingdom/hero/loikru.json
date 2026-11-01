@@ -4,6 +4,7 @@
   "faction": "chakru-kingdom",
   "name": "Loi'kru",
   "description": "Melee hero who transforms between a shielding Earth form and Healing water form.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

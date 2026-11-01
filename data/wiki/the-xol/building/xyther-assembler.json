@@ -5,6 +5,7 @@
   "name": "Xyther Assembler",
   "description": "Basic unit production structure",
   "hotkey": "F",
+  "order": 20,
   "cost": {
     "hexite": 100
   },

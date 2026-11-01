@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Sol Invictus",
   "description": "Call down a powerful mech that explodes on death and sets the ground on fire.",
+  "order": 3,
   "energyCost": 25,
   "cooldown": 150,
   "range": 2000,

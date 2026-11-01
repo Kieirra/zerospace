@@ -5,6 +5,7 @@
   "name": "Supply Platform",
   "description": "Provides 12 Supply.\nCan be upgraded to provide additional utility.",
   "hotkey": "W",
+  "order": 10,
   "cost": {
     "hexite": 75
   },

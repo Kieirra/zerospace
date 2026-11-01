@@ -8,6 +8,7 @@
     "N": 4
   },
   "hotkey": "V",
+  "order": 88,
   "cost": {
     "hexite": 150,
     "flux": 225

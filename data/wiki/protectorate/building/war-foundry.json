@@ -5,6 +5,7 @@
   "name": "War Foundry",
   "description": "Advanced vehicle production structure.",
   "hotkey": "G",
+  "order": 30,
   "cost": {
     "hexite": 125,
     "flux": 75

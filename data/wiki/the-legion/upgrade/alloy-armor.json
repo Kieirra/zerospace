@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Alloy Armor",
   "description": "+1 Armor & +50 HP",
+  "order": 0,
   "cost": {
     "flux": 100
   },

@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Support Matrix",
   "description": "Adds a second Support Matrix",
+  "order": 1,
   "cost": {
     "flux": 150
   },

@@ -5,6 +5,7 @@
   "name": "Eradicator",
   "description": "A towering mech-like unit. Can launch nearby rollers.",
   "hotkey": "F",
+  "order": 10,
   "cost": {
     "hexite": 125,
     "flux": 250

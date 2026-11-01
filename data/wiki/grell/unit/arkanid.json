@@ -5,6 +5,7 @@
   "name": "Arkanid",
   "description": "Small and weak unit spawned by other Grell units.\nTemporary unit with timed life.",
   "hotkey": "J",
+  "order": 10,
   "count": 1,
   "buildTime": 16,
   "supply": 0,

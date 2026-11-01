@@ -78,6 +78,7 @@
       ]
     }
   ],
+  "order": 1,
   "energyCost": {
     "unitCostMultiplier": 0.05,
     "structureCostMultiplier": 0.07,

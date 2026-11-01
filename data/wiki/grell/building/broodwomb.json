@@ -5,6 +5,7 @@
   "name": "Broodwomb",
   "description": "Basic unit production structure.",
   "hotkey": "D",
+  "order": 25,
   "cost": {
     "hexite": 75
   },

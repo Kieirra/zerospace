@@ -5,6 +5,7 @@
   "name": "Operating Tower Turret",
   "description": "Upgrade to attach a defensive turret.",
   "hotkey": "E",
+  "order": 15,
   "cost": {
     "hexite": 150
   },

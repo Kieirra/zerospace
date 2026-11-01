@@ -5,6 +5,7 @@
   "name": "Turret Platform",
   "description": "Attach a missile launcher to the platform.",
   "hotkey": "E",
+  "order": 11,
   "cost": {
     "hexite": 75
   },

@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Wide Mandibles",
   "description": "+50% Splash Radius",
+  "order": 0,
   "cost": {
     "flux": 100
   },

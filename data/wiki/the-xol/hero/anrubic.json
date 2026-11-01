@@ -4,6 +4,7 @@
   "faction": "the-xol",
   "name": "Anrubic",
   "description": "Powerful hero that can grapple enemies and merge with other Xol units to augment its abilities.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

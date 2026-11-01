@@ -8,6 +8,7 @@
     "heroname": "Kraegar",
     "sabretoothname": "Krag'vorn"
   },
+  "order": 4,
   "cost": {
     "flux": 150
   },

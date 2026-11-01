@@ -8,6 +8,7 @@
   "values": {
     "levelhealth": 50
   },
+  "order": 0,
   "energyCost": 22,
   "cooldown": 45,
   "range": 2000,

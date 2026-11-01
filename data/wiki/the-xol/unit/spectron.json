@@ -5,6 +5,7 @@
   "name": "Spectron",
   "description": "Range unit that charges up its projectile dealing more damage.",
   "hotkey": "E",
+  "order": 10,
   "cost": {
     "hexite": 25,
     "flux": 50

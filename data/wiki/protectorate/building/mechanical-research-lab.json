@@ -5,6 +5,7 @@
   "name": "Mechanical Research Lab",
   "description": "Research structure for units produced from the Assembly Plant and Skydock.",
   "hotkey": "X",
+  "order": 40,
   "cost": {
     "hexite": 100,
     "flux": 25

@@ -9,6 +9,7 @@
     "s": 30
   },
   "hotkey": "Z",
+  "order": 35,
   "cost": {
     "hexite": 125,
     "flux": 50

@@ -8,6 +8,7 @@
     "armor": 5
   },
   "hotkey": "X",
+  "order": 81,
   "cost": {
     "hexite": 225
   },

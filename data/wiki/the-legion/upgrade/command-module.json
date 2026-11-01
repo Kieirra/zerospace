@@ -5,6 +5,7 @@
   "name": "Command Module",
   "description": "Adds advanced sensor array and enables teleport ability.\nMultiple Command Modules increase sensor range and max teleport charges.",
   "hotkey": "W",
+  "order": 11,
   "portrait": "TGUI_icon_skill_improved_recall",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToCommand"
 }

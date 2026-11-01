@@ -5,6 +5,7 @@
   "name": "Steelsworn",
   "description": "Tanky melee infantry.",
   "hotkey": "W",
+  "order": 8,
   "cost": {
     "hexite": 50
   },

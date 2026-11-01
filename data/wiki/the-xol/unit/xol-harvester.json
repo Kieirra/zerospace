@@ -8,6 +8,7 @@
     "respawn_dur": 60
   },
   "hotkey": "H",
+  "order": 52,
   "cost": {
     "hexite": 175
   },

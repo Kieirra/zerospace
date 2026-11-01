@@ -11,6 +11,7 @@
     "N": 4
   },
   "hotkey": "R",
+  "order": 13,
   "portrait": "TGUI_icon_skill_improved_crisis_response",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_PlatformToShieldGenerator"
 }

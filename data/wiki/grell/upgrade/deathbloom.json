@@ -9,6 +9,7 @@
     "heal": 50,
     "duration": 5
   },
+  "order": 1,
   "cost": {
     "flux": 100
   },

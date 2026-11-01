@@ -5,6 +5,7 @@
   "name": "Endari Devourer",
   "description": "Titanic lumbering monster that spews deadly bile and devour enemies, slowly digesting them.",
   "hotkey": "V",
+  "order": 85,
   "cost": {
     "hexite": 150,
     "flux": 200

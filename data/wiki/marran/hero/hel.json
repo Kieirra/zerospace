@@ -4,6 +4,7 @@
   "faction": "marran",
   "name": "Hel",
   "description": "A long range hero, Hel can launch units away with his Shockwave Grenade, enter stealth, and Snipe enemies.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

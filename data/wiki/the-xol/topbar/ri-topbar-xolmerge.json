@@ -3,5 +3,6 @@
   "kind": "topbar",
   "faction": "the-xol",
   "name": "RI_TopBar_XolMerge",
+  "order": 5,
   "asset": "Maguro/CustomHero/InfuseEssence/RI_TopBar_XolMerge"
 }

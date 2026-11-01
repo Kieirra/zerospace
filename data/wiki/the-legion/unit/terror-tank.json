@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Terror Tank",
   "description": "Massive heavy tank with 4 slots for installable turrets.\nTurrets have 500 health and split damage with the Terror Tank one turret at a time",
+  "order": 45,
   "cost": {
     "hexite": 200,
     "flux": 200

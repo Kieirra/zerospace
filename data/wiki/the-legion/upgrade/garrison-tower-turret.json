@@ -5,6 +5,7 @@
   "name": "Garrison Tower Turret",
   "description": "Upgrade to attach a defensive turret.\nCannot be attacked while upgrading.",
   "hotkey": "E",
+  "order": 15,
   "cost": {
     "hexite": 150
   },

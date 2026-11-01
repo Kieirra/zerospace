@@ -5,6 +5,7 @@
   "name": "Marran Pulse Skimmer",
   "description": "Fast moving hovertank with quickly recharging shields. Deals bonus damage to Harvesters.",
   "hotkey": "Z",
+  "order": 80,
   "cost": {
     "hexite": 225
   },

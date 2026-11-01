@@ -5,6 +5,7 @@
   "name": "Dreadnought Shield Generator",
   "description": "Dreadnought Shield Generator.",
   "hotkey": "E",
+  "order": 12,
   "portrait": "TGUI_icon_skill_improved_crisis_response",
   "asset": "Archetypes_ResearchItems/Legion/RI_Legion_APlatformToShieldGenerator"
 }

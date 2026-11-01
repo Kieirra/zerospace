@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Charge Speed",
   "description": "High-Flux Capacitor",
+  "order": 0,
   "cost": {
     "flux": 100
   },

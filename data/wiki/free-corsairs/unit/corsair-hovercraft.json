@@ -5,6 +5,7 @@
   "name": "Corsair Hovercraft",
   "description": "Medium hovercraft which can lay mines which explode upon contact with enemies.",
   "hotkey": "N",
+  "order": 87,
   "cost": {
     "hexite": 200,
     "flux": 125

@@ -5,6 +5,7 @@
   "name": "Sentinel",
   "description": "Ranged infantry equipped with a railgun. Deals bonus damage to Heavy.",
   "hotkey": "E",
+  "order": 16,
   "cost": {
     "hexite": 75,
     "flux": 75

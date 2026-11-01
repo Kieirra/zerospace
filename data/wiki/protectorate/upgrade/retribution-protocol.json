@@ -8,6 +8,7 @@
     "dps": 30,
     "duration": 5
   },
+  "order": 4,
   "cost": {
     "flux": 125
   },

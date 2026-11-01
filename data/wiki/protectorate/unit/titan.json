@@ -5,6 +5,7 @@
   "name": "Titan",
   "description": "Mobile mech equipped with a powerful secondary anti-air weapon. Main weapon deals bonus damage to Medium.",
   "hotkey": "T",
+  "order": 25,
   "cost": {
     "hexite": 125,
     "flux": 75

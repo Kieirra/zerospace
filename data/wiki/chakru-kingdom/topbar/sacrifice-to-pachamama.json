@@ -8,6 +8,7 @@
     "Shields": 400,
     "Duration": 10
   },
+  "order": 0,
   "energyCost": 12,
   "cooldown": 120,
   "researchTime": 20,

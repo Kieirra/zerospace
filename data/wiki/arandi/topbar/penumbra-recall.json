@@ -4,6 +4,7 @@
   "faction": "arandi",
   "name": "Penumbra Recall",
   "description": "Teleports targeted units to your Arandi Penumbra.",
+  "order": 0,
   "energyCost": 10,
   "cooldown": 90,
   "researchTime": 0,

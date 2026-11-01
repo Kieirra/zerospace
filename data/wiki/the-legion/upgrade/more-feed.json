@@ -8,6 +8,7 @@
     "Name": "Krag'vorn",
     "feed": 20
   },
+  "order": 1,
   "cost": {
     "flux": 100
   },

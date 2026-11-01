@@ -7,6 +7,7 @@
   "values": {
     "Health": 1
   },
+  "order": 10,
   "researchTime": 0,
   "tier": "T3",
   "portrait": "TGUI_icon_skill_bio_nourishment",

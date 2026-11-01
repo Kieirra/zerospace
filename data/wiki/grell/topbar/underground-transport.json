@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Underground Transport",
   "description": "Call a worm to transport your units to any Bloomwell.",
+  "order": 0,
   "energyCost": 5,
   "cooldown": 120,
   "range": 2000,

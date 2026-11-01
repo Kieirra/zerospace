@@ -5,6 +5,7 @@
   "name": "Exalted",
   "description": "Fast moving short range raider. \nCan jump down cliffs, stunning nearby enemies. Deals bonus damage to Medium.",
   "hotkey": "T",
+  "order": 10,
   "cost": {
     "hexite": 75
   },

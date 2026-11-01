@@ -5,6 +5,7 @@
   "name": "Arandi Chronowarper",
   "description": "Flying unit that can teleport friendly units to its location.\nCan enter phase mode, slowing enemy units in an area.",
   "hotkey": "V",
+  "order": 87,
   "cost": {
     "hexite": 75,
     "flux": 175

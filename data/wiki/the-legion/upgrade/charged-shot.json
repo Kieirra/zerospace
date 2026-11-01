@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Charged Shot",
   "description": "Every 10s fires an extra attack",
+  "order": 1,
   "cost": {
     "flux": 100
   },

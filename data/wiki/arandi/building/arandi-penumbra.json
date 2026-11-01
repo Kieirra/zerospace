@@ -5,6 +5,7 @@
   "name": "Arandi Penumbra",
   "description": "Flying Arandi base that recruits mercenaries.\nOccasionally will Abduct light infantry units under it.",
   "hotkey": "T",
+  "order": 30,
   "cost": {
     "hexite": 75,
     "flux": 50

@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Cardiovascular Boost",
   "description": "+200 Move Speed",
+  "order": 1,
   "cost": {
     "flux": 100
   },

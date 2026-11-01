@@ -5,6 +5,7 @@
   "name": "Dark Disciple",
   "description": "Light ranged infantry. \nIts damage increases the longer it attacks a single target. Loses half of bonus damage upon switching target. Deals bonus damage to Heavy.",
   "hotkey": "E",
+  "order": 9,
   "cost": {
     "hexite": 50,
     "flux": 100

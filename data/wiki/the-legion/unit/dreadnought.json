@@ -4,6 +4,7 @@
   "faction": "the-legion",
   "name": "Dreadnought",
   "description": "Massive heavy aircraft with 2 slots installable turrets.\nTurrets have 200 health and split damage with the Dreadnought one turret at a time",
+  "order": 50,
   "cost": {
     "hexite": 150,
     "flux": 250

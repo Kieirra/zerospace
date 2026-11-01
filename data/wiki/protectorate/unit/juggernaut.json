@@ -5,6 +5,7 @@
   "name": "Juggernaut",
   "description": "Heavy tank that gains thermal charge as it attacks. Heat can be vented to deal area damage. Deals bonus damage to Massive.",
   "hotkey": "A",
+  "order": 45,
   "cost": {
     "hexite": 175,
     "flux": 125

@@ -5,6 +5,7 @@
   "name": "Strider",
   "description": "Massive walker that can load infantry inside, allowing them to attack with bonus range. Can enter Fortress Mode to provide an aura bonus. Attacks while moving. Heals units inside.",
   "hotkey": "V",
+  "order": 40,
   "cost": {
     "hexite": 225,
     "flux": 225

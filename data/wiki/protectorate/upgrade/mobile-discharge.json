@@ -7,6 +7,7 @@
   "values": {
     "Ability": "Incineration Protocol"
   },
+  "order": 0,
   "cost": {
     "flux": 150
   },

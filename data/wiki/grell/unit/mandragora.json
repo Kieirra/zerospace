@@ -5,6 +5,7 @@
   "name": "Mandragora",
   "description": "Melee unit with long reach that deals area damage.",
   "hotkey": "F",
+  "order": 16,
   "cost": {
     "hexite": 100,
     "flux": 25

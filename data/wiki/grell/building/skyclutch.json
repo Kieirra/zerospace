@@ -5,6 +5,7 @@
   "name": "Skyclutch",
   "description": "Enables the production of Skrell and Behemoths.",
   "hotkey": "V",
+  "order": 52,
   "cost": {
     "hexite": 100,
     "flux": 25

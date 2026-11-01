@@ -8,6 +8,7 @@
     "siege": 50,
     "movespeed": 30
   },
+  "order": 1,
   "cost": {
     "flux": 100
   },

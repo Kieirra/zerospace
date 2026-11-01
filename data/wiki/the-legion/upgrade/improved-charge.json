@@ -8,6 +8,7 @@
     "range": 25,
     "num": 2
   },
+  "order": 0,
   "cost": {
     "flux": 100
   },

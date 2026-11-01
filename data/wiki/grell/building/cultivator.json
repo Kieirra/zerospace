@@ -5,6 +5,7 @@
   "name": "Cultivator",
   "description": "Generates Biomass.\nCan be upgraded to attack",
   "hotkey": "E",
+  "order": 20,
   "cost": {
     "hexite": 15
   },

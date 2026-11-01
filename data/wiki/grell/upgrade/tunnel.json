@@ -4,6 +4,7 @@
   "faction": "grell",
   "name": "Tunnel",
   "description": "Tunnel to a target location.",
+  "order": 1,
   "cost": {
     "flux": 100
   },

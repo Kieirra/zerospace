@@ -5,6 +5,7 @@
   "name": "Paradox",
   "description": "A large caster that can manipulate time, offering potentially game-changing effects.",
   "hotkey": "C",
+  "order": 10,
   "cost": {
     "hexite": 250,
     "flux": 250

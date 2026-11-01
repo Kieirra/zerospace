@@ -5,6 +5,7 @@
   "name": "Synapse",
   "description": "Flying support unit which periodically heals nearby friendly units",
   "hotkey": "W",
+  "order": 10,
   "cost": {
     "hexite": 50,
     "flux": 150

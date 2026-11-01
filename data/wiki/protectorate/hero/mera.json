@@ -4,6 +4,7 @@
   "faction": "protectorate",
   "name": "Mera",
   "description": "Hero that can switch between a sword and a sidearm. Attacking units with her sword grants her temporary attack speed. Can dash through enemies and create an armor field around her.",
+  "order": 2,
   "cost": {
     "hexite": 220
   },

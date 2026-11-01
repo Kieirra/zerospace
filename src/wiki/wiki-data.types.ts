@@ -118,6 +118,8 @@ export interface UnitFile {
   details?: string;
   values?: DescriptionValues;
   hotkey?: string;
+  // Rank in the game menu, smaller first.
+  order?: number;
   cost?: Cost;
   count?: number;
   buildTime?: number;
@@ -181,6 +183,8 @@ export interface BuildingFile {
   details?: string;
   values?: DescriptionValues;
   hotkey?: string;
+  // Rank in the game menu, smaller first.
+  order?: number;
   cost?: Cost;
   buildTime?: number;
   hp?: number;
@@ -243,6 +247,8 @@ export interface UpgradeFile {
   values?: DescriptionValues;
   stats?: Stat[];
   hotkey?: string;
+  // Rank in the game menu, smaller first.
+  order?: number;
   cost?: Cost;
   energyCost?: number | TopbarEnergyCost;
   energyCostChanges?: Record<string, EnergyCostChange>;

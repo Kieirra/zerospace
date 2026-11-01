@@ -9,6 +9,7 @@
     "Heal": 100,
     "Power": 0.5
   },
+  "order": 0,
   "energyCost": {
     "supplyCostMultiplier": 0.5
   },

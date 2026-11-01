@@ -4,6 +4,7 @@
   "faction": "free-corsairs",
   "name": "Yearl",
   "description": "Hero that can cliffwalk, fire a disrupting projectile, throw sticky bombs, and become drop a mine while becoming invisible.",
+  "order": 0,
   "cost": {
     "hexite": 220
   },

@@ -8,6 +8,7 @@
     "N": 6
   },
   "hotkey": "C",
+  "order": 86,
   "cost": {
     "hexite": 200,
     "flux": 175

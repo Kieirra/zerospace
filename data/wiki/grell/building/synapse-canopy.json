@@ -5,6 +5,7 @@
   "name": "Synapse Canopy",
   "description": "Research structure for units produced from the Elderwomb.\nUnlocks: second tier Incubator unit upgrades",
   "hotkey": "C",
+  "order": 50,
   "cost": {
     "hexite": 100,
     "flux": 75

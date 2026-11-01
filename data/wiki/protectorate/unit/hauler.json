@@ -5,6 +5,7 @@
   "name": "Hauler",
   "description": "Air transport. Heals biological units inside.\nCan land to heal biological units nearby.\nMust land to load and unload units.",
   "hotkey": "F",
+  "order": 55,
   "cost": {
     "hexite": 100,
     "flux": 100

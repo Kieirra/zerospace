@@ -5,6 +5,7 @@
   "name": "Terror Tank",
   "description": "Construct a Terror Tank.\nTerror Tanks are heavy tanks with installable turrets.",
   "hotkey": "V",
+  "order": 45,
   "cost": {
     "hexite": 250,
     "flux": 150

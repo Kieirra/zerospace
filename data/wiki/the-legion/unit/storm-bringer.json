@@ -5,6 +5,7 @@
   "name": "Storm Bringer",
   "description": "Caster that can use a Tempest ability.\nGains extra energy by attacking",
   "hotkey": "R",
+  "order": 9,
   "cost": {
     "hexite": 50,
     "flux": 125

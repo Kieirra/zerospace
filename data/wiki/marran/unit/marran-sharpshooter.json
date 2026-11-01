@@ -5,6 +5,7 @@
   "name": "Marran Sharpshooter",
   "description": "Long ranged infantry which can deploy to attack with extra range and attack speed in a limited arc",
   "hotkey": "X",
+  "order": 82,
   "cost": {
     "hexite": 100,
     "flux": 200

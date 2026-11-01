@@ -5,6 +5,7 @@
   "name": "Free Corsair Mercenary Outpost",
   "description": "Recruits Mercenaries.",
   "hotkey": "T",
+  "order": 30,
   "cost": {
     "hexite": 100,
     "flux": 25

@@ -9,6 +9,7 @@
     "dmg": 50
   },
   "hotkey": "Y",
+  "order": 11,
   "cost": {
     "hexite": 175,
     "flux": 100

@@ -5,6 +5,7 @@
   "name": "Research Lab",
   "description": "Research structure for units produced from the Barracks.\nUnlocks: Heavy Rail",
   "hotkey": "Z",
+  "order": 35,
   "cost": {
     "hexite": 75,
     "flux": 25

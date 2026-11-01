@@ -5,6 +5,7 @@
   "name": "Arandi Asterion",
   "description": "Weapon projectiles are slow but pass through enemies damaging all on its way.",
   "hotkey": "X",
+  "order": 83,
   "cost": {
     "hexite": 125,
     "flux": 125

@@ -5,6 +5,7 @@
   "name": "Spectral Foundry",
   "description": "Basic unit production structure",
   "hotkey": "G",
+  "order": 20,
   "cost": {
     "hexite": 100
   },

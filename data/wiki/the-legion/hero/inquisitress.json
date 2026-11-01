@@ -5,6 +5,7 @@
   "name": "Inquisitress",
   "description": "Melee hero who can charge through enemies or cleave them apart.",
   "hotkey": "A",
+  "order": 0,
   "cost": {
     "hexite": 150,
     "flux": 150

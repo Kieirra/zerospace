@@ -8,6 +8,7 @@
     "splashrange": 25,
     "splashaoe": 33
   },
+  "order": 3,
   "cost": {
     "flux": 125
   },

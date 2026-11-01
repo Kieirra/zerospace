@@ -5,6 +5,7 @@
   "name": "Echo",
   "description": "Flying harassment unit.",
   "hotkey": "E",
+  "order": 10,
   "cost": {
     "hexite": 50,
     "flux": 50
