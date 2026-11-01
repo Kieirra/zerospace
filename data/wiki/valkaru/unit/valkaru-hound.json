@@ -26,6 +26,9 @@
       "burst": 1,
       "burstCooldown": 1.31251,
       "range": 120,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.213,
       "projectileSpeed": 5000,
       "melee": true,

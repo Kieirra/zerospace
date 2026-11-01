@@ -11,6 +11,13 @@
       "name": "Sol Invictus",
       "kind": "unit",
       "hp": 3000,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 99,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy",
       "speed": 300,
       "vision": 1800,
@@ -22,6 +29,10 @@
           "burst": 1,
           "burstCooldown": 2,
           "range": 180,
+          "splashRadius": 50,
+          "excludedTargets": [
+            "Air"
+          ],
           "warmup": 0.14,
           "projectileSpeed": 5000,
           "melee": true,

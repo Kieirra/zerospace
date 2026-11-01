@@ -13,6 +13,12 @@
   "buildTime": 10,
   "supply": 0,
   "hp": 75,
+  "combatStats": [
+    {
+      "label": "Detection range",
+      "value": 18
+    }
+  ],
   "armorType": "light",
   "speed": 650,
   "vision": 1800,

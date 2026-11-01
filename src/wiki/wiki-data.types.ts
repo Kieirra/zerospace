@@ -16,6 +16,8 @@ export interface Cost {
 }
 
 export interface Weapon {
+  minRange?: number;
+  splashRadius?: number;
   name?: string;
   damage?: number;
   cooldown?: number;
@@ -68,6 +70,8 @@ export interface Stat {
 }
 
 export interface Ability {
+  targets?: string[];
+  excludedTargets?: string[];
   name: string;
   description?: string;
   details?: string;
@@ -89,6 +93,8 @@ export interface Summon {
   count?: number;
   duration?: number;
   hp?: number;
+  combatStats?: Stat[];
+  transport?: { capacity?: number; unitCapacity?: number; targets?: string[]; excludedTargets?: string[] };
   shields?: number;
   armor?: number;
   armorRating?: number;
@@ -117,6 +123,8 @@ export interface Turret {
   cost?: Cost;
   buildTime?: number;
   hp?: number;
+  combatStats?: Stat[];
+  transport?: { capacity?: number; unitCapacity?: number; targets?: string[]; excludedTargets?: string[] };
   shields?: number;
   armor?: number;
   armorRating?: number;
@@ -141,6 +149,8 @@ export interface UnitFile {
   buildTime?: number;
   supply?: number;
   hp?: number;
+  combatStats?: Stat[];
+  transport?: { capacity?: number; unitCapacity?: number; targets?: string[]; excludedTargets?: string[] };
   shields?: number;
   armor?: number;
   armorRating?: number;
@@ -205,6 +215,8 @@ export interface BuildingFile {
   cost?: Cost;
   buildTime?: number;
   hp?: number;
+  combatStats?: Stat[];
+  transport?: { capacity?: number; unitCapacity?: number; targets?: string[]; excludedTargets?: string[] };
   shields?: number;
   armor?: number;
   armorRating?: number;
@@ -256,6 +268,8 @@ export interface EnergyCostChange {
 }
 
 export interface UpgradeFile {
+  targets?: string[];
+  excludedTargets?: string[];
   id: string;
   kind: 'upgrade' | 'talent' | 'topbar';
   faction: string;

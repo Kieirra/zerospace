@@ -34,6 +34,10 @@
       "burst": 1,
       "burstCooldown": 1,
       "range": 100,
+      "excludedTargets": [
+        "Air",
+        "Building"
+      ],
       "melee": true,
       "dps": 8
     }

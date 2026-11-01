@@ -13,6 +13,13 @@
   "buildTime": 12,
   "supply": 0,
   "hp": 150,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 1.3333,
+      "unit": "/s"
+    }
+  ],
   "armorType": "medium",
   "speed": 500,
   "vision": 1600,
@@ -26,13 +33,13 @@
       "burst": 1,
       "burstCooldown": 1.33,
       "range": 100,
+      "excludedTargets": [
+        "Biological"
+      ],
       "warmup": 0,
       "melee": true,
       "dps": 19.5489,
-      "kind": "heal",
-      "excludedTargets": [
-        "Biological"
-      ]
+      "kind": "heal"
     }
   ],
   "producedBy": [

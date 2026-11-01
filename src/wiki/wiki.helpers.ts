@@ -51,9 +51,14 @@ export const formatArmor = ({ armor, armorType }: { armor?: number; armorType?: 
 export const keepFilledTiles = (tiles: (Omit<StatTile, 'value'> & { value?: StatTile['value'] })[]) =>
   tiles.filter((tile): tile is StatTile => tile.value !== undefined);
 
+// Game stat labels can be long: give them a short tile name.
+const GAME_STAT_TILE_LABELS: Record<string, string> = {
+  'Health regeneration': 'Regen',
+};
+
 export const toGameStatTiles = (stats: LabeledValue[] = []) =>
   stats.map(({ label, value, unit = '', levels }) => ({
-    label,
+    label: GAME_STAT_TILE_LABELS[label] ?? label,
     value: `${[value].flat().map(formatNumber).join('/')}${unit}`,
     levels:
       Array.isArray(value) && levels?.length === value.length

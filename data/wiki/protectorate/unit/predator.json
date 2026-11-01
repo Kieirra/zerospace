@@ -26,6 +26,9 @@
       "burst": 1,
       "burstCooldown": 1.6,
       "range": 700,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0,
       "projectileSpeed": 3500,
       "dps": 16.25,

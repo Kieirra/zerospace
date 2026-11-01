@@ -28,6 +28,10 @@
       "burst": 1,
       "burstCooldown": 1.5,
       "range": 225,
+      "splashRadius": 80,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.15,
       "dps": 10.6667,
       "bonuses": [

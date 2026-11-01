@@ -39,7 +39,11 @@
       "description": "Pulls all units in targeted area towards the Tow Bot.",
       "hotkey": "V",
       "cooldown": 30,
-      "range": 1500
+      "range": 1500,
+      "excludedTargets": [
+        "Building",
+        "Air"
+      ]
     }
   ],
   "producedBy": [

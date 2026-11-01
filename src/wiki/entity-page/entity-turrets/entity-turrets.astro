@@ -1,7 +1,7 @@
 ---
 import DetailCard from '../detail-card/detail-card.astro';
 import EntitySection from '../entity-section/entity-section.astro';
-import { formatArmor, formatCost, formatOptionalNumber, formatOptionalSeconds, interpolate, keepFilledTiles } from '../../wiki.helpers.ts';
+import { toGameStatTiles, formatArmor, formatCost, formatOptionalNumber, formatOptionalSeconds, interpolate, keepFilledTiles } from '../../wiki.helpers.ts';
 import type { Turret } from '../../wiki.types.ts';
 
 interface Props {
@@ -16,6 +16,7 @@ const toTiles = (turret: Turret) =>
     { label: 'Cost', value: formatCost(turret.cost) },
     { label: 'Build time', value: formatOptionalSeconds(turret.buildTime) },
     { label: 'HP', value: formatOptionalNumber(turret.hp) },
+    ...toGameStatTiles(turret.combatStats),
     { label: 'Armor type', value: formatArmor(turret) },
   ]);
 ---

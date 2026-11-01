@@ -18,6 +18,8 @@ export interface StatTile {
   isAccent?: boolean;
   isHeal?: boolean;
   levels?: { level: number; value: string }[];
+  // Spans two tile columns on wide enough grids, for tiles with long values.
+  span?: 2;
 }
 
 export interface CostSegment {

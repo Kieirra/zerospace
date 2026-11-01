@@ -14,6 +14,20 @@
   "buildTime": 40,
   "supply": 4,
   "hp": 500,
+  "transport": {
+    "capacity": 20,
+    "targets": [
+      "Unit"
+    ],
+    "excludedTargets": [
+      "Mind Controlled",
+      "Strider",
+      "Air",
+      "Building",
+      "Map Boss",
+      "Unrooted Grell units"
+    ]
+  },
   "armorRating": 2,
   "armorType": "heavy",
   "speed": 600,

@@ -13,6 +13,12 @@
   "buildTime": 30,
   "supply": 2,
   "hp": 150,
+  "combatStats": [
+    {
+      "label": "Shield damage threshold",
+      "value": 20
+    }
+  ],
   "shields": 100,
   "armorRating": 0,
   "armorType": "medium",
@@ -29,6 +35,9 @@
       "burst": 1,
       "burstCooldown": 2,
       "range": 110,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.12,
       "projectileSpeed": 5000,
       "melee": true,

@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 130,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 2,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 40,
+      "unit": "%"
+    }
+  ],
   "shields": 130,
   "speed": 550,
   "vision": 1800,
@@ -52,7 +64,10 @@
       "description": "[Dynamic]",
       "hotkey": "Q",
       "cooldown": 18,
-      "range": 950
+      "range": 950,
+      "excludedTargets": [
+        "Air"
+      ]
     }
   ],
   "topbarEnergyCosts": {

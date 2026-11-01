@@ -14,6 +14,13 @@
   "buildTime": 70,
   "supply": 8,
   "hp": 700,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 40,
+      "unit": "%"
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "energy": 5,
@@ -30,6 +37,9 @@
       "burst": 1,
       "burstCooldown": 2,
       "range": 1100,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.3,
       "projectileSpeed": 2000,
       "dps": 17.5,

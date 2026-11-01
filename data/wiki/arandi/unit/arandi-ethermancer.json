@@ -38,7 +38,11 @@
       "hotkey": "V",
       "cooldown": 10,
       "energyCost": 10,
-      "range": 1400
+      "range": 1400,
+      "excludedTargets": [
+        "Hero",
+        "Massive"
+      ]
     }
   ],
   "producedBy": [

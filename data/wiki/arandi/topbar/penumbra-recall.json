@@ -7,6 +7,9 @@
   "order": 0,
   "energyCost": 10,
   "cooldown": 90,
+  "excludedTargets": [
+    "Building"
+  ],
   "researchTime": 0,
   "tier": "T3",
   "portrait": "TGUI_icon_skill_improved_recall",

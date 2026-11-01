@@ -63,6 +63,12 @@ describe('Wiki display rules', () => {
     ]);
   });
 
+  it('should shorten the health regeneration game stat to Regen', () => {
+    expect(toGameStatTiles([{ label: 'Health regeneration', value: 2, unit: '/s' }])).toEqual([
+      { label: 'Regen', value: '2/s', levels: undefined },
+    ]);
+  });
+
   it('should label each value with its level when the game stat gives the levels', () => {
     const infusionDamage: GameStat = { label: 'Damage', value: [45, 90], unit: '%', levels: [1, 2] };
 

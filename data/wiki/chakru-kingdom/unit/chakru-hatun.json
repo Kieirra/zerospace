@@ -13,6 +13,13 @@
   "count": 1,
   "supply": 7,
   "hp": 1000,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 625,
@@ -27,6 +34,9 @@
       "burst": 1,
       "burstCooldown": 1,
       "range": 110,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.26,
       "melee": true,
       "dps": 65

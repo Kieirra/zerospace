@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 130,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 2,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 40,
+      "unit": "%"
+    }
+  ],
   "shields": 130,
   "speed": 500,
   "vision": 1800,

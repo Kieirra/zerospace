@@ -13,6 +13,13 @@
   "buildTime": 45,
   "supply": 10,
   "hp": 350,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 70,
+      "unit": "%"
+    }
+  ],
   "energy": 100,
   "speed": 500,
   "vision": 1800,
@@ -26,6 +33,9 @@
       "burst": 1,
       "burstCooldown": 1.05,
       "range": 150,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.3028,
       "projectileSpeed": 5000,
       "melee": true,
@@ -38,7 +48,10 @@
       "description": "Deal 65 damage and slows by 50% for 2 seconds to enemy units in front of the hero",
       "hotkey": "Q",
       "cooldown": 5,
-      "energyCost": 23
+      "energyCost": 23,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Charge",

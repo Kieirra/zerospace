@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 130,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 2,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 40,
+      "unit": "%"
+    }
+  ],
   "shields": 130,
   "speed": 500,
   "vision": 2000,
@@ -34,7 +46,14 @@
       "description": "Fire a grenade that pushes all units away. Enemy units also take 25 damage and are slowed.",
       "hotkey": "Q",
       "cooldown": 18,
-      "range": 1600
+      "range": 1600,
+      "targets": [
+        "Unit"
+      ],
+      "excludedTargets": [
+        "Building",
+        "Air"
+      ]
     },
     {
       "name": "Stealth",

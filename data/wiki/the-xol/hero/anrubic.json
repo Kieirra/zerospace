@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 250,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 2,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 70,
+      "unit": "%"
+    }
+  ],
   "speed": 500,
   "vision": 1800,
   "size": 100,
@@ -22,6 +34,10 @@
       "burst": 1,
       "burstCooldown": 1.2,
       "range": 200,
+      "splashRadius": 150,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.27,
       "melee": true,
       "dps": 19.1667
@@ -49,7 +65,10 @@
       },
       "hotkey": "W",
       "cooldown": 14,
-      "range": 2000
+      "range": 2000,
+      "excludedTargets": [
+        "Air"
+      ]
     }
   ],
   "mergeForms": [
@@ -105,7 +124,10 @@
           "description": "Instantly teleports the Xol Hero and nearby allied units to a nearby location",
           "hotkey": "E",
           "cooldown": 24,
-          "range": 1600
+          "range": 1600,
+          "targets": [
+            "Unit"
+          ]
         }
       ],
       "weapons": [
@@ -163,6 +185,10 @@
           "burst": 1,
           "burstCooldown": 1.2,
           "range": 200,
+          "splashRadius": 150,
+          "excludedTargets": [
+            "Air"
+          ],
           "warmup": 0.27,
           "melee": true,
           "dps": 19.1667

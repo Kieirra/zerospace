@@ -13,6 +13,13 @@
   "count": 1,
   "supply": 8,
   "hp": 1200,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 3,
+      "unit": "/s"
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 400,
@@ -28,6 +35,10 @@
       "burst": 1,
       "burstCooldown": 1,
       "range": 800,
+      "splashRadius": 200,
+      "excludedTargets": [
+        "Air"
+      ],
       "projectileSpeed": 100,
       "dps": 30
     }
@@ -38,7 +49,16 @@
       "description": "Devours the target unit, dealing damage to it over time and leaving behind a trail of damaging excrement\nWeapon is disabled while devouring",
       "hotkey": "N",
       "cooldown": 60,
-      "range": 2
+      "range": 2,
+      "targets": [
+        "Unit"
+      ],
+      "excludedTargets": [
+        "Air",
+        "Hero",
+        "Massive",
+        "Harvester"
+      ]
     }
   ],
   "producedBy": [

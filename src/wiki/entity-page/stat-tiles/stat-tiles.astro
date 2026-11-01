@@ -28,8 +28,10 @@ const resourceIconUrls = tiles.map(({ label }) => {
         isNested,
       )}`}
     >
-      {tiles.map(({ label, value, batch, isAccent, isHeal, levels }, tileIndex) => (
-        <div class={clsx('min-w-0 bevel-sm px-2.5 py-1.5', isNested ? 'bg-surface-raised' : 'bg-surface')}>
+      {tiles.map(({ label, value, batch, isAccent, isHeal, levels, span }, tileIndex) => (
+        <div
+          class={clsx('min-w-0 bevel-sm px-2.5 py-1.5', isNested ? 'bg-surface-raised' : 'bg-surface', span === 2 && 'sm:col-span-2')}
+        >
           <dt class="flex items-center gap-1 font-label text-[10px] font-semibold tracking-[.12em] text-muted uppercase">
             {resourceIconUrls[tileIndex] ? (
               <img

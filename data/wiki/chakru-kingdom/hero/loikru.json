@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 300,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 4,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 60,
+      "unit": "%"
+    }
+  ],
   "speed": 500,
   "vision": 1800,
   "size": 100,
@@ -22,6 +34,9 @@
       "burst": 1,
       "burstCooldown": 1.4,
       "range": 200,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.18,
       "projectileSpeed": 5000,
       "melee": true,
@@ -37,7 +52,10 @@
       },
       "hotkey": "Q",
       "cooldown": 12,
-      "range": 800
+      "range": 800,
+      "excludedTargets": [
+        "Building"
+      ]
     },
     {
       "name": "Healing Wave",
@@ -59,7 +77,10 @@
       },
       "hotkey": "Q",
       "cooldown": 15,
-      "range": 1500
+      "range": 1500,
+      "excludedTargets": [
+        "Building"
+      ]
     },
     {
       "name": "Boulder",
@@ -70,7 +91,10 @@
       },
       "hotkey": "W",
       "cooldown": 18,
-      "range": 2000
+      "range": 2000,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Transform",

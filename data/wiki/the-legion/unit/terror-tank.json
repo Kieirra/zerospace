@@ -13,6 +13,13 @@
   "buildTime": 90,
   "supply": 15,
   "hp": 1000,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 70,
+      "unit": "%"
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 400,
@@ -51,6 +58,13 @@
       },
       "buildTime": 20,
       "hp": 250,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy",
       "weapons": [
         {
@@ -59,6 +73,10 @@
           "burst": 1,
           "burstCooldown": 2,
           "range": 1100,
+          "splashRadius": 120,
+          "excludedTargets": [
+            "Air"
+          ],
           "warmup": 0,
           "projectileSpeed": 1500,
           "dps": 12.5,
@@ -80,6 +98,13 @@
       },
       "buildTime": 20,
       "hp": 250,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy",
       "weapons": [
         {
@@ -112,6 +137,13 @@
       },
       "buildTime": 20,
       "hp": 250,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy"
     },
     {
@@ -127,6 +159,13 @@
       },
       "buildTime": 20,
       "hp": 250,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy"
     }
   ],

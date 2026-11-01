@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 250,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 4,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 60,
+      "unit": "%"
+    }
+  ],
   "speed": 500,
   "vision": 1800,
   "size": 100,
@@ -37,7 +49,10 @@
       },
       "hotkey": "Q",
       "cooldown": 13,
-      "range": 1400
+      "range": 1400,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Transform",
@@ -57,7 +72,13 @@
         "duration": 8
       },
       "hotkey": "E",
-      "range": 1500
+      "range": 1500,
+      "targets": [
+        "Unit"
+      ],
+      "excludedTargets": [
+        "Building"
+      ]
     }
   ],
   "portrait": "Troop_MPHero_Endari",

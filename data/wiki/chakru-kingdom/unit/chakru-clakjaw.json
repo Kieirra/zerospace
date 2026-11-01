@@ -15,6 +15,13 @@
   "count": 2,
   "supply": 3,
   "hp": 275,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 1,
+      "unit": "/s"
+    }
+  ],
   "armorRating": 5,
   "armorType": "heavy",
   "speed": 500,
@@ -29,6 +36,9 @@
       "burst": 1,
       "burstCooldown": 0.8,
       "range": 140,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.215,
       "melee": true,
       "dps": 22.5

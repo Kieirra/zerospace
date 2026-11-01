@@ -4,6 +4,9 @@
   "faction": "the-xol",
   "name": "Unmerge",
   "description": "Unmerge Xol units in the target area to their previous forms",
+  "targets": [
+    "Unit"
+  ],
   "researchTime": 0,
   "level": 3,
   "position": "B",

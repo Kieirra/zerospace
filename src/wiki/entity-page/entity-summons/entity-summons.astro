@@ -3,7 +3,7 @@ import AbilityCard from '../ability-card/ability-card.astro';
 import DetailCard from '../detail-card/detail-card.astro';
 import EntitySection from '../entity-section/entity-section.astro';
 import { getEntityMap } from '../../wiki.data.ts';
-import { formatArmor, formatOptionalDistance, formatOptionalNumber, formatOptionalSeconds, keepFilledTiles } from '../../wiki.helpers.ts';
+import { toGameStatTiles, formatArmor, formatOptionalDistance, formatOptionalNumber, formatOptionalSeconds, keepFilledTiles } from '../../wiki.helpers.ts';
 import type { Summon } from '../../wiki.types.ts';
 
 interface Props {
@@ -18,6 +18,7 @@ const toTiles = (summon: Summon) =>
     { label: 'Count', value: formatOptionalNumber(summon.count) },
     { label: 'Duration', value: formatOptionalSeconds(summon.duration) },
     { label: 'HP', value: formatOptionalNumber(summon.hp) },
+    ...toGameStatTiles(summon.combatStats),
     { label: 'Shields', value: formatOptionalNumber(summon.shields) },
     { label: 'Armor rating', value: formatOptionalNumber(summon.armorRating) },
     { label: 'Armor type', value: formatArmor(summon) },

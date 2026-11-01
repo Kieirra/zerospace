@@ -18,6 +18,13 @@
       "name": "Emperor Projection",
       "kind": "unit",
       "hp": 5000,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 100,
+          "unit": "%"
+        }
+      ],
       "armorRating": 2,
       "armorType": "medium",
       "speed": 600,
@@ -29,6 +36,7 @@
           "burst": 1,
           "burstCooldown": 1.4,
           "range": 300,
+          "splashRadius": 175,
           "warmup": 0.6878,
           "dps": 71.4286,
           "bonuses": [

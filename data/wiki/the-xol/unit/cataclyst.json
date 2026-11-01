@@ -14,6 +14,13 @@
   "buildTime": 50,
   "supply": 15,
   "hp": 1000,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 25,
+      "unit": "%"
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 350,
@@ -54,7 +61,10 @@
       },
       "hotkey": "C",
       "cooldown": 120,
-      "range": 1500
+      "range": 1500,
+      "excludedTargets": [
+        "Air"
+      ]
     }
   ],
   "requires": [

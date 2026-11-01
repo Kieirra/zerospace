@@ -14,6 +14,10 @@
     "supplyCostMultiplier": 0.5
   },
   "range": 2000,
+  "excludedTargets": [
+    "Scavenger",
+    "Building"
+  ],
   "researchTime": 0,
   "tier": "T3",
   "portrait": "TGUI_icon_skill_improved_recall",

@@ -13,6 +13,13 @@
   "buildTime": 28,
   "supply": 2,
   "hp": 200,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 1.5,
+      "unit": "/s"
+    }
+  ],
   "armorType": "medium",
   "speed": 650,
   "vision": 1800,

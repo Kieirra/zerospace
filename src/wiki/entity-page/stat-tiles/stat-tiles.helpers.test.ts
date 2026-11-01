@@ -22,6 +22,17 @@ describe('Tile labels', () => {
     expect(`${toBatchPrefix(3)}75`).toBe('×3 = 75');
   });
 
+  it('should shorten the recently added long labels so the tiles keep their default width', () => {
+    expect(toShortLabel('Stun resistance')).toBe('Stun res');
+    expect(toShortLabel('Detection range')).toBe('Detect');
+    expect(toShortLabel('Shield damage threshold')).toBe('Thresh');
+    expect(toShortLabel('Minimum range')).toBe('Min range');
+    expect(toShortLabel('Transport slots')).toBe('Slots');
+    expect(toShortLabel('Transport units')).toBe('Units');
+    expect(toShortLabel('Transport accepts')).toBe('Accepts');
+    expect(toTileMinWidth(['Cost', 'HP', 'Regen', 'Stun resistance', 'Transport accepts'])).toBe('6.5rem');
+  });
+
   it('should widen the tiles when a label of the set is longer than the default width allows', () => {
     expect(toTileMinWidth(['HP', 'Cost'])).toBe('6.5rem');
     expect(toTileMinWidth(['HP', 'Lifesteal'], true)).toBe('7rem');

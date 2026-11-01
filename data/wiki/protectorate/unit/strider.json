@@ -14,6 +14,24 @@
   "buildTime": 60,
   "supply": 6,
   "hp": 1000,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
+  "transport": {
+    "capacity": 16,
+    "targets": [
+      "Light"
+    ],
+    "excludedTargets": [
+      "Hero",
+      "Air",
+      "Temporarily mind controlled"
+    ]
+  },
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 400,
@@ -27,6 +45,9 @@
       "burst": 5,
       "burstCooldown": 3,
       "range": 600,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.01,
       "dps": 20
     }

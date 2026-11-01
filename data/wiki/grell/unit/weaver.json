@@ -52,7 +52,10 @@
       },
       "hotkey": "F",
       "energyCost": 75,
-      "range": 1600
+      "range": 1600,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Siphon Life",

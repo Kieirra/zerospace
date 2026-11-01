@@ -9,6 +9,9 @@
   },
   "range": 2000,
   "charges": 10,
+  "excludedTargets": [
+    "Air"
+  ],
   "researchTime": 0,
   "tier": "T3",
   "level": 3,

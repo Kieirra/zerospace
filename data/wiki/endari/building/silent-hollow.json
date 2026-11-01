@@ -11,6 +11,13 @@
   },
   "buildTime": 50,
   "hp": 2000,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 2,
+      "unit": "/s"
+    }
+  ],
   "armorRating": 1,
   "produces": [
     "endari/unit/endari-devourer",

@@ -14,6 +14,13 @@
   "buildTime": 60,
   "supply": 8,
   "hp": 1000,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
   "armorRating": 2,
   "armorType": "heavy",
   "energy": 7,
@@ -30,6 +37,9 @@
       "burst": 1,
       "burstCooldown": 2.2,
       "range": 700,
+      "excludedTargets": [
+        "Air"
+      ],
       "dps": 54.5455
     }
   ],
@@ -38,7 +48,10 @@
       "name": "Incineration Protocol",
       "description": "Deals 300 damage to nearby enemies over 5 seconds\nCannot move while active",
       "hotkey": "Z",
-      "energyCost": 7
+      "energyCost": 7,
+      "excludedTargets": [
+        "Air"
+      ]
     }
   ],
   "producedBy": [

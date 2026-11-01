@@ -26,6 +26,7 @@
           "cooldown": 0.3,
           "burst": 1,
           "burstCooldown": 0.3,
+          "splashRadius": 200,
           "melee": true,
           "dps": 133.3333
         }

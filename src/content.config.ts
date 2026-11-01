@@ -22,6 +22,8 @@ const cost: z.ZodType<Cost> = z.object({
 });
 
 const weapon: z.ZodType<Weapon> = z.looseObject({
+  minRange: z.number().optional(),
+  splashRadius: z.number().optional(),
   name: z.string().optional(),
   damage: z.number().optional(),
   cooldown: z.number().optional(),
@@ -59,6 +61,8 @@ const economy: z.ZodType<EconomyStat[]> = z.array(
 );
 
 const ability: z.ZodType<Ability> = z.looseObject({
+  targets: ids.optional(),
+  excludedTargets: ids.optional(),
   name: z.string(),
   description: z.string().optional(),
   values: descriptionValues.optional(),
@@ -96,6 +100,8 @@ const turret = z.looseObject({
   cost: cost.optional(),
   buildTime: z.number().optional(),
   hp: z.number().optional(),
+  combatStats: gameStats.optional(),
+  transport: z.object({ capacity: z.number().optional(), unitCapacity: z.number().optional(), targets: ids.optional(), excludedTargets: ids.optional() }).optional(),
   armor: z.number().optional(),
   armorType: z.string().optional(),
   weapons: z.array(weapon).optional(),
@@ -108,6 +114,8 @@ const summon = z.looseObject({
   count: z.number().optional(),
   duration: z.number().optional(),
   hp: z.number().optional(),
+  combatStats: gameStats.optional(),
+  transport: z.object({ capacity: z.number().optional(), unitCapacity: z.number().optional(), targets: ids.optional(), excludedTargets: ids.optional() }).optional(),
   shields: z.number().optional(),
   armor: z.number().optional(),
   armorType: z.string().optional(),
@@ -130,6 +138,8 @@ const factions = defineCollection({
   loader: glob({ base: './data/wiki', pattern: ['*.json', '!source.json', '!_report.json'], generateId }),
   schema: z.looseObject({
     id: z.string(),
+    targets: ids.optional(),
+    excludedTargets: ids.optional(),
     kind: z.enum(['faction', 'mercenary']),
     name: z.string(),
     color: z
@@ -143,6 +153,8 @@ const entities = defineCollection({
   loader: glob({ base: './data/wiki', pattern: '*/*/*.json', generateId }),
   schema: z.looseObject({
     id: z.string(),
+    targets: ids.optional(),
+    excludedTargets: ids.optional(),
     kind: z.enum(['unit', 'hero', 'building', 'topbar', 'talent', 'upgrade']),
     faction: z.string(),
     name: z.string(),
@@ -158,6 +170,8 @@ const entities = defineCollection({
     researchTime: z.number().optional(),
     supply: z.number().optional(),
     hp: z.number().optional(),
+  combatStats: gameStats.optional(),
+  transport: z.object({ capacity: z.number().optional(), unitCapacity: z.number().optional(), targets: ids.optional(), excludedTargets: ids.optional() }).optional(),
     shields: z.number().optional(),
     armor: z.number().optional(),
     armorRating: z.number().optional(),
@@ -174,6 +188,8 @@ const entities = defineCollection({
       .array(
         z.looseObject({
           id: z.string(),
+    targets: ids.optional(),
+    excludedTargets: ids.optional(),
           upgrade: z.string().optional(),
           cost: cost.optional(),
           researchTime: z.number().optional(),

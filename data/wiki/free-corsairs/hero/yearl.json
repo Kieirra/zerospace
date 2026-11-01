@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 150,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 2,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 40,
+      "unit": "%"
+    }
+  ],
   "shields": 150,
   "speed": 500,
   "vision": 1800,
@@ -33,7 +45,10 @@
       "name": "Disrupting Shot",
       "description": "The blast deals 30 damage, slows enemies, and prevents them from using attacking or using abilities for 3s.",
       "hotkey": "Z",
-      "range": 2000
+      "range": 2000,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Shadow Walk",
@@ -56,7 +71,10 @@
       },
       "hotkey": "E",
       "cooldown": 45,
-      "range": 1600
+      "range": 1600,
+      "excludedTargets": [
+        "Air"
+      ]
     }
   ],
   "portrait": "Troop_MPHero_Dread",

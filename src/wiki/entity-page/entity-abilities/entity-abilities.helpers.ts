@@ -1,4 +1,4 @@
-import { formatOptionalDistance, formatOptionalNumber, formatOptionalSeconds } from '../../wiki.helpers.ts';
+import { formatTargets, formatOptionalDistance, formatOptionalNumber, formatOptionalSeconds } from '../../wiki.helpers.ts';
 import type { Entity } from '../../wiki.types.ts';
 
 type Ability = NonNullable<Entity['abilities']>[number];
@@ -6,6 +6,7 @@ type Ability = NonNullable<Entity['abilities']>[number];
 export const buildAbilityMeta = (ability: Ability) =>
   [
     { label: 'Hotkey', value: ability.hotkey },
+    { label: 'Targets', value: formatTargets(ability) },
     { label: 'Cooldown', value: formatOptionalSeconds(ability.cooldown) },
     { label: 'Energy', value: formatOptionalNumber(ability.energyCost) },
     { label: 'Range', value: formatOptionalDistance(ability.range) },

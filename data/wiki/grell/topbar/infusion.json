@@ -88,6 +88,10 @@
     }
   },
   "range": 2000,
+  "excludedTargets": [
+    "Building",
+    "ScoutingDrone"
+  ],
   "portrait": "TGUI_icon_skill_infused_lifesteal",
   "asset": "Maguro/CustomHero/InfuseEssence/RI_TopBar_InfuseEssence"
 }

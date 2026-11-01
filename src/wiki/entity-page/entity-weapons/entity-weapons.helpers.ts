@@ -23,6 +23,8 @@ export const toWeaponTiles = (weapon: Weapon) =>
           { label: 'DPS', value: formatDps(weapon), isAccent: true },
         ]),
     { label: 'Range', value: formatOptionalDistance(weapon.range) },
+    { label: 'Minimum range', value: formatOptionalDistance(weapon.minRange) },
+    { label: 'Splash radius', value: formatOptionalDistance(weapon.splashRadius) },
     { label: 'Cooldown', value: formatOptionalSeconds(toFirePeriod(weapon)) },
     { label: 'Burst', value: isBurst(weapon) ? formatOptionalNumber(weapon.burst) : undefined },
     { label: 'Burst cooldown', value: isBurst(weapon) ? formatOptionalSeconds(weapon.burstCooldown) : undefined },

@@ -14,6 +14,13 @@
   "buildTime": 80,
   "supply": 8,
   "hp": 900,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
   "armorRating": 3,
   "armorType": "heavy",
   "energy": 15,
@@ -30,6 +37,10 @@
       "burst": 2,
       "burstCooldown": 2,
       "range": 175,
+      "splashRadius": 60,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.2,
       "projectileSpeed": 5000,
       "melee": true,
@@ -42,7 +53,10 @@
       "description": "Charge into enemies knocking them back and dealing 80 damage",
       "hotkey": "R",
       "energyCost": 15,
-      "range": 1600
+      "range": 1600,
+      "excludedTargets": [
+        "Air"
+      ]
     }
   ],
   "producedBy": [

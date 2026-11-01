@@ -10,6 +10,18 @@
   },
   "supply": 10,
   "hp": 280,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 2,
+      "unit": "/s"
+    },
+    {
+      "label": "Stun resistance",
+      "value": 40,
+      "unit": "%"
+    }
+  ],
   "speed": 525,
   "vision": 1800,
   "size": 100,
@@ -38,7 +50,10 @@
       },
       "hotkey": "Z",
       "cooldown": 15,
-      "range": 2000
+      "range": 2000,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Root Passage",

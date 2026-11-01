@@ -8,6 +8,9 @@
   "energyCost": 5,
   "cooldown": 120,
   "range": 2000,
+  "excludedTargets": [
+    "Building"
+  ],
   "researchTime": 0,
   "tier": "T3",
   "portrait": "TGUI_icon_logo_grell",

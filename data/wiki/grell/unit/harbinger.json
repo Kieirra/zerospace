@@ -14,6 +14,13 @@
   "buildTime": 35,
   "supply": 4,
   "hp": 400,
+  "combatStats": [
+    {
+      "label": "Health regeneration",
+      "value": 3,
+      "unit": "/s"
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 525,
@@ -29,6 +36,9 @@
       "burst": 1,
       "burstCooldown": 1.7,
       "range": 600,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.17,
       "projectileSpeed": 1500,
       "dps": 14.1176,
@@ -52,7 +62,10 @@
       },
       "hotkey": "T",
       "cooldown": 16,
-      "range": 1600
+      "range": 1600,
+      "excludedTargets": [
+        "Air"
+      ]
     }
   ],
   "producedBy": [

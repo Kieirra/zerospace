@@ -17,6 +17,19 @@
   },
   "buildTime": 22,
   "hp": 600,
+  "transport": {
+    "unitCapacity": 1,
+    "targets": [
+      "Rumbler",
+      "Spectron",
+      "Xyther",
+      "Scouting Drone"
+    ],
+    "excludedTargets": [
+      "Hallucination",
+      "Temporarily mind controlled"
+    ]
+  },
   "weapons": [
     {
       "damage": 20,

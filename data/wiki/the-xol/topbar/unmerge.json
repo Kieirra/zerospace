@@ -5,6 +5,9 @@
   "name": "Unmerge",
   "description": "Unmerge Xol units in the target area to their previous forms",
   "order": 4,
+  "targets": [
+    "Unit"
+  ],
   "researchTime": 0,
   "portrait": "TGUI_icon_skill_galavax_emperor",
   "asset": "Archetype_Abilities/Troop_Abilities/Multiplayer/Xol/Topbar_Unmerge/RI_Xol_TopbarAbility_MP_Unmerge"

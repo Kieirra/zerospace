@@ -13,6 +13,12 @@
     "base": 1,
     "fluxWeight": 1.25
   },
+  "excludedTargets": [
+    "Hero",
+    "Scavenger",
+    "Building",
+    "ScoutingDrone"
+  ],
   "researchTime": 20,
   "portrait": "TGUI_icon_skill_improved_crisis_response",
   "asset": "Archetype_Abilities/Troop_Abilities/Multiplayer/Xol/Topbar_Replicate/RI_Xol_TopbarAbility_MP_Replicate"

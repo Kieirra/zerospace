@@ -13,6 +13,13 @@
   "buildTime": 45,
   "supply": 10,
   "hp": 260,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 40,
+      "unit": "%"
+    }
+  ],
   "energy": 100,
   "speed": 525,
   "vision": 1800,
@@ -42,7 +49,10 @@
       "hotkey": "D",
       "cooldown": 14,
       "energyCost": 40,
-      "range": 2000
+      "range": 2000,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Sacrificial Spear",

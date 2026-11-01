@@ -14,4 +14,39 @@ describe('Entity stat tiles', () => {
       batch: { count: 3, cost: [{ amount: '75', resource: 'hexite' }] },
     });
   });
+
+  it('should keep the cost first and place the game stats right after HP', () => {
+    const hel: Entity = {
+      id: 'marran/hero/hel',
+      kind: 'hero',
+      faction: 'marran',
+      name: 'Hel',
+      cost: { hexite: 220 },
+      hp: 130,
+      combatStats: [
+        { label: 'Health regeneration', value: 2, unit: '/s' },
+        { label: 'Stun resistance', value: 40, unit: '%' },
+      ],
+    };
+
+    const labels = buildStatTiles(hel).map(({ label }) => label);
+
+    expect(labels[0]).toBe('Cost');
+    expect(labels.indexOf('Regen')).toBe(labels.indexOf('HP') + 1);
+    expect(labels.indexOf('Stun resistance')).toBeGreaterThan(labels.indexOf('HP'));
+  });
+
+  it('should let the transport accepts tile span two tiles because its value can be long', () => {
+    const strider: Entity = {
+      id: 'protectorate/unit/strider',
+      kind: 'unit',
+      faction: 'protectorate',
+      name: 'Strider',
+      transport: { capacity: 16, targets: ['Light'], excludedTargets: ['Hero', 'Air'] },
+    };
+
+    const acceptsTile = buildStatTiles(strider).find(({ label }) => label === 'Transport accepts');
+
+    expect(acceptsTile).toEqual({ label: 'Transport accepts', value: 'Light, Not Hero, Not Air', span: 2 });
+  });
 });

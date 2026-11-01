@@ -14,6 +14,13 @@
   "buildTime": 50,
   "supply": 10,
   "hp": 750,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
   "shields": 750,
   "armorType": "heavy",
   "speed": 450,
@@ -28,6 +35,7 @@
       "burst": 1,
       "burstCooldown": 3.5,
       "range": 1300,
+      "splashRadius": 200,
       "warmup": 0.22,
       "projectileSpeed": 1400,
       "dps": 14.2857
@@ -42,7 +50,14 @@
       },
       "hotkey": "Z",
       "cooldown": 90,
-      "range": 1500
+      "range": 1500,
+      "targets": [
+        "Unit"
+      ],
+      "excludedTargets": [
+        "Building",
+        "Hero"
+      ]
     }
   ],
   "requires": [

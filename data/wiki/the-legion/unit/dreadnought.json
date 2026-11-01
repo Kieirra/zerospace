@@ -13,6 +13,13 @@
   "buildTime": 80,
   "supply": 15,
   "hp": 800,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 70,
+      "unit": "%"
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 500,
@@ -29,7 +36,10 @@
       },
       "hotkey": "T",
       "cooldown": 60,
-      "range": 350
+      "range": 350,
+      "excludedTargets": [
+        "Air"
+      ]
     },
     {
       "name": "Upgrade Bays",
@@ -50,6 +60,13 @@
       },
       "buildTime": 20,
       "hp": 400,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy",
       "weapons": [
         {
@@ -58,6 +75,13 @@
           "burst": 2,
           "burstCooldown": 2,
           "range": 2000,
+          "splashRadius": 150,
+          "targets": [
+            "Air"
+          ],
+          "excludedTargets": [
+            "GroundUnit"
+          ],
           "warmup": 0,
           "dps": 27
         }
@@ -74,6 +98,13 @@
       },
       "buildTime": 20,
       "hp": 400,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy"
     },
     {
@@ -84,6 +115,13 @@
       },
       "buildTime": 20,
       "hp": 400,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy"
     },
     {
@@ -94,6 +132,13 @@
       },
       "buildTime": 20,
       "hp": 400,
+      "combatStats": [
+        {
+          "label": "Stun resistance",
+          "value": 70,
+          "unit": "%"
+        }
+      ],
       "armorType": "heavy"
     }
   ],

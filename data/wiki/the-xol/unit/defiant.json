@@ -29,6 +29,9 @@
       "burst": 1,
       "burstCooldown": 1.25,
       "range": 150,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.175,
       "melee": true,
       "dps": 28.8,

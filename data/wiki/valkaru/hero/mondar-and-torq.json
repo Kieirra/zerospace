@@ -10,6 +10,13 @@
   },
   "supply": 5,
   "hp": 280,
+  "combatStats": [
+    {
+      "label": "Stun resistance",
+      "value": 60,
+      "unit": "%"
+    }
+  ],
   "speed": 600,
   "vision": 1800,
   "size": 100,
@@ -22,6 +29,9 @@
       "burst": 1,
       "burstCooldown": 1.2,
       "range": 150,
+      "excludedTargets": [
+        "Air"
+      ],
       "warmup": 0.12,
       "melee": true,
       "dps": 10

@@ -8,6 +8,12 @@
   },
   "buildTime": 20,
   "hp": 300,
+  "combatStats": [
+    {
+      "label": "Detection range",
+      "value": 20
+    }
+  ],
   "armorRating": 1,
   "weapons": [
     {
