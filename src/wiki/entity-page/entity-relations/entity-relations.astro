@@ -1,5 +1,7 @@
 ---
 import EntityFacts from '../entity-facts/entity-facts.astro';
+import { getEntityMap } from '../../wiki.data.ts';
+import { byOrderThenName } from '../../wiki.helpers.ts';
 import type { Entity } from '../../wiki.types.ts';
 
 interface Props {
@@ -9,7 +11,10 @@ interface Props {
 
 const { producedBy, produces, requires, unlocks, upgradedFrom, transformsInto, mergedFrom, mergesInto } =
   Astro.props.entity;
-const toLinks = (ids?: string[]) => ids?.map((id) => ({ id }));
+const entities = await getEntityMap();
+const toOrdered = (id: string) => entities.get(id) ?? { name: id };
+const toLinks = (ids?: string[]) =>
+  ids && [...ids].sort((a, b) => byOrderThenName(toOrdered(a), toOrdered(b))).map((id) => ({ id }));
 ---
 
 <EntityFacts

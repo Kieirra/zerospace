@@ -7,6 +7,7 @@ import {
   formatDps,
   formatOptionalNumber,
   formatOptionalSeconds,
+  byOrderThenName,
   interpolate,
   keepFilledTiles,
 } from '../../wiki.helpers.ts';
@@ -18,24 +19,27 @@ interface Props {
 
 const { upgradesTo = [] } = Astro.props;
 const entities = await getEntityMap();
+const toOrdered = (id: string) => entities.get(id) ?? { name: id };
 
-const cards = upgradesTo.map(({ id, upgrade, cost, researchTime }) => {
-  const target = entities.get(id);
-  const upgradeEntity = upgrade ? entities.get(upgrade) : undefined;
-  const firstWeapon = target?.weapons?.[0];
-  return {
-    id,
-    name: target?.name ?? id,
-    isResolved: target !== undefined,
-    tiles: keepFilledTiles([
-      { label: 'Cost', value: formatCost(cost) },
-      { label: 'Upgrade time', value: formatOptionalSeconds(researchTime) },
-      { label: 'HP', value: formatOptionalNumber(target?.hp) },
-      { label: 'DPS', value: firstWeapon && formatDps(firstWeapon), isAccent: true },
-    ]),
-    description: upgradeEntity?.description && interpolate(upgradeEntity.description, upgradeEntity.values),
-  };
-});
+const cards = [...upgradesTo]
+  .sort((a, b) => byOrderThenName(toOrdered(a.id), toOrdered(b.id)))
+  .map(({ id, upgrade, cost, researchTime }) => {
+    const target = entities.get(id);
+    const upgradeEntity = upgrade ? entities.get(upgrade) : undefined;
+    const firstWeapon = target?.weapons?.[0];
+    return {
+      id,
+      name: target?.name ?? id,
+      isResolved: target !== undefined,
+      tiles: keepFilledTiles([
+        { label: 'Cost', value: formatCost(cost) },
+        { label: 'Upgrade time', value: formatOptionalSeconds(researchTime) },
+        { label: 'HP', value: formatOptionalNumber(target?.hp) },
+        { label: 'DPS', value: firstWeapon && formatDps(firstWeapon), isAccent: true },
+      ]),
+      description: upgradeEntity?.description && interpolate(upgradeEntity.description, upgradeEntity.values),
+    };
+  });
 ---
 
 {

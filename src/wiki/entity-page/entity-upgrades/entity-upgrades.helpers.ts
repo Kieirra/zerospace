@@ -1,4 +1,4 @@
-import { byTierThenName } from '../../wiki.helpers.ts';
+import { byTierThenOrder } from '../../wiki.helpers.ts';
 import type { Entity } from '../../wiki.types.ts';
 
 export interface UpgradeRow {
@@ -10,7 +10,7 @@ export interface UpgradeRow {
 // Rows follow their first upgrade in tier order, as exclusive groups can mix tiers.
 export const groupUpgradeRows = (upgrades: Entity[]) => {
   const rows = new Map<string, Entity[]>();
-  for (const upgrade of [...upgrades].sort(byTierThenName)) {
+  for (const upgrade of [...upgrades].sort(byTierThenOrder)) {
     const key = upgrade.exclusiveGroup ? `group:${upgrade.exclusiveGroup}` : `tier:${upgrade.tier ?? ''}`;
     rows.set(key, [...(rows.get(key) ?? []), upgrade]);
   }

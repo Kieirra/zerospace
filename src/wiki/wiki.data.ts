@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
 import { TABS } from './wiki.constants.ts';
-import { byName } from './wiki.helpers.ts';
+import { byName, byOrderThenName } from './wiki.helpers.ts';
 import type { SearchItem } from '../shared/search/search.helpers.ts';
 import type { EntityKind } from './wiki.types.ts';
 
@@ -13,7 +13,7 @@ export const getEntityMap = async () => new Map((await getEntities()).map((entit
 export const getFactionMap = async () => new Map((await getFactions()).map((faction) => [faction.id, faction]));
 
 export const getFactionEntities = async (factionId: string, kind: EntityKind) =>
-  (await getEntities()).filter((entity) => entity.faction === factionId && entity.kind === kind).sort(byName);
+  (await getEntities()).filter((entity) => entity.faction === factionId && entity.kind === kind).sort(byOrderThenName);
 
 export const getFactionTabs = async (factionId: string) => {
   const entities = await getEntities();

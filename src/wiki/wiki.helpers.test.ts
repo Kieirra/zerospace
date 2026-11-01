@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
-  byTierThenName,
+  byOrderThenName,
+  byTierThenOrder,
   formatDistance,
   formatDps,
   formatIncome,
@@ -102,7 +103,7 @@ describe('Wiki display rules', () => {
     const upgrade = (name: string, tier?: string): Entity => ({ id: name, kind: 'upgrade', faction: 'grell', name, tier });
     const upgrades = [upgrade('Volatile', 'T3'), upgrade('Camouflage', 'T2'), upgrade('Tunnel'), upgrade('Armor', 'T1')];
 
-    expect(upgrades.sort(byTierThenName).map(({ name }) => name)).toEqual(['Armor', 'Tunnel', 'Camouflage', 'Volatile']);
+    expect(upgrades.sort(byTierThenOrder).map(({ name }) => name)).toEqual(['Armor', 'Tunnel', 'Camouflage', 'Volatile']);
   });
 
   it('should take the first per-minute figure of a resource as the income of a base', () => {
@@ -119,5 +120,16 @@ describe('Wiki display rules', () => {
     };
 
     expect(formatIncome(operatingTower)).toEqual([{ amount: '336', resource: 'hexite', suffix: '/min' }]);
+  });
+
+  it('should follow the game order and put entities without order last, by name, when sorting', () => {
+    const entities = [
+      { name: 'Reaver' },
+      { name: 'Stinger', order: 2 },
+      { name: 'Lasher', order: 1 },
+      { name: 'Arkanid' },
+    ];
+
+    expect(entities.sort(byOrderThenName).map(({ name }) => name)).toEqual(['Lasher', 'Stinger', 'Arkanid', 'Reaver']);
   });
 });

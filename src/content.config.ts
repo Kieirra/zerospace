@@ -143,6 +143,7 @@ const entities = defineCollection({
     kind: z.enum(['unit', 'hero', 'building', 'topbar', 'talent', 'upgrade']),
     faction: z.string(),
     name: z.string(),
+    order: z.number().optional(),
     description: z.string().optional(),
     details: z.string().optional(),
     stats: gameStats.optional(),

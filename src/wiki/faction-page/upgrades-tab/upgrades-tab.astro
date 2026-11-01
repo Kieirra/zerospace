@@ -2,7 +2,7 @@
 import EntityRows from '../entity-rows/entity-rows.astro';
 import { groupEntities } from '../faction-page.helpers.ts';
 import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
-import { byTierThenName, formatCost, formatOptionalSeconds, interpolate } from '../../wiki.helpers.ts';
+import { byTierThenOrder, formatCost, formatOptionalSeconds, interpolate } from '../../wiki.helpers.ts';
 import type { Entity } from '../../wiki.types.ts';
 
 interface Props {
@@ -34,5 +34,5 @@ const toRow = (upgrade: Entity) => ({
 
 <EntityRows
   columns={columns}
-  groups={groups.map(({ title, entities }) => ({ title, rows: entities.sort(byTierThenName).map(toRow) }))}
+  groups={groups.map(({ title, entities }) => ({ title, rows: entities.sort(byTierThenOrder).map(toRow) }))}
 />

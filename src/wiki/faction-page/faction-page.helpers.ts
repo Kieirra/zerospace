@@ -1,39 +1,41 @@
 import { OTHER_GROUP } from '../wiki.constants.ts';
-import { byName } from '../wiki.helpers.ts';
+import { byName, byOrderThenName } from '../wiki.helpers.ts';
 import type { Entity } from '../wiki.types.ts';
 
 export interface EntityGroup {
   title: string;
+  order?: number;
   entities: Entity[];
 }
 
+// Groups follow the game order of the entity they are named after (producer building, upgraded unit), Other last.
 export const groupEntities = (
   entities: Entity[],
   getGroupId: (entity: Entity) => string | undefined,
   names: Map<string, Entity>,
 ) => {
-  const groups = new Map<string, Entity[]>();
+  const groups = new Map<string, EntityGroup>();
   for (const entity of entities) {
     const groupId = getGroupId(entity);
-    const title = groupId ? (names.get(groupId)?.name ?? groupId) : OTHER_GROUP;
-    groups.set(title, [...(groups.get(title) ?? []), entity]);
+    const groupEntity = groupId ? names.get(groupId) : undefined;
+    const title = groupId ? (groupEntity?.name ?? groupId) : OTHER_GROUP;
+    const group = groups.get(title) ?? { title, order: groupEntity?.order, entities: [] };
+    groups.set(title, { ...group, entities: [...group.entities, entity] });
   }
-  return [...groups]
-    .map(([title, groupEntities]): EntityGroup => ({ title, entities: groupEntities }))
-    .sort(byTitleWithOtherLast);
+  return [...groups.values()].sort(byOrderWithOtherLast);
 };
 
 // An upgraded building follows the building it comes from, one depth level further.
 export const nestUpgradedBuildings = (buildings: Entity[]) => {
   const ids = new Set(buildings.map(({ id }) => id));
-  const upgradesOf = (id: string) => buildings.filter(({ upgradedFrom }) => upgradedFrom === id).sort(byName);
+  const upgradesOf = (id: string) => buildings.filter(({ upgradedFrom }) => upgradedFrom === id).sort(byOrderThenName);
   const withUpgrades = (building: Entity, depth: number): { building: Entity; depth: number }[] => [
     { building, depth },
     ...upgradesOf(building.id).flatMap((upgraded) => withUpgrades(upgraded, depth + 1)),
   ];
   return buildings
     .filter(({ upgradedFrom }) => upgradedFrom === undefined || !ids.has(upgradedFrom))
-    .sort(byName)
+    .sort(byOrderThenName)
     .flatMap((building) => withUpgrades(building, 0));
 };
 
@@ -57,5 +59,6 @@ export const groupByLevel = (entities: Entity[]) =>
         .sort((a, b) => (a.position ?? '').localeCompare(b.position ?? '')),
     }));
 
-const byTitleWithOtherLast = (a: EntityGroup, b: EntityGroup) =>
-  Number(a.title === OTHER_GROUP) - Number(b.title === OTHER_GROUP) || a.title.localeCompare(b.title);
+const byOrderWithOtherLast = (a: EntityGroup, b: EntityGroup) =>
+  Number(a.title === OTHER_GROUP) - Number(b.title === OTHER_GROUP) ||
+  byOrderThenName({ name: a.title, order: a.order }, { name: b.title, order: b.order });

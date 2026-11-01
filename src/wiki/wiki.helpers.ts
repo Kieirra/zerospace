@@ -85,7 +85,10 @@ export const kindTabHref = (factionId: string, kind: EntityKind) =>
 
 export const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name);
 
-export const byTierThenName = (a: Entity, b: Entity) => toTierRank(a) - toTierRank(b) || byName(a, b);
+// Display order of the game (`order`, smaller first), entities without order last, then by name.
+export const byOrderThenName = (a: Ordered, b: Ordered) => toOrderRank(a) - toOrderRank(b) || byName(a, b);
+
+export const byTierThenOrder = (a: Entity, b: Entity) => toTierRank(a) - toTierRank(b) || byOrderThenName(a, b);
 
 export const toInitial = (name: string) => name.charAt(0);
 
@@ -127,3 +130,10 @@ interface LabeledValue {
   unit?: string;
   levels?: number[];
 }
+
+interface Ordered {
+  name: string;
+  order?: number;
+}
+
+const toOrderRank = ({ order }: Ordered) => order ?? Number.MAX_SAFE_INTEGER;
