@@ -3,6 +3,7 @@ import {
   byTierThenName,
   formatDistance,
   formatDps,
+  formatIncome,
   formatNumber,
   formatUnitCost,
   interpolate,
@@ -56,8 +57,17 @@ describe('Wiki display rules', () => {
     ];
 
     expect(toGameStatTiles(stats)).toEqual([
-      { label: 'Attack speed', value: '40%' },
-      { label: 'Damage', value: '10/20/30' },
+      { label: 'Attack speed', value: '40%', levels: undefined },
+      { label: 'Damage', value: '10/20/30', levels: undefined },
+    ]);
+  });
+
+  it('should label each value with its level when the game stat gives the levels', () => {
+    const infusionDamage: GameStat = { label: 'Damage', value: [45, 90], unit: '%', levels: [1, 2] };
+
+    expect(toGameStatTiles([infusionDamage])[0].levels).toEqual([
+      { level: 1, value: '45%' },
+      { level: 2, value: '90%' },
     ]);
   });
 
@@ -93,5 +103,21 @@ describe('Wiki display rules', () => {
     const upgrades = [upgrade('Volatile', 'T3'), upgrade('Camouflage', 'T2'), upgrade('Tunnel'), upgrade('Armor', 'T1')];
 
     expect(upgrades.sort(byTierThenName).map(({ name }) => name)).toEqual(['Armor', 'Tunnel', 'Camouflage', 'Volatile']);
+  });
+
+  it('should take the first per-minute figure of a resource as the income of a base', () => {
+    const operatingTower: Entity = {
+      id: 'protectorate/building/operating-tower',
+      kind: 'building',
+      faction: 'protectorate',
+      name: 'Operating Tower',
+      economy: [
+        { label: 'Workers', value: 6 },
+        { label: 'Hexite / min', value: 336, unit: '/min' },
+        { label: 'Hexite / min (rich)', value: 504, unit: '/min' },
+      ],
+    };
+
+    expect(formatIncome(operatingTower)).toEqual([{ amount: '336', resource: 'hexite', suffix: '/min' }]);
   });
 });

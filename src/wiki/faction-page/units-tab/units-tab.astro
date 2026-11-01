@@ -2,7 +2,7 @@
 import EntityRows from '../entity-rows/entity-rows.astro';
 import { groupEntities } from '../faction-page.helpers.ts';
 import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
-import { formatDps, formatOptionalDistance, formatOptionalNumber, formatUnitCost } from '../../wiki.helpers.ts';
+import { formatDps, formatIncome, formatOptionalDistance, formatOptionalNumber, formatUnitCost } from '../../wiki.helpers.ts';
 import type { Entity } from '../../wiki.types.ts';
 
 interface Props {
@@ -21,6 +21,7 @@ const columns = [
   { label: 'DPS', isDesktopOnly: true },
   { label: 'Range', isDesktopOnly: true },
   { label: 'Speed', isDesktopOnly: true },
+  { label: 'Income', isDesktopOnly: true, width: '6.5rem' },
 ];
 
 const toRow = (unit: Entity) => {
@@ -36,6 +37,7 @@ const toRow = (unit: Entity) => {
       weapon && formatDps(weapon),
       formatOptionalDistance(weapon?.range),
       formatOptionalNumber(unit.speed),
+      formatIncome(unit),
     ],
   };
 };

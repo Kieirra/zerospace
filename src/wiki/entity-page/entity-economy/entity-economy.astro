@@ -1,0 +1,20 @@
+---
+import EntitySection from '../entity-section/entity-section.astro';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import { toGameStatTiles } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  economy?: Entity['economy'];
+}
+
+const tiles = toGameStatTiles(Astro.props.economy);
+---
+
+{
+  tiles.length > 0 && (
+    <EntitySection title="Economy">
+      <StatTiles tiles={tiles} />
+    </EntitySection>
+  )
+}

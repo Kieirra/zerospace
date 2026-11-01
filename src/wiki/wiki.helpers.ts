@@ -1,5 +1,5 @@
 import { TABS } from './wiki.constants.ts';
-import type { CostSegment, DescriptionValues, Entity, EntityKind, GameStat, StatTile, Weapon } from './wiki.types.ts';
+import type { CostSegment, DescriptionValues, Entity, EntityKind, StatTile, Weapon } from './wiki.types.ts';
 
 const DISTANCE_SCALE = 100;
 const VARIABLE_PATTERN = /\{([^{}]+)\}/g;
@@ -51,8 +51,25 @@ export const formatArmor = ({ armor, armorType }: { armor?: number; armorType?: 
 export const keepFilledTiles = (tiles: (Omit<StatTile, 'value'> & { value?: StatTile['value'] })[]) =>
   tiles.filter((tile): tile is StatTile => tile.value !== undefined);
 
-export const toGameStatTiles = (stats: GameStat[] = []) =>
-  stats.map(({ label, value, unit }) => ({ label, value: `${[value].flat().map(formatNumber).join('/')}${unit ?? ''}` }));
+export const toGameStatTiles = (stats: LabeledValue[] = []) =>
+  stats.map(({ label, value, unit = '', levels }) => ({
+    label,
+    value: `${[value].flat().map(formatNumber).join('/')}${unit}`,
+    levels:
+      Array.isArray(value) && levels?.length === value.length
+        ? value.map((levelValue, index) => ({ level: levels[index], value: `${formatNumber(levelValue)}${unit}` }))
+        : undefined,
+  }));
+
+// Main income of a base or harvester: the first per-minute figure of a resource.
+export const formatIncome = ({ economy = [] }: Entity) => {
+  const income = economy.find(({ label, unit }) => unit === '/min' && toLabelResource(label));
+  const resource = income && toLabelResource(income.label);
+  if (!income || !resource) return undefined;
+  return [{ amount: formatNumber([income.value].flat()[0]), resource, suffix: '/min' }] satisfies CostSegment[];
+};
+
+export const toLabelResource = (label: string) => RESOURCES.find((resource) => new RegExp(`\\b${resource}\\b`, 'i').test(label));
 
 export const formatEnergyCost = (energyCost: Entity['energyCost']) => {
   if (energyCost === undefined) return undefined;
@@ -103,3 +120,10 @@ export const describeEnergyCost = (parameters: EnergyParameters) =>
 const toTierRank = ({ tier }: Entity) => Number(tier?.match(/\d+/)?.[0] ?? 1);
 
 const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+
+interface LabeledValue {
+  label: string;
+  value: number | number[];
+  unit?: string;
+  levels?: number[];
+}

@@ -2,6 +2,8 @@
 import clsx from 'clsx';
 import CostValue from '../../cost-value/cost-value.astro';
 import StatIcon from '../stat-icon/stat-icon.astro';
+import { findImageUrl } from '../../game-image/game-image.helpers.ts';
+import { toLabelResource } from '../../wiki.helpers.ts';
 import type { StatTile } from '../../wiki.types.ts';
 import { toBatchPrefix, toShortLabel, toTileMinWidth } from './stat-tiles.helpers.ts';
 
@@ -11,6 +13,10 @@ interface Props {
 }
 
 const { tiles, isNested } = Astro.props;
+const resourceIconUrls = tiles.map(({ label }) => {
+  const resource = toLabelResource(label);
+  return resource && findImageUrl(`icons/${resource}`);
+});
 ---
 
 {
@@ -22,17 +28,37 @@ const { tiles, isNested } = Astro.props;
         isNested,
       )}`}
     >
-      {tiles.map(({ label, value, batch, isAccent }) => (
+      {tiles.map(({ label, value, batch, isAccent, levels }, tileIndex) => (
         <div class={clsx('min-w-0 bevel-sm px-2.5 py-1.5', isNested ? 'bg-surface-raised' : 'bg-surface')}>
           <dt class="flex items-center gap-1 font-label text-[10px] font-semibold tracking-[.12em] text-muted uppercase">
-            <StatIcon label={label} />
+            {resourceIconUrls[tileIndex] ? (
+              <img
+                src={resourceIconUrls[tileIndex]}
+                alt=""
+                width="12"
+                height="12"
+                decoding="async"
+                class="size-3 max-w-none shrink-0"
+              />
+            ) : (
+              <StatIcon label={label} />
+            )}
             <span class="min-w-0 truncate" title={label} aria-hidden={toShortLabel(label) !== label ? 'true' : undefined}>
               {toShortLabel(label)}
             </span>
             {toShortLabel(label) !== label && <span class="sr-only">{label}</span>}
           </dt>
           <dd class={clsx('font-semibold', isNested ? 'text-sm' : 'text-base', isAccent && 'text-accent-soft')}>
-            {typeof value === 'string' ? (
+            {levels ? (
+              levels.map(({ level, value: levelValue }, index) => (
+                <>
+                  {index > 0 && ' '}
+                  <span class="mr-1 whitespace-nowrap">
+                    <span class="text-[10px] font-normal text-muted">Lv{level}</span> {levelValue}
+                  </span>
+                </>
+              ))
+            ) : typeof value === 'string' ? (
               value.split('/').map((part, index) => (
                 <>
                   {index > 0 && (

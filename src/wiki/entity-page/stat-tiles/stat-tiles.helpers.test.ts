@@ -14,6 +14,8 @@ describe('Tile labels', () => {
     expect(toShortLabel('Bonus Damage vs Medium')).toBe('vs Medium');
     expect(toShortLabel('Splash Radius')).toBe('Splash');
     expect(toShortLabel('Hexite per 100 XP')).toBe('Hexite/100XP');
+    expect(toShortLabel('Hexite / min (rich)')).toBe('Rich');
+    expect(toShortLabel('Flux / min')).toBe('Income');
   });
 
   it('should separate the batch size from the batch cost when showing a batch', () => {

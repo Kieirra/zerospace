@@ -15,11 +15,13 @@ export interface StatTile {
   value: string | CostSegment[];
   batch?: { count: number; cost: CostSegment[] };
   isAccent?: boolean;
+  levels?: { level: number; value: string }[];
 }
 
 export interface CostSegment {
   amount: string;
   resource: keyof NonNullable<Entity['cost']>;
+  suffix?: string;
 }
 
 export interface Tab {

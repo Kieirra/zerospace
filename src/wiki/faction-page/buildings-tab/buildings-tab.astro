@@ -2,7 +2,7 @@
 import EntityRows from '../entity-rows/entity-rows.astro';
 import { nestUpgradedBuildings } from '../faction-page.helpers.ts';
 import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
-import { formatCost, formatOptionalNumber, formatOptionalSeconds } from '../../wiki.helpers.ts';
+import { formatCost, formatIncome, formatOptionalNumber, formatOptionalSeconds } from '../../wiki.helpers.ts';
 
 interface Props {
   factionId: string;
@@ -16,6 +16,7 @@ const columns = [
   { label: 'Cost', width: '8.5rem' },
   { label: 'Build time', width: '6rem' },
   { label: 'HP', isDesktopOnly: true },
+  { label: 'Income', isDesktopOnly: true, width: '6.5rem' },
   { label: 'Produces', isDesktopOnly: true, isWide: true },
 ];
 
@@ -27,6 +28,7 @@ const rows = nestUpgradedBuildings(buildings).map(({ building, depth }) => ({
     formatCost(building.cost),
     formatOptionalSeconds(building.buildTime),
     formatOptionalNumber(building.hp),
+    formatIncome(building),
     building.produces?.map((id) => entities.get(id)?.name ?? id).join(', ') || undefined,
   ],
 }));

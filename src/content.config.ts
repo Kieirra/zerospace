@@ -4,6 +4,7 @@ import { z } from 'astro/zod';
 import type {
   Ability,
   Cost,
+  EconomyStat,
   EnergyCostChange,
   Stat,
   TopbarEnergyCost,
@@ -41,6 +42,16 @@ const gameStats: z.ZodType<Stat[]> = z.array(
     label: z.string(),
     value: z.union([z.number(), z.array(z.number())]),
     unit: z.enum(['%', 's', '/s', 'x']).optional(),
+    levels: z.array(z.number()).optional(),
+  }),
+);
+
+const economy: z.ZodType<EconomyStat[]> = z.array(
+  z.looseObject({
+    label: z.string(),
+    value: z.union([z.number(), z.array(z.number())]),
+    unit: z.enum(['/min', '/s', 's', '%', 'x']).optional(),
+    levels: z.array(z.number()).optional(),
   }),
 );
 
@@ -165,6 +176,7 @@ const entities = defineCollection({
         }),
       )
       .optional(),
+    economy: economy.optional(),
     upgradedFrom: z.string().optional(),
     mergedFrom: z.array(z.looseObject({ id: z.string(), count: z.number() })).optional(),
     mergesInto: ids.optional(),

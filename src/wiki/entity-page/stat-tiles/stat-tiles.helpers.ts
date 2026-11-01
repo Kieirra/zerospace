@@ -19,12 +19,22 @@ const SHORT_LABELS: Record<string, string> = {
   'splash radius': 'Splash',
   'max health': 'Max HP',
   'max energy': 'Max EN',
+  'max shields': 'Max SH',
+  'worker spawn time': 'Spawn',
+  'rate when depleted': 'Depleted',
+  'harvesters per node': 'Per node',
 };
 const SHORT_PATTERNS: [RegExp, string][] = [
   // "Bonus vs Air", "Bonus Damage vs Medium" → "vs Air", "vs Medium"
   [/^bonus (?:damage )?vs /i, 'vs '],
   // "Hexite per 100 XP" → "Hexite/100XP"
   [/ per 100 xp$/i, '/100XP'],
+  // Economy labels lose their resource word, shown by its icon: "Hexite / min (rich)" → "Rich"
+  [/^(?:hexite|flux) \/ min \(rich\)$/i, 'Rich'],
+  [/^(?:hexite|flux) \/ min per worker$/i, 'Per worker'],
+  [/^(?:hexite|flux) \/ min$/i, 'Income'],
+  [/^pit (?:hexite|flux) \(rich\)$/i, 'Rich pit'],
+  [/^pit (?:hexite|flux)$/i, 'Pit'],
 ];
 
 export const toShortLabel = (label: string) =>
