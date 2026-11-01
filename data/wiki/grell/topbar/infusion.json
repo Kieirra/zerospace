@@ -9,49 +9,73 @@
       "label": "Damage",
       "value": [
         45,
-        45,
-        90,
-        135,
-        180,
-        225
+        90
       ],
-      "unit": "%"
+      "unit": "%",
+      "levels": [
+        1,
+        2
+      ]
+    },
+    {
+      "label": "Max Health",
+      "value": [
+        45,
+        90
+      ],
+      "unit": "%",
+      "levels": [
+        1,
+        2
+      ]
+    },
+    {
+      "label": "Max Shields",
+      "value": [
+        45,
+        90
+      ],
+      "unit": "%",
+      "levels": [
+        1,
+        2
+      ]
     },
     {
       "label": "Health Regen",
       "value": [
         45,
-        45,
-        90,
-        135,
-        180,
-        225
+        90
       ],
-      "unit": "%"
+      "unit": "%",
+      "levels": [
+        1,
+        2
+      ]
     },
     {
       "label": "Shield Regen",
       "value": [
         45,
-        45,
-        90,
-        135,
-        180,
-        225
+        90
       ],
-      "unit": "%"
+      "unit": "%",
+      "levels": [
+        1,
+        2
+      ]
     },
     {
       "label": "Energy Regen",
       "value": [
         45,
-        45,
-        90,
-        135,
-        180,
-        225
+        90
       ],
-      "unit": "%"
+      "unit": "%",
+      "levels": [
+        1,
+        2
+      ]
     }
   ],
   "energyCost": {

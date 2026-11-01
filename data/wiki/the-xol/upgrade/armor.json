@@ -5,12 +5,7 @@
   "name": "Armor",
   "description": "+{x} armor to units",
   "values": {
-    "x": [
-      1,
-      2,
-      3,
-      4
-    ]
+    "x": 1
   },
   "hotkey": "Q",
   "cost": {

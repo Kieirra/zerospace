@@ -5,12 +5,7 @@
   "name": "Weapon Range",
   "description": "+{x} weapon range to units",
   "values": {
-    "x": [
-      1,
-      2,
-      3,
-      4
-    ]
+    "x": 1
   },
   "hotkey": "F",
   "cost": {

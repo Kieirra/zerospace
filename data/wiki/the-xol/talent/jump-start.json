@@ -10,32 +10,12 @@
   "stats": [
     {
       "label": "Damage",
-      "value": [
-        35,
-        35,
-        35,
-        50
-      ],
+      "value": 35,
       "unit": "%"
     },
     {
       "label": "Movement Speed",
-      "value": [
-        150,
-        150,
-        150,
-        175
-      ]
-    },
-    {
-      "label": "Lifesteal",
-      "value": [
-        0,
-        0,
-        0,
-        25
-      ],
-      "unit": "%"
+      "value": 150
     }
   ],
   "researchTime": 0,
