@@ -47,6 +47,8 @@ export interface Stat {
   label: string;
   value: number | number[];
   unit?: '%' | 's' | '/s' | 'x';
+  // With an array value: the effect level of each value (Infusion: 1st and 2nd infusion).
+  levels?: number[];
 }
 
 export interface Ability {
@@ -142,9 +144,18 @@ export interface UnitFile {
   mergedFrom?: MergeSource[];         // Xol: units merged to obtain this one
   mergesInto?: string[];              // Xol: units this one merges into
   mergeForms?: MergeForm[];           // forms taken by absorbing a unit (Anrubic)
+  economy?: EconomyStat[];            // harvesters: flux gathering
   topbarEnergyCosts?: Record<string, number>;
   portrait?: string;
   asset: string;
+}
+
+// Economy figure of a base or harvester, as a player reads it.
+export interface EconomyStat {
+  label: string;
+  value: number | number[];
+  unit?: '/min' | '/s' | 's' | '%' | 'x';
+  levels?: number[];
 }
 
 // Form a unit takes by absorbing another (Anrubic): what absorbing that unit gives it.
@@ -185,6 +196,7 @@ export interface BuildingFile {
   requires?: string[];
   unlocks?: string[];
   topbarEnergyCosts?: Record<string, number>;
+  economy?: EconomyStat[];            // main bases: hexite extraction
   upgradedFrom?: string;
   upgradesTo?: BuildingUpgrade[];
   portrait?: string;

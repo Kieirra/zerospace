@@ -34,6 +34,27 @@
     "the-legion/building/garrison-tower",
     "the-legion/building/garrison-tower-turret"
   ],
+  "economy": [
+    {
+      "label": "Flux / min",
+      "value": 42,
+      "unit": "/min"
+    },
+    {
+      "label": "Flux / min (rich)",
+      "value": 73.5,
+      "unit": "/min"
+    },
+    {
+      "label": "Harvesters per node",
+      "value": 3
+    },
+    {
+      "label": "Energy / min",
+      "value": 60,
+      "unit": "/min"
+    }
+  ],
   "portrait": "TGUI_portrait_unit_empire_harvester05",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Legion_Harvester_Limited"
 }

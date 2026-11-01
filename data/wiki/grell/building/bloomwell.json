@@ -14,6 +14,45 @@
   "produces": [
     "grell/unit/gatherer"
   ],
+  "economy": [
+    {
+      "label": "Hexite / min",
+      "value": 336,
+      "unit": "/min"
+    },
+    {
+      "label": "Hexite / min (rich)",
+      "value": 504,
+      "unit": "/min"
+    },
+    {
+      "label": "Hexite / min per worker",
+      "value": 56,
+      "unit": "/min"
+    },
+    {
+      "label": "Workers",
+      "value": 6
+    },
+    {
+      "label": "Worker spawn time",
+      "value": 24,
+      "unit": "s"
+    },
+    {
+      "label": "Pit hexite",
+      "value": 4300
+    },
+    {
+      "label": "Pit hexite (rich)",
+      "value": 6500
+    },
+    {
+      "label": "Rate when depleted",
+      "value": 25,
+      "unit": "%"
+    }
+  ],
   "upgradesTo": [
     {
       "id": "grell/building/bloomwell-attacker",

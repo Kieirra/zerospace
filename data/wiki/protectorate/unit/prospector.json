@@ -36,6 +36,22 @@
     "protectorate/building/operating-tower",
     "protectorate/building/operating-tower-turret"
   ],
+  "economy": [
+    {
+      "label": "Flux / min",
+      "value": 60,
+      "unit": "/min"
+    },
+    {
+      "label": "Flux / min (rich)",
+      "value": 105,
+      "unit": "/min"
+    },
+    {
+      "label": "Harvesters per node",
+      "value": 2
+    }
+  ],
   "topbarEnergyCosts": {
     "protectorate/topbar/protective-shield": 4.5
   },

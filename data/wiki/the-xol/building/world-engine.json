@@ -15,6 +15,45 @@
     "the-xol/unit/scouting-drone",
     "the-xol/unit/xol-harvester"
   ],
+  "economy": [
+    {
+      "label": "Hexite / min",
+      "value": 336,
+      "unit": "/min"
+    },
+    {
+      "label": "Hexite / min (rich)",
+      "value": 504,
+      "unit": "/min"
+    },
+    {
+      "label": "Hexite / min per worker",
+      "value": 84,
+      "unit": "/min"
+    },
+    {
+      "label": "Workers",
+      "value": 4
+    },
+    {
+      "label": "Worker spawn time",
+      "value": 33.5,
+      "unit": "s"
+    },
+    {
+      "label": "Pit hexite",
+      "value": 4300
+    },
+    {
+      "label": "Pit hexite (rich)",
+      "value": 6500
+    },
+    {
+      "label": "Rate when depleted",
+      "value": 25,
+      "unit": "%"
+    }
+  ],
   "upgradesTo": [
     {
       "id": "the-xol/building/world-engine-turret",
