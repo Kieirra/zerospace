@@ -1,8 +1,11 @@
 ---
 import EntityLink from '../../entity-link/entity-link.astro';
+import GameImage from '../../game-image/game-image.astro';
+import { getEntityMap } from '../../wiki.data.ts';
 
 interface FactLink {
   id: string;
+  prefix?: string;
   suffix?: string;
 }
 
@@ -10,6 +13,7 @@ interface Fact {
   label: string;
   text?: string;
   links?: FactLink[];
+  hasImages?: boolean;
 }
 
 interface Props {
@@ -17,24 +21,40 @@ interface Props {
 }
 
 const facts = Astro.props.facts.filter(({ text, links }) => text !== undefined || (links && links.length > 0));
+const entities = await getEntityMap();
 ---
 
 {
   facts.length > 0 && (
     <dl class="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-4 gap-y-2">
-      {facts.map(({ label, text, links = [] }) => (
+      {facts.map(({ label, text, links = [], hasImages }) => (
         <>
           <dt class="text-xs tracking-wide text-muted uppercase">{label}</dt>
-          <dd class="tabular-nums">
-            {text}
-            {links.map(({ id, suffix }, index) => (
-              <>
-                {index > 0 && ', '}
-                <EntityLink id={id} />
-                {suffix}
-              </>
-            ))}
-          </dd>
+          {hasImages ? (
+            <dd>
+              <ul class="grid gap-1.5 tabular-nums">
+                {links.map(({ id, prefix }) => (
+                  <li class="flex items-center gap-2">
+                    {prefix && <span class="text-muted">{prefix}</span>}
+                    <GameImage id={id} name={entities.get(id)?.name ?? id} size="mini" />
+                    <EntityLink id={id} />
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          ) : (
+            <dd class="tabular-nums">
+              {text}
+              {links.map(({ id, prefix, suffix }, index) => (
+                <>
+                  {index > 0 && ', '}
+                  {prefix}
+                  <EntityLink id={id} />
+                  {suffix}
+                </>
+              ))}
+            </dd>
+          )}
         </>
       ))}
     </dl>

@@ -155,6 +155,20 @@ const entities = defineCollection({
     cooldown: z.number().optional(),
     range: z.number().optional(),
     charges: z.number().optional(),
+    upgradesTo: z
+      .array(
+        z.looseObject({
+          id: z.string(),
+          upgrade: z.string().optional(),
+          cost: cost.optional(),
+          researchTime: z.number().optional(),
+        }),
+      )
+      .optional(),
+    upgradedFrom: z.string().optional(),
+    mergedFrom: z.array(z.looseObject({ id: z.string(), count: z.number() })).optional(),
+    mergesInto: ids.optional(),
+    transformsInto: z.string().optional(),
     maxTurrets: z.number().optional(),
     turrets: z.array(turret).optional(),
     summons: z.array(summon).optional(),

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import CostValue from '../../cost-value/cost-value.astro';
 import StatIcon from '../stat-icon/stat-icon.astro';
 import type { StatTile } from '../../wiki.types.ts';
-import { toBatchPrefix, toShortLabel } from './stat-tiles.helpers.ts';
+import { toBatchPrefix, toShortLabel, toTileMinWidth } from './stat-tiles.helpers.ts';
 
 interface Props {
   tiles: StatTile[];
@@ -16,10 +16,11 @@ const { tiles, isNested } = Astro.props;
 {
   tiles.length > 0 && (
     <dl
-      class={clsx(
-        'grid gap-1.5 tabular-nums',
-        isNested ? 'grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))]' : 'grid-cols-[repeat(auto-fill,minmax(6.5rem,1fr))]',
-      )}
+      class="grid grid-cols-[repeat(auto-fill,minmax(min(var(--tile-min),100%),1fr))] gap-1.5 tabular-nums"
+      style={`--tile-min: ${toTileMinWidth(
+        tiles.map(({ label }) => label),
+        isNested,
+      )}`}
     >
       {tiles.map(({ label, value, batch, isAccent }) => (
         <div class={clsx('min-w-0 bevel-sm px-2.5 py-1.5', isNested ? 'bg-surface-raised' : 'bg-surface')}>

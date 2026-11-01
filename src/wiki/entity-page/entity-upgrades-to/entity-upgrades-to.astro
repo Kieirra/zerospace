@@ -1,0 +1,59 @@
+---
+import DetailCard from '../detail-card/detail-card.astro';
+import EntitySection from '../entity-section/entity-section.astro';
+import { getEntityMap } from '../../wiki.data.ts';
+import {
+  formatCost,
+  formatDps,
+  formatOptionalNumber,
+  formatOptionalSeconds,
+  interpolate,
+  keepFilledTiles,
+} from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  upgradesTo?: Entity['upgradesTo'];
+}
+
+const { upgradesTo = [] } = Astro.props;
+const entities = await getEntityMap();
+
+const cards = upgradesTo.map(({ id, upgrade, cost, researchTime }) => {
+  const target = entities.get(id);
+  const upgradeEntity = upgrade ? entities.get(upgrade) : undefined;
+  const firstWeapon = target?.weapons?.[0];
+  return {
+    id,
+    name: target?.name ?? id,
+    isResolved: target !== undefined,
+    tiles: keepFilledTiles([
+      { label: 'Cost', value: formatCost(cost) },
+      { label: 'Upgrade time', value: formatOptionalSeconds(researchTime) },
+      { label: 'HP', value: formatOptionalNumber(target?.hp) },
+      { label: 'DPS', value: firstWeapon && formatDps(firstWeapon), isAccent: true },
+    ]),
+    description: upgradeEntity?.description && interpolate(upgradeEntity.description, upgradeEntity.values),
+  };
+});
+---
+
+{
+  cards.length > 0 && (
+    <EntitySection title="Upgrades to">
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {cards.map(({ id, name, isResolved, tiles, description }) => (
+          <li>
+            <DetailCard
+              name={name}
+              linkId={isResolved ? id : undefined}
+              tiles={tiles}
+              description={description}
+              isLinkCard
+            />
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}

@@ -1,4 +1,5 @@
 ---
+import clsx from 'clsx';
 import GameImage from '../../game-image/game-image.astro';
 import StatTiles from '../stat-tiles/stat-tiles.astro';
 import { toWeaponTiles } from '../entity-weapons/entity-weapons.helpers.ts';
@@ -13,12 +14,17 @@ interface Props {
   weapons?: Weapon[];
   description?: string;
   stats?: StatTile[];
+  isLinkCard?: boolean;
 }
 
-const { name, linkId, subtitle, tiles, weapons = [], description, stats = [] } = Astro.props;
+const { name, linkId, subtitle, tiles, weapons = [], description, stats = [], isLinkCard } = Astro.props;
+const Root = isLinkCard && linkId ? 'a' : 'article';
 ---
 
-<article class="h-full bevel-sm bg-surface p-3">
+<Root
+  href={Root === 'a' && linkId ? entityHref(linkId) : undefined}
+  class={clsx('block h-full bevel-sm bg-surface p-3', Root === 'a' && 'hover:bg-surface-hover')}
+>
   <h3 class="flex items-center gap-2 font-semibold">
     {
       linkId && (
@@ -28,7 +34,9 @@ const { name, linkId, subtitle, tiles, weapons = [], description, stats = [] } =
       )
     }
     {
-      linkId ? (
+      Root === 'a' ? (
+        <span class="text-accent-soft">{name}</span>
+      ) : linkId ? (
         <a href={entityHref(linkId)} class="text-accent-soft underline-offset-2 hover:underline">
           {name}
         </a>
@@ -61,4 +69,4 @@ const { name, linkId, subtitle, tiles, weapons = [], description, stats = [] } =
       </div>
     )
   }
-</article>
+</Root>

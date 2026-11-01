@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { WIKI_IMAGES_PATH } from '../../shared/site.constants.ts';
 
 export const IMAGE_SIZES = {
+  mini: 24,
   thumb: 32,
   card: 40,
   logo: 48,

@@ -41,7 +41,7 @@ const desktopTemplate = toGridTemplate(columns, true);
     groups.map(({ title, rows }) => (
       <>
         {title && <h2 class="col-span-full mt-6 mb-2 px-2 text-sm font-semibold text-muted sm:px-3">{title}</h2>}
-        {rows.map(({ id, name, cells }, rowIndex) => (
+        {rows.map(({ id, name, depth = 0, cells }, rowIndex) => (
           <a
             href={entityHref(id)}
             class={clsx(
@@ -51,6 +51,11 @@ const desktopTemplate = toGridTemplate(columns, true);
             )}
           >
             <span class="flex min-w-0 items-center gap-2 py-2 font-medium sm:gap-3">
+              {depth > 0 && (
+                <span aria-hidden="true" class="shrink-0 text-muted" style={`margin-left: ${(depth - 1) * 0.75}rem`}>
+                  ↳
+                </span>
+              )}
               <span class="w-8 shrink-0 max-[359px]:hidden">
                 <GameImage id={id} name={name} size="thumb" />
               </span>

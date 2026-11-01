@@ -17,6 +17,7 @@ import StatTiles from './stat-tiles/stat-tiles.astro';
 import EntitySummons from './entity-summons/entity-summons.astro';
 import EntityTurrets from './entity-turrets/entity-turrets.astro';
 import EntityUpgrades from './entity-upgrades/entity-upgrades.astro';
+import EntityUpgradesTo from './entity-upgrades-to/entity-upgrades-to.astro';
 import EntityWeapons from './entity-weapons/entity-weapons.astro';
 
 interface Props {
@@ -59,6 +60,7 @@ const hasInfo = hasInfoColumn(entity);
       <div class="flex flex-col gap-8 empty:hidden lg:col-start-1">
         <EntityAbilities abilities={entity.abilities} />
         <EntityUpgrades ids={entity.upgrades} />
+        <EntityUpgradesTo upgradesTo={entity.upgradesTo} />
         <EntityTurrets turrets={entity.turrets} maxTurrets={entity.maxTurrets} />
         <EntitySummons summons={entity.summons} />
         <EntityArea area={entity.area} />

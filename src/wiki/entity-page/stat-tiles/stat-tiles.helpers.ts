@@ -3,6 +3,7 @@
 const SHORT_LABELS: Record<string, string> = {
   'build time': 'Build',
   'research time': 'Research',
+  'upgrade time': 'Time',
   'projectile speed': 'Missile',
   'energy cost': 'Energy',
   'burst cooldown': 'Burst CD',
@@ -15,10 +16,32 @@ const SHORT_LABELS: Record<string, string> = {
   'shield regen': 'SH regen',
   'movement speed': 'Move',
   'attack speed': 'Atk speed',
+  'splash radius': 'Splash',
+  'max health': 'Max HP',
+  'max energy': 'Max EN',
 };
-const VERSUS_PREFIX = /^bonus vs /i;
+const SHORT_PATTERNS: [RegExp, string][] = [
+  // "Bonus vs Air", "Bonus Damage vs Medium" → "vs Air", "vs Medium"
+  [/^bonus (?:damage )?vs /i, 'vs '],
+  // "Hexite per 100 XP" → "Hexite/100XP"
+  [/ per 100 xp$/i, '/100XP'],
+];
 
-export const toShortLabel = (label: string) => SHORT_LABELS[label.toLowerCase()] ?? label.replace(VERSUS_PREFIX, 'vs ');
+export const toShortLabel = (label: string) =>
+  SHORT_LABELS[label.toLowerCase()] ??
+  SHORT_PATTERNS.reduce((short, [pattern, replacement]) => short.replace(pattern, replacement), label);
+
+// Smallest tile width that keeps the longest label of a set on one line: padding and icon,
+// then about 0.5rem per character of the label font (Chakra Petch 10px, uppercase, tracked).
+export const toTileMinWidth = (labels: string[], isNested = false) => {
+  const longest = Math.max(0, ...labels.map((label) => toShortLabel(label).length));
+  return `${Math.max(isNested ? MIN_NESTED_TILE_REM : MIN_TILE_REM, TILE_CHROME_REM + longest * LABEL_CHAR_REM)}rem`;
+};
+
+const MIN_TILE_REM = 6.5;
+const MIN_NESTED_TILE_REM = 6;
+const TILE_CHROME_REM = 2.5;
+const LABEL_CHAR_REM = 0.5;
 
 // `×2 225` would read as 2225: the equal sign separates the batch size from the batch cost.
 export const toBatchPrefix = (count: number) => `×${count} = `;

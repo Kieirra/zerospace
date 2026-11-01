@@ -23,6 +23,20 @@ export const groupEntities = (
     .sort(byTitleWithOtherLast);
 };
 
+// An upgraded building follows the building it comes from, one depth level further.
+export const nestUpgradedBuildings = (buildings: Entity[]) => {
+  const ids = new Set(buildings.map(({ id }) => id));
+  const upgradesOf = (id: string) => buildings.filter(({ upgradedFrom }) => upgradedFrom === id).sort(byName);
+  const withUpgrades = (building: Entity, depth: number): { building: Entity; depth: number }[] => [
+    { building, depth },
+    ...upgradesOf(building.id).flatMap((upgraded) => withUpgrades(upgraded, depth + 1)),
+  ];
+  return buildings
+    .filter(({ upgradedFrom }) => upgradedFrom === undefined || !ids.has(upgradedFrom))
+    .sort(byName)
+    .flatMap((building) => withUpgrades(building, 0));
+};
+
 // A level where the faction offers a single talent is completed by the talent of the chosen mercenary.
 export const getMercenaryChoices = (levels: { level?: number; entities: Entity[] }[], mercenaryTalents: Entity[]) => {
   const choices = new Map<number | undefined, Entity[]>();

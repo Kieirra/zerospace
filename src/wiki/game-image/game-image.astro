@@ -27,6 +27,7 @@ const pixels = IMAGE_SIZES[size];
       decoding="async"
       class={clsx(
         'max-w-none shrink-0 object-contain',
+        size === 'mini' && 'size-6',
         size === 'thumb' && 'size-8',
         size === 'card' && 'size-10',
         size === 'logo' && 'size-12',
@@ -39,6 +40,7 @@ const pixels = IMAGE_SIZES[size];
       aria-hidden="true"
       class={clsx(
         'grid shrink-0 place-items-center bg-surface-raised font-bold text-muted',
+        size === 'mini' && 'size-6 text-xs',
         size === 'thumb' && 'size-8 text-sm',
         size === 'card' && 'size-10 text-base',
         size === 'logo' && 'size-12 text-xl',

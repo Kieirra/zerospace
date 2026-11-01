@@ -1,5 +1,6 @@
 ---
 import EntityRows from '../entity-rows/entity-rows.astro';
+import { nestUpgradedBuildings } from '../faction-page.helpers.ts';
 import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
 import { formatCost, formatOptionalNumber, formatOptionalSeconds } from '../../wiki.helpers.ts';
 
@@ -18,9 +19,10 @@ const columns = [
   { label: 'Produces', isDesktopOnly: true, isWide: true },
 ];
 
-const rows = buildings.map((building) => ({
+const rows = nestUpgradedBuildings(buildings).map(({ building, depth }) => ({
   id: building.id,
   name: building.name,
+  depth,
   cells: [
     formatCost(building.cost),
     formatOptionalSeconds(building.buildTime),

@@ -6,7 +6,8 @@ interface Props {
   entity: Entity;
 }
 
-const { producedBy, produces, requires, unlocks } = Astro.props.entity;
+const { producedBy, produces, requires, unlocks, upgradedFrom, transformsInto, mergedFrom, mergesInto } =
+  Astro.props.entity;
 const toLinks = (ids?: string[]) => ids?.map((id) => ({ id }));
 ---
 
@@ -16,5 +17,13 @@ const toLinks = (ids?: string[]) => ids?.map((id) => ({ id }));
     { label: 'Produces', links: toLinks(produces) },
     { label: 'Requires', links: toLinks(requires) },
     { label: 'Unlocks', links: toLinks(unlocks) },
+    { label: 'Upgraded from', links: toLinks(upgradedFrom ? [upgradedFrom] : undefined) },
+    { label: 'Transforms into', links: toLinks(transformsInto ? [transformsInto] : undefined) },
+    {
+      label: 'Merged from',
+      links: mergedFrom?.map(({ id, count }) => ({ id, prefix: `${count}×` })),
+      hasImages: true,
+    },
+    { label: 'Merges into', links: toLinks(mergesInto) },
   ]}
 />

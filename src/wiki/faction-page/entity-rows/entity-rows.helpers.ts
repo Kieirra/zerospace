@@ -10,6 +10,7 @@ export interface RowColumn {
 export interface Row {
   id: string;
   name: string;
+  depth?: number;
   cells: (string | CostSegment[] | undefined)[];
 }
 
