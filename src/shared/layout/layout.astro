@@ -1,8 +1,5 @@
 ---
-import '@fontsource/oxanium/latin-400.css';
-import '@fontsource/oxanium/latin-600.css';
-import '@fontsource/oxanium/latin-700.css';
-import '@fontsource/chakra-petch/latin-600.css';
+import { Font } from 'astro:assets';
 import clsx from 'clsx';
 import '../../styles/global.css';
 import Footer from '../footer/footer.astro';
@@ -23,6 +20,8 @@ const { title, isCentered } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title ? `${title} · ${SITE_NAME}` : SITE_NAME}</title>
+    <Font cssVariable="--font-oxanium" preload />
+    <Font cssVariable="--font-chakra-petch" preload />
   </head>
   <body class="flex min-h-dvh flex-col">
     <Nav />
