@@ -287,6 +287,7 @@ export interface UpgradeFile {
   cooldown?: number;
   range?: number;
   charges?: number;
+  abilities?: Ability[];
   summons?: Summon[];
   area?: Area;
   researchTime?: number;

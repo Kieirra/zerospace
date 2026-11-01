@@ -8,10 +8,39 @@
     "Energy": 50,
     "Shields": 50
   },
+  "stats": [
+    {
+      "label": "Duration",
+      "value": 1,
+      "unit": "s"
+    }
+  ],
   "order": 0,
   "cost": {
     "flux": 150
   },
+  "cooldown": 50,
+  "range": 2300,
+  "abilities": [
+    {
+      "name": "EMP",
+      "description": "Drains {Energy} energy and {Shields} shields, knocks back and briefly slows enemy units.",
+      "values": {
+        "Energy": 50,
+        "Shields": 50
+      },
+      "stats": [
+        {
+          "label": "Duration",
+          "value": 1,
+          "unit": "s"
+        }
+      ],
+      "hotkey": "F",
+      "cooldown": 50,
+      "range": 2300
+    }
+  ],
   "researchTime": 60,
   "exclusiveGroup": "Local.Prot.AirCaster.Specialize1",
   "appliesTo": [

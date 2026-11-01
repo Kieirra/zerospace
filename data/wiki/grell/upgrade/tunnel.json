@@ -8,6 +8,15 @@
   "cost": {
     "flux": 100
   },
+  "range": 1600,
+  "abilities": [
+    {
+      "name": "Tunnel",
+      "description": "Tunnel to a target location.",
+      "hotkey": "T",
+      "range": 1600
+    }
+  ],
   "researchTime": 45,
   "exclusiveGroup": "Local.Grell.Beetle.Specialize1",
   "appliesTo": [

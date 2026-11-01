@@ -8,6 +8,17 @@
   "cost": {
     "flux": 125
   },
+  "cooldown": 18,
+  "range": 1200,
+  "abilities": [
+    {
+      "name": "Jetpack",
+      "description": "Jump to a target location, ignoring terrain.",
+      "hotkey": "D",
+      "cooldown": 18,
+      "range": 1200
+    }
+  ],
   "researchTime": 50,
   "exclusiveGroup": "Local.Prot.Atlas.Specialize1",
   "appliesTo": [

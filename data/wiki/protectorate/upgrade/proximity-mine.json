@@ -8,6 +8,44 @@
   "cost": {
     "flux": 100
   },
+  "cooldown": 90,
+  "range": 300,
+  "charges": 1,
+  "abilities": [
+    {
+      "name": "Proximity Mine",
+      "description": "Grants the Predator the Proximity Mine ability.",
+      "hotkey": "Y",
+      "cooldown": 90,
+      "range": 300,
+      "charges": 1
+    }
+  ],
+  "summons": [
+    {
+      "name": "Mine",
+      "kind": "unit",
+      "duration": 240,
+      "count": 1,
+      "hp": 50,
+      "combatStats": [
+        {
+          "label": "Damage",
+          "value": 25
+        },
+        {
+          "label": "Stun",
+          "value": 1.5,
+          "unit": "s"
+        },
+        {
+          "label": "Splash Radius",
+          "value": 4
+        }
+      ],
+      "vision": 1800
+    }
+  ],
   "researchTime": 45,
   "tier": "T1",
   "exclusiveGroup": "Local.Prot.Predator.Specialize1",

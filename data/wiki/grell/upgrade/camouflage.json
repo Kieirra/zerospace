@@ -12,6 +12,19 @@
   "cost": {
     "flux": 150
   },
+  "range": 1600,
+  "abilities": [
+    {
+      "name": "Camouflage",
+      "description": "+{Speed}% Movement Speed & Cloak for {Duration} seconds.",
+      "values": {
+        "Speed": 25,
+        "Duration": 6
+      },
+      "hotkey": "X",
+      "range": 1600
+    }
+  ],
   "researchTime": 60,
   "exclusiveGroup": "Local.Grell.Lasher.Specialize3",
   "appliesTo": [

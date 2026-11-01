@@ -13,6 +13,27 @@
   "cost": {
     "flux": 100
   },
+  "range": 2400,
+  "excludedTargets": [
+    "Air"
+  ],
+  "abilities": [
+    {
+      "name": "Fluxblood Surge",
+      "description": "{Cast TIme}% cast time.\n+{Damage}% damage dealt.\n+{Range}% cast range.",
+      "values": {
+        "Cast TIme": 50,
+        "Damage": 50,
+        "Range": 50
+      },
+      "hotkey": "R",
+      "energyCost": 15,
+      "range": 2400,
+      "excludedTargets": [
+        "Air"
+      ]
+    }
+  ],
   "researchTime": 50,
   "exclusiveGroup": "Local.Grell.Reaver.Specialize1",
   "appliesTo": [
