@@ -22,7 +22,8 @@
       "range": 1600,
       "warmup": 0,
       "projectileSpeed": 3000,
-      "dps": 15
+      "dps": 15,
+      "kind": "heal"
     }
   ],
   "requires": [

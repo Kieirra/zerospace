@@ -21,6 +21,13 @@
   "topbarEnergyCosts": {
     "grell/topbar/infusion": 5.25
   },
+  "heals": [
+    {
+      "name": "Nourishing Pod",
+      "interval": 1,
+      "radius": 700
+    }
+  ],
   "portrait": "TGUI_icon_grell_building_nourishingpod_portrait02",
   "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_SupplyDepot"
 }

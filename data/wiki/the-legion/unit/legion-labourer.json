@@ -28,7 +28,11 @@
       "range": 100,
       "warmup": 0,
       "melee": true,
-      "dps": 19.5489
+      "dps": 19.5489,
+      "kind": "heal",
+      "excludedTargets": [
+        "Biological"
+      ]
     }
   ],
   "producedBy": [

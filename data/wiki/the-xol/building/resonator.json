@@ -31,6 +31,13 @@
   "requires": [
     "the-xol/building/power-core"
   ],
+  "heals": [
+    {
+      "name": "Resonator",
+      "perSecond": 5,
+      "radius": 1500
+    }
+  ],
   "portrait": "Building_Xol_MP_PowerBeam",
   "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_PowerBeam"
 }

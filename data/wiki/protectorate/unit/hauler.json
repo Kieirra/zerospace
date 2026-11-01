@@ -49,6 +49,18 @@
     "protectorate/upgrade/medbays",
     "protectorate/upgrade/transport"
   ],
+  "heals": [
+    {
+      "name": "Hauler",
+      "perSecond": 8,
+      "radius": 1000
+    },
+    {
+      "name": "Hauler",
+      "perSecond": 6,
+      "duration": 10
+    }
+  ],
   "topbarEnergyCosts": {
     "protectorate/topbar/beam-up": 2,
     "protectorate/topbar/protective-shield": 10.125

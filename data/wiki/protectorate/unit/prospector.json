@@ -53,6 +53,12 @@
       "value": 2
     }
   ],
+  "heals": [
+    {
+      "name": "Repairnites",
+      "amount": 65
+    }
+  ],
   "topbarEnergyCosts": {
     "protectorate/topbar/protective-shield": 4.5
   },

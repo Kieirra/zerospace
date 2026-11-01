@@ -59,6 +59,15 @@
   "mergesInto": [
     "the-xol/unit/paradox"
   ],
+  "heals": [
+    {
+      "name": "Synapse",
+      "amount": 8,
+      "interval": 1,
+      "duration": 6,
+      "radius": 700
+    }
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 17.625
   },

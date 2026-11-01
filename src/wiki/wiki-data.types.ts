@@ -28,6 +28,22 @@ export interface Weapon {
   // ANovaWeaponBase::GetWeaponDPS at rest: damage x shots per cycle x fire slots of the carrier / cycle duration.
   dps?: number;
   bonuses?: DamageBonus[];
+  // 'heal' (bIsHeal or a heal execution): damage and dps are health restored per shot and per second. Absent = damage.
+  kind?: 'damage' | 'heal';
+  // Heal weapons: target types of CanAttack (only these) and CannotAttack (never these), last tag segment ("Biological").
+  targets?: string[];
+  excludedTargets?: string[];
+}
+
+// Healing outside weapons (HealUnits calls, healing effects applied by the entity or its abilities).
+export interface Heal {
+  name: string;
+  amount?: number;
+  perSecond?: number;
+  interval?: number;
+  radius?: number;
+  duration?: number;
+  targets?: string[];
 }
 
 // Extra damage against targets of a type (weapon DamageAffinities): value 150 = +150 %.
@@ -147,6 +163,7 @@ export interface UnitFile {
   mergesInto?: string[];              // Xol: units this one merges into
   mergeForms?: MergeForm[];           // forms taken by absorbing a unit (Anrubic)
   economy?: EconomyStat[];            // harvesters: flux gathering
+  heals?: Heal[];
   topbarEnergyCosts?: Record<string, number>;
   portrait?: string;
   asset: string;
@@ -201,6 +218,7 @@ export interface BuildingFile {
   unlocks?: string[];
   topbarEnergyCosts?: Record<string, number>;
   economy?: EconomyStat[];            // main bases: hexite extraction
+  heals?: Heal[];
   upgradedFrom?: string;
   upgradesTo?: BuildingUpgrade[];
   portrait?: string;

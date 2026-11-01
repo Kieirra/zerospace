@@ -82,6 +82,21 @@
       "hotkey": "E"
     }
   ],
+  "heals": [
+    {
+      "name": "Loi'kru",
+      "perSecond": 2
+    },
+    {
+      "name": "Torrent",
+      "amount": 50
+    },
+    {
+      "name": "Healing Wave",
+      "amount": 50,
+      "radius": 300
+    }
+  ],
   "portrait": "Troop_MP_ChakruHero",
   "asset": "Archetypes_Heroes/Multiplayer/RI_Hero_MP_ChakruHero"
 }
