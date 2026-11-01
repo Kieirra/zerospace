@@ -56,9 +56,6 @@
       "cooldown": 0.8
     }
   ],
-  "producedBy": [
-    "protectorate/building/war-foundry"
-  ],
   "topbarEnergyCosts": {
     "protectorate/topbar/beam-up": 3,
     "protectorate/topbar/protective-shield": 22.7813

@@ -39,8 +39,7 @@
     }
   ],
   "producedBy": [
-    "chakru-kingdom/building/temple-of-anqas",
-    "chakru-kingdom/building/temple-of-stars"
+    "chakru-kingdom/building/temple-of-anqas"
   ],
   "portrait": "TGUI_Kingdom_BloodWarrior",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Kingdom_Warrior"

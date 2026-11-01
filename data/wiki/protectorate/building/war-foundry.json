@@ -15,8 +15,7 @@
   "armorRating": 1,
   "produces": [
     "protectorate/unit/hellfire",
-    "protectorate/unit/juggernaut",
-    "protectorate/unit/strider"
+    "protectorate/unit/juggernaut"
   ],
   "requires": [
     "protectorate/building/mechanical-research-lab"

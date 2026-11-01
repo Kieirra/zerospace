@@ -14,12 +14,9 @@
   "hp": 1200,
   "armorRating": 1,
   "produces": [
-    "chakru-kingdom/unit/chakru-chaski",
     "chakru-kingdom/unit/chakru-clakjaw",
     "chakru-kingdom/unit/chakru-ghost-crab",
-    "chakru-kingdom/unit/chakru-hatun",
-    "chakru-kingdom/unit/chakru-pako",
-    "chakru-kingdom/unit/chakru-saqchi"
+    "chakru-kingdom/unit/chakru-hatun"
   ],
   "portrait": "TGUI_portrait_building_chakru_water",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_ChakruB"
