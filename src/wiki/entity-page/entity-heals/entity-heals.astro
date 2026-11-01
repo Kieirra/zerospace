@@ -1,0 +1,48 @@
+---
+import EntitySection from '../entity-section/entity-section.astro';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import {
+  formatOptionalDistance,
+  formatOptionalNumber,
+  formatOptionalSeconds,
+  formatTargets,
+  keepFilledTiles,
+} from '../../wiki.helpers.ts';
+import type { Heal } from '../../wiki.types.ts';
+import { toHealTitle } from './entity-heals.helpers.ts';
+
+interface Props {
+  heals?: Heal[];
+  entityName: string;
+}
+
+const { heals = [], entityName } = Astro.props;
+
+const toTiles = (heal: Heal) =>
+  keepFilledTiles([
+    { label: 'Heal', value: formatOptionalNumber(heal.amount), isHeal: true },
+    { label: 'HPS', value: formatOptionalNumber(heal.perSecond), isHeal: true },
+    { label: 'Interval', value: formatOptionalSeconds(heal.interval) },
+    { label: 'Radius', value: formatOptionalDistance(heal.radius) },
+    { label: 'Duration', value: formatOptionalSeconds(heal.duration) },
+    { label: 'Targets', value: formatTargets(heal), isHeal: true },
+  ]);
+---
+
+{
+  heals.length > 0 && (
+    <EntitySection title="Heals">
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {heals.map((heal) => (
+          <li class="h-full bevel-sm bg-surface p-3">
+            <h3 class="mb-2 flex flex-wrap items-center gap-2 font-semibold">
+              {toHealTitle(heal, entityName)}
+              <span class="bg-heal/15 px-1.5 text-xs font-semibold text-heal">Heal</span>
+            </h3>
+            <StatTiles tiles={toTiles(heal)} isNested />
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}

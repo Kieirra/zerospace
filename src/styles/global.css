@@ -13,6 +13,7 @@
   --color-muted: #a09eab;
   --color-accent: #8f2fbc;
   --color-accent-soft: #bd81df;
+  --color-heal: #6ccf9c;
 }
 
 @utility bevel {

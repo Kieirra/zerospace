@@ -7,11 +7,16 @@ export interface RowColumn {
   width?: string;
 }
 
+// Heal per second shown in the DPS column of a unit that only heals.
+export interface HealCell {
+  heal: string;
+}
+
 export interface Row {
   id: string;
   name: string;
   depth?: number;
-  cells: (string | CostSegment[] | undefined)[];
+  cells: (string | CostSegment[] | HealCell | undefined)[];
 }
 
 export interface RowGroup {
@@ -31,6 +36,9 @@ export const keepFilledColumns = (columns: RowColumn[], groups: RowGroup[]) => {
     })),
   };
 };
+
+export const isHealCell = (cell: Row['cells'][number]): cell is HealCell =>
+  typeof cell === 'object' && !Array.isArray(cell) && 'heal' in cell;
 
 export const hasLongWord = (name: string) => /\S{16,}/.test(name);
 

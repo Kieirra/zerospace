@@ -7,6 +7,7 @@ import drumstick from 'lucide-static/icons/drumstick.svg?raw';
 import eye from 'lucide-static/icons/eye.svg?raw';
 import flame from 'lucide-static/icons/flame.svg?raw';
 import gauge from 'lucide-static/icons/gauge.svg?raw';
+import heartPulse from 'lucide-static/icons/heart-pulse.svg?raw';
 import heart from 'lucide-static/icons/heart.svg?raw';
 import hourglass from 'lucide-static/icons/hourglass.svg?raw';
 import layers from 'lucide-static/icons/layers.svg?raw';
@@ -31,6 +32,8 @@ const ICONS: Record<string, StatIcon> = {
   'upgrade time': { svg: clock },
   'supply': { svg: drumstick },
   'hp': { svg: heart },
+  'heal': { svg: heart },
+  'hps': { svg: heartPulse },
   'shields': { svg: shield },
   'armor type': { svg: shield, isFilled: true },
   'armor rating': { svg: shield, isFilled: true },
@@ -42,6 +45,7 @@ const ICONS: Record<string, StatIcon> = {
   'dps': { svg: flame },
   'range': { svg: crosshair },
   'cooldown': { svg: hourglass },
+  'burst cooldown': { svg: hourglass },
   'charges': { svg: layers },
   'duration': { svg: timer },
   'warmup': { svg: alarmClock },

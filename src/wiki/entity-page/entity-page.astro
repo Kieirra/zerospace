@@ -13,6 +13,7 @@ import EntityEconomy from './entity-economy/entity-economy.astro';
 import EntityEnergyRule from './entity-energy-rule/entity-energy-rule.astro';
 import EntityMergeForms from './entity-merge-forms/entity-merge-forms.astro';
 import EntityHeader from './entity-header/entity-header.astro';
+import EntityHeals from './entity-heals/entity-heals.astro';
 import { hasInfoColumn } from './entity-page.helpers.ts';
 import EntityRelations from './entity-relations/entity-relations.astro';
 import EntityStats from './entity-stats/entity-stats.astro';
@@ -53,6 +54,7 @@ const hasInfo = hasInfoColumn(entity) || absorbedBy.length > 0;
         <EntityStats entity={entity} />
         <EntityEconomy economy={entity.economy} />
         <EntityWeapons weapons={entity.weapons} />
+        <EntityHeals heals={entity.heals} entityName={entity.name} />
       </div>
       {
         hasInfo && (

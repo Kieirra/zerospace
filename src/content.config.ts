@@ -32,6 +32,9 @@ const weapon: z.ZodType<Weapon> = z.looseObject({
   projectileSpeed: z.number().optional(),
   melee: z.boolean().optional(),
   dps: z.number().optional(),
+  kind: z.enum(['damage', 'heal']).optional(),
+  targets: z.array(z.string()).optional(),
+  excludedTargets: z.array(z.string()).optional(),
   bonuses: z
     .array(z.looseObject({ vs: z.string(), value: z.number(), unit: z.literal('%') }))
     .optional(),
@@ -178,6 +181,19 @@ const entities = defineCollection({
       )
       .optional(),
     economy: economy.optional(),
+    heals: z
+      .array(
+        z.looseObject({
+          name: z.string(),
+          amount: z.number().optional(),
+          perSecond: z.number().optional(),
+          interval: z.number().optional(),
+          radius: z.number().optional(),
+          duration: z.number().optional(),
+          targets: z.array(z.string()).optional(),
+        }),
+      )
+      .optional(),
     upgradedFrom: z.string().optional(),
     mergedFrom: z.array(z.looseObject({ id: z.string(), count: z.number() })).optional(),
     mergesInto: ids.optional(),

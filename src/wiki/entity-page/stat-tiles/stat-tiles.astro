@@ -28,7 +28,7 @@ const resourceIconUrls = tiles.map(({ label }) => {
         isNested,
       )}`}
     >
-      {tiles.map(({ label, value, batch, isAccent, levels }, tileIndex) => (
+      {tiles.map(({ label, value, batch, isAccent, isHeal, levels }, tileIndex) => (
         <div class={clsx('min-w-0 bevel-sm px-2.5 py-1.5', isNested ? 'bg-surface-raised' : 'bg-surface')}>
           <dt class="flex items-center gap-1 font-label text-[10px] font-semibold tracking-[.12em] text-muted uppercase">
             {resourceIconUrls[tileIndex] ? (
@@ -48,7 +48,7 @@ const resourceIconUrls = tiles.map(({ label }) => {
             </span>
             {toShortLabel(label) !== label && <span class="sr-only">{label}</span>}
           </dt>
-          <dd class={clsx('font-semibold', isNested ? 'text-sm' : 'text-base', isAccent && 'text-accent-soft')}>
+          <dd class={clsx('font-semibold', isNested ? 'text-sm' : 'text-base', isAccent && 'text-accent-soft', isHeal && 'text-heal')}>
             {levels ? (
               levels.map(({ level, value: levelValue }, index) => (
                 <>

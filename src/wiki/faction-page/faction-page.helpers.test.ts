@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Entity } from '../wiki.types.ts';
-import { getMercenaryChoices, groupByLevel, nestUpgradedBuildings } from './faction-page.helpers.ts';
+import { getMercenaryChoices, groupByLevel, nestUpgradedBuildings, pickListedWeapon } from './faction-page.helpers.ts';
 
 const talent = (name: string, faction: string, level: number): Entity => ({
   id: `${faction}/talent/${name}`,
@@ -41,5 +41,20 @@ describe('Buildings tab order', () => {
     const order = nestUpgradedBuildings(buildings).map(({ building: { name }, depth }) => `${depth}:${name}`);
 
     expect(order).toEqual(['0:Broodwomb', '0:Cultivator', '1:Elder Cultivator']);
+  });
+});
+
+describe('DPS column weapon', () => {
+  it('should show the heal per second when the unit only heals', () => {
+    const healBeam = { name: 'Heal Beam', kind: 'heal' as const, damage: 10, cooldown: 1 };
+
+    expect(pickListedWeapon([healBeam])).toEqual({ weapon: healBeam, isHeal: true });
+  });
+
+  it('should keep the damage weapon when the unit both heals and deals damage', () => {
+    const healBeam = { name: 'Heal Beam', kind: 'heal' as const, damage: 10, cooldown: 1 };
+    const blaster = { name: 'Blaster', damage: 12, cooldown: 1 };
+
+    expect(pickListedWeapon([healBeam, blaster])).toEqual({ weapon: blaster, isHeal: false });
   });
 });

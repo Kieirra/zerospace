@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import GameImage from '../../game-image/game-image.astro';
 import CostValue from '../../cost-value/cost-value.astro';
 import { entityHref } from '../../wiki.helpers.ts';
-import { hasLongWord, keepFilledColumns, toGridTemplate } from './entity-rows.helpers.ts';
+import StatIcon from '../../entity-page/stat-icon/stat-icon.astro';
+import { hasLongWord, isHealCell, keepFilledColumns, toGridTemplate } from './entity-rows.helpers.ts';
 import type { RowColumn, RowGroup } from './entity-rows.helpers.ts';
 
 interface Props {
@@ -76,10 +77,18 @@ const desktopTemplate = toGridTemplate(columns, true);
                   index % 2 === 0 && 'bg-white/[0.03]',
                 )}
               >
-                <span>
-                  {cell !== undefined && <span class="sr-only">{columns[index].label} </span>}
-                  <CostValue value={cell} />
-                </span>
+                {isHealCell(cell) ? (
+                  <span class="inline-flex items-center gap-1 text-heal" title="Heal per second">
+                    <StatIcon label="HPS" />
+                    <span class="sr-only">Heal per second </span>
+                    {cell.heal}
+                  </span>
+                ) : (
+                  <span>
+                    {cell !== undefined && <span class="sr-only">{columns[index].label} </span>}
+                    <CostValue value={cell} />
+                  </span>
+                )}
               </span>
             ))}
           </a>

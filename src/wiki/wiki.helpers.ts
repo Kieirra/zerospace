@@ -71,6 +71,10 @@ export const formatIncome = ({ economy = [] }: Entity) => {
 
 export const toLabelResource = (label: string) => RESOURCES.find((resource) => new RegExp(`\\b${resource}\\b`, 'i').test(label));
 
+// "Biological, Not Mechanical": targets the weapon or heal reaches, excluded ones prefixed with Not.
+export const formatTargets = ({ targets = [], excludedTargets = [] }: { targets?: string[]; excludedTargets?: string[] }) =>
+  [...targets, ...excludedTargets.map((target) => `Not ${target}`)].join(', ') || undefined;
+
 export const formatEnergyCost = (energyCost: Entity['energyCost']) => {
   if (energyCost === undefined) return undefined;
   return typeof energyCost === 'number' ? formatNumber(energyCost) : 'per target';

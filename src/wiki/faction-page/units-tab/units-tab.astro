@@ -1,6 +1,6 @@
 ---
 import EntityRows from '../entity-rows/entity-rows.astro';
-import { groupEntities } from '../faction-page.helpers.ts';
+import { groupEntities, pickListedWeapon } from '../faction-page.helpers.ts';
 import { getEntityMap, getFactionEntities } from '../../wiki.data.ts';
 import { formatDps, formatIncome, formatOptionalDistance, formatOptionalNumber, formatUnitCost } from '../../wiki.helpers.ts';
 import type { Entity } from '../../wiki.types.ts';
@@ -25,7 +25,8 @@ const columns = [
 ];
 
 const toRow = (unit: Entity) => {
-  const weapon = unit.weapons?.[0];
+  const listed = pickListedWeapon(unit.weapons);
+  const dps = listed && formatDps(listed.weapon);
   return {
     id: unit.id,
     name: unit.name,
@@ -34,8 +35,8 @@ const toRow = (unit: Entity) => {
       formatOptionalNumber(unit.supply),
       formatOptionalNumber(unit.hp),
       formatOptionalNumber(unit.shields),
-      weapon && formatDps(weapon),
-      formatOptionalDistance(weapon?.range),
+      listed?.isHeal && dps ? { heal: dps } : dps,
+      formatOptionalDistance(listed?.weapon.range),
       formatOptionalNumber(unit.speed),
       formatIncome(unit),
     ],

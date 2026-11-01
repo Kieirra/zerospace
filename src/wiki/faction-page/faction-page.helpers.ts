@@ -1,6 +1,6 @@
 import { OTHER_GROUP } from '../wiki.constants.ts';
 import { byName, byOrderThenName } from '../wiki.helpers.ts';
-import type { Entity } from '../wiki.types.ts';
+import type { Entity, Weapon } from '../wiki.types.ts';
 
 export interface EntityGroup {
   title: string;
@@ -23,6 +23,14 @@ export const groupEntities = (
     groups.set(title, { ...group, entities: [...group.entities, entity] });
   }
   return [...groups.values()].sort(byOrderWithOtherLast);
+};
+
+// The DPS column shows the first damage weapon; a unit that only heals shows its heal per second.
+export const pickListedWeapon = (weapons: Weapon[] = []) => {
+  const damageWeapon = weapons.find(({ kind }) => kind !== 'heal');
+  if (damageWeapon) return { weapon: damageWeapon, isHeal: false };
+  const healWeapon = weapons.find(({ kind }) => kind === 'heal');
+  return healWeapon && { weapon: healWeapon, isHeal: true };
 };
 
 // An upgraded building follows the building it comes from, one depth level further.

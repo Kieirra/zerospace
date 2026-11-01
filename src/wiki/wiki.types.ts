@@ -9,12 +9,14 @@ export type DescriptionValues = NonNullable<Entity['values']>;
 export type Turret = NonNullable<Entity['turrets']>[number];
 export type GameStat = NonNullable<Entity['stats']>[number];
 export type Summon = NonNullable<Entity['summons']>[number];
+export type Heal = NonNullable<Entity['heals']>[number];
 
 export interface StatTile {
   label: string;
   value: string | CostSegment[];
   batch?: { count: number; cost: CostSegment[] };
   isAccent?: boolean;
+  isHeal?: boolean;
   levels?: { level: number; value: string }[];
 }
 
