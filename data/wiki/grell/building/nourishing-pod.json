@@ -4,6 +4,9 @@
   "faction": "grell",
   "name": "Nourishing Pod",
   "description": "Provides {supply} Supply.\nHeals nearby units.",
+  "values": {
+    "supply": 12
+  },
   "hotkey": "W",
   "cost": {
     "hexite": 75

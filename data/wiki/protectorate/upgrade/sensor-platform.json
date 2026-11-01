@@ -5,6 +5,14 @@
   "name": "Sensor Platform",
   "description": "Upgrade to provide vision over a large area.\nProvides high ground vision.",
   "hotkey": "W",
+  "cost": {
+    "hexite": 50
+  },
+  "researchTime": 12,
+  "appliesTo": [
+    "protectorate/building/supply-platform"
+  ],
+  "transformsInto": "protectorate/building/sensor-platform",
   "portrait": "Building_Platform_Vision",
   "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradePlatVision"
 }

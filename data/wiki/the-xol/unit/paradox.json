@@ -47,6 +47,20 @@
   "requires": [
     "the-xol/building/world-forge"
   ],
+  "mergedFrom": [
+    {
+      "id": "the-xol/unit/defiant",
+      "count": 1
+    },
+    {
+      "id": "the-xol/unit/synapse",
+      "count": 1
+    },
+    {
+      "id": "the-xol/unit/echo",
+      "count": 1
+    }
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 40.375
   },

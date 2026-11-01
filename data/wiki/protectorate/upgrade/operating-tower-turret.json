@@ -5,6 +5,14 @@
   "name": "Operating Tower Turret",
   "description": "Upgrade to attach a defensive turret.",
   "hotkey": "E",
+  "cost": {
+    "hexite": 150
+  },
+  "researchTime": 25,
+  "appliesTo": [
+    "protectorate/building/operating-tower"
+  ],
+  "transformsInto": "protectorate/building/operating-tower-turret",
   "portrait": "Building_Prot_ExtractorOperatingTower_Armed",
   "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradeOperatingTowerTurret"
 }

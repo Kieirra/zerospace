@@ -14,6 +14,24 @@
   "unlocks": [
     "protectorate/building/barracks"
   ],
+  "upgradesTo": [
+    {
+      "id": "protectorate/building/sensor-platform",
+      "upgrade": "protectorate/upgrade/sensor-platform",
+      "cost": {
+        "hexite": 50
+      },
+      "researchTime": 12
+    },
+    {
+      "id": "protectorate/building/turret-platform",
+      "upgrade": "protectorate/upgrade/turret-platform",
+      "cost": {
+        "hexite": 75
+      },
+      "researchTime": 25
+    }
+  ],
   "portrait": "Building_Platform",
   "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingPlatform"
 }

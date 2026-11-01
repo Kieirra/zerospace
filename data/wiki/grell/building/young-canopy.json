@@ -4,6 +4,10 @@
   "faction": "grell",
   "name": "Young Canopy",
   "description": "Research structure for units produced from the {broodwomb}.\n Unlocks: {mandragor}",
+  "values": {
+    "broodwomb": "Broodwomb",
+    "mandragor": "Mandragora"
+  },
   "hotkey": "Z",
   "cost": {
     "hexite": 100,

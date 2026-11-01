@@ -47,6 +47,15 @@
   "requires": [
     "the-xol/building/world-forge"
   ],
+  "mergedFrom": [
+    {
+      "id": "the-xol/unit/xyther",
+      "count": 3
+    }
+  ],
+  "mergesInto": [
+    "the-xol/unit/cataclyst"
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 29
   },

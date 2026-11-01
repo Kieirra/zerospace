@@ -24,8 +24,7 @@
     "grell/building/skyclutch",
     "grell/building/young-canopy",
     "grell/upgrade/bloomwell-attacker",
-    "grell/upgrade/cultivator-defender",
-    "grell/upgrade/cultivator-defender-harvester-spawn"
+    "grell/upgrade/cultivator-defender"
   ],
   "topbarEnergyCosts": {
     "grell/topbar/infusion": 5.25

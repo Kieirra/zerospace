@@ -4,12 +4,29 @@
   "faction": "the-xol",
   "name": "Resonator",
   "description": "Transformable defensive structure\n\n+{Roller} - Laser weapon attacking ground and air \n+{Spectron} - Area effect projectile weapon\n+{Xyther} - Heals all around\n+{Drone} - Increased vision and detecting enemies in wide radius",
+  "values": {
+    "Roller": "Roller",
+    "Spectron": "Spectron",
+    "Xyther": "Xyther",
+    "Drone": "Scouting Drone"
+  },
   "hotkey": "E",
   "cost": {
     "hexite": 150
   },
   "buildTime": 22,
   "hp": 600,
+  "weapons": [
+    {
+      "damage": 20,
+      "cooldown": 0,
+      "burst": 1,
+      "burstCooldown": 0.7,
+      "range": 1600,
+      "warmup": 0,
+      "dps": 28.5714
+    }
+  ],
   "requires": [
     "the-xol/building/power-core"
   ],

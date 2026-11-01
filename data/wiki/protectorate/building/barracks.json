@@ -17,7 +17,9 @@
     "protectorate/unit/sentinel"
   ],
   "requires": [
-    "protectorate/building/supply-platform"
+    "protectorate/building/sensor-platform",
+    "protectorate/building/supply-platform",
+    "protectorate/building/turret-platform"
   ],
   "unlocks": [
     "protectorate/building/assembly-plant",

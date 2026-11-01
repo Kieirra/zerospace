@@ -8,6 +8,14 @@
     "Health": 150
   },
   "hotkey": "E",
+  "cost": {
+    "hexite": 50
+  },
+  "researchTime": 20,
+  "appliesTo": [
+    "grell/building/cultivator"
+  ],
+  "transformsInto": "grell/building/cultivator-defender",
   "portrait": "TGUI_icon_grell_building_cultivator_portrait02",
   "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradeGrellCultivator"
 }

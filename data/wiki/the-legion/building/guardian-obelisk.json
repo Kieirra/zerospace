@@ -11,6 +11,25 @@
   "buildTime": 25,
   "hp": 400,
   "vision": 1800,
+  "weapons": [
+    {
+      "name": "Gaze of the Emperor",
+      "damage": 35,
+      "cooldown": 1.5,
+      "burst": 1,
+      "burstCooldown": 1.5,
+      "range": 1400,
+      "warmup": 0,
+      "dps": 23.3333,
+      "bonuses": [
+        {
+          "vs": "Air",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
   "requires": [
     "the-legion/building/barracks",
     "the-legion/building/bestiary"

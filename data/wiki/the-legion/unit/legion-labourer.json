@@ -31,7 +31,8 @@
     }
   ],
   "producedBy": [
-    "the-legion/building/garrison-tower"
+    "the-legion/building/garrison-tower",
+    "the-legion/building/garrison-tower-turret"
   ],
   "portrait": "TGUI_portrait_unit_empire_harvester05",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Legion_Harvester_Limited"

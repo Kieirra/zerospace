@@ -15,6 +15,16 @@
     "protectorate/unit/prospector",
     "protectorate/unit/recon-drone"
   ],
+  "upgradesTo": [
+    {
+      "id": "protectorate/building/operating-tower-turret",
+      "upgrade": "protectorate/upgrade/operating-tower-turret",
+      "cost": {
+        "hexite": 150
+      },
+      "researchTime": 25
+    }
+  ],
   "portrait": "Building_Prot_ExtractorOperatingTower",
   "asset": "Archetypes_ResearchItems/Buildings/RI_Building_OperatingTower"
 }

@@ -1,0 +1,32 @@
+{
+  "id": "the-legion/building/garrison-tower-turret",
+  "kind": "building",
+  "faction": "the-legion",
+  "name": "Garrison Tower Turret",
+  "cost": {
+    "hexite": 150
+  },
+  "buildTime": 25,
+  "hp": 3000,
+  "armorRating": 2,
+  "weapons": [
+    {
+      "name": "Edict of Thunder",
+      "damage": 16,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 0.45,
+      "range": 1950,
+      "warmup": 0,
+      "projectileSpeed": 3000,
+      "dps": 35.5556
+    }
+  ],
+  "produces": [
+    "the-legion/unit/legion-labourer",
+    "the-legion/unit/scouting-drone"
+  ],
+  "upgradedFrom": "the-legion/building/garrison-tower",
+  "portrait": "TGUI_icon_empire_OT_Armed",
+  "asset": "Archetypes_Buildings/Building_Legion_OT_Armed"
+}

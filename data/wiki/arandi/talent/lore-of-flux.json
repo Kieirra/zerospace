@@ -3,8 +3,9 @@
   "kind": "talent",
   "faction": "arandi",
   "name": "Lore of Flux",
-  "description": "+{N} {N}|plural(one=Harvester,other=Harvesters).\n+{income}% Flux income.",
+  "description": "+{N} Harvesters.\n+{income}% Flux income.",
   "values": {
+    "N": 2,
     "income": 10
   },
   "researchTime": 0,

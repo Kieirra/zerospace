@@ -4,6 +4,9 @@
   "faction": "the-xol",
   "name": "Scouting Drone",
   "description": "Light flying scouting drone. Limit of {limit}.",
+  "values": {
+    "limit": 3
+  },
   "hotkey": "J",
   "cost": {
     "hexite": 25
@@ -17,7 +20,8 @@
   "vision": 1800,
   "size": 80,
   "producedBy": [
-    "the-xol/building/world-engine"
+    "the-xol/building/world-engine",
+    "the-xol/building/world-engine-turret"
   ],
   "portrait": "Troop_Xol_ScoutingDrone",
   "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Units/RI_Troop_Xol_MP_ScoutingDrone"

@@ -5,6 +5,14 @@
   "name": "Garrison Tower Turret",
   "description": "Upgrade to attach a defensive turret.\nCannot be attacked while upgrading.",
   "hotkey": "E",
+  "cost": {
+    "hexite": 150
+  },
+  "researchTime": 25,
+  "appliesTo": [
+    "the-legion/building/garrison-tower"
+  ],
+  "transformsInto": "the-legion/building/garrison-tower-turret",
   "portrait": "TGUI_icon_skill_vehicle_armor",
   "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradeEmpireOT"
 }

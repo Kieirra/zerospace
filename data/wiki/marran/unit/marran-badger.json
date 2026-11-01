@@ -4,6 +4,9 @@
   "faction": "marran",
   "name": "Marran Badger",
   "description": "Tank which deals bonus area damage after attacking a target {N} times.",
+  "values": {
+    "N": 6
+  },
   "hotkey": "C",
   "cost": {
     "hexite": 200,

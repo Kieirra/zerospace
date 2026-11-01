@@ -6,17 +6,11 @@
   "description": "+{Speed}% Bulwark speed.\nPulse Barrage power cost removed.\nBulwark generates shields on nearby damaged units.",
   "details": "Every {cd} seconds, grants an attacked friendly unit a {shield} shield for {shielddur} seconds.",
   "values": {
+    "Speed": 50,
     "cd": 4,
     "shield": 150,
     "shielddur": 30
   },
-  "stats": [
-    {
-      "label": "Movement Speed",
-      "value": 50,
-      "unit": "%"
-    }
-  ],
   "energyCostChanges": {
     "marran/topbar/pulse-barrage": {
       "energyCost": 0

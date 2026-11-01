@@ -1,0 +1,30 @@
+{
+  "id": "grell/building/bloomwell-attacker",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Bloomwell Attacker",
+  "cost": {
+    "hexite": 150
+  },
+  "buildTime": 25,
+  "hp": 3000,
+  "armorRating": 2,
+  "weapons": [
+    {
+      "name": "Digestive Acids",
+      "damage": 23,
+      "cooldown": 0.1,
+      "burst": 1,
+      "burstCooldown": 0.66,
+      "range": 1950,
+      "projectileSpeed": 2000,
+      "dps": 34.8485
+    }
+  ],
+  "produces": [
+    "grell/unit/gatherer"
+  ],
+  "upgradedFrom": "grell/building/bloomwell",
+  "portrait": "TGUI_icon_grell_building_colony_portrait02",
+  "asset": "Archetypes_Buildings/Building_Grell_RootColony_Armed"
+}

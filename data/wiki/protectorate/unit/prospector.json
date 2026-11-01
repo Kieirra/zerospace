@@ -4,6 +4,9 @@
   "faction": "protectorate",
   "name": "Prospector",
   "description": "Harvests flux. Can release a healing wave.\nHarvesters respawn {Time} seconds after being destroyed.",
+  "values": {
+    "Time": 60
+  },
   "hotkey": "H",
   "cost": {
     "hexite": 100
@@ -30,7 +33,8 @@
     }
   ],
   "producedBy": [
-    "protectorate/building/operating-tower"
+    "protectorate/building/operating-tower",
+    "protectorate/building/operating-tower-turret"
   ],
   "topbarEnergyCosts": {
     "protectorate/topbar/protective-shield": 4.5

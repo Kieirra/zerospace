@@ -4,6 +4,9 @@
   "faction": "chakru-kingdom",
   "name": "Cha'Kru Clakjaw",
   "description": "Heavily armored melee unit, reducing incoming damage by {armor}.",
+  "values": {
+    "armor": 5
+  },
   "hotkey": "X",
   "cost": {
     "hexite": 225

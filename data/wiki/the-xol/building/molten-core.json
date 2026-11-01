@@ -4,6 +4,14 @@
   "faction": "the-xol",
   "name": "Molten Core",
   "description": "Upgrades individual units but has limited energy. Gains additional energy when an enemy unit dies on top of it.\nDeals damage to enemies that walk over it. \n\n{Roller} - {Roller_molten}\n{Xyther} - {Xyther_molten}\n{Spectron} - {Spectron_molten}",
+  "values": {
+    "Roller": "Roller",
+    "Roller_molten": "Loses its weapon but explodes damaging and slowing enemies.",
+    "Xyther": "Xyther",
+    "Xyther_molten": "Rebuilds when destroyed. 120 second cooldown.",
+    "Spectron": "Spectron",
+    "Spectron_molten": "Projectile deals area damage but is slow."
+  },
   "hotkey": "Z",
   "cost": {
     "hexite": 50,

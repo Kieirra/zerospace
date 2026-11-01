@@ -43,6 +43,15 @@
   "requires": [
     "the-xol/building/molten-core"
   ],
+  "mergedFrom": [
+    {
+      "id": "the-xol/unit/xyther",
+      "count": 2
+    }
+  ],
+  "mergesInto": [
+    "the-xol/unit/paradox"
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 15.875
   },

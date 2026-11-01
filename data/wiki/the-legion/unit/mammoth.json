@@ -4,6 +4,10 @@
   "faction": "the-legion",
   "name": "Mammoth",
   "description": "Heavy beast that can be mounted by Legion infantry units.\nCan walk over allied infantry. Deals {dmg} damage in a line upon killing a unit. Deals bonus damage to Buildings.",
+  "details": "Storm Bringer",
+  "values": {
+    "dmg": 50
+  },
   "hotkey": "Y",
   "cost": {
     "hexite": 175,

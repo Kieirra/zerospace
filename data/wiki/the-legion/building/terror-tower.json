@@ -4,6 +4,9 @@
   "faction": "the-legion",
   "name": "Terror Tower",
   "description": "Unlocks Terror Tanks and Dreadnoughts.\nBoosts the construction speed of one adjacent Massive Vehicle at a time (+{boost}%).",
+  "values": {
+    "boost": 100
+  },
   "hotkey": "C",
   "cost": {
     "hexite": 100,

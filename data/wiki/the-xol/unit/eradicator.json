@@ -52,6 +52,15 @@
   "requires": [
     "the-xol/building/world-forge"
   ],
+  "mergedFrom": [
+    {
+      "id": "the-xol/unit/spectron",
+      "count": 3
+    }
+  ],
+  "mergesInto": [
+    "the-xol/unit/cataclyst"
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 31.625
   },

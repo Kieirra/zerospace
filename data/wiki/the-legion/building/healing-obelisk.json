@@ -11,6 +11,19 @@
   "buildTime": 25,
   "hp": 400,
   "vision": 1800,
+  "weapons": [
+    {
+      "name": "Embrace of the Emperor",
+      "damage": 15,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 1,
+      "range": 1600,
+      "warmup": 0,
+      "projectileSpeed": 3000,
+      "dps": 15
+    }
+  ],
   "requires": [
     "the-legion/building/barracks",
     "the-legion/building/bestiary"

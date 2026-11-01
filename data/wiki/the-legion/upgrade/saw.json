@@ -4,17 +4,9 @@
   "faction": "the-legion",
   "name": "Saw",
   "description": "+{Damage}% damage against light and AOE damage in a small area.",
-  "stats": [
-    {
-      "label": "Bonus vs Light",
-      "value": 100,
-      "unit": "%"
-    },
-    {
-      "label": "Splash Radius",
-      "value": 1.25
-    }
-  ],
+  "values": {
+    "Damage": 100
+  },
   "cost": {
     "flux": 100
   },

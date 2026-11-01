@@ -4,6 +4,10 @@
   "faction": "the-legion",
   "name": "Citadel",
   "description": "Unlocks Dark Disciples, Mammoths and the last mercenary unit.\nThralls can be sacrificed on it to increase research speed by +{x}% for {s}s.",
+  "values": {
+    "x": 50,
+    "s": 30
+  },
   "hotkey": "Z",
   "cost": {
     "hexite": 125,

@@ -49,6 +49,10 @@
   "producedBy": [
     "the-xol/building/spectral-foundry"
   ],
+  "mergesInto": [
+    "the-xol/unit/eradicator",
+    "the-xol/unit/synapse"
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 7.125
   },

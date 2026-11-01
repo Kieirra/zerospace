@@ -5,7 +5,8 @@
   "name": "Transport",
   "description": "+{capacity}% Transport capacity\n+{speed}% Movement speed out of combat\nAllows units to be loaded while flying",
   "values": {
-    "capacity": 50
+    "capacity": 50,
+    "speed": 50
   },
   "cost": {
     "flux": 100

@@ -7,7 +7,8 @@
   "values": {
     "AbilityName": "Jetpack",
     "duration": 4,
-    "AS": 40
+    "AS": 40,
+    "MS": 40
   },
   "cost": {
     "flux": 150

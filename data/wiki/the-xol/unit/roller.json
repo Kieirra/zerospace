@@ -33,6 +33,10 @@
   "producedBy": [
     "the-xol/building/gyroforge"
   ],
+  "mergesInto": [
+    "the-xol/unit/echo",
+    "the-xol/unit/gravitron"
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 2.75
   },

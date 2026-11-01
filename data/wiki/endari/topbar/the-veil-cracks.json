@@ -5,6 +5,8 @@
   "name": "The Veil Cracks",
   "description": "Plundges the worlds into deep darkness for {x} seconds.\nThe Silent Hollow awakens and roams freely.\nEndari units become stronger (+{ms}% move speed, +{as}% damage, {cdr}% ability cooldowns).",
   "values": {
+    "x": 30,
+    "ms": 25,
     "as": 25,
     "cdr": -20
   },

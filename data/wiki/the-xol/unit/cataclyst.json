@@ -59,6 +59,20 @@
   "requires": [
     "the-xol/building/world-forge"
   ],
+  "mergedFrom": [
+    {
+      "id": "the-xol/unit/aegis",
+      "count": 1
+    },
+    {
+      "id": "the-xol/unit/eradicator",
+      "count": 1
+    },
+    {
+      "id": "the-xol/unit/gravitron",
+      "count": 1
+    }
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 77.125
   },

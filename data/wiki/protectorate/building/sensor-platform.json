@@ -1,0 +1,17 @@
+{
+  "id": "protectorate/building/sensor-platform",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Sensor Platform",
+  "cost": {
+    "hexite": 50
+  },
+  "buildTime": 12,
+  "hp": 1000,
+  "unlocks": [
+    "protectorate/building/barracks"
+  ],
+  "upgradedFrom": "protectorate/building/supply-platform",
+  "portrait": "Building_Platform_Vision",
+  "asset": "Archetypes_Buildings/Building_Platform_Vision"
+}

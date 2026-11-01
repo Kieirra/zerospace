@@ -1,0 +1,36 @@
+{
+  "id": "protectorate/building/turret-platform",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Turret Platform",
+  "cost": {
+    "hexite": 75
+  },
+  "buildTime": 25,
+  "hp": 500,
+  "armorRating": 1,
+  "weapons": [
+    {
+      "name": "ST Multiple Rocket Platform",
+      "cooldown": 0.1,
+      "burst": 3,
+      "burstCooldown": 1.5,
+      "range": 1500,
+      "warmup": 0,
+      "projectileSpeed": 1500,
+      "bonuses": [
+        {
+          "vs": "Air",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "unlocks": [
+    "protectorate/building/barracks"
+  ],
+  "upgradedFrom": "protectorate/building/supply-platform",
+  "portrait": "Building_PlatformTurret",
+  "asset": "Archetypes_Buildings/Building_PlatformTurret"
+}

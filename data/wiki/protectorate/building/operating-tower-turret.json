@@ -1,0 +1,32 @@
+{
+  "id": "protectorate/building/operating-tower-turret",
+  "kind": "building",
+  "faction": "protectorate",
+  "name": "Operating Tower Turret",
+  "cost": {
+    "hexite": 150
+  },
+  "buildTime": 25,
+  "hp": 3000,
+  "armorRating": 2,
+  "weapons": [
+    {
+      "name": "Minerva Laser Turret",
+      "damage": 16,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 0.45,
+      "range": 1950,
+      "warmup": 0,
+      "projectileSpeed": 5000,
+      "dps": 35.5556
+    }
+  ],
+  "produces": [
+    "protectorate/unit/prospector",
+    "protectorate/unit/recon-drone"
+  ],
+  "upgradedFrom": "protectorate/building/operating-tower",
+  "portrait": "Building_Prot_ExtractorOperatingTower_Armed",
+  "asset": "Archetypes_Buildings/Building_Prot_ExtractorOperatingTower_Armed"
+}

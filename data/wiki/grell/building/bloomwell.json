@@ -14,6 +14,16 @@
   "produces": [
     "grell/unit/gatherer"
   ],
+  "upgradesTo": [
+    {
+      "id": "grell/building/bloomwell-attacker",
+      "upgrade": "grell/upgrade/bloomwell-attacker",
+      "cost": {
+        "hexite": 150
+      },
+      "researchTime": 25
+    }
+  ],
   "portrait": "TGUI_icon_grell_building_colony_portrait02",
   "asset": "Archetypes_ResearchItems/Buildings/RI_Building_Grell_Colony"
 }

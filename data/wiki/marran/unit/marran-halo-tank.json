@@ -4,6 +4,9 @@
   "faction": "marran",
   "name": "Marran Halo Tank",
   "description": "Tank that can attack while moving.\nEach attack charges up a powerful laser, dealing damage in a line after {N} attacks.",
+  "values": {
+    "N": 4
+  },
   "hotkey": "V",
   "cost": {
     "hexite": 150,

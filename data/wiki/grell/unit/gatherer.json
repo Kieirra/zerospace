@@ -4,6 +4,9 @@
   "faction": "grell",
   "name": "Gatherer",
   "description": "Gathers flux. Has the ability to spawn Cultivators.\nGatherers respawn {Time} seconds after being destroyed.",
+  "values": {
+    "Time": 60
+  },
   "hotkey": "H",
   "cost": {
     "hexite": 100
@@ -26,7 +29,8 @@
     }
   ],
   "producedBy": [
-    "grell/building/bloomwell"
+    "grell/building/bloomwell",
+    "grell/building/bloomwell-attacker"
   ],
   "portrait": "TGUI_portrait_unit_grell_harvester07",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Grell_Harvester_Limited1"

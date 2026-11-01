@@ -15,6 +15,16 @@
     "the-legion/unit/legion-labourer",
     "the-legion/unit/scouting-drone"
   ],
+  "upgradesTo": [
+    {
+      "id": "the-legion/building/garrison-tower-turret",
+      "upgrade": "the-legion/upgrade/garrison-tower-turret",
+      "cost": {
+        "hexite": 150
+      },
+      "researchTime": 25
+    }
+  ],
   "portrait": "TGUI_icon_empire_OT02",
   "asset": "Archetypes_ResearchItems/Buildings/RI_Leg_Building_OT"
 }

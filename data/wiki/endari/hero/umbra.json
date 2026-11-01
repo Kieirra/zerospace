@@ -52,6 +52,7 @@
       "name": "Cloak",
       "description": "Targeted unit gains cloak and +{speed}% movement speed for {duration} seconds.",
       "values": {
+        "speed": 20,
         "duration": 8
       },
       "hotkey": "E",

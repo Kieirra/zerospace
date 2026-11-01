@@ -113,6 +113,8 @@ export interface UnitFile {
   faction: string;
   name: string;
   description?: string;
+  details?: string;
+  values?: DescriptionValues;
   hotkey?: string;
   cost?: Cost;
   count?: number;
@@ -137,9 +139,17 @@ export interface UnitFile {
   producedBy?: string[];
   requires?: string[];
   upgrades?: string[];
+  mergedFrom?: MergeSource[];         // Xol: units merged to obtain this one
+  mergesInto?: string[];              // Xol: units this one merges into
   topbarEnergyCosts?: Record<string, number>;
   portrait?: string;
   asset: string;
+}
+
+// One ingredient of a Xol merge: count units of this id.
+export interface MergeSource {
+  id: string;
+  count: number;
 }
 
 export interface BuildingFile {
@@ -148,6 +158,8 @@ export interface BuildingFile {
   faction: string;
   name: string;
   description?: string;
+  details?: string;
+  values?: DescriptionValues;
   hotkey?: string;
   cost?: Cost;
   buildTime?: number;
@@ -164,8 +176,19 @@ export interface BuildingFile {
   requires?: string[];
   unlocks?: string[];
   topbarEnergyCosts?: Record<string, number>;
+  upgradedFrom?: string;
+  upgradesTo?: BuildingUpgrade[];
   portrait?: string;
   asset: string;
+}
+
+// Building a building turns into: its file, the upgrade entity that does it, the upgrade's cost and duration
+// (construction cost and time of the resulting building).
+export interface BuildingUpgrade {
+  id: string;
+  upgrade?: string;
+  cost?: Cost;
+  researchTime?: number;
 }
 
 // Energy of a topbar whose cost depends on the target: (hexite + flux * fluxWeight) * unitCostMultiplier + base,
@@ -213,6 +236,7 @@ export interface UpgradeFile {
   level?: number;
   position?: string;
   appliesTo?: string[];
+  transformsInto?: string;
   portrait?: string;
   asset: string;
 }

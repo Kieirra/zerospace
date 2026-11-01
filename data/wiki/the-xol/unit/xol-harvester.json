@@ -4,6 +4,9 @@
   "faction": "the-xol",
   "name": "Xol Harvester",
   "description": "Harvests flux\nHarvesters respawn {respawn_dur}s after being destroyed.",
+  "values": {
+    "respawn_dur": 60
+  },
   "hotkey": "H",
   "cost": {
     "hexite": 175
@@ -30,7 +33,8 @@
     }
   ],
   "producedBy": [
-    "the-xol/building/world-engine"
+    "the-xol/building/world-engine",
+    "the-xol/building/world-engine-turret"
   ],
   "portrait": "Troop_Xol_Harvester",
   "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Units/RI_Troop_Xol_MP_Harvester"

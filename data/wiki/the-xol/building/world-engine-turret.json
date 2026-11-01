@@ -1,0 +1,32 @@
+{
+  "id": "the-xol/building/world-engine-turret",
+  "kind": "building",
+  "faction": "the-xol",
+  "name": "World Engine Turret",
+  "cost": {
+    "hexite": 150
+  },
+  "buildTime": 25,
+  "hp": 3000,
+  "armorRating": 2,
+  "weapons": [
+    {
+      "name": "Defensive Protocols",
+      "damage": 16,
+      "cooldown": 0.5,
+      "burst": 1,
+      "burstCooldown": 0.45,
+      "range": 1950,
+      "warmup": 0,
+      "projectileSpeed": 3000,
+      "dps": 35.5556
+    }
+  ],
+  "produces": [
+    "the-xol/unit/scouting-drone",
+    "the-xol/unit/xol-harvester"
+  ],
+  "upgradedFrom": "the-xol/building/world-engine",
+  "portrait": "Building_Xol_MP_WorldEngine",
+  "asset": "Archetypes_Buildings/Multiplayer/Xol/Building_Xol_MP_WorldEngine_Turret"
+}

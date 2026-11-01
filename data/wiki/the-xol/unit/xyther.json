@@ -37,6 +37,10 @@
   "producedBy": [
     "the-xol/building/xyther-assembler"
   ],
+  "mergesInto": [
+    "the-xol/unit/aegis",
+    "the-xol/unit/defiant"
+  ],
   "topbarEnergyCosts": {
     "the-xol/topbar/replicate": 6.25
   },

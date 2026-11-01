@@ -4,6 +4,14 @@
   "faction": "endari",
   "name": "Endari Shadow Leech",
   "description": "A small melee units that attaches to its target slowing it down by {slow}% for {sec} seconds.\nTargeting friendly units grants them {as}% attackspeed and {lifesteal}% lifesteal.\nThe targeted unit will take {dps} damage per second and if the targeted unit dies when it's attached, the {leech} detaches and can attack again.",
+  "values": {
+    "slow": -30,
+    "sec": 12,
+    "as": 30,
+    "lifesteal": 30,
+    "dps": 8,
+    "leech": "Endari Shadow Leech"
+  },
   "hotkey": "N",
   "cost": {
     "hexite": 100,

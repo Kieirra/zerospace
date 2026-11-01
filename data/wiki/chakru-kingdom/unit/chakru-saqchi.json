@@ -4,6 +4,12 @@
   "faction": "chakru-kingdom",
   "name": "Cha'Kru Saq'chi",
   "description": "Medium melee brawler. Slams ground every 4th attack, damaging and slowing nearby enemy units.",
+  "details": "{damage} damage and {slowpercent}% slow for {duration} seconds.",
+  "values": {
+    "damage": 25,
+    "slowpercent": 67,
+    "duration": 4
+  },
   "hotkey": "M",
   "cost": {
     "hexite": 225,

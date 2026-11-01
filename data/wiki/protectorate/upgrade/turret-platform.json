@@ -5,6 +5,14 @@
   "name": "Turret Platform",
   "description": "Attach a missile launcher to the platform.",
   "hotkey": "E",
+  "cost": {
+    "hexite": 75
+  },
+  "researchTime": 25,
+  "appliesTo": [
+    "protectorate/building/supply-platform"
+  ],
+  "transformsInto": "protectorate/building/turret-platform",
   "portrait": "Building_PlatformTurret",
   "asset": "Archetypes_ResearchItems/Buildings/RI_UpgardePlatTurret"
 }

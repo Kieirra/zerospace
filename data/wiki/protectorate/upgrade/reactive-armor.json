@@ -5,6 +5,7 @@
   "name": "Reactive Armor",
   "description": "+{HP}% health.\n+{Armor} armor.",
   "values": {
+    "HP": 25,
     "Armor": 1
   },
   "cost": {

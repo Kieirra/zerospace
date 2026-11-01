@@ -5,6 +5,14 @@
   "name": "Bloomwell Attacker",
   "description": "Allows the Bloomwell to attack enemies.",
   "hotkey": "E",
+  "cost": {
+    "hexite": 150
+  },
+  "researchTime": 25,
+  "appliesTo": [
+    "grell/building/bloomwell"
+  ],
+  "transformsInto": "grell/building/bloomwell-attacker",
   "portrait": "TGUI_icon_skill_vehicle_armor",
   "asset": "Archetypes_ResearchItems/Buildings/RI_UpgradeRootColonyTurret"
 }

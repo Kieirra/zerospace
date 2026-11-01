@@ -1,0 +1,34 @@
+{
+  "id": "grell/building/cultivator-defender",
+  "kind": "building",
+  "faction": "grell",
+  "name": "Cultivator Defender",
+  "cost": {
+    "hexite": 50
+  },
+  "buildTime": 20,
+  "hp": 300,
+  "armorRating": 1,
+  "weapons": [
+    {
+      "name": "Decomposer Spray",
+      "damage": 15,
+      "cooldown": 0.1,
+      "burst": 1,
+      "burstCooldown": 1.1,
+      "range": 1500,
+      "projectileSpeed": 2000,
+      "dps": 13.6364,
+      "bonuses": [
+        {
+          "vs": "Air",
+          "value": 50,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "upgradedFrom": "grell/building/cultivator",
+  "portrait": "TGUI_icon_grell_building_cultivator_portrait02",
+  "asset": "Archetypes_Buildings/Building_Grell_CultivatorAttacker"
+}
