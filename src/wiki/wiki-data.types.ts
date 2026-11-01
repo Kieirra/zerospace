@@ -141,9 +141,18 @@ export interface UnitFile {
   upgrades?: string[];
   mergedFrom?: MergeSource[];         // Xol: units merged to obtain this one
   mergesInto?: string[];              // Xol: units this one merges into
+  mergeForms?: MergeForm[];           // forms taken by absorbing a unit (Anrubic)
   topbarEnergyCosts?: Record<string, number>;
   portrait?: string;
   asset: string;
+}
+
+// Form a unit takes by absorbing another (Anrubic): what absorbing that unit gives it.
+export interface MergeForm {
+  with: string;
+  stats?: Stat[];
+  abilities?: Ability[];
+  weapons?: Weapon[];
 }
 
 // One ingredient of a Xol merge: count units of this id.

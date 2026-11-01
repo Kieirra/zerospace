@@ -51,6 +51,124 @@
       "range": 2000
     }
   ],
+  "mergeForms": [
+    {
+      "with": "the-xol/unit/roller",
+      "stats": [
+        {
+          "label": "Max Health",
+          "value": 100
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Throw Rollers",
+          "description": "Throw a nearby Roller to the target location\nDeals {damage} damage and slows targets by {slow}% for {slowduration} seconds",
+          "values": {
+            "damage": 30,
+            "slow": 50,
+            "slowduration": 2
+          },
+          "hotkey": "E",
+          "cooldown": 6,
+          "range": 1700
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Sentinel Flare",
+          "cooldown": 0,
+          "burst": 1,
+          "burstCooldown": 1,
+          "range": 400,
+          "warmup": 0.3,
+          "projectileSpeed": 100
+        }
+      ]
+    },
+    {
+      "with": "the-xol/unit/spectron",
+      "stats": [
+        {
+          "label": "Bonus Damage",
+          "value": 4
+        },
+        {
+          "label": "Max Stacks",
+          "value": 6
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Blink",
+          "description": "Instantly teleports the Xol Hero and nearby allied units to a nearby location",
+          "hotkey": "E",
+          "cooldown": 24,
+          "range": 1600
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Singularity Nova",
+          "damage": 22,
+          "cooldown": 1,
+          "burst": 1,
+          "burstCooldown": 1,
+          "range": 1000,
+          "warmup": 0.11,
+          "projectileSpeed": 2000,
+          "dps": 22,
+          "bonuses": [
+            {
+              "vs": "Heavy",
+              "value": 25,
+              "unit": "%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "with": "the-xol/unit/xyther",
+      "stats": [
+        {
+          "label": "Max Health",
+          "value": 150
+        },
+        {
+          "label": "Shield Damage Cap",
+          "value": 20
+        }
+      ],
+      "abilities": [
+        {
+          "name": "Shield",
+          "description": "Place down a shield that blocks incoming shots.\nThe shield absorbs {mult}% of {heroname}'s max health. Lasts {second} seconds.",
+          "values": {
+            "mult": 0.5,
+            "heroname": "Anrubic",
+            "second": 20
+          },
+          "hotkey": "E",
+          "cooldown": 30,
+          "range": 1500
+        }
+      ],
+      "weapons": [
+        {
+          "name": "Nexus Rend",
+          "damage": 23,
+          "cooldown": 1.2,
+          "burst": 1,
+          "burstCooldown": 1.2,
+          "range": 200,
+          "warmup": 0.27,
+          "melee": true,
+          "dps": 19.1667
+        }
+      ]
+    }
+  ],
   "portrait": "Troop_Hero_MP_XolHero",
   "asset": "Archetypes_Heroes/Multiplayer/RI_Hero_MP_XolHero"
 }
