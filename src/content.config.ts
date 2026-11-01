@@ -168,6 +168,16 @@ const entities = defineCollection({
     upgradedFrom: z.string().optional(),
     mergedFrom: z.array(z.looseObject({ id: z.string(), count: z.number() })).optional(),
     mergesInto: ids.optional(),
+    mergeForms: z
+      .array(
+        z.looseObject({
+          with: z.string(),
+          stats: gameStats.optional(),
+          abilities: z.array(ability).optional(),
+          weapons: z.array(weapon).optional(),
+        }),
+      )
+      .optional(),
     transformsInto: z.string().optional(),
     maxTurrets: z.number().optional(),
     turrets: z.array(turret).optional(),

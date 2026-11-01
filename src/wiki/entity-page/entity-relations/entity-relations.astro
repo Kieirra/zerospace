@@ -4,6 +4,7 @@ import type { Entity } from '../../wiki.types.ts';
 
 interface Props {
   entity: Entity;
+  absorbedBy?: string[];
 }
 
 const { producedBy, produces, requires, unlocks, upgradedFrom, transformsInto, mergedFrom, mergesInto } =
@@ -25,5 +26,6 @@ const toLinks = (ids?: string[]) => ids?.map((id) => ({ id }));
       hasImages: true,
     },
     { label: 'Merges into', links: toLinks(mergesInto) },
+    { label: 'Absorbed by', links: toLinks(Astro.props.absorbedBy) },
   ]}
 />

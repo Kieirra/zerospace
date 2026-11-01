@@ -2,6 +2,7 @@
 import clsx from 'clsx';
 import { getEntry } from 'astro:content';
 import DensePanel from '../dense-panel/dense-panel.astro';
+import { getEntities } from '../wiki.data.ts';
 import { interpolate, toGameStatTiles } from '../wiki.helpers.ts';
 import type { Entity } from '../wiki.types.ts';
 import EntityAbilities from './entity-abilities/entity-abilities.astro';
@@ -9,6 +10,7 @@ import EntityArea from './entity-area/entity-area.astro';
 import EntityChoice from './entity-choice/entity-choice.astro';
 import EntityEnergyCosts from './entity-energy-costs/entity-energy-costs.astro';
 import EntityEnergyRule from './entity-energy-rule/entity-energy-rule.astro';
+import EntityMergeForms from './entity-merge-forms/entity-merge-forms.astro';
 import EntityHeader from './entity-header/entity-header.astro';
 import { hasInfoColumn } from './entity-page.helpers.ts';
 import EntityRelations from './entity-relations/entity-relations.astro';
@@ -26,7 +28,10 @@ interface Props {
 
 const { entity } = Astro.props;
 const faction = (await getEntry('factions', entity.faction))?.data;
-const hasInfo = hasInfoColumn(entity);
+const absorbedBy = (await getEntities())
+  .filter(({ mergeForms }) => mergeForms?.some((form) => form.with === entity.id))
+  .map(({ id }) => id);
+const hasInfo = hasInfoColumn(entity) || absorbedBy.length > 0;
 ---
 
 <DensePanel factionId={entity.faction}>
@@ -50,7 +55,7 @@ const hasInfo = hasInfoColumn(entity);
       {
         hasInfo && (
           <aside class="flex flex-col gap-6 bevel-sm bg-surface/60 p-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
-            <EntityRelations entity={entity} />
+            <EntityRelations entity={entity} absorbedBy={absorbedBy} />
             <EntityChoice entity={entity} />
             <EntityEnergyCosts costs={entity.topbarEnergyCosts} />
             <EntityEnergyRule energyCost={entity.energyCost} />
@@ -59,6 +64,7 @@ const hasInfo = hasInfoColumn(entity);
       }
       <div class="flex flex-col gap-8 empty:hidden lg:col-start-1">
         <EntityAbilities abilities={entity.abilities} />
+        <EntityMergeForms mergeForms={entity.mergeForms} />
         <EntityUpgrades ids={entity.upgrades} />
         <EntityUpgradesTo upgradesTo={entity.upgradesTo} />
         <EntityTurrets turrets={entity.turrets} maxTurrets={entity.maxTurrets} />

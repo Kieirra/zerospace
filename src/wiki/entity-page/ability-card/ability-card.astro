@@ -1,0 +1,39 @@
+---
+import clsx from 'clsx';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import { buildAbilityMeta } from '../entity-abilities/entity-abilities.helpers.ts';
+import { interpolate, toGameStatTiles } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+type Ability = NonNullable<Entity['abilities']>[number];
+
+interface Props {
+  ability: Ability;
+  isEmbedded?: boolean;
+}
+
+const { ability, isEmbedded } = Astro.props;
+const stats = toGameStatTiles(ability.stats);
+---
+
+<div class={clsx(!isEmbedded && 'h-full bevel-sm bg-surface p-3')}>
+  <h3 class="font-semibold">{ability.name}</h3>
+  <dl class="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm tabular-nums">
+    {
+      buildAbilityMeta(ability).map(({ label, value }) => (
+        <div class="flex gap-1">
+          <dt class="text-muted">{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  {ability.description && <p class="mt-2 text-sm whitespace-pre-line">{interpolate(ability.description, ability.values)}</p>}
+  {
+    stats.length > 0 && (
+      <div class="mt-2">
+        <StatTiles tiles={stats} isNested />
+      </div>
+    )
+  }
+</div>

@@ -1,0 +1,44 @@
+---
+import AbilityCard from '../ability-card/ability-card.astro';
+import EntitySection from '../entity-section/entity-section.astro';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import WeaponCard from '../weapon-card/weapon-card.astro';
+import EntityLink from '../../entity-link/entity-link.astro';
+import GameImage from '../../game-image/game-image.astro';
+import { getEntityMap } from '../../wiki.data.ts';
+import { toGameStatTiles } from '../../wiki.helpers.ts';
+import type { Entity } from '../../wiki.types.ts';
+
+interface Props {
+  mergeForms?: Entity['mergeForms'];
+}
+
+const { mergeForms = [] } = Astro.props;
+const entities = await getEntityMap();
+---
+
+{
+  mergeForms.length > 0 && (
+    <EntitySection title="Merge forms">
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {mergeForms.map((form) => (
+          <li class="flex flex-col gap-4 bevel-sm bg-surface p-3">
+            <h3 class="flex items-center gap-2 font-semibold">
+              <span class="w-8 shrink-0">
+                <GameImage id={form.with} name={entities.get(form.with)?.name ?? form.with} size="thumb" />
+              </span>
+              <EntityLink id={form.with} />
+            </h3>
+            <StatTiles tiles={toGameStatTiles(form.stats)} isNested />
+            {form.abilities?.map((ability) => (
+              <AbilityCard ability={ability} isEmbedded />
+            ))}
+            {form.weapons?.map((weapon) => (
+              <WeaponCard weapon={weapon} isEmbedded />
+            ))}
+          </li>
+        ))}
+      </ul>
+    </EntitySection>
+  )
+}
