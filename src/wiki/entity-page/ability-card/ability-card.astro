@@ -29,6 +29,7 @@ const stats = toGameStatTiles(ability.stats);
     }
   </dl>
   {ability.description && <p class="mt-2 text-sm whitespace-pre-line">{interpolate(ability.description, ability.values)}</p>}
+  {ability.details && <p class="mt-2 text-sm whitespace-pre-line text-muted">{interpolate(ability.details, ability.values)}</p>}
   {
     stats.length > 0 && (
       <div class="mt-2">

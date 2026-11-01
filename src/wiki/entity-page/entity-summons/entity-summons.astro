@@ -1,4 +1,5 @@
 ---
+import AbilityCard from '../ability-card/ability-card.astro';
 import DetailCard from '../detail-card/detail-card.astro';
 import EntitySection from '../entity-section/entity-section.astro';
 import { getEntityMap } from '../../wiki.data.ts';
@@ -34,10 +35,14 @@ const toTiles = (summon: Summon) =>
             <DetailCard
               name={summon.name}
               linkId={summon.id && entities.has(summon.id) ? summon.id : undefined}
-              subtitle={[summon.kind, ...(summon.abilities ?? []).map(({ name }) => name)].filter(Boolean).join(' · ')}
+              subtitle={summon.kind}
               tiles={toTiles(summon)}
               weapons={summon.weapons}
-            />
+            >
+              {summon.abilities?.map((ability) => (
+                <div class="mt-3"><AbilityCard ability={ability} isEmbedded /></div>
+              ))}
+            </DetailCard>
           </li>
         ))}
       </ul>

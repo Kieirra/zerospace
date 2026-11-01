@@ -13,11 +13,12 @@ interface Props {
   tiles: StatTile[];
   weapons?: Weapon[];
   description?: string;
+  details?: string;
   stats?: StatTile[];
   isLinkCard?: boolean;
 }
 
-const { name, linkId, subtitle, tiles, weapons = [], description, stats = [], isLinkCard } = Astro.props;
+const { name, linkId, subtitle, tiles, weapons = [], description, details, stats = [], isLinkCard } = Astro.props;
 const Root = isLinkCard && linkId ? 'a' : 'article';
 ---
 
@@ -62,6 +63,8 @@ const Root = isLinkCard && linkId ? 'a' : 'article';
     ))
   }
   {description && <p class="mt-2 text-sm whitespace-pre-line text-muted">{description}</p>}
+  {details && <p class="mt-2 text-sm whitespace-pre-line text-muted">{details}</p>}
+  <slot />
   {
     stats.length > 0 && (
       <div class="mt-2">
