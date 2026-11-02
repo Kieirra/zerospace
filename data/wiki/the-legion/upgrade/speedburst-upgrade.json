@@ -10,7 +10,7 @@
   },
   "researchTime": 50,
   "requires": [
-    "the-legion/building/citadel"
+    "the-legion/building/armory"
   ],
   "exclusiveGroup": "Local.Legion.Hero.hero2.Specialize1",
   "appliesTo": [

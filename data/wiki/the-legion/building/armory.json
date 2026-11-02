@@ -19,7 +19,19 @@
   "unlocks": [
     "the-legion/hero/galavax",
     "the-legion/hero/inquisitress",
-    "the-legion/hero/kraegar"
+    "the-legion/hero/kraegar",
+    "the-legion/upgrade/beast-tamer",
+    "the-legion/upgrade/boundless-atonement",
+    "the-legion/upgrade/burning-fireball",
+    "the-legion/upgrade/explosive-warhead",
+    "the-legion/upgrade/fast-fireball",
+    "the-legion/upgrade/improved-charge",
+    "the-legion/upgrade/improved-cleave",
+    "the-legion/upgrade/lightning-spear",
+    "the-legion/upgrade/more-feed",
+    "the-legion/upgrade/one-life-for-another",
+    "the-legion/upgrade/speedburst-upgrade",
+    "the-legion/upgrade/wake-of-fire"
   ],
   "portrait": "TGUI_icon_empire_Research02",
   "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingLegionResearch1"

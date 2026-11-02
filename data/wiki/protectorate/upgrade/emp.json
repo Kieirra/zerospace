@@ -43,8 +43,7 @@
   ],
   "researchTime": 60,
   "requires": [
-    "protectorate/building/mechanical-research-lab",
-    "protectorate/building/research-lab"
+    "protectorate/building/mechanical-research-lab"
   ],
   "exclusiveGroup": "Local.Prot.AirCaster.Specialize1",
   "appliesTo": [

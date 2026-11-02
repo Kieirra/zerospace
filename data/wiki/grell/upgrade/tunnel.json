@@ -19,8 +19,6 @@
   ],
   "researchTime": 45,
   "requires": [
-    "grell/building/skyclutch",
-    "grell/building/synapse-canopy",
     "grell/building/young-canopy"
   ],
   "exclusiveGroup": "Local.Grell.Beetle.Specialize1",

@@ -36,9 +36,7 @@
   ],
   "researchTime": 50,
   "requires": [
-    "grell/building/skyclutch",
-    "grell/building/synapse-canopy",
-    "grell/building/young-canopy"
+    "grell/building/synapse-canopy"
   ],
   "exclusiveGroup": "Local.Grell.Reaver.Specialize1",
   "appliesTo": [

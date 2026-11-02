@@ -14,7 +14,6 @@
   },
   "researchTime": 60,
   "requires": [
-    "grell/building/skyclutch",
     "grell/building/synapse-canopy",
     "grell/building/young-canopy"
   ],

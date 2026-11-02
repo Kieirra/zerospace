@@ -15,9 +15,7 @@
   "researchTime": 60,
   "requires": [
     "grell/building/elderwomb",
-    "grell/building/skyclutch",
-    "grell/building/synapse-canopy",
-    "grell/building/young-canopy"
+    "grell/building/synapse-canopy"
   ],
   "exclusiveGroup": "Local.Grell.Harbinger.Specialize2",
   "appliesTo": [

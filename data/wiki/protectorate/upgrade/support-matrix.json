@@ -10,8 +10,7 @@
   },
   "researchTime": 60,
   "requires": [
-    "protectorate/building/mechanical-research-lab",
-    "protectorate/building/research-lab"
+    "protectorate/building/mechanical-research-lab"
   ],
   "tier": "T3",
   "exclusiveGroup": "Local.Prot.AirCaster.Specialize1",

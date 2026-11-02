@@ -13,8 +13,7 @@
   },
   "researchTime": 50,
   "requires": [
-    "protectorate/building/mechanical-research-lab",
-    "protectorate/building/research-lab"
+    "protectorate/building/mechanical-research-lab"
   ],
   "exclusiveGroup": "Local.Prot.Juggernaut.Specialize1",
   "appliesTo": [

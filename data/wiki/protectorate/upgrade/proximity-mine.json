@@ -48,8 +48,7 @@
   ],
   "researchTime": 45,
   "requires": [
-    "protectorate/building/mechanical-research-lab",
-    "protectorate/building/research-lab"
+    "protectorate/building/mechanical-research-lab"
   ],
   "tier": "T1",
   "exclusiveGroup": "Local.Prot.Predator.Specialize1",

@@ -10,9 +10,7 @@
   },
   "researchTime": 40,
   "requires": [
-    "grell/building/skyclutch",
-    "grell/building/synapse-canopy",
-    "grell/building/young-canopy"
+    "grell/building/synapse-canopy"
   ],
   "exclusiveGroup": "Local.Grell.Harbinger.Specialize1",
   "appliesTo": [

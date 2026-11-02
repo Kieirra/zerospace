@@ -14,8 +14,7 @@
   },
   "researchTime": 60,
   "requires": [
-    "protectorate/building/mechanical-research-lab",
-    "protectorate/building/research-lab"
+    "protectorate/building/mechanical-research-lab"
   ],
   "exclusiveGroup": "Local.Prot.Striker.Specialize2",
   "appliesTo": [
