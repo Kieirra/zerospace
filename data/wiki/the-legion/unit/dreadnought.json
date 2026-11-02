@@ -142,6 +142,9 @@
       "armorType": "heavy"
     }
   ],
+  "producedBy": [
+    "the-legion/building/dreadnought"
+  ],
   "topbarEnergyCosts": {
     "the-legion/topbar/reanimate": 30
   },

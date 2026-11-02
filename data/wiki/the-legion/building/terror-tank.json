@@ -12,6 +12,9 @@
   },
   "buildTime": 90,
   "hp": 1300,
+  "produces": [
+    "the-legion/unit/terror-tank"
+  ],
   "requires": [
     "the-legion/building/terror-tower"
   ],

@@ -13,6 +13,9 @@
   "buildTime": 60,
   "hp": 1000,
   "armorRating": 1,
+  "produces": [
+    "protectorate/unit/strider"
+  ],
   "requires": [
     "protectorate/building/mechanical-research-lab"
   ],

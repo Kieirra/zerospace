@@ -98,6 +98,9 @@
       "cooldown": 0.8
     }
   ],
+  "producedBy": [
+    "protectorate/building/strider"
+  ],
   "heals": [
     {
       "name": "Strider",

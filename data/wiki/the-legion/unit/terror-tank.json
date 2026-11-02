@@ -169,6 +169,9 @@
       "armorType": "heavy"
     }
   ],
+  "producedBy": [
+    "the-legion/building/terror-tank"
+  ],
   "topbarEnergyCosts": {
     "the-legion/topbar/reanimate": 30
   },

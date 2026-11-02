@@ -12,6 +12,9 @@
   },
   "buildTime": 80,
   "hp": 800,
+  "produces": [
+    "the-legion/unit/dreadnought"
+  ],
   "requires": [
     "the-legion/building/terror-tower"
   ],
