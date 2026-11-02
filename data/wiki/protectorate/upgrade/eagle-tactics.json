@@ -15,6 +15,9 @@
     "flux": 150
   },
   "researchTime": 60,
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
   "tier": "T3",
   "exclusiveGroup": "Local.Prot.Commando.Specialize3",
   "appliesTo": [

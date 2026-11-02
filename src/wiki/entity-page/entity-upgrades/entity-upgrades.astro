@@ -18,6 +18,7 @@ const unresolvedIds = ids.filter((id) => !entities.has(id));
 const toTiles = (upgrade: Entity) =>
   keepFilledTiles([
     { label: 'Tier', value: upgrade.tier },
+    { label: 'Requires', value: upgrade.requires?.map((id) => entities.get(id)?.name ?? id).join(', ') },
     { label: 'Cost', value: formatCost(upgrade.cost) },
     { label: 'Research time', value: formatOptionalSeconds(upgrade.researchTime) },
   ]);

@@ -13,6 +13,9 @@
     "hexite": 50
   },
   "researchTime": 20,
+  "requires": [
+    "grell/building/broodwomb"
+  ],
   "appliesTo": [
     "grell/building/cultivator"
   ],

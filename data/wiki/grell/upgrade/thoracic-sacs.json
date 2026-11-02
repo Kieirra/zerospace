@@ -12,6 +12,9 @@
     "flux": 125
   },
   "researchTime": 50,
+  "requires": [
+    "grell/building/skyclutch"
+  ],
   "exclusiveGroup": "Local.Grell.Skrelling",
   "appliesTo": [
     "grell/unit/skrell"

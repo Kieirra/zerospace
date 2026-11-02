@@ -13,6 +13,10 @@
     "flux": 150
   },
   "researchTime": 60,
+  "requires": [
+    "grell/building/elderwomb",
+    "grell/building/synapse-canopy"
+  ],
   "exclusiveGroup": "Local.Grell.BroodGuard.Specialize2",
   "appliesTo": [
     "grell/unit/keeper"

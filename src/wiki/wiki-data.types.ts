@@ -287,6 +287,7 @@ export interface EnergyCostChange {
 }
 
 export interface UpgradeFile {
+  requires?: string[];
   targets?: string[];
   excludedTargets?: string[];
   id: string;

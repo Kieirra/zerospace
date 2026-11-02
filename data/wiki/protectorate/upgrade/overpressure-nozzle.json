@@ -13,6 +13,9 @@
     "flux": 125
   },
   "researchTime": 60,
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
   "exclusiveGroup": "Research.Local.Prot.MedMech.Specialize2",
   "appliesTo": [
     "protectorate/unit/bastion"

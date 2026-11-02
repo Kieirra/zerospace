@@ -12,6 +12,9 @@
     "flux": 150
   },
   "researchTime": 60,
+  "requires": [
+    "the-legion/building/terror-tower"
+  ],
   "exclusiveGroup": "Local.Legion.Hero.hero3.Specialize2",
   "appliesTo": [
     "the-legion/hero/galavax"

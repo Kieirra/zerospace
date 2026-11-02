@@ -12,6 +12,9 @@
     "flux": 100
   },
   "researchTime": 45,
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
   "exclusiveGroup": "Local.Prot.Predator.Specialize1",
   "appliesTo": [
     "protectorate/unit/predator"

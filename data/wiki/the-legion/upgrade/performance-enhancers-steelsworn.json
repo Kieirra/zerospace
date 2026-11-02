@@ -12,6 +12,9 @@
     "flux": 125
   },
   "researchTime": 45,
+  "requires": [
+    "the-legion/building/terror-tower"
+  ],
   "exclusiveGroup": "Local.Legion.Infantry.Thrall.Armored.Specialize2",
   "appliesTo": [
     "the-legion/unit/steelsworn"

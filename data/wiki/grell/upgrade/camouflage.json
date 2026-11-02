@@ -26,6 +26,9 @@
     }
   ],
   "researchTime": 60,
+  "requires": [
+    "grell/building/synapse-canopy"
+  ],
   "exclusiveGroup": "Local.Grell.Lasher.Specialize3",
   "appliesTo": [
     "grell/unit/lasher"

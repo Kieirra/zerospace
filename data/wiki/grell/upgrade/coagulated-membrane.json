@@ -12,6 +12,9 @@
     "flux": 125
   },
   "researchTime": 60,
+  "requires": [
+    "grell/building/elderwomb"
+  ],
   "exclusiveGroup": "Local.Grell.Harbinger.Specialize2",
   "appliesTo": [
     "grell/unit/harbinger"

@@ -11,12 +11,14 @@ interface Props {
 
 const { factionId } = Astro.props;
 const upgrades = await getFactionEntities(factionId, 'upgrade');
-const groups = groupEntities(upgrades, ({ appliesTo }) => appliesTo?.[0], await getEntityMap());
+const entities = await getEntityMap();
+const groups = groupEntities(upgrades, ({ appliesTo }) => appliesTo?.[0], entities);
 
 const columns = [
   { label: 'Tier', width: '4rem' },
   { label: 'Cost', width: '8.5rem' },
   { label: 'Research time', width: '7rem' },
+  { label: 'Requires', width: '9rem' },
   { label: 'Description', isDesktopOnly: true, isWide: true },
 ];
 
@@ -27,6 +29,7 @@ const toRow = (upgrade: Entity) => ({
     upgrade.tier,
     formatCost(upgrade.cost),
     formatOptionalSeconds(upgrade.researchTime),
+    upgrade.requires?.map((id) => entities.get(id)?.name ?? id).join(', '),
     upgrade.description && interpolate(upgrade.description, upgrade.values),
   ],
 });

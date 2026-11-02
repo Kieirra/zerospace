@@ -10,6 +10,9 @@
     "hexite": 150
   },
   "researchTime": 25,
+  "requires": [
+    "grell/building/broodwomb"
+  ],
   "appliesTo": [
     "grell/building/bloomwell"
   ],

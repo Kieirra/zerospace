@@ -14,6 +14,9 @@
     "flux": 125
   },
   "researchTime": 60,
+  "requires": [
+    "grell/building/synapse-canopy"
+  ],
   "tier": "T3",
   "exclusiveGroup": "Local.Grell.Stinger.Specialize2",
   "appliesTo": [

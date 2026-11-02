@@ -10,6 +10,10 @@
     "hexite": 150
   },
   "researchTime": 25,
+  "requires": [
+    "the-legion/building/barracks",
+    "the-legion/building/bestiary"
+  ],
   "appliesTo": [
     "the-legion/building/garrison-tower"
   ],
