@@ -15,6 +15,7 @@
   "buildTime": 12,
   "hp": 400,
   "armorRating": 1,
+  "energy": 100,
   "unlocks": [
     "grell/building/broodwomb"
   ],

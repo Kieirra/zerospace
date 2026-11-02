@@ -11,6 +11,7 @@
   },
   "buildTime": 25,
   "hp": 400,
+  "energy": 50,
   "vision": 1800,
   "weapons": [
     {

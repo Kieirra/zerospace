@@ -21,6 +21,7 @@
   "buildTime": 40,
   "hp": 1250,
   "armorRating": 1,
+  "energy": 100,
   "requires": [
     "the-xol/building/gyroforge",
     "the-xol/building/spectral-foundry",

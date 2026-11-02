@@ -240,6 +240,7 @@ export interface BuildingFile {
   armor?: number;
   armorRating?: number;
   armorDamageTaken?: number;
+  energy?: number;
   vision?: number;
   weapons?: Weapon[];
   maxTurrets?: number;
