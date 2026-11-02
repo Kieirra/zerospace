@@ -47,6 +47,9 @@
   "producedBy": [
     "the-xol/building/xyther-assembler"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-xyther"
+  ],
   "mergesInto": [
     "the-xol/unit/aegis",
     "the-xol/unit/defiant"

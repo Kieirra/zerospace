@@ -1,0 +1,17 @@
+{
+  "id": "the-xol/upgrade/molten-eradicator",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Molten Eradicator",
+  "stats": [
+    {
+      "label": "Max Health",
+      "value": 15,
+      "unit": "%"
+    }
+  ],
+  "appliesTo": [
+    "the-xol/unit/eradicator"
+  ],
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Passives/GE_Xol_MP_Molten_Eradicator"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "the-xol/upgrade/molten-echo",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Molten Echo",
+  "stats": [
+    {
+      "label": "Max Health",
+      "value": 15,
+      "unit": "%"
+    }
+  ],
+  "weapons": [
+    {
+      "name": "Nebula Pulse",
+      "cooldown": 2,
+      "burst": 1,
+      "burstCooldown": 2,
+      "range": 1000,
+      "excludedTargets": [
+        "Air"
+      ],
+      "warmup": 0,
+      "bonuses": [
+        {
+          "vs": "Harvester",
+          "value": 200,
+          "unit": "%"
+        }
+      ]
+    }
+  ],
+  "appliesTo": [
+    "the-xol/unit/echo"
+  ],
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Passives/GE_Xol_MP_Molten_Echo"
+}

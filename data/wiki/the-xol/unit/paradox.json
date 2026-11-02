@@ -63,6 +63,9 @@
   "requires": [
     "the-xol/building/world-forge"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-paradox"
+  ],
   "mergedFrom": [
     {
       "id": "the-xol/unit/defiant",

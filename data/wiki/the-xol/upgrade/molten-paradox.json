@@ -1,0 +1,22 @@
+{
+  "id": "the-xol/upgrade/molten-paradox",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Molten Paradox",
+  "stats": [
+    {
+      "label": "Max Health",
+      "value": 15,
+      "unit": "%"
+    },
+    {
+      "label": "Attack Speed",
+      "value": 50,
+      "unit": "%"
+    }
+  ],
+  "appliesTo": [
+    "the-xol/unit/paradox"
+  ],
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Passives/GE_Xol_MP_Molten_Paradox"
+}

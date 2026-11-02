@@ -50,6 +50,9 @@
   "requires": [
     "the-xol/building/molten-core"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-synapse"
+  ],
   "mergedFrom": [
     {
       "id": "the-xol/unit/spectron",

@@ -50,6 +50,9 @@
   "producedBy": [
     "the-xol/building/spectral-foundry"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-spectron"
+  ],
   "mergesInto": [
     "the-xol/unit/eradicator",
     "the-xol/unit/synapse"

@@ -38,9 +38,10 @@ const toTiles = (upgrade: Entity) =>
                       name={upgrade.name}
                       linkId={upgrade.id}
                       tiles={toTiles(upgrade)}
+                      weapons={upgrade.weapons}
                       description={upgrade.description && interpolate(upgrade.description, upgrade.values)}
-                details={upgrade.details && interpolate(upgrade.details, upgrade.values)}
-                stats={toGameStatTiles(upgrade.stats)}
+                      details={upgrade.details && interpolate(upgrade.details, upgrade.values)}
+                      stats={toGameStatTiles(upgrade.stats)}
                     />
                   </li>
                 </>
@@ -52,6 +53,7 @@ const toTiles = (upgrade: Entity) =>
                 name={upgrade.name}
                 linkId={upgrade.id}
                 tiles={toTiles(upgrade)}
+                weapons={upgrade.weapons}
                 description={upgrade.description && interpolate(upgrade.description, upgrade.values)}
                 details={upgrade.details && interpolate(upgrade.details, upgrade.values)}
                 stats={toGameStatTiles(upgrade.stats)}

@@ -57,6 +57,9 @@
   "requires": [
     "the-xol/building/world-forge"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-eradicator"
+  ],
   "mergedFrom": [
     {
       "id": "the-xol/unit/spectron",

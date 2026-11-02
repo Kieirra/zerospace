@@ -1,0 +1,18 @@
+{
+  "id": "the-xol/upgrade/molten-roller",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Molten Roller",
+  "description": "Loses its weapon but explodes damaging and slowing enemies.",
+  "stats": [
+    {
+      "label": "Max Health",
+      "value": 15,
+      "unit": "%"
+    }
+  ],
+  "appliesTo": [
+    "the-xol/unit/roller"
+  ],
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Passives/GE_Xol_MP_Molten_Roller"
+}

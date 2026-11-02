@@ -52,6 +52,9 @@
   "requires": [
     "the-xol/building/world-forge"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-gravitron"
+  ],
   "mergedFrom": [
     {
       "id": "the-xol/unit/roller",

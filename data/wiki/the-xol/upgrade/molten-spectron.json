@@ -1,0 +1,32 @@
+{
+  "id": "the-xol/upgrade/molten-spectron",
+  "kind": "upgrade",
+  "faction": "the-xol",
+  "name": "Molten Spectron",
+  "description": "Projectile deals area damage but is slow.",
+  "stats": [
+    {
+      "label": "Max Health",
+      "value": 15,
+      "unit": "%"
+    }
+  ],
+  "weapons": [
+    {
+      "name": "Singularity Orb",
+      "damage": 60,
+      "cooldown": 1,
+      "burst": 1,
+      "burstCooldown": 5,
+      "range": 1400,
+      "splashRadius": 225,
+      "warmup": 0.11,
+      "projectileSpeed": 700,
+      "dps": 12
+    }
+  ],
+  "appliesTo": [
+    "the-xol/unit/spectron"
+  ],
+  "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Passives/GE_Xol_MP_Molten_Spectron"
+}

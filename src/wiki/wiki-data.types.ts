@@ -195,6 +195,15 @@ export interface MergeForm {
   weapons?: Weapon[];
 }
 
+// Effects and replacement weapons of an upgrade applied to an existing Xol unit.
+export interface MoltenForm {
+  asset: string;
+  name: string;
+  description?: string;
+  stats?: Stat[];
+  weapons?: Weapon[];
+}
+
 // One ingredient of a Xol merge: count units of this id.
 export interface MergeSource {
   id: string;
@@ -272,6 +281,7 @@ export interface UpgradeFile {
   excludedTargets?: string[];
   id: string;
   kind: 'upgrade' | 'talent' | 'topbar';
+  weapons?: Weapon[];
   faction: string;
   name: string;
   description?: string;

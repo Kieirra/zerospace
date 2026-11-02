@@ -34,6 +34,9 @@
   "producedBy": [
     "the-xol/building/gyroforge"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-roller"
+  ],
   "mergesInto": [
     "the-xol/unit/echo",
     "the-xol/unit/gravitron"

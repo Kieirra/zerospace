@@ -41,6 +41,9 @@
   "requires": [
     "the-xol/building/molten-core"
   ],
+  "upgrades": [
+    "the-xol/upgrade/molten-echo"
+  ],
   "mergedFrom": [
     {
       "id": "the-xol/unit/roller",
