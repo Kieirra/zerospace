@@ -287,9 +287,8 @@ export interface EnergyCostChange {
 }
 
 export interface UpgradeFile {
-  // Buildings needed to access the upgrade, including a required research manager; not its queue location.
-  // Legion unit upgrades require Citadel via Research.Requirements.Manager (native build 26278122,
-  // RTS.exe 0x143589954..0x14358998c), in addition to their explicit building requirements.
+  // Buildings needed to access the upgrade: its required buildings plus the building that researches it
+  // (its RequiredProducerTags, or for a unit upgrade the RequiredProducerTags of its target units).
   requires?: string[];
   targets?: string[];
   excludedTargets?: string[];

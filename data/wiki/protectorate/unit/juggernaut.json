@@ -57,9 +57,6 @@
   "producedBy": [
     "protectorate/building/war-foundry"
   ],
-  "requires": [
-    "protectorate/building/mechanical-research-lab"
-  ],
   "upgrades": [
     "protectorate/upgrade/heavy-plating",
     "protectorate/upgrade/mobile-discharge"

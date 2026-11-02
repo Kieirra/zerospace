@@ -16,10 +16,6 @@
     "protectorate/unit/prospector",
     "protectorate/unit/recon-drone"
   ],
-  "unlocks": [
-    "protectorate/unit/prospector",
-    "protectorate/unit/recon-drone"
-  ],
   "economy": [
     {
       "label": "Hexite / min",

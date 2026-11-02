@@ -19,9 +19,6 @@
     "valkaru/unit/valkaru-shock-trooper",
     "valkaru/unit/valkaru-tow-bot"
   ],
-  "unlocks": [
-    "valkaru/unit/valkaru-beast"
-  ],
   "portrait": "TGUI_portrait_building_valkaru_tavern",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Valkaru"
 }

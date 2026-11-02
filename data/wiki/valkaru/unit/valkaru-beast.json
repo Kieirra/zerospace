@@ -42,9 +42,6 @@
       "dps": 52
     }
   ],
-  "requires": [
-    "valkaru/building/valkaru-war-vault"
-  ],
   "portrait": "TGUI_portrait_unit_valkaru_beast01",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_Valkaru_Beast"
 }

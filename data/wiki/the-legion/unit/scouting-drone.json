@@ -27,10 +27,6 @@
     "the-legion/building/garrison-tower",
     "the-legion/building/garrison-tower-turret"
   ],
-  "requires": [
-    "the-legion/building/garrison-tower",
-    "the-legion/building/garrison-tower-turret"
-  ],
   "portrait": "Troop_ScoutingDrone",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_ScoutingDrone_Legion"
 }

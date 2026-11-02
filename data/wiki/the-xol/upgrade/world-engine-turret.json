@@ -10,6 +10,11 @@
     "hexite": 150
   },
   "researchTime": 25,
+  "requires": [
+    "the-xol/building/gyroforge",
+    "the-xol/building/spectral-foundry",
+    "the-xol/building/xyther-assembler"
+  ],
   "appliesTo": [
     "the-xol/building/world-engine"
   ],

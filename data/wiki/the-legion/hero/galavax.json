@@ -71,9 +71,6 @@
   "producedBy": [
     "the-legion/building/altar"
   ],
-  "requires": [
-    "the-legion/building/armory"
-  ],
   "upgrades": [
     "the-legion/upgrade/boundless-atonement",
     "the-legion/upgrade/burning-fireball",

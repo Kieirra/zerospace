@@ -62,9 +62,6 @@
   "producedBy": [
     "grell/building/elderwomb"
   ],
-  "requires": [
-    "grell/building/synapse-canopy"
-  ],
   "upgrades": [
     "grell/upgrade/elder-carapace",
     "grell/upgrade/fluxblood-surge"

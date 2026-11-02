@@ -51,9 +51,6 @@
   "producedBy": [
     "protectorate/building/skydock"
   ],
-  "requires": [
-    "protectorate/building/mechanical-research-lab"
-  ],
   "upgrades": [
     "protectorate/upgrade/crippling-payload",
     "protectorate/upgrade/thrust-boosters"

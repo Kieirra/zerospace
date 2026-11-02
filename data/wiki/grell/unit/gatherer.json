@@ -33,10 +33,6 @@
     "grell/building/bloomwell",
     "grell/building/bloomwell-attacker"
   ],
-  "requires": [
-    "grell/building/bloomwell",
-    "grell/building/bloomwell-attacker"
-  ],
   "economy": [
     {
       "label": "Flux / min",

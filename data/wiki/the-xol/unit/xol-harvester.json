@@ -37,10 +37,6 @@
     "the-xol/building/world-engine",
     "the-xol/building/world-engine-turret"
   ],
-  "requires": [
-    "the-xol/building/world-engine",
-    "the-xol/building/world-engine-turret"
-  ],
   "economy": [
     {
       "label": "Flux / min",

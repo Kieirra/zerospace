@@ -39,9 +39,6 @@
   "producedBy": [
     "grell/building/broodwomb"
   ],
-  "requires": [
-    "grell/building/young-canopy"
-  ],
   "upgrades": [
     "grell/upgrade/biomass-submersion",
     "grell/upgrade/dissolving-venom",

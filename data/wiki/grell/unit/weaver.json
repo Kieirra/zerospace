@@ -75,9 +75,6 @@
   "producedBy": [
     "grell/building/incubator"
   ],
-  "requires": [
-    "grell/building/synapse-canopy"
-  ],
   "upgrades": [
     "grell/upgrade/koru-neuropaths"
   ],

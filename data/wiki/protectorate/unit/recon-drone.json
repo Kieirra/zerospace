@@ -27,10 +27,6 @@
     "protectorate/building/operating-tower",
     "protectorate/building/operating-tower-turret"
   ],
-  "requires": [
-    "protectorate/building/operating-tower",
-    "protectorate/building/operating-tower-turret"
-  ],
   "topbarEnergyCosts": {
     "protectorate/topbar/protective-shield": 1.125
   },

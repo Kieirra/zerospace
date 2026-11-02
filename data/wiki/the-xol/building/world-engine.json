@@ -16,10 +16,6 @@
     "the-xol/unit/scouting-drone",
     "the-xol/unit/xol-harvester"
   ],
-  "unlocks": [
-    "the-xol/unit/scouting-drone",
-    "the-xol/unit/xol-harvester"
-  ],
   "economy": [
     {
       "label": "Hexite / min",

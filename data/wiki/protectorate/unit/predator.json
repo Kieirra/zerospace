@@ -44,9 +44,6 @@
   "producedBy": [
     "protectorate/building/assembly-plant"
   ],
-  "requires": [
-    "protectorate/building/mechanical-research-lab"
-  ],
   "upgrades": [
     "protectorate/upgrade/proximity-mine",
     "protectorate/upgrade/reinforced-matrix"

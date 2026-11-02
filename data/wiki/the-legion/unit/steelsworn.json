@@ -38,9 +38,6 @@
   "producedBy": [
     "the-legion/building/barracks"
   ],
-  "requires": [
-    "the-legion/building/citadel"
-  ],
   "upgrades": [
     "the-legion/upgrade/alloy-armor",
     "the-legion/upgrade/performance-enhancers-steelsworn",

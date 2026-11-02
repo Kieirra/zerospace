@@ -17,8 +17,6 @@
     "protectorate/building/barracks"
   ],
   "unlocks": [
-    "protectorate/unit/bastion",
-    "protectorate/unit/commando",
     "protectorate/unit/sentinel",
     "protectorate/upgrade/eagle-tactics",
     "protectorate/upgrade/hyperdense-rounds",

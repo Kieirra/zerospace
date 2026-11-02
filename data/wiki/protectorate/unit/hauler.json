@@ -72,9 +72,6 @@
   "producedBy": [
     "protectorate/building/skydock"
   ],
-  "requires": [
-    "protectorate/building/mechanical-research-lab"
-  ],
   "upgrades": [
     "protectorate/upgrade/medbays",
     "protectorate/upgrade/transport"

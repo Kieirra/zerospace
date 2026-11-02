@@ -19,7 +19,8 @@
     "the-xol/building/power-core"
   ],
   "unlocks": [
-    "the-xol/building/molten-core"
+    "the-xol/building/molten-core",
+    "the-xol/upgrade/world-engine-turret"
   ],
   "portrait": "Building_Xol_MP_XytherProducer",
   "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_XytherProducer"

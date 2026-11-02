@@ -40,9 +40,6 @@
   "producedBy": [
     "grell/building/incubator"
   ],
-  "requires": [
-    "grell/building/synapse-canopy"
-  ],
   "upgrades": [
     "grell/upgrade/accelerated-mitosis",
     "grell/upgrade/cytokinin-surge",
