@@ -98,6 +98,9 @@
       "cooldown": 0.8
     }
   ],
+  "requires": [
+    "protectorate/building/mechanical-research-lab"
+  ],
   "heals": [
     {
       "name": "Strider",

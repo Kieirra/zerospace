@@ -21,7 +21,13 @@
     "the-xol/unit/cataclyst",
     "the-xol/unit/eradicator",
     "the-xol/unit/gravitron",
-    "the-xol/unit/paradox"
+    "the-xol/unit/paradox",
+    "the-xol/upgrade/armor",
+    "the-xol/upgrade/casting-range",
+    "the-xol/upgrade/cooldown-reduction",
+    "the-xol/upgrade/damage",
+    "the-xol/upgrade/vitals",
+    "the-xol/upgrade/weapon-range"
   ],
   "portrait": "Building_Xol_MP_WorldForge",
   "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Buildings/RI_Xol_Building_MP_WorldForge"

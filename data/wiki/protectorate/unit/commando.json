@@ -42,6 +42,9 @@
   "producedBy": [
     "protectorate/building/barracks"
   ],
+  "requires": [
+    "protectorate/building/research-lab"
+  ],
   "upgrades": [
     "protectorate/upgrade/eagle-tactics",
     "protectorate/upgrade/impulse-thrusters",

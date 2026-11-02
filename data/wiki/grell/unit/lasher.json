@@ -34,6 +34,9 @@
   "producedBy": [
     "grell/building/broodwomb"
   ],
+  "requires": [
+    "grell/building/young-canopy"
+  ],
   "upgrades": [
     "grell/upgrade/camouflage",
     "grell/upgrade/caustic-spines",

@@ -12,6 +12,11 @@
     "flux": 100
   },
   "researchTime": 60,
+  "requires": [
+    "grell/building/skyclutch",
+    "grell/building/synapse-canopy",
+    "grell/building/young-canopy"
+  ],
   "tier": "T1",
   "exclusiveGroup": "Local.Grell.Stinger.Specialize1",
   "appliesTo": [

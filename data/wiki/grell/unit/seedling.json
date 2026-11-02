@@ -13,6 +13,10 @@
   "speed": 225,
   "vision": 1400,
   "size": 70,
+  "requires": [
+    "grell/building/bloomwell",
+    "grell/building/bloomwell-attacker"
+  ],
   "topbarEnergyCosts": {
     "grell/topbar/infusion": 2
   },

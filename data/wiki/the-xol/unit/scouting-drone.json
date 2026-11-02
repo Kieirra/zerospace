@@ -30,6 +30,10 @@
     "the-xol/building/world-engine",
     "the-xol/building/world-engine-turret"
   ],
+  "requires": [
+    "the-xol/building/world-engine",
+    "the-xol/building/world-engine-turret"
+  ],
   "portrait": "Troop_Xol_ScoutingDrone",
   "asset": "Archetypes_ResearchItems/Multiplayer/Xol/Units/RI_Troop_Xol_MP_ScoutingDrone"
 }

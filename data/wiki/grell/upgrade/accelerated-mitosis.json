@@ -15,7 +15,9 @@
   "researchTime": 60,
   "requires": [
     "grell/building/elderwomb",
-    "grell/building/synapse-canopy"
+    "grell/building/skyclutch",
+    "grell/building/synapse-canopy",
+    "grell/building/young-canopy"
   ],
   "exclusiveGroup": "Local.Grell.BroodGuard.Specialize2",
   "appliesTo": [

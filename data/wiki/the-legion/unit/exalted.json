@@ -53,6 +53,9 @@
   "producedBy": [
     "the-legion/building/bestiary"
   ],
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "upgrades": [
     "the-legion/upgrade/hallowed-strike",
     "the-legion/upgrade/maul"

@@ -32,6 +32,10 @@
     "the-legion/unit/legion-labourer",
     "the-legion/unit/scouting-drone"
   ],
+  "unlocks": [
+    "the-legion/unit/legion-labourer",
+    "the-legion/unit/scouting-drone"
+  ],
   "economy": [
     {
       "label": "Hexite / min",

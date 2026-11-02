@@ -9,6 +9,11 @@
     "flux": 100
   },
   "researchTime": 40,
+  "requires": [
+    "grell/building/skyclutch",
+    "grell/building/synapse-canopy",
+    "grell/building/young-canopy"
+  ],
   "exclusiveGroup": "Local.Grell.Harbinger.Specialize1",
   "appliesTo": [
     "grell/unit/harbinger"

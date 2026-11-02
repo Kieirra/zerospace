@@ -71,6 +71,9 @@
   "producedBy": [
     "grell/building/incubator"
   ],
+  "requires": [
+    "grell/building/synapse-canopy"
+  ],
   "upgrades": [
     "grell/upgrade/cardiovascular-boost",
     "grell/upgrade/coagulated-membrane",

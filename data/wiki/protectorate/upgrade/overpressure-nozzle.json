@@ -14,7 +14,8 @@
   },
   "researchTime": 60,
   "requires": [
-    "protectorate/building/mechanical-research-lab"
+    "protectorate/building/mechanical-research-lab",
+    "protectorate/building/research-lab"
   ],
   "exclusiveGroup": "Research.Local.Prot.MedMech.Specialize2",
   "appliesTo": [

@@ -13,6 +13,9 @@
     "flux": 200
   },
   "researchTime": 60,
+  "requires": [
+    "the-xol/building/world-forge"
+  ],
   "exclusiveGroup": "Research.T1",
   "portrait": "TGUI_icon_skill_explosion",
   "asset": "Archetypes_ResearchItems/Xol/Upgrades/RI_Xol_Army_Damage"

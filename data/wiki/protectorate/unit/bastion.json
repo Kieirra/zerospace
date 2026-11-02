@@ -46,6 +46,9 @@
   "producedBy": [
     "protectorate/building/barracks"
   ],
+  "requires": [
+    "protectorate/building/research-lab"
+  ],
   "upgrades": [
     "protectorate/upgrade/kinectic-mode",
     "protectorate/upgrade/overpressure-nozzle",

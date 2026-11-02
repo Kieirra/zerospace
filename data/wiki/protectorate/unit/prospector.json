@@ -37,6 +37,10 @@
     "protectorate/building/operating-tower",
     "protectorate/building/operating-tower-turret"
   ],
+  "requires": [
+    "protectorate/building/operating-tower",
+    "protectorate/building/operating-tower-turret"
+  ],
   "economy": [
     {
       "label": "Flux / min",

@@ -12,6 +12,10 @@
     "flux": 100
   },
   "researchTime": 45,
+  "requires": [
+    "protectorate/building/mechanical-research-lab",
+    "protectorate/building/research-lab"
+  ],
   "exclusiveGroup": "local.prot.commando.specialize1",
   "appliesTo": [
     "protectorate/unit/commando"

@@ -16,6 +16,11 @@
   "requires": [
     "the-legion/building/citadel"
   ],
+  "unlocks": [
+    "the-legion/hero/galavax",
+    "the-legion/hero/inquisitress",
+    "the-legion/hero/kraegar"
+  ],
   "portrait": "TGUI_icon_empire_Research02",
   "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingLegionResearch1"
 }

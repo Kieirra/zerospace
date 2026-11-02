@@ -12,6 +12,10 @@
     "flux": 100
   },
   "researchTime": 45,
+  "requires": [
+    "protectorate/building/mechanical-research-lab",
+    "protectorate/building/research-lab"
+  ],
   "exclusiveGroup": "Local.Prot.Rocket.specialize1",
   "appliesTo": [
     "protectorate/unit/sentinel"

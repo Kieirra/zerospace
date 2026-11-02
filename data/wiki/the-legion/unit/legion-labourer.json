@@ -46,6 +46,10 @@
     "the-legion/building/garrison-tower",
     "the-legion/building/garrison-tower-turret"
   ],
+  "requires": [
+    "the-legion/building/garrison-tower",
+    "the-legion/building/garrison-tower-turret"
+  ],
   "economy": [
     {
       "label": "Flux / min",

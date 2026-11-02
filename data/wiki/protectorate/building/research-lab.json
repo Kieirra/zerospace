@@ -17,7 +17,32 @@
     "protectorate/building/barracks"
   ],
   "unlocks": [
-    "protectorate/unit/sentinel"
+    "protectorate/unit/bastion",
+    "protectorate/unit/commando",
+    "protectorate/unit/sentinel",
+    "protectorate/upgrade/antimatter-boosters",
+    "protectorate/upgrade/charge-speed",
+    "protectorate/upgrade/crippling-payload",
+    "protectorate/upgrade/eagle-tactics",
+    "protectorate/upgrade/emp",
+    "protectorate/upgrade/heavy-plating",
+    "protectorate/upgrade/hyperdense-rounds",
+    "protectorate/upgrade/impulse-thrusters",
+    "protectorate/upgrade/jetpack",
+    "protectorate/upgrade/kinectic-mode",
+    "protectorate/upgrade/longshot-calibration",
+    "protectorate/upgrade/magnetic-rifiling",
+    "protectorate/upgrade/medbays",
+    "protectorate/upgrade/mobile-discharge",
+    "protectorate/upgrade/overpressure-nozzle",
+    "protectorate/upgrade/proximity-mine",
+    "protectorate/upgrade/reactive-armor",
+    "protectorate/upgrade/reinforced-matrix",
+    "protectorate/upgrade/resonant-missiles",
+    "protectorate/upgrade/retribution-protocol",
+    "protectorate/upgrade/support-matrix",
+    "protectorate/upgrade/thrust-boosters",
+    "protectorate/upgrade/transport"
   ],
   "portrait": "Building_Prot_Research",
   "asset": "Archetypes_ResearchItems/Buildings/RI_BuildingResearch"

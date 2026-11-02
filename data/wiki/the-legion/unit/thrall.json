@@ -35,6 +35,9 @@
   "producedBy": [
     "the-legion/building/barracks"
   ],
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "upgrades": [
     "the-legion/upgrade/battle-frenzy",
     "the-legion/upgrade/charged-shot",

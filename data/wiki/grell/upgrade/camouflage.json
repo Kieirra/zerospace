@@ -27,7 +27,9 @@
   ],
   "researchTime": 60,
   "requires": [
-    "grell/building/synapse-canopy"
+    "grell/building/skyclutch",
+    "grell/building/synapse-canopy",
+    "grell/building/young-canopy"
   ],
   "exclusiveGroup": "Local.Grell.Lasher.Specialize3",
   "appliesTo": [

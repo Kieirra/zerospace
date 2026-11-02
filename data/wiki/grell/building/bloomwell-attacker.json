@@ -30,6 +30,10 @@
   "produces": [
     "grell/unit/gatherer"
   ],
+  "unlocks": [
+    "grell/unit/gatherer",
+    "grell/unit/seedling"
+  ],
   "economy": [
     {
       "label": "Hexite / min",
