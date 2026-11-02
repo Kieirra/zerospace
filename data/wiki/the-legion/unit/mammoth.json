@@ -32,7 +32,7 @@
       "stats": [
         {
           "label": "Movement Speed",
-          "value": 1.25
+          "value": 125
         }
       ],
       "description": "One rider at a time. The rider cannot be unloaded. Ironhide Accord enhances troop bonuses."
@@ -61,7 +61,7 @@
       "stats": [
         {
           "label": "Movement Speed",
-          "value": 0.5
+          "value": 50
         },
         {
           "label": "Trample damage",
