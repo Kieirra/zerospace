@@ -1,9 +1,12 @@
 ---
+import RedirectPage from '../../../shared/redirect/redirect-page.astro';
 import { getFactions } from '../../../wiki/wiki.data.ts';
 import { tabHref } from '../../../wiki/wiki.helpers.ts';
 import { TABS } from '../../../wiki/wiki.constants.ts';
 
 export const getStaticPaths = async () => (await getFactions()).map(({ id }) => ({ params: { faction: id } }));
 
-return Astro.redirect(tabHref(Astro.params.faction ?? "", TABS[0].slug), 301);
+const target = tabHref(Astro.params.faction ?? '', TABS[0].slug);
 ---
+
+<RedirectPage target={target} />

@@ -1,0 +1,22 @@
+---
+import Layout from '../layout/layout.astro';
+
+interface Props {
+  target: string;
+}
+
+const { target } = Astro.props;
+---
+
+<Layout title="Redirecting" isCentered>
+  <meta http-equiv="refresh" content={`0;url=${target}`} />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href={target} />
+  <script is:inline define:vars={{ target }}>
+    location.replace(target);
+  </script>
+  <div class="bevel-sm mx-auto max-w-md bg-surface p-6 text-center">
+    <p class="label-caps text-muted">Redirecting</p>
+    <a href={target} class="mt-3 inline-block text-accent-soft hover:underline">{target}</a>
+  </div>
+</Layout>
