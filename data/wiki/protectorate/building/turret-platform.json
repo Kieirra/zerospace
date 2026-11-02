@@ -12,12 +12,14 @@
   "weapons": [
     {
       "name": "ST Multiple Rocket Platform",
+      "damage": 10,
       "cooldown": 0.1,
       "burst": 3,
       "burstCooldown": 1.5,
       "range": 1500,
       "warmup": 0,
       "projectileSpeed": 1500,
+      "dps": 20,
       "bonuses": [
         {
           "vs": "Air",

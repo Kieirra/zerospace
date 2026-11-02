@@ -13,6 +13,7 @@
   "weapons": [
     {
       "name": "Nebula Pulse",
+      "damage": 10,
       "cooldown": 2,
       "burst": 1,
       "burstCooldown": 2,
@@ -21,6 +22,7 @@
         "Air"
       ],
       "warmup": 0,
+      "dps": 5,
       "bonuses": [
         {
           "vs": "Harvester",

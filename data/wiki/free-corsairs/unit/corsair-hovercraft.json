@@ -22,12 +22,14 @@
   "weapons": [
     {
       "name": "Improvised Krakatoa Rockets",
+      "damage": 10,
       "cooldown": 0.04,
       "burst": 3,
       "burstCooldown": 3,
       "range": 900,
       "warmup": 0,
-      "projectileSpeed": 1500
+      "projectileSpeed": 1500,
+      "dps": 20
     }
   ],
   "abilities": [

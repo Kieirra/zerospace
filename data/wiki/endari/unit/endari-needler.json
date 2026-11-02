@@ -21,28 +21,14 @@
   "weapons": [
     {
       "name": "Impossible Shards",
+      "damage": 10,
       "cooldown": 0.5,
       "burst": 1,
       "burstCooldown": 0.3,
       "range": 775,
       "warmup": 0.11,
       "projectileSpeed": 3750,
-      "bonuses": [
-        {
-          "vs": "Medium",
-          "value": 75,
-          "unit": "%"
-        }
-      ]
-    },
-    {
-      "name": "Impossible Shards",
-      "cooldown": 0.5,
-      "burst": 1,
-      "burstCooldown": 0.3,
-      "range": 775,
-      "warmup": 0.11,
-      "projectileSpeed": 3750,
+      "dps": 33.3333,
       "bonuses": [
         {
           "vs": "Medium",

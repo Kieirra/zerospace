@@ -32,6 +32,7 @@
   },
   "weapons": [
     {
+      "name": "Resonator",
       "damage": 20,
       "cooldown": 0,
       "burst": 1,
