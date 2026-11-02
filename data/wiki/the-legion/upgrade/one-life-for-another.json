@@ -10,6 +10,7 @@
   },
   "researchTime": 60,
   "requires": [
+    "the-legion/building/citadel",
     "the-legion/building/terror-tower"
   ],
   "exclusiveGroup": "Local.Legion.Hero.Hero1.Specialize2",

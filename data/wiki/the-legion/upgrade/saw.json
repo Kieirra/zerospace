@@ -12,6 +12,9 @@
     "flux": 100
   },
   "researchTime": 45,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "exclusiveGroup": "Local.Legion.Infantry.Thrall.Armored.Specialize1",
   "appliesTo": [
     "the-legion/unit/steelsworn"

@@ -13,6 +13,7 @@
   },
   "researchTime": 50,
   "requires": [
+    "the-legion/building/citadel",
     "the-legion/building/terror-tower"
   ],
   "exclusiveGroup": "Local.Legion.Infantry.Thrall.Specialize2",

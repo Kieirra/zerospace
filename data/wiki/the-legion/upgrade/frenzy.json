@@ -14,6 +14,9 @@
     "flux": 125
   },
   "researchTime": 50,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "exclusiveGroup": "Local.Legion.Infantry.DarkDisciple.Spec1",
   "appliesTo": [
     "the-legion/unit/dark-disciple"

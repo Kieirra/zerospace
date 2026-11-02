@@ -43,6 +43,9 @@
     "flux": 100
   },
   "researchTime": 60,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "exclusiveGroup": "Local.Legion.Infantry.Rhino.Specialize1",
   "appliesTo": [
     "the-legion/unit/exalted"

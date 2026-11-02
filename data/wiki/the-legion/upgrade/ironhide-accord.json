@@ -9,6 +9,9 @@
     "flux": 100
   },
   "researchTime": 50,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "exclusiveGroup": "Local.Legion.Infantry.Mammoth.Specialize1",
   "appliesTo": [
     "the-legion/unit/mammoth"

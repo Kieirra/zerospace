@@ -9,6 +9,9 @@
     "flux": 100
   },
   "researchTime": 40,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "exclusiveGroup": "Local.Legion.Infantry.Thrall.Specialize1",
   "appliesTo": [
     "the-legion/unit/thrall"

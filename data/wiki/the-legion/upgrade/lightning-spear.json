@@ -9,6 +9,9 @@
     "flux": 100
   },
   "researchTime": 50,
+  "requires": [
+    "the-legion/building/citadel"
+  ],
   "exclusiveGroup": "Local.Legion.Hero.hero3.Specialize1",
   "appliesTo": [
     "the-legion/hero/galavax"
