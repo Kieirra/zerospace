@@ -138,6 +138,7 @@ const factions = defineCollection({
   loader: glob({ base: './data/wiki', pattern: ['*.json', '!source.json', '!_report.json'], generateId }),
   schema: z.looseObject({
     id: z.string(),
+    loadBonuses: z.array(z.object({ name: z.string(), recipient: z.enum(['carrier', 'passenger']), units: ids.optional(), description: z.string().optional(), stats: gameStats.optional() })).optional(),
     targets: ids.optional(),
     excludedTargets: ids.optional(),
     kind: z.enum(['faction', 'mercenary']),
@@ -153,6 +154,7 @@ const entities = defineCollection({
   loader: glob({ base: './data/wiki', pattern: '*/*/*.json', generateId }),
   schema: z.looseObject({
     id: z.string(),
+    loadBonuses: z.array(z.object({ name: z.string(), recipient: z.enum(['carrier', 'passenger']), units: ids.optional(), description: z.string().optional(), stats: gameStats.optional() })).optional(),
     targets: ids.optional(),
     excludedTargets: ids.optional(),
     kind: z.enum(['unit', 'hero', 'building', 'topbar', 'talent', 'upgrade']),
@@ -188,8 +190,8 @@ const entities = defineCollection({
       .array(
         z.looseObject({
           id: z.string(),
-    targets: ids.optional(),
-    excludedTargets: ids.optional(),
+          targets: ids.optional(),
+          excludedTargets: ids.optional(),
           upgrade: z.string().optional(),
           cost: cost.optional(),
           researchTime: z.number().optional(),

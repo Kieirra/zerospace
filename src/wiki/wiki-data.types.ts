@@ -133,6 +133,14 @@ export interface Turret {
   abilities?: Ability[];
 }
 
+export interface LoadBonus {
+  name: string;
+  recipient: 'carrier' | 'passenger';
+  units?: string[];
+  description?: string;
+  stats?: Stat[];
+}
+
 export interface UnitFile {
   id: string;
   kind: 'unit' | 'hero';
@@ -162,6 +170,7 @@ export interface UnitFile {
   size?: number;
   pushTier?: number;
   transportSlots?: number;
+  loadBonuses?: LoadBonus[];
   weapons?: Weapon[];
   abilities?: Ability[];
   maxTurrets?: number;
@@ -211,6 +220,7 @@ export interface MergeSource {
 }
 
 export interface BuildingFile {
+  loadBonuses?: LoadBonus[];
   id: string;
   kind: 'building';
   faction: string;

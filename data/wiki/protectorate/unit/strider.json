@@ -32,6 +32,27 @@
       "Temporarily mind controlled"
     ]
   },
+  "loadBonuses": [
+    {
+      "name": "Passenger bonuses",
+      "recipient": "passenger",
+      "stats": [
+        {
+          "label": "Attack Range",
+          "value": 1
+        },
+        {
+          "label": "Bonus Damage",
+          "value": 2
+        },
+        {
+          "label": "Health Regen",
+          "value": 9,
+          "unit": "/s"
+        }
+      ]
+    }
+  ],
   "armorRating": 1,
   "armorType": "heavy",
   "speed": 400,

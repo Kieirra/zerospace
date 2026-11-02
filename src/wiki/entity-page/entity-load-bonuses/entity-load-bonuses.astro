@@ -1,0 +1,25 @@
+---
+import EntitySection from '../entity-section/entity-section.astro';
+import StatTiles from '../stat-tiles/stat-tiles.astro';
+import EntityLink from '../../entity-link/entity-link.astro';
+import { toGameStatTiles } from '../../wiki.helpers.ts';
+import type { LoadBonus } from '../../wiki-data.types.ts';
+interface Props { bonuses?: LoadBonus[]; }
+const { bonuses = [] } = Astro.props;
+const signedStats = (bonus: LoadBonus) => toGameStatTiles(bonus.stats).map((tile, index) => {
+  const stat = bonus.stats?.[index];
+  const isBonus = stat && !['Trample damage', 'Duration', 'Heal', 'Healing'].includes(stat.label);
+  return { ...tile, value: isBonus && typeof tile.value === 'string' && !tile.value.startsWith('-') ? `+${tile.value}` : tile.value };
+});
+---
+{bonuses.length > 0 && <EntitySection title="Loading bonuses">
+  <ul class="grid gap-3 sm:grid-cols-2">
+    {bonuses.map((bonus) => <li class="bevel-sm bg-surface p-3">
+      <h3 class="font-semibold">{bonus.name}</h3>
+      {bonus.units && <ul class="mt-2 flex flex-wrap gap-x-3 gap-y-1">{bonus.units.map((id) => <li><EntityLink id={id} /></li>)}</ul>}
+      <p class="my-2 text-sm text-muted">{bonus.recipient === 'carrier' ? 'Effects on the carrier' : 'Effects on loaded troops'}</p>
+      <StatTiles tiles={signedStats(bonus)} isNested />
+      {bonus.description && <p class="mt-3 text-sm text-muted">{bonus.description}</p>}
+    </li>)}
+  </ul>
+</EntitySection>}

@@ -12,6 +12,18 @@
   },
   "buildTime": 50,
   "hp": 1200,
+  "loadBonuses": [
+    {
+      "name": "Passenger bonuses",
+      "recipient": "passenger",
+      "stats": [
+        {
+          "label": "Attack Range",
+          "value": 1
+        }
+      ]
+    }
+  ],
   "armorRating": 1,
   "produces": [
     "free-corsairs/unit/corsair-deadeye",
