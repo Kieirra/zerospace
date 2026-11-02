@@ -4,7 +4,11 @@
   "faction": "chakru-kingdom",
   "name": "Immortal Lineage",
   "description": "Cha'Kru units revive at their temples.",
-  "details": "Cha'Kru Ghost Crab",
+  "details": "{Cooldown} second cooldown per Temple.\nDoes not apply to {GhostCrab}",
+  "values": {
+    "Cooldown": 90,
+    "GhostCrab": "Cha'Kru Ghost Crab"
+  },
   "researchTime": 0,
   "level": 2,
   "position": "A",
