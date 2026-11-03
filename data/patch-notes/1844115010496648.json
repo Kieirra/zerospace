@@ -1,0 +1,179 @@
+{
+  "id": "1844115010496648",
+  "label": "Patch",
+  "title": "Galactic War Preseason Starts Now! Discover What Newly Found Relic Sites Bring",
+  "date": "2026-09-19",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1844115010496648",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Spectators now get replays"
+            },
+            {
+              "text": "Chat now works on dedicated servers"
+            },
+            {
+              "text": "You can no longer build within the capture radius of Control Towers"
+            },
+            {
+              "text": "Rich Flux mining rate reduced from 200% to 175% (Unlisted change in last patch)"
+            }
+          ]
+        },
+        {
+          "subject": "Marv",
+          "entityIds": [
+            "grell/hero/marv",
+            "protectorate/hero/marv"
+          ],
+          "lines": [
+            {
+              "text": "Marv Guardian Link shields reduced from 150 + 25 * level to 100 + 25 * level"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Biomass health regeneration reduced from 2hp/s to 1hp/s"
+            }
+          ]
+        },
+        {
+          "subject": "Nourishing Pod",
+          "entityIds": [
+            "grell/building/nourishing-pod"
+          ],
+          "lines": [
+            {
+              "text": "Nourishing Pod health reduced from 500 to 400"
+            }
+          ]
+        },
+        {
+          "subject": "Infuse",
+          "entityIds": [
+            "grell/topbar/infusion"
+          ],
+          "lines": [
+            {
+              "text": "Infuse max health and shield increase are now based on starting unit stats (fixes interaction with Guardian Link and similar abilities/upgrades)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Airstrip codes reduced from 100/0 to 75/0"
+            }
+          ]
+        },
+        {
+          "subject": "Commando",
+          "entityIds": [
+            "protectorate/unit/commando"
+          ],
+          "lines": [
+            {
+              "text": "Commando weapon cooldown reduced from 0.8s to 0.78s"
+            }
+          ]
+        },
+        {
+          "subject": "Hauler",
+          "entityIds": [
+            "protectorate/unit/hauler"
+          ],
+          "lines": [
+            {
+              "text": "Hauler health regeneration aura increased from 4hp/s to 8hp/s"
+            }
+          ]
+        },
+        {
+          "subject": "Ironwing",
+          "entityIds": [
+            "protectorate/unit/ironwing"
+          ],
+          "lines": [
+            {
+              "text": "Sunder Missile",
+              "lines": [
+                {
+                  "text": "Removed energy cost"
+                },
+                {
+                  "text": "Cooldown increased from 0s to 30s"
+                },
+                {
+                  "text": "Slow / Armor shred duration increased from 4s to 8s"
+                },
+                {
+                  "text": "Slow reduced from 50% to 25%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Tier 6 talent now allows research of 2nd tier army upgrades"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "valkaru",
+      "heading": "Valkaru",
+      "entries": [
+        {
+          "subject": "Mortar Brute",
+          "entityIds": [
+            "valkaru/unit/valkaru-mortar-brute"
+          ],
+          "lines": [
+            {
+              "text": "Weapon cooldown decreased from 5s to 3s"
+            },
+            {
+              "text": "Range increased from 16 to 20"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

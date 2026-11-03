@@ -1,0 +1,731 @@
+{
+  "id": "1842212951305137",
+  "label": "Patch",
+  "title": "Xol Beta Bug Fixes & Versus Balance Update - August 28th 2026",
+  "date": "2026-08-29",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1842212951305137",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Added Versus/Survival specific news carousels"
+            },
+            {
+              "text": "Reduced armor on rocks from 2 -> 1"
+            },
+            {
+              "text": "Adjusted hero sizes and hitboxes"
+            },
+            {
+              "text": "Scouting drones no longer provide a 25 hexite bounty"
+            },
+            {
+              "text": "Added beast tag to: Exalted, Mammoth, Valkaru Hound, Valkaru Beast, Cha’Kru Clackjaw and Cha’Kru Hat’un"
+            }
+          ]
+        },
+        {
+          "subject": "Operating tower turret",
+          "entityIds": [
+            "protectorate/building/operating-tower-turret"
+          ],
+          "lines": [
+            {
+              "text": "Operating tower turret upgrades can now be cancelled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Mycelial Reach",
+          "entityIds": [
+            "grell/talent/mycelial-reach"
+          ],
+          "lines": [
+            {
+              "text": "Mycelial Reach Gatherer Spawn Cultivator bonus cast range increased from 200% -> 250%"
+            }
+          ]
+        },
+        {
+          "subject": "Cultivator",
+          "entityIds": [
+            "grell/building/cultivator"
+          ],
+          "lines": [
+            {
+              "text": "Cultivator health decreased from 250 -> 150"
+            }
+          ]
+        },
+        {
+          "subject": "Cultivator Attacker",
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Cost reduced from 75 -> 50"
+            },
+            {
+              "text": "Health reduced from 400 -> 300"
+            },
+            {
+              "text": "Weapon attacks decreased from 2 -> 1"
+            },
+            {
+              "text": "Weapon cooldown decreased from 1.7s -> 1.1s (Overall DPS reduced from 17.65 -> 13.64)"
+            }
+          ]
+        },
+        {
+          "subject": "Nourishing Pod",
+          "entityIds": [
+            "grell/building/nourishing-pod"
+          ],
+          "lines": [
+            {
+              "text": "Heal interval increased from 0.8s -> 1s"
+            },
+            {
+              "text": "Heal per energy decreased from 5 -> 4"
+            }
+          ]
+        },
+        {
+          "subject": "Behemoth",
+          "entityIds": [
+            "grell/unit/behemoth"
+          ],
+          "lines": [
+            {
+              "text": "Health increased from 625 -> 700"
+            },
+            {
+              "text": "Range decreased from 12 -> 11"
+            },
+            {
+              "text": "Weapon damage increased from 30 -> 35"
+            },
+            {
+              "text": "Damage bonus vs Heavy reduced from +200% -> +100%"
+            },
+            {
+              "text": "Colossal Maw range increase reduced from +6 -> +5"
+            }
+          ]
+        },
+        {
+          "subject": "Harbinger",
+          "entityIds": [
+            "grell/unit/harbinger"
+          ],
+          "lines": [
+            {
+              "text": "Harbinger 2nd tier upgrade Flux cost reduced from 200 -> 125"
+            }
+          ]
+        },
+        {
+          "subject": "Lasher",
+          "entityIds": [
+            "grell/unit/lasher"
+          ],
+          "lines": [
+            {
+              "text": "Lasher 2nd tier of upgrades requirement changed from Synapse Canopy -> Elderwomb"
+            }
+          ]
+        },
+        {
+          "subject": "Skrell",
+          "entityIds": [
+            "grell/unit/skrell"
+          ],
+          "lines": [
+            {
+              "text": "Health increased from 50 -> 60"
+            },
+            {
+              "text": "Damage increased from 5 -> 6"
+            },
+            {
+              "text": "Damage bonus vs Medium increased from +50% -> +100%"
+            }
+          ]
+        },
+        {
+          "subject": "Stinger",
+          "entityIds": [
+            "grell/unit/stinger"
+          ],
+          "lines": [
+            {
+              "text": "Upgrades reorganized to have 2 tiers (down from 3)",
+              "lines": [
+                {
+                  "text": "Tier 1: Extensor Adaptation (Move Speed) / Biomass Submersion (Stealth on Biomass)"
+                },
+                {
+                  "text": "Tier 2: Pouncing Reflex (Cliff Jump) / Dissolving Venom"
+                },
+                {
+                  "text": "Tier 2 requirements: Synapse Canopy"
+                }
+              ]
+            },
+            {
+              "text": "Biomass Submersion changed from +100% attack speed on biomass -> +300 movement speed on biomass"
+            }
+          ]
+        },
+        {
+          "subject": "Thresher",
+          "entityIds": [
+            "grell/unit/thresher"
+          ],
+          "lines": [
+            {
+              "text": "Health increased from 300 -> 350"
+            },
+            {
+              "text": "Weapon splash now deals 100% damage to all units in area"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Inquisitress",
+          "entityIds": [
+            "the-legion/hero/inquisitress"
+          ],
+          "lines": [
+            {
+              "text": "Charge cooldown increased from 6s -> 7s"
+            },
+            {
+              "text": "Charge speed increased from 2000 -> 2800"
+            }
+          ]
+        },
+        {
+          "subject": "Kraegar",
+          "entityIds": [
+            "the-legion/hero/kraegar"
+          ],
+          "lines": [
+            {
+              "text": "Level 1 weapon damage increased from 10 -> 12"
+            },
+            {
+              "text": "Weapon cooldown increased from 1.2s -> 1.3s (Overall DPS increased from 10 -> 11.54)"
+            },
+            {
+              "text": "Kraegar/Krag’vorn total XP granted when killed 200% -> 150% (65%/35% split Kraegar/Krag’vorn)"
+            },
+            {
+              "text": "Krag’vorn Feed now gains 1 stack per 75 cost of a beast dying rather than always 1 stack per beast"
+            }
+          ]
+        },
+        {
+          "subject": "War Experience",
+          "entityIds": [
+            "the-legion/talent/war-experience"
+          ],
+          "lines": [
+            {
+              "text": "War Experience cost as XP reduced from 20% -> 15%"
+            }
+          ]
+        },
+        {
+          "subject": "Guardian/Healing Obelisks",
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Starting energy increased from 20 -> 50"
+            },
+            {
+              "text": "Maximum energy decreased from 100 -> 50"
+            },
+            {
+              "text": "Energy regeneration reduced from 2.67 -> 2"
+            }
+          ]
+        },
+        {
+          "subject": "Mammoth",
+          "entityIds": [
+            "the-legion/unit/mammoth"
+          ],
+          "lines": [
+            {
+              "text": "Mammoth can now push through smaller units"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Aster",
+          "entityIds": [
+            "protectorate/hero/prefect-aster"
+          ],
+          "lines": [
+            {
+              "text": "Plasma Blast no longer hits flying units"
+            },
+            {
+              "text": "Weapon range reduced from 12 -> 11"
+            }
+          ]
+        },
+        {
+          "subject": "Research Lab",
+          "entityIds": [
+            "protectorate/building/research-lab"
+          ],
+          "lines": [
+            {
+              "text": "Research Lab size increased from 3 tiles -> 4 tiles"
+            }
+          ]
+        },
+        {
+          "subject": "Sensor Platform",
+          "entityIds": [
+            "protectorate/building/sensor-platform"
+          ],
+          "lines": [
+            {
+              "text": "Sensor Platform vision range reduced from 40 -> 36"
+            }
+          ]
+        },
+        {
+          "subject": "Bastion",
+          "entityIds": [
+            "protectorate/unit/bastion"
+          ],
+          "lines": [
+            {
+              "text": "Overpressure Nozzle changed from tier 1 -> 2"
+            },
+            {
+              "text": "Kinetic Mode changed from tier 2 -> 1"
+            },
+            {
+              "text": "Tier 2 upgrade Flux cost reduced from 150 -> 125"
+            }
+          ]
+        },
+        {
+          "subject": "Commando",
+          "entityIds": [
+            "protectorate/unit/commando"
+          ],
+          "lines": [
+            {
+              "text": "Weapon damage reduced from 8 -> 7"
+            },
+            {
+              "text": "Weapon cooldown reduced from 0.89s -> 0.8s"
+            },
+            {
+              "text": "Eagle Tactics bonus attack/move speed reduced from +50% -> +40%"
+            }
+          ]
+        },
+        {
+          "subject": "Hauler",
+          "entityIds": [
+            "protectorate/unit/hauler"
+          ],
+          "lines": [
+            {
+              "text": "Hauler can no longer load sieged units"
+            }
+          ]
+        },
+        {
+          "subject": "Ironwing",
+          "entityIds": [
+            "protectorate/unit/ironwing"
+          ],
+          "lines": [
+            {
+              "text": "Upgrades are now on one tier (same upgrades)"
+            },
+            {
+              "text": "Both upgrades now cost 125 Flux with a research time of 50 seconds"
+            },
+            {
+              "text": "Thrust Boosters bonus move speed increased from +30% -> +200"
+            }
+          ]
+        },
+        {
+          "subject": "Juggernaut",
+          "entityIds": [
+            "protectorate/unit/juggernaut"
+          ],
+          "lines": [
+            {
+              "text": "Juggernaut damage bonus changed from +100% vs Medium -> +100% vs Heavy"
+            }
+          ]
+        },
+        {
+          "subject": "Predator",
+          "entityIds": [
+            "protectorate/unit/predator"
+          ],
+          "lines": [
+            {
+              "text": "Upgrades are now on one tier (same upgrades)"
+            },
+            {
+              "text": "Both upgrades now cost 125 Flux with a research time of 50 seconds"
+            },
+            {
+              "text": "Mine upgrade has been temporarily disabled"
+            }
+          ]
+        },
+        {
+          "subject": "Sentinel",
+          "entityIds": [
+            "protectorate/unit/sentinel"
+          ],
+          "lines": [
+            {
+              "text": "Sentinel upgrades are now on one tier (same upgrades)"
+            }
+          ]
+        },
+        {
+          "subject": "Strider",
+          "entityIds": [
+            "protectorate/unit/strider"
+          ],
+          "lines": [
+            {
+              "text": "Upgrades removed"
+            },
+            {
+              "text": "Fortress Mode aura infantry bonus damage increased from 2-> 3"
+            }
+          ]
+        },
+        {
+          "subject": "Titan",
+          "entityIds": [
+            "protectorate/unit/titan"
+          ],
+          "lines": [
+            {
+              "text": "Anti-Air range reduced from 15 -> 14"
+            },
+            {
+              "text": "Anti-Air damage reduced from 24(x2) -> 20(x2)"
+            },
+            {
+              "text": "Upgrades are now on one tier (same upgrades)"
+            },
+            {
+              "text": "Both upgrades now cost 125 Flux with a research time of 50 seconds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "arandi",
+      "heading": "Arandi",
+      "entries": [
+        {
+          "subject": "Penumbra",
+          "entityIds": [
+            "arandi/building/arandi-penumbra"
+          ],
+          "lines": [
+            {
+              "text": "Penumbra health increased from 800 -> 1,000"
+            }
+          ]
+        },
+        {
+          "subject": "Chronowarper",
+          "entityIds": [
+            "arandi/unit/arandi-chronowarper"
+          ],
+          "lines": [
+            {
+              "text": "Chronowarper cost changed from 50/200 -> 75/175"
+            }
+          ]
+        },
+        {
+          "subject": "Ethermancer",
+          "entityIds": [
+            "arandi/unit/arandi-ethermancer"
+          ],
+          "lines": [
+            {
+              "text": "Ethermancer Mind Control can no longer target massive units"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "chakru-kingdom",
+      "heading": "Cha’Kru",
+      "entries": [
+        {
+          "subject": "Sacrifice to Pachamama",
+          "entityIds": [
+            "chakru-kingdom/topbar/sacrifice-to-pachamama"
+          ],
+          "lines": [
+            {
+              "text": "Cost reduced from 15 -> 12"
+            },
+            {
+              "text": "Radius increased from 6 -> 7"
+            },
+            {
+              "text": "Bonus Shield increased from 150 -> 400"
+            }
+          ]
+        },
+        {
+          "subject": "Chas’ki",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-chaski"
+          ],
+          "lines": [
+            {
+              "text": "Chas’ki weapon range increased from 10 -> 11"
+            }
+          ]
+        },
+        {
+          "subject": "Clackjaw",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-clakjaw"
+          ],
+          "lines": [
+            {
+              "text": "Clackjaw health regeneration increased from 0 -> 1"
+            }
+          ]
+        },
+        {
+          "subject": "Hat’un",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-hatun"
+          ],
+          "lines": [
+            {
+              "text": "Hat’un cost changed from 100/225 -> 125/200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "endari",
+      "heading": "Endari",
+      "entries": [
+        {
+          "subject": "Devourer",
+          "entityIds": [
+            "endari/unit/endari-devourer"
+          ],
+          "lines": [
+            {
+              "text": "cost changed from 125/225 -> 150/200"
+            },
+            {
+              "text": "Devour cast range reduced from 3 -> 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "free-corsairs",
+      "heading": "Free Corsair",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Bunker load capacity (Entrenched Hideouts talent) increased from 8 -> 16"
+            }
+          ]
+        },
+        {
+          "subject": "Flamer",
+          "entityIds": [
+            "free-corsairs/unit/corsair-flamer"
+          ],
+          "lines": [
+            {
+              "text": "Flamer cost changed from 100/200 -> 125/175"
+            }
+          ]
+        },
+        {
+          "subject": "Rover",
+          "entityIds": [
+            "free-corsairs/unit/corsair-rover"
+          ],
+          "lines": [
+            {
+              "text": "Rover no longer uses acceleration movement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Pulse Barrage",
+          "entityIds": [
+            "marran/topbar/pulse-barrage"
+          ],
+          "lines": [
+            {
+              "text": "Pulse Barrage cooldown reduced from 45s -> 30s"
+            }
+          ]
+        },
+        {
+          "subject": "Bulwark Amplification",
+          "entityIds": [
+            "marran/talent/bulwark-amplification"
+          ],
+          "lines": [
+            {
+              "text": "Bulwark Amplification Pulse Barrage cooldown reduction changed to Pulse Barrage has no power cost"
+            }
+          ]
+        },
+        {
+          "subject": "Life Path",
+          "entityIds": [
+            "marran/talent/life-path"
+          ],
+          "lines": [
+            {
+              "text": "Life Path bonus XP gain reduced from +35% -> +30%"
+            }
+          ]
+        },
+        {
+          "subject": "Badger",
+          "entityIds": [
+            "marran/unit/marran-badger"
+          ],
+          "lines": [
+            {
+              "text": "Charged shot damage changed from 40 -> 30 (+50% vs Medium)"
+            },
+            {
+              "text": "Charged shot no longer affects flying units"
+            }
+          ]
+        },
+        {
+          "subject": "Halo tank",
+          "entityIds": [
+            "marran/unit/marran-halo-tank"
+          ],
+          "lines": [
+            {
+              "text": "Halo tank cost changed from 125/250 -> 150/225"
+            }
+          ]
+        },
+        {
+          "subject": "Sharpshooter",
+          "entityIds": [
+            "marran/unit/marran-sharpshooter"
+          ],
+          "lines": [
+            {
+              "text": "Sharpshooter bonus damage vs Light increased from +0% -> +50%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "valkaru",
+      "heading": "Valkaru",
+      "entries": [
+        {
+          "subject": "Mondar/Torq",
+          "entityIds": [
+            "valkaru/hero/mondar-and-torq"
+          ],
+          "lines": [
+            {
+              "text": "Mondar/Torq total XP granted when killed 200% -> 150% (50%/50% split)"
+            }
+          ]
+        },
+        {
+          "subject": "Hound",
+          "entityIds": [
+            "valkaru/unit/valkaru-hound"
+          ],
+          "lines": [
+            {
+              "text": "Health decreased from 350 -> 325"
+            },
+            {
+              "text": "Armor increased from 0 -> 1"
+            }
+          ]
+        },
+        {
+          "subject": "Towbot",
+          "entityIds": [
+            "valkaru/unit/valkaru-tow-bot"
+          ],
+          "lines": [
+            {
+              "text": "Towbot cost increased from 75/150 -> 100/150"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

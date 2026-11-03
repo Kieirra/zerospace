@@ -1,0 +1,79 @@
+{
+  "aliases": {
+    "*|overclock": ["the-xol/unit/synapse", "the-xol/unit/xol-harvester"],
+    "*|stormbringer": ["the-legion/unit/storm-bringer"],
+    "*|towbot": ["valkaru/unit/valkaru-tow-bot"],
+    "*|shocktrooper": ["valkaru/unit/valkaru-shock-trooper"],
+    "*|clackjaw": ["chakru-kingdom/unit/chakru-clakjaw"],
+    "*|deadnought": ["the-legion/unit/dreadnought"],
+    "*|pheromon invigoration": ["grell/talent/pheromone-invigoration"],
+    "*|air strike": ["protectorate/topbar/airstrike"],
+    "*|aster": ["protectorate/hero/prefect-aster"],
+    "*|mondar/torq": ["valkaru/hero/mondar-and-torq"],
+    "*|she who stalks": ["endari/hero/umbra"],
+    "*|drake": ["endari/unit/endari-wyrm"],
+    "*|fallen glory": ["valkaru/talent/pulverizers"],
+    "*|kragvorn": ["the-legion/hero/kraegar"],
+    "*|monolith": ["the-legion/topbar/spawn-monolith"],
+    "*|infuse": ["grell/topbar/infusion"],
+    "*|mera": ["grell/hero/mera", "protectorate/hero/mera"],
+    "*|marv": ["grell/hero/marv", "protectorate/hero/marv"],
+    "grell|harvester": ["grell/unit/gatherer"],
+    "the-xol|harvester": ["the-xol/unit/xol-harvester"],
+    "protectorate|scouting drone": ["protectorate/unit/recon-drone"],
+    "protectorate|shield": ["protectorate/topbar/protective-shield"]
+  },
+  "sections": {
+    "1845383656388459": {
+      "start": "[img src=\"{STEAM_CLAN_IMAGE}/44535122/99c909ff71f2bfe0500eb20121ac301374edb2b1.jpg\"][/img]",
+      "end": "[h2]Misc/Bug Fixes[/h2]"
+    }
+  },
+  "ignore": {},
+  "include": {
+    "1846018067937263": [
+      {
+        "faction": "the-xol",
+        "heading": "Balancing",
+        "subject": "World Forge",
+        "entityIds": ["the-xol/building/world-forge"],
+        "lines": ["Xol World Forge costs more (100/100 to 150/150) and its aura is temporarily disabled"]
+      },
+      {
+        "faction": "the-xol",
+        "heading": "Balancing",
+        "subject": null,
+        "entityIds": ["the-xol/talent/t2-upgrades"],
+        "lines": ["Xol World Forge talent now doubles Army Upgrade effectiveness instead of unlocking tier-2 progression"]
+      },
+      {
+        "faction": "the-xol",
+        "heading": "Balancing",
+        "subject": "Spectron",
+        "entityIds": ["the-xol/unit/spectron"],
+        "lines": ["Spectron now has shorter range, slower attacks and reduced max bonus damage"]
+      },
+      {
+        "faction": "the-xol",
+        "heading": "Balancing",
+        "subject": "Anrubic",
+        "entityIds": ["the-xol/hero/anrubic"],
+        "lines": ["Anrubic Grapple and enemy-target Merge deal less damage"]
+      },
+      {
+        "faction": "the-xol",
+        "heading": "Balancing",
+        "subject": "Replicate",
+        "entityIds": ["the-xol/topbar/replicate"],
+        "lines": ["Replicate costs more on non-Xol targets and can no longer target Scouting Drones"]
+      },
+      {
+        "faction": "the-xol",
+        "heading": "Balancing",
+        "subject": "Resonator",
+        "entityIds": ["the-xol/building/resonator"],
+        "lines": ["Resonator has less range while carrying a Spectron"]
+      }
+    ]
+  }
+}

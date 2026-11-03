@@ -1,0 +1,29 @@
+---
+import type { PatchNoteLine } from '../../../wiki-data.types.ts';
+
+interface Props {
+  lines: PatchNoteLine[];
+}
+
+const { lines } = Astro.props;
+---
+
+<ul class="text-sm tabular-nums">
+  {
+    lines.map(({ text, lines: children }) => (
+      <li>
+        <div class="flex gap-2">
+          <span aria-hidden="true" class="text-accent-soft">
+            •
+          </span>
+          <span>{text}</span>
+        </div>
+        {children && (
+          <div class="pl-4">
+            <Astro.self lines={children} />
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ul>

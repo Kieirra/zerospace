@@ -1,0 +1,30 @@
+{
+  "id": "1838407329269740",
+  "label": "Patch",
+  "title": "Our Day One Patch is now live!",
+  "date": "2026-07-21",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1838407329269740",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "Versus/Skirmish",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Leaderboards now work properly"
+            },
+            {
+              "text": "Random can no longer give Xol in matchmaking"
+            },
+            {
+              "text": "Xol cast range upgrade cost fixed (400 -> 200)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

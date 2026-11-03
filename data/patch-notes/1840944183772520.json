@@ -1,0 +1,707 @@
+{
+  "id": "1840944183772520",
+  "label": "Patch",
+  "title": "ZeroSpace Update - August 11th 2026",
+  "date": "2026-08-11",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1840944183772520",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Removed ‘Harvester’ armor type"
+            },
+            {
+              "text": "Harvesters and Extractors armor type changed from ‘Harvester’ to ‘Medium’"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Gatherer",
+          "entityIds": [
+            "grell/unit/gatherer"
+          ],
+          "lines": [
+            {
+              "text": "Gatherer speed reduced from 510 -> 500"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Infused seedling health increased from 70 -> 75"
+            }
+          ]
+        },
+        {
+          "subject": "Infuse",
+          "entityIds": [
+            "grell/topbar/infusion"
+          ],
+          "lines": [
+            {
+              "text": "Cost multiplier increased from 0.045 -> 0.05 (Now matches cost of Protectorate Shield and Legion Reanimate)"
+            },
+            {
+              "text": "Infused bonus Damage/Health/Regen lowered from +50% -> +45%"
+            }
+          ]
+        },
+        {
+          "subject": "Koru Symbiosis",
+          "entityIds": [
+            "grell/talent/koru-symbiosis"
+          ],
+          "lines": [
+            {
+              "text": "Koru Symbiosis increased healing reduced from +30% -> +25%"
+            }
+          ]
+        },
+        {
+          "subject": "Rapid Germination",
+          "entityIds": [
+            "grell/talent/rapid-germination"
+          ],
+          "lines": [
+            {
+              "text": "Rapid Germination increased construction speed reduced from 50% -> 40%"
+            }
+          ]
+        },
+        {
+          "subject": "Lasher",
+          "entityIds": [
+            "grell/unit/lasher"
+          ],
+          "lines": [
+            {
+              "text": "No longer deals bonus damage vs Medium"
+            },
+            {
+              "text": "Damage increased from 17 -> 18"
+            },
+            {
+              "text": "Corrosive Secretion medium damage bonus increased from +50% -> +75% (Total reduced from 100% -> 75%)"
+            }
+          ]
+        },
+        {
+          "subject": "Skrell",
+          "entityIds": [
+            "grell/unit/skrell"
+          ],
+          "lines": [
+            {
+              "text": "Skrell damage bonus changed from +150% vs Harvester -> +50% vs Medium"
+            }
+          ]
+        },
+        {
+          "subject": "Stinger",
+          "entityIds": [
+            "grell/unit/stinger"
+          ],
+          "lines": [
+            {
+              "text": "Stinger health increased from 90 -> 100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Labourer move speed increased from 450 -> 500"
+            }
+          ]
+        },
+        {
+          "subject": "Scouting drone",
+          "entityIds": [
+            "the-legion/unit/scouting-drone"
+          ],
+          "lines": [
+            {
+              "text": "Scouting drone health reduced from 100 -> 75"
+            },
+            {
+              "text": "Scouting drone supply cost reduced from 1 -> 0"
+            }
+          ]
+        },
+        {
+          "subject": "Reanimate",
+          "entityIds": [
+            "the-legion/topbar/reanimate"
+          ],
+          "lines": [
+            {
+              "text": "Reanimate can no longer target Scouting Drones"
+            }
+          ]
+        },
+        {
+          "subject": "Efficient Upgrades",
+          "entityIds": [
+            "the-legion/talent/efficient-upgrades"
+          ],
+          "lines": [
+            {
+              "text": "Research speed bonus reduced from 40% -> 35%"
+            },
+            {
+              "text": "Research cost discount decreased from 60% -> 35%"
+            }
+          ]
+        },
+        {
+          "subject": "Dark Disciple",
+          "entityIds": [
+            "the-legion/unit/dark-disciple"
+          ],
+          "lines": [
+            {
+              "text": "Dark Disciple damage bonus vs Heavy reduced from 100% -> 75%"
+            }
+          ]
+        },
+        {
+          "subject": "Exalted",
+          "entityIds": [
+            "the-legion/unit/exalted"
+          ],
+          "lines": [
+            {
+              "text": "Damage increased from 22 -> 24"
+            },
+            {
+              "text": "Maul damage reduced from 18 -> 12 (+50% vs Medium)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Prospector",
+          "entityIds": [
+            "protectorate/unit/prospector"
+          ],
+          "lines": [
+            {
+              "text": "Prospector move speed increased from 450 -> 500"
+            }
+          ]
+        },
+        {
+          "subject": "Scouting drone",
+          "entityIds": [
+            "protectorate/unit/recon-drone"
+          ],
+          "lines": [
+            {
+              "text": "Scouting drone health reduced from 100 -> 75"
+            },
+            {
+              "text": "Scouting drone supply cost reduced from 1 -> 0"
+            }
+          ]
+        },
+        {
+          "subject": "Shield",
+          "entityIds": [
+            "protectorate/topbar/protective-shield"
+          ],
+          "lines": [
+            {
+              "text": "Shield can no longer target Prospectors or Scouting Drones"
+            }
+          ]
+        },
+        {
+          "subject": "Commando",
+          "entityIds": [
+            "protectorate/unit/commando"
+          ],
+          "lines": [
+            {
+              "text": "Magnetic Rifling ranged reduced from +4 -> +3"
+            },
+            {
+              "text": "Eagle Tactics requirements changed from Mechanical Research Lab -> War Foundry"
+            }
+          ]
+        },
+        {
+          "subject": "Griffin",
+          "entityIds": [
+            "protectorate/unit/griffin"
+          ],
+          "lines": [
+            {
+              "text": "Heal targets reduced from 3 -> 1"
+            },
+            {
+              "text": "Heal per second increased from 12 -> 22"
+            }
+          ]
+        },
+        {
+          "subject": "Ironwing",
+          "entityIds": [
+            "protectorate/unit/ironwing"
+          ],
+          "lines": [
+            {
+              "text": "Ironwing damage bonus changed from +100% vs Harvester -> +50% vs Medium"
+            }
+          ]
+        },
+        {
+          "subject": "Predator",
+          "entityIds": [
+            "protectorate/unit/predator"
+          ],
+          "lines": [
+            {
+              "text": "Predator damage bonus changed from +50% vs Harvester -> +50% vs Medium"
+            }
+          ]
+        },
+        {
+          "subject": "Sentinel",
+          "entityIds": [
+            "protectorate/unit/sentinel"
+          ],
+          "lines": [
+            {
+              "text": "Sentinel move speed increased from 525 -> 550"
+            }
+          ]
+        },
+        {
+          "subject": "Titan",
+          "entityIds": [
+            "protectorate/unit/titan"
+          ],
+          "lines": [
+            {
+              "text": "Damage increased from 7 -> 8"
+            },
+            {
+              "text": "Damage bonus changed from +100% vs Medium -> +25% vs Light"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": "Anrubic",
+          "entityIds": [
+            "the-xol/hero/anrubic"
+          ],
+          "lines": [
+            {
+              "text": "Anrubic Xyther Shield Wall cooldown reduced from 90s -> 30s"
+            }
+          ]
+        },
+        {
+          "subject": "Orbital Laser",
+          "entityIds": [
+            "the-xol/topbar/orbital-laser"
+          ],
+          "lines": [
+            {
+              "text": "Orbital Laser is no longer added to auto control group"
+            }
+          ]
+        },
+        {
+          "subject": "Overclock",
+          "entityIds": [
+            "the-xol/unit/synapse",
+            "the-xol/unit/xol-harvester"
+          ],
+          "lines": [
+            {
+              "text": "Overclock move speed bonus increased from +35% -> +150"
+            }
+          ]
+        },
+        {
+          "subject": "Replicate",
+          "entityIds": [
+            "the-xol/topbar/replicate"
+          ],
+          "lines": [
+            {
+              "text": "Replicate can now be used on molten units for 2x the Power cost"
+            }
+          ]
+        },
+        {
+          "subject": "Unmerge",
+          "entityIds": [
+            "the-xol/topbar/unmerge"
+          ],
+          "lines": [
+            {
+              "text": "Cost reduced from 5 -> 0"
+            },
+            {
+              "text": "Cooldown decreased from 60s -> 20s"
+            },
+            {
+              "text": "Tooltip is now accurate"
+            }
+          ]
+        },
+        {
+          "subject": "Molten Core",
+          "entityIds": [
+            "the-xol/building/molten-core"
+          ],
+          "lines": [
+            {
+              "text": "Energy can now be recharged by friendly Legion conduits"
+            },
+            {
+              "text": "Can now be walked over"
+            }
+          ]
+        },
+        {
+          "subject": "Resonator",
+          "entityIds": [
+            "the-xol/building/resonator"
+          ],
+          "lines": [
+            {
+              "text": "Resonator cost reduced from 200 -> 150"
+            }
+          ]
+        },
+        {
+          "subject": "Echo",
+          "entityIds": [
+            "the-xol/unit/echo"
+          ],
+          "lines": [
+            {
+              "text": "Echo damage bonus changed from +100% vs Harvester -> +50% vs Medium"
+            }
+          ]
+        },
+        {
+          "subject": "Eradicator",
+          "entityIds": [
+            "the-xol/unit/eradicator"
+          ],
+          "lines": [
+            {
+              "text": "Can no longer attack air"
+            },
+            {
+              "text": "Now deals 100% AOE damage within 1 range"
+            }
+          ]
+        },
+        {
+          "subject": "Gravitron",
+          "entityIds": [
+            "the-xol/unit/gravitron"
+          ],
+          "lines": [
+            {
+              "text": "Move speed increased from 300 -> 400"
+            },
+            {
+              "text": "Aura max radius increased from 13.5 -> 15"
+            }
+          ]
+        },
+        {
+          "subject": "Synapse",
+          "entityIds": [
+            "the-xol/unit/synapse"
+          ],
+          "lines": [
+            {
+              "text": "Synapse healing buff heal per second reduced from 10 -> 8"
+            }
+          ]
+        },
+        {
+          "subject": "Molten Roller",
+          "entityIds": [
+            "the-xol/upgrade/molten-roller"
+          ],
+          "lines": [
+            {
+              "text": "Molten Roller AOE range increased from 200 -> 300"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "chakru-kingdom",
+      "heading": "Cha’Kru",
+      "entries": [
+        {
+          "subject": "Ghost Crab",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-ghost-crab"
+          ],
+          "lines": [
+            {
+              "text": "Cost (x5) increased from 50/100 -> 75/100"
+            },
+            {
+              "text": "Container load supply increased from 1 -> 2"
+            }
+          ]
+        },
+        {
+          "subject": "Hat'un",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-hatun"
+          ],
+          "lines": [
+            {
+              "text": "Damage reduced from 100 -> 65"
+            },
+            {
+              "text": "Damage point increased from 0.2s -> 0.26"
+            },
+            {
+              "text": "Weapon cooldown reduced from 1.52s -> 1s"
+            },
+            {
+              "text": "Weapon animation speed decreased by 30%"
+            },
+            {
+              "text": "These changes equal about the same overall DPS, and fix issues with the attack animation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "endari",
+      "heading": "Endari",
+      "entries": [
+        {
+          "subject": "The Deep One",
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Cost changed from 100/25 -> 125/0"
+            },
+            {
+              "text": "Move speed increased from 700 -> 750"
+            },
+            {
+              "text": "No longer lands/lifts off when attacking"
+            }
+          ]
+        },
+        {
+          "subject": "The Veil Cracks",
+          "entityIds": [
+            "endari/topbar/the-veil-cracks"
+          ],
+          "lines": [
+            {
+              "text": "The Veil Cracks power cost reduced from 30 -> 25"
+            }
+          ]
+        },
+        {
+          "subject": "Devourer",
+          "entityIds": [
+            "endari/unit/endari-devourer"
+          ],
+          "lines": [
+            {
+              "text": "Devourer can no longer attack air"
+            }
+          ]
+        },
+        {
+          "subject": "Needler",
+          "entityIds": [
+            "endari/unit/endari-needler"
+          ],
+          "lines": [
+            {
+              "text": "Damage reduced from 14 -> 12"
+            },
+            {
+              "text": "Spine recharge time increased from 1s -> 1.25s"
+            }
+          ]
+        },
+        {
+          "subject": "Shade",
+          "entityIds": [
+            "endari/unit/endari-shade"
+          ],
+          "lines": [
+            {
+              "text": "Shade damage reduced from 22 -> 20"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "free-corsairs",
+      "heading": "Free Corsairs",
+      "entries": [
+        {
+          "subject": "Deadeye",
+          "entityIds": [
+            "free-corsairs/unit/corsair-deadeye"
+          ],
+          "lines": [
+            {
+              "text": "Damage reduced from 30 -> 25"
+            },
+            {
+              "text": "Damage bonus vs Light increased from +75% -> +100% (Total reduced from 52.5 -> 50)"
+            }
+          ]
+        },
+        {
+          "subject": "Raider",
+          "entityIds": [
+            "free-corsairs/unit/corsair-raider"
+          ],
+          "lines": [
+            {
+              "text": "Raider damage bonus changed from +75% vs Harvester -> +50% vs Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Hel",
+          "entityIds": [
+            "marran/hero/hel"
+          ],
+          "lines": [
+            {
+              "text": "Level 1 attack damage reduced from 30 -> 28"
+            },
+            {
+              "text": "Stealth duration reduced from 10s -> 8s"
+            },
+            {
+              "text": "Grenade AOE reduced from 4 -> 3 (Previously displayed 1.75 only on cast)"
+            }
+          ]
+        },
+        {
+          "subject": "Life Path",
+          "entityIds": [
+            "marran/talent/life-path"
+          ],
+          "lines": [
+            {
+              "text": "Life Path bonus experience gain reduced from +40% -> +35%"
+            }
+          ]
+        },
+        {
+          "subject": "Pulse Skimmer",
+          "entityIds": [
+            "marran/unit/marran-pulse-skimmer"
+          ],
+          "lines": [
+            {
+              "text": "Pulse Skimmer damage bonus changed from +100% vs Harvester -> +50% vs Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "valkaru",
+      "heading": "Valkaru",
+      "entries": [
+        {
+          "subject": "Beast",
+          "entityIds": [
+            "valkaru/unit/valkaru-beast"
+          ],
+          "lines": [
+            {
+              "text": "Beast now has Massive tag"
+            }
+          ]
+        },
+        {
+          "subject": "Shocktrooper",
+          "entityIds": [
+            "valkaru/unit/valkaru-shock-trooper"
+          ],
+          "lines": [
+            {
+              "text": "Shocktrooper cost (x2) decreased from 200/75 -> 175/75"
+            }
+          ]
+        },
+        {
+          "subject": "Towbot",
+          "entityIds": [
+            "valkaru/unit/valkaru-tow-bot"
+          ],
+          "lines": [
+            {
+              "text": "Heal per second decreased from 16 -> 12"
+            },
+            {
+              "text": "Health decreased from 500 -> 425"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

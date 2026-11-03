@@ -1,0 +1,207 @@
+{
+  "id": "1846651706683746",
+  "label": "Update #16",
+  "title": "Update #16 VFX, Performance, Sound, Balancing & Bug Fixes - October 15th 2026",
+  "date": "2026-10-17",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1846651706683746",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": "Mera",
+          "entityIds": [
+            "grell/hero/mera",
+            "protectorate/hero/mera"
+          ],
+          "lines": [
+            {
+              "text": "Mera charge cooldown time increased from 9s to 17s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Reanimate",
+          "entityIds": [
+            "the-legion/topbar/reanimate"
+          ],
+          "lines": [
+            {
+              "text": "Reanimate power cost reduced by 20%"
+            }
+          ]
+        },
+        {
+          "subject": "Hero Upgrade Cost Changed",
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Tier 1: 125 flux/45s to 100 flux/50s"
+            },
+            {
+              "text": "Tier 2: 175 flux/70s to 150 flux/60s"
+            }
+          ]
+        },
+        {
+          "subject": "Dreadnought",
+          "entityIds": [
+            "the-legion/unit/dreadnought"
+          ],
+          "lines": [
+            {
+              "text": "Dreadnought turret health increased from 225 to 400"
+            }
+          ]
+        },
+        {
+          "subject": "Terror Tank",
+          "entityIds": [
+            "the-legion/unit/terror-tank"
+          ],
+          "lines": [
+            {
+              "text": "Terror Tank turret health increased from 225 to 250"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Shield",
+          "entityIds": [
+            "protectorate/topbar/protective-shield"
+          ],
+          "lines": [
+            {
+              "text": "Shield power cost reduced by 10%"
+            }
+          ]
+        },
+        {
+          "subject": "Hellfire",
+          "entityIds": [
+            "protectorate/unit/hellfire"
+          ],
+          "lines": [
+            {
+              "text": "Weapon cooldown reduced from 5s to 4s"
+            },
+            {
+              "text": "Turret rotation speed increased"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": "Anrubic",
+          "entityIds": [
+            "the-xol/hero/anrubic"
+          ],
+          "lines": [
+            {
+              "text": "Health increased from 175 to 250"
+            },
+            {
+              "text": "Shields decreased from 175 to 0"
+            },
+            {
+              "text": "Grapple cooldown increased from 12s to 14s"
+            },
+            {
+              "text": "Spectron Form Blink cooldown increased from 18s to 24s"
+            },
+            {
+              "text": "Spectron Form Blink stun time increased from .4s/.2s to .6s/.4s (Channel time before/after blink)"
+            }
+          ]
+        },
+        {
+          "subject": "Recall",
+          "entityIds": [
+            "the-xol/topbar/recall"
+          ],
+          "lines": [
+            {
+              "text": "Recall can no longer recall harvesters"
+            }
+          ]
+        },
+        {
+          "subject": "Orbital Laser",
+          "entityIds": [
+            "the-xol/topbar/orbital-laser"
+          ],
+          "lines": [
+            {
+              "text": "Orbital Laser move speed reduced from 500 to 450"
+            }
+          ]
+        },
+        {
+          "subject": "Efficient Replication",
+          "entityIds": [
+            "the-xol/talent/efficient-replication"
+          ],
+          "lines": [
+            {
+              "text": "Efficient Replication changed from reduce replicate time to 2s to reduce by 50% (6s)"
+            }
+          ]
+        },
+        {
+          "subject": "Echo",
+          "entityIds": [
+            "the-xol/unit/echo"
+          ],
+          "lines": [
+            {
+              "text": "Echo weapon damage increased from 13 (+50% vs Medium) to 13 (+100% vs Medium)"
+            }
+          ]
+        },
+        {
+          "subject": "Spectron",
+          "entityIds": [
+            "the-xol/unit/spectron"
+          ],
+          "lines": [
+            {
+              "text": "Spectron weapon damage bonus changed from vs Medium to vs Heavy"
+            }
+          ]
+        },
+        {
+          "subject": "Synapse",
+          "entityIds": [
+            "the-xol/unit/synapse"
+          ],
+          "lines": [
+            {
+              "text": "Armor type changed from Light to Medium"
+            },
+            {
+              "text": "Damage reduced from 30 to 20"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

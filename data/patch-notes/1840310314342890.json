@@ -1,0 +1,92 @@
+{
+  "id": "1840310314342890",
+  "label": "Patch",
+  "title": "Galactic Season Zero Closes: Keeper Council Victorious, Pirates Advance",
+  "date": "2026-08-06",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1840310314342890",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Low HP Hero speed boost decreased from +50% speed for 5 seconds -> +200 speed for 5 seconds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Healing Obelisk",
+          "entityIds": [
+            "the-legion/building/healing-obelisk"
+          ],
+          "lines": [
+            {
+              "text": "Healing Obelisk cost reduced from 150/0 -> 125/0"
+            }
+          ]
+        },
+        {
+          "subject": "Mammoth",
+          "entityIds": [
+            "the-legion/unit/mammoth"
+          ],
+          "lines": [
+            {
+              "text": "Mammoth Dark Disciple speed bonus decreased from +40% (+160) -> +125"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "free-corsairs",
+      "heading": "Free Corsairs",
+      "entries": [
+        {
+          "subject": "Yearl",
+          "entityIds": [
+            "free-corsairs/hero/yearl"
+          ],
+          "lines": [
+            {
+              "text": "Yearl Shadow Walk speed bonus reduced from +40% (+200) -> +150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Hel",
+          "entityIds": [
+            "marran/hero/hel"
+          ],
+          "lines": [
+            {
+              "text": "Stealth speed bonus reduced from +40% (+200) -> +150"
+            },
+            {
+              "text": "Stealth cooldown increased from 18 -> 20"
+            },
+            {
+              "text": "Grenade damage reduced from 40 -> 30"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

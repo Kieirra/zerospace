@@ -1,0 +1,233 @@
+{
+  "id": "1847286114047885",
+  "label": "Update #17",
+  "title": "Update #17 Pumpkin Patch, Group Movement & Performance - October 26th 2026",
+  "date": "2026-10-27",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1847286114047885",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "Heroes",
+      "entries": [
+        {
+          "subject": "Mera",
+          "entityIds": [
+            "grell/hero/mera",
+            "protectorate/hero/mera"
+          ],
+          "lines": [
+            {
+              "text": "Health and Shields reduced from 175 to 150"
+            },
+            {
+              "text": "Ranged weapon slow reduced from 20% to 10%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": "Anrubic",
+          "entityIds": [
+            "the-xol/hero/anrubic"
+          ],
+          "lines": [
+            {
+              "text": "Grapple now roots instead of stuns"
+            },
+            {
+              "text": "Merging with Xyther gives +150 max health"
+            },
+            {
+              "text": "Merging with Roller gives +100 max health"
+            },
+            {
+              "text": "Xyther merge shield wall now absorbs 50% of max health"
+            }
+          ]
+        },
+        {
+          "subject": "Replicate",
+          "entityIds": [
+            "the-xol/topbar/replicate"
+          ],
+          "lines": [
+            {
+              "text": "Cast time increased from 12s to 16s"
+            },
+            {
+              "text": "Cast time is 50% (8s) on Power fields"
+            }
+          ]
+        },
+        {
+          "subject": "Molten Spectron",
+          "entityIds": [
+            "the-xol/upgrade/molten-spectron"
+          ],
+          "lines": [
+            {
+              "text": "Damage reduced from 80 to 60"
+            },
+            {
+              "text": "AoE radius reduced from 3 to 2.25"
+            },
+            {
+              "text": "No longer deals bonus damage vs Heavy"
+            }
+          ]
+        },
+        {
+          "subject": "Aegis",
+          "entityIds": [
+            "the-xol/unit/aegis"
+          ],
+          "lines": [
+            {
+              "text": "Anti air range increased from 12 to 14"
+            },
+            {
+              "text": "Anti air damage increased from 55 to 65"
+            }
+          ]
+        },
+        {
+          "subject": "Eradicator",
+          "entityIds": [
+            "the-xol/unit/eradicator"
+          ],
+          "lines": [
+            {
+              "text": "Eradicator damage increased from 16 (x4) to 18 (x4)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Kraegar",
+          "entityIds": [
+            "the-legion/hero/kraegar"
+          ],
+          "lines": [
+            {
+              "text": "Kraegar's Killer Instinct has been replaced with Beast Tamer: spawn a second Krag'vorn (Stars with the same feed stacks as the original)"
+            }
+          ]
+        },
+        {
+          "subject": "Exalted",
+          "entityIds": [
+            "the-legion/unit/exalted"
+          ],
+          "lines": [
+            {
+              "text": "Both upgrades are now tier 1 (and mutually exclusive)"
+            },
+            {
+              "text": "Both upgrades now cost 100 flux"
+            },
+            {
+              "text": "Damage increased from 24 (+50% vs medium) to 24 (+50% vs medium and air)"
+            }
+          ]
+        },
+        {
+          "subject": "Reanimate",
+          "entityIds": [
+            "the-legion/topbar/reanimate"
+          ],
+          "lines": [
+            {
+              "text": "Reanimate hero talent renamed to Trifecta: no longer allows Reanimate on heroes, hero max increased from 2 to 3, hero move speed increased by 100"
+            }
+          ]
+        },
+        {
+          "subject": "Dreadnought",
+          "entityIds": [
+            "the-legion/unit/dreadnought"
+          ],
+          "lines": [
+            {
+              "text": "Dreadnought laser weapon replaced with 2 gatling guns that shoot while moving"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Lasher",
+          "entityIds": [
+            "grell/unit/lasher"
+          ],
+          "lines": [
+            {
+              "text": "Lasher move speed increased from 550 to 575"
+            }
+          ]
+        },
+        {
+          "subject": "Thresher",
+          "entityIds": [
+            "grell/unit/thresher"
+          ],
+          "lines": [
+            {
+              "text": "Moved to tier 3"
+            },
+            {
+              "text": "Build time reduced from 65s to 50s"
+            },
+            {
+              "text": "Damage increased from 120 (+75% vs buildings) to 120 (+100% vs buildings)"
+            }
+          ]
+        },
+        {
+          "subject": "Weaver",
+          "entityIds": [
+            "grell/unit/weaver"
+          ],
+          "lines": [
+            {
+              "text": "Moved to tier 2"
+            },
+            {
+              "text": "Cost increased from 75/150 to 100/200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "free-corsairs",
+      "heading": "Corsair",
+      "entries": [
+        {
+          "subject": "Rover",
+          "entityIds": [
+            "free-corsairs/unit/corsair-rover"
+          ],
+          "lines": [
+            {
+              "text": "Rover health reduced from 340 to 320"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

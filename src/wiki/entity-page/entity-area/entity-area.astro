@@ -11,7 +11,7 @@ interface Props {
 const { area } = Astro.props;
 const tiles = keepFilledTiles([
   { label: 'Damage', value: formatOptionalNumber(area?.damage) },
-  { label: 'Interval', value: formatOptionalSeconds(area?.interval) },
+  { label: 'Tick', value: formatOptionalSeconds(area?.interval) },
   { label: 'Radius', value: formatOptionalDistance(area?.radius) },
   { label: 'Duration', value: formatOptionalSeconds(area?.duration) },
   { label: 'Shots', value: formatOptionalNumber(area?.shots) },

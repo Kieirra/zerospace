@@ -1,0 +1,162 @@
+{
+  "id": "1840944183778642",
+  "label": "Patch",
+  "title": "ZeroSpace Update - August 14th 2026",
+  "date": "2026-08-14",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1840944183778642",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Replays now have match stats button"
+            },
+            {
+              "text": "Chat pane now closes when the replay browser is opened"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Deep Nest",
+          "entityIds": [
+            "grell/topbar/deep-nest"
+          ],
+          "lines": [
+            {
+              "text": "Power cost increased from 15 -> 18"
+            },
+            {
+              "text": "Boomers spawned reduced from 4 -> 3"
+            }
+          ]
+        },
+        {
+          "subject": "Rapid Germination",
+          "entityIds": [
+            "grell/talent/rapid-germination"
+          ],
+          "lines": [
+            {
+              "text": "Rapid Germination faster building construction reduced from +40% -> +30%"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Boomer health reduced from 250 -> 150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Efficient Upgrades",
+          "entityIds": [
+            "the-legion/talent/efficient-upgrades"
+          ],
+          "lines": [
+            {
+              "text": "Research Speed increase increased from 35% -> 40%"
+            },
+            {
+              "text": "Research Cost reduction increased from 35% -> 40%"
+            }
+          ]
+        },
+        {
+          "subject": "Deadnought",
+          "entityIds": [
+            "the-legion/unit/dreadnought"
+          ],
+          "lines": [
+            {
+              "text": "Deadnought bombardment damage per bomb increased from 60 -> 70"
+            }
+          ]
+        },
+        {
+          "subject": "Steelsworn",
+          "entityIds": [
+            "the-legion/unit/steelsworn"
+          ],
+          "lines": [
+            {
+              "text": "Steelsworn armor increased from 0 -> 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Commando",
+          "entityIds": [
+            "protectorate/unit/commando"
+          ],
+          "lines": [
+            {
+              "text": "Commando Eagle Tactics now requires Mechanical Research Lab instead of War Foundry"
+            }
+          ]
+        },
+        {
+          "subject": "Hauler",
+          "entityIds": [
+            "protectorate/unit/hauler"
+          ],
+          "lines": [
+            {
+              "text": "Hauler health increased from 400 -> 500"
+            }
+          ]
+        },
+        {
+          "subject": "Predator",
+          "entityIds": [
+            "protectorate/unit/predator"
+          ],
+          "lines": [
+            {
+              "text": "Reinforced Matrix shield decreased from 75 -> 50"
+            },
+            {
+              "text": "Reinforced Matrix cost decreased from 150 -> 125"
+            }
+          ]
+        },
+        {
+          "subject": "Titan",
+          "entityIds": [
+            "protectorate/unit/titan"
+          ],
+          "lines": [
+            {
+              "text": "Titan Antimatter Boosters range decreased from +4 -> +3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

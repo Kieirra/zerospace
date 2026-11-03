@@ -6,6 +6,8 @@ import type {
   Cost,
   EconomyStat,
   EnergyCostChange,
+  PatchNote,
+  PatchNoteLine,
   Stat,
   TopbarEnergyCost,
   Weapon,
@@ -249,4 +251,39 @@ const entities = defineCollection({
   }),
 });
 
-export const collections = { factions, entities };
+const patchNoteLine: z.ZodType<PatchNoteLine> = z.lazy(() =>
+  z.strictObject({
+    text: z.string(),
+    lines: z.array(patchNoteLine).optional(),
+  }),
+);
+
+const patchNote: z.ZodType<PatchNote> = z.strictObject({
+  id: z.string(),
+  label: z.string(),
+  title: z.string(),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  url: z.string(),
+  sections: z.array(
+    z.strictObject({
+      faction: z.string().nullable(),
+      heading: z.string(),
+      entries: z.array(
+        z.strictObject({
+          subject: z.string().nullable(),
+          entityIds: ids,
+          kind: z.literal('fix').optional(),
+          lines: z.array(patchNoteLine),
+          note: z.string().optional(),
+        }),
+      ),
+    }),
+  ),
+});
+
+const patchNotes = defineCollection({
+  loader: glob({ pattern: ['*.json', '!_report.json'], base: './data/patch-notes', generateId }),
+  schema: patchNote,
+});
+
+export const collections = { factions, entities, patchNotes };

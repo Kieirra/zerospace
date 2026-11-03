@@ -1,0 +1,667 @@
+{
+  "id": "1839676055886343",
+  "label": "Patch",
+  "title": "July 30, 2026 - Pirates, Balance Changes, and Bug Fixes!",
+  "date": "2026-07-30",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1839676055886343",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General Heroes",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Melee hero health gain per level reduced by 4.5%"
+            }
+          ]
+        },
+        {
+          "subject": "Marv",
+          "entityIds": [
+            "grell/hero/marv",
+            "protectorate/hero/marv"
+          ],
+          "lines": [
+            {
+              "text": "Marv Companion Shield changed from +2 per Energy Conduit target -> +40 per player level"
+            }
+          ]
+        },
+        {
+          "subject": "Mera",
+          "entityIds": [
+            "grell/hero/mera",
+            "protectorate/hero/mera"
+          ],
+          "lines": [
+            {
+              "text": "Weapon switch cooldown reduced from 10s -> 0"
+            },
+            {
+              "text": "Passive speed buff on melee attack duration increased from 12s -> 14s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Cultivator",
+          "entityIds": [
+            "grell/building/cultivator"
+          ],
+          "lines": [
+            {
+              "text": "Cultivator cost reduced from 20/0 -> 15/0"
+            }
+          ]
+        },
+        {
+          "subject": "Mycelial Reach",
+          "entityIds": [
+            "grell/talent/mycelial-reach"
+          ],
+          "lines": [
+            {
+              "text": "Mycelial Reach talent changed to Gatherer Spawn Cultivator cooldown reduced by 45 seconds, and cast range increased by 200%"
+            }
+          ]
+        },
+        {
+          "subject": "Vynthra",
+          "entityIds": [
+            "grell/hero/vynthra"
+          ],
+          "lines": [
+            {
+              "text": "Vynthra Consume casting range and radius increased from 5.5 -> 6"
+            }
+          ]
+        },
+        {
+          "subject": "Gatherer",
+          "entityIds": [
+            "grell/unit/gatherer"
+          ],
+          "lines": [
+            {
+              "text": "Gatherer Spawn Cultivator cast range increased from 5 -> 6"
+            }
+          ]
+        },
+        {
+          "subject": "Behemoth",
+          "entityIds": [
+            "grell/unit/behemoth"
+          ],
+          "lines": [
+            {
+              "text": "Behemoth move speed decreased from 500 -> 475"
+            }
+          ]
+        },
+        {
+          "subject": "Keeper",
+          "entityIds": [
+            "grell/unit/keeper"
+          ],
+          "lines": [
+            {
+              "text": "Keeper Accelerated Mitosis changed to Reduce Health loss per Arkanid from 20 -> 15"
+            }
+          ]
+        },
+        {
+          "subject": "Thresher",
+          "entityIds": [
+            "grell/unit/thresher"
+          ],
+          "lines": [
+            {
+              "text": "Supply cost decreased from 8 -> 6"
+            },
+            {
+              "text": "Can now attack ground (Attack -> Right Click)"
+            }
+          ]
+        },
+        {
+          "subject": "Weaver",
+          "entityIds": [
+            "grell/unit/weaver"
+          ],
+          "lines": [
+            {
+              "text": "Cost reduced from 75/175 -> 75/150"
+            },
+            {
+              "text": "Weapon projectile speed increased from 1500 -> 2500"
+            },
+            {
+              "text": "Poison energy cost is now 75"
+            },
+            {
+              "text": "Poison projectile no longer collides with units before reaching the target"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Altar",
+          "entityIds": [
+            "the-legion/building/altar"
+          ],
+          "lines": [
+            {
+              "text": "Altar now requires a Citadel to be built"
+            }
+          ]
+        },
+        {
+          "subject": "Inquisitress",
+          "entityIds": [
+            "the-legion/hero/inquisitress"
+          ],
+          "lines": [
+            {
+              "text": "Inquisitress out of combat burst health regen cooldown increased from 15s -> 30s (Now matches other heroes)"
+            }
+          ]
+        },
+        {
+          "subject": "Krag’Vorn",
+          "entityIds": [
+            "the-legion/hero/kraegar"
+          ],
+          "lines": [
+            {
+              "text": "Loses half Feed stacks on death"
+            },
+            {
+              "text": "Feed bonuses increased by 1.5x (20 -> 30 health, 1 -> 1.5 damage)"
+            },
+            {
+              "text": "Feed max stacks reduced from 20 -> 15 (30 -> 20 with upgrade)"
+            }
+          ]
+        },
+        {
+          "subject": "Reanimate",
+          "entityIds": [
+            "the-legion/topbar/reanimate"
+          ],
+          "lines": [
+            {
+              "text": "Reanimate bonus move speed decreased from 20% -> 15%"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Emperor Weapon AOE radius increased from 1.5 -> 1.75"
+            }
+          ]
+        },
+        {
+          "subject": "Monolith",
+          "entityIds": [
+            "the-legion/topbar/spawn-monolith"
+          ],
+          "lines": [
+            {
+              "text": "Health decreased from 1500 -> 1000"
+            },
+            {
+              "text": "Weapon cooldown increased from 0.5s -> 0.7s"
+            }
+          ]
+        },
+        {
+          "subject": "Exalted",
+          "entityIds": [
+            "the-legion/unit/exalted"
+          ],
+          "lines": [
+            {
+              "text": "Damage decreased from 23 -> 22"
+            },
+            {
+              "text": "Maul damage decreased from 20 -> 18 (Total 43 -> 40)"
+            }
+          ]
+        },
+        {
+          "subject": "Mammoth",
+          "entityIds": [
+            "the-legion/unit/mammoth"
+          ],
+          "lines": [
+            {
+              "text": "Mammoth damage bonus vs buildings increased from +100% -> +150%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Bastion",
+          "entityIds": [
+            "protectorate/unit/bastion"
+          ],
+          "lines": [
+            {
+              "text": "[NEW] Bastion upgrade: Retribution Protocol",
+              "lines": [
+                {
+                  "text": "Bastion explodes on death, dealing 20 damage per second to nearby enemies. Lasts 6 seconds"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subject": "Prefect Aster",
+          "entityIds": [
+            "protectorate/hero/prefect-aster"
+          ],
+          "lines": [
+            {
+              "text": "Turret Coolup/Cooldown time increased from 75s -> 90s"
+            },
+            {
+              "text": "Damage point reduced from 0.035s -> 0.1s (Same as Commando)"
+            },
+            {
+              "text": "Damage reduced from 22 -> 21"
+            }
+          ]
+        },
+        {
+          "subject": "Prospector",
+          "entityIds": [
+            "protectorate/unit/prospector"
+          ],
+          "lines": [
+            {
+              "text": "Prospector Repairinites range increased from 8 -> 9"
+            }
+          ]
+        },
+        {
+          "subject": "Cyclops",
+          "entityIds": [
+            "protectorate/unit/cyclops"
+          ],
+          "lines": [
+            {
+              "text": "Cost reduced from 100/175 -> 100/150"
+            },
+            {
+              "text": "Build time reduced from 50s -> 45s"
+            }
+          ]
+        },
+        {
+          "subject": "Hauler",
+          "entityIds": [
+            "protectorate/unit/hauler"
+          ],
+          "lines": [
+            {
+              "text": "Base healing radius increased from 8 -> 10"
+            },
+            {
+              "text": "Transport upgrade allows units to be loaded while flying"
+            }
+          ]
+        },
+        {
+          "subject": "Hellfire",
+          "entityIds": [
+            "protectorate/unit/hellfire"
+          ],
+          "lines": [
+            {
+              "text": "Hellfire Resonant Missiles missile damage reduced from +50% -> +25%"
+            }
+          ]
+        },
+        {
+          "subject": "Ironwing",
+          "entityIds": [
+            "protectorate/unit/ironwing"
+          ],
+          "lines": [
+            {
+              "text": "Sunder Missile speed increased by 40%"
+            },
+            {
+              "text": "Weapon damage increased from 10 (x2) -> 11 (x2)"
+            }
+          ]
+        },
+        {
+          "subject": "Juggernaut",
+          "entityIds": [
+            "protectorate/unit/juggernaut"
+          ],
+          "lines": [
+            {
+              "text": "Juggernaut damage bonus changed from +100% vs Massive -> +100% vs Medium"
+            }
+          ]
+        },
+        {
+          "subject": "Predator",
+          "entityIds": [
+            "protectorate/unit/predator"
+          ],
+          "lines": [
+            {
+              "text": "Predator build time increased from 32s -> 36s"
+            }
+          ]
+        },
+        {
+          "subject": "Titan",
+          "entityIds": [
+            "protectorate/unit/titan"
+          ],
+          "lines": [
+            {
+              "text": "Anti-Ground damage point reduced from 0.1s -> 0"
+            },
+            {
+              "text": "Anti-Ground damage increased from 6 (x2) -> 7 (x2)"
+            },
+            {
+              "text": "Anti-Ground range reduced from 11 -> 10"
+            }
+          ]
+        },
+        {
+          "subject": "Sol Invictus",
+          "entityIds": [
+            "protectorate/topbar/sol-invictus"
+          ],
+          "lines": [
+            {
+              "text": "Sol Invictus is now a massive unit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "arandi",
+      "heading": "Arandi",
+      "entries": [
+        {
+          "subject": "I’olin",
+          "entityIds": [
+            "arandi/hero/iolin"
+          ],
+          "lines": [
+            {
+              "text": "Singularity slow increased from 40% -> 50%"
+            },
+            {
+              "text": "Singularity cooldown reduced from 24s -> 20s"
+            },
+            {
+              "text": "Black Hole cooldown reduced from 30s -> 20s"
+            },
+            {
+              "text": "Mothership movespeed increased from 300 -> 350"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "chakru-kingdom",
+      "heading": "Cha’Kru",
+      "entries": [
+        {
+          "subject": "Loi’Kru",
+          "entityIds": [
+            "chakru-kingdom/hero/loikru"
+          ],
+          "lines": [
+            {
+              "text": "Water form bonus move speed decreased from 25% -> 20%"
+            },
+            {
+              "text": "Torrent damage/heal decreased from 75 -> 50"
+            },
+            {
+              "text": "Water form weapon cooldown increased from 1.3s -> 1.4s (Now equivalent in both forms)"
+            },
+            {
+              "text": "Weapon damage decreased from 23 -> 20"
+            }
+          ]
+        },
+        {
+          "subject": "Immortal Lineage",
+          "entityIds": [
+            "chakru-kingdom/talent/immortal-lineage"
+          ],
+          "lines": [
+            {
+              "text": "Immortal Lineage no longer revives Ghost Crabs"
+            }
+          ]
+        },
+        {
+          "subject": "Chas’Ki",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-chaski"
+          ],
+          "lines": [
+            {
+              "text": "Chas’Ki damage changed from 18 (+100% vs Harvesters) -> 18 (+50% vs Medium)"
+            }
+          ]
+        },
+        {
+          "subject": "Ghost Crab",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-ghost-crab"
+          ],
+          "lines": [
+            {
+              "text": "Ghost Crab move speed reduced from 700 -> 650"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Pulse Barrage",
+          "entityIds": [
+            "marran/topbar/pulse-barrage"
+          ],
+          "lines": [
+            {
+              "text": "Pulse Barrage projectile max height increased from 10 -> 12.5"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Mothership cost reduced from 100/25 -> 125/0"
+            }
+          ]
+        },
+        {
+          "subject": "Badger",
+          "entityIds": [
+            "marran/unit/marran-badger"
+          ],
+          "lines": [
+            {
+              "text": "Badger damage increased from 16 -> 16 (+50% vs Medium)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "endari",
+      "heading": "Endari",
+      "entries": [
+        {
+          "subject": "She who Stalks",
+          "entityIds": [
+            "endari/hero/umbra"
+          ],
+          "lines": [
+            {
+              "text": "Transform armor reduced by 2"
+            },
+            {
+              "text": "Jump range increased from 12 -> 14"
+            },
+            {
+              "text": "Transform cooldown increased from 70s -> 90s"
+            },
+            {
+              "text": "Removed ABES Orbs"
+            }
+          ]
+        },
+        {
+          "subject": "Needler",
+          "entityIds": [
+            "endari/unit/endari-needler"
+          ],
+          "lines": [
+            {
+              "text": "Spines now respawn at 1 second fixed interval rather than 4.5s timer for all"
+            },
+            {
+              "text": "Damage reduced from 18 -> 14"
+            }
+          ]
+        },
+        {
+          "subject": "Drake",
+          "entityIds": [
+            "endari/unit/endari-wyrm"
+          ],
+          "lines": [
+            {
+              "text": "Range increased from 8 -> 12"
+            },
+            {
+              "text": "Speed increased from 600 -> 650"
+            },
+            {
+              "text": "Acceleration increased from 70 -> 100"
+            },
+            {
+              "text": "Weapon no longer misses moving targets"
+            },
+            {
+              "text": "Ability cast range increased from 30 -> 32"
+            }
+          ]
+        },
+        {
+          "subject": "Devourer",
+          "entityIds": [
+            "endari/unit/endari-devourer"
+          ],
+          "lines": [
+            {
+              "text": "Supply cost increased from 4 -> 8"
+            },
+            {
+              "text": "Load supply increased from 6 -> 16 (now fills an entire Strider)"
+            },
+            {
+              "text": "Devour cast range reduced from 5 -> 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "valkaru",
+      "heading": "Valkaru",
+      "entries": [
+        {
+          "subject": "Mondar and Torq",
+          "entityIds": [
+            "valkaru/hero/mondar-and-torq"
+          ],
+          "lines": [
+            {
+              "text": "Mondar ranged weapon damage point decreased from 0.25s -> 0.18s"
+            },
+            {
+              "text": "Mondar ranged weapon damage increased from 10 -> 12"
+            },
+            {
+              "text": "Torq ranged weapon damage increased from 5 (x2) -> 6 (x2)"
+            }
+          ]
+        },
+        {
+          "subject": "Beast",
+          "entityIds": [
+            "valkaru/unit/valkaru-beast"
+          ],
+          "lines": [
+            {
+              "text": "Supply cost increased from 0 -> 6 (Can still be cast without available supply)"
+            },
+            {
+              "text": "Can now be infused"
+            }
+          ]
+        },
+        {
+          "subject": "Towbot",
+          "entityIds": [
+            "valkaru/unit/valkaru-tow-bot"
+          ],
+          "lines": [
+            {
+              "text": "Pull radius decreased from 2.75 -> 2.25"
+            },
+            {
+              "text": "Healing Range decreased from 12 -> 8"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

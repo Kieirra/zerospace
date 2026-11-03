@@ -22,7 +22,7 @@ const toTiles = (heal: Heal) =>
   keepFilledTiles([
     { label: 'Heal', value: formatOptionalNumber(heal.amount), isHeal: true },
     { label: 'HPS', value: formatOptionalNumber(heal.perSecond), isHeal: true },
-    { label: 'Interval', value: formatOptionalSeconds(heal.interval) },
+    { label: 'Tick', value: formatOptionalSeconds(heal.interval) },
     { label: 'Radius', value: formatOptionalDistance(heal.radius) },
     { label: 'Duration', value: formatOptionalSeconds(heal.duration) },
     { label: 'Targets', value: formatTargets(heal), isHeal: true },

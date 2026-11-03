@@ -1,0 +1,67 @@
+---
+import EntitySection from '../entity-section/entity-section.astro';
+import { getPatchHistory } from '../../wiki.data.ts';
+import { shouldShowSubject, sortEntriesForEntity } from './entity-updates.helpers.ts';
+import PatchNoteLines from './patch-note-lines/patch-note-lines.astro';
+
+interface Props {
+  entityId: string;
+  entityName: string;
+}
+
+const { entityId, entityName } = Astro.props;
+const updates = (await getPatchHistory()).get(entityId) ?? [];
+---
+
+<EntitySection title="Updates">
+  {
+    updates.length === 0 ? (
+      <div class="bevel-sm bg-surface p-3">
+        <p class="text-sm text-muted">No change since Early Access (2026-07-20).</p>
+      </div>
+    ) : (
+      <ol class="flex flex-col gap-3">
+        {updates.map(({ patch, entries }) => (
+          <li class="bevel-sm bg-surface p-3">
+            <h3 class="mb-2 flex items-baseline justify-between gap-3 border-b border-line pb-2">
+              <span class="font-semibold">{patch.label}</span>
+              <span class="text-xs text-muted">
+                <time datetime={patch.date}>{patch.date}</time> ·{' '}
+                <a
+                  href={patch.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${patch.label} announcement on Steam`}
+                  class="text-accent-soft underline-offset-2 hover:underline"
+                >
+                  Steam ↗
+                </a>
+              </span>
+            </h3>
+            <ul class="flex flex-col gap-3">
+              {sortEntriesForEntity(entries, entityName).map(({ subject, kind, lines, note }) => (
+                <li>
+                  {shouldShowSubject(subject, entityName) && (
+                    <p class="mb-1 text-xs text-muted label-caps">{subject}</p>
+                  )}
+                  <div class="flex items-baseline gap-2">
+                    {kind === 'fix' && (
+                      <span class="bg-line px-1.5 text-xs font-semibold text-muted label-caps">Fix</span>
+                    )}
+                    <PatchNoteLines lines={lines} />
+                  </div>
+                  {note && (
+                    <details class="mt-1">
+                      <summary class="cursor-pointer text-xs text-muted">Dev notes</summary>
+                      <p class="mt-1 border-l-2 border-line pl-3 text-xs whitespace-pre-line text-muted">{note}</p>
+                    </details>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</EntitySection>

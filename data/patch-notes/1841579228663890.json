@@ -1,0 +1,62 @@
+{
+  "id": "1841579228663890",
+  "label": "Patch",
+  "title": "ZeroSpace Performance Update - August 19th 2026",
+  "date": "2026-08-19",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1841579228663890",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": "Resource Warfare",
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Resource Warfare and The Stars in Our Reach now work for all XP sources instead of only towers"
+            }
+          ]
+        },
+        {
+          "subject": "Hauler",
+          "entityIds": [
+            "protectorate/unit/hauler"
+          ],
+          "lines": [
+            {
+              "text": "Hauler Transport ability now allows unloading when flying"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Fixed visuals for Arandi abduction"
+            },
+            {
+              "text": "MMR and Rank updates on Versus tab after games"
+            },
+            {
+              "text": "Updated fog of war visual on some maps"
+            },
+            {
+              "text": "Spectators can now see unit upgrades, topbar abilities, and tooltips (applies to live games and replays)"
+            },
+            {
+              "text": "Rewind button is unselectable and shows status until the replay is ready"
+            },
+            {
+              "text": "Fixed visual issues when viewing old replays"
+            },
+            {
+              "text": "Updated score screen for Survival"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

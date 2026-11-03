@@ -1,0 +1,81 @@
+{
+  "id": "1846018067937263",
+  "label": "Update #15",
+  "title": "Update #15 Tactical Pause, New Voice Lines & Bug Fixes - October 10th 2026",
+  "date": "2026-10-10",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1846018067937263",
+  "sections": [
+    {
+      "faction": "the-xol",
+      "heading": "Balancing",
+      "entries": [
+        {
+          "subject": "World Forge",
+          "entityIds": [
+            "the-xol/building/world-forge"
+          ],
+          "lines": [
+            {
+              "text": "Xol World Forge costs more (100/100 to 150/150) and its aura is temporarily disabled"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [
+            "the-xol/talent/t2-upgrades"
+          ],
+          "lines": [
+            {
+              "text": "Xol World Forge talent now doubles Army Upgrade effectiveness instead of unlocking tier-2 progression"
+            }
+          ]
+        },
+        {
+          "subject": "Spectron",
+          "entityIds": [
+            "the-xol/unit/spectron"
+          ],
+          "lines": [
+            {
+              "text": "Spectron now has shorter range, slower attacks and reduced max bonus damage"
+            }
+          ]
+        },
+        {
+          "subject": "Anrubic",
+          "entityIds": [
+            "the-xol/hero/anrubic"
+          ],
+          "lines": [
+            {
+              "text": "Anrubic Grapple and enemy-target Merge deal less damage"
+            }
+          ]
+        },
+        {
+          "subject": "Replicate",
+          "entityIds": [
+            "the-xol/topbar/replicate"
+          ],
+          "lines": [
+            {
+              "text": "Replicate costs more on non-Xol targets and can no longer target Scouting Drones"
+            }
+          ]
+        },
+        {
+          "subject": "Resonator",
+          "entityIds": [
+            "the-xol/building/resonator"
+          ],
+          "lines": [
+            {
+              "text": "Resonator has less range while carrying a Spectron"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "id": "1842212951312549",
+  "label": "Patch",
+  "title": "ZeroSpace Hotfixes - September 1st 2026",
+  "date": "2026-09-01",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1842212951312549",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Heroes now grant XP based on owning player level rather than owning player XP (70 + 0.05 * player XP -> 70 + 70 * player level)"
+            },
+            {
+              "text": "T7 talents changed from flat bonus every time XP gained to bonus based on XP gained",
+              "lines": [
+                {
+                  "text": "Resource Talent +7 hex/flux -> 0.25 hex/flux gained per XP"
+                },
+                {
+                  "text": "Power Talent +1 power -> +0.1 power gained per XP"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "War Experience",
+          "entityIds": [
+            "the-legion/talent/war-experience"
+          ],
+          "lines": [
+            {
+              "text": "War Experience no longer grants XP after reaching max level"
+            }
+          ]
+        },
+        {
+          "subject": "Galavax",
+          "entityIds": [
+            "the-legion/hero/galavax"
+          ],
+          "lines": [
+            {
+              "text": "Weapon damage point reduced from 0.5s -> 0.4s"
+            },
+            {
+              "text": "Attack leash range increased from 1.1 -> 2.25 (attack less likely to be cancelled vs running targets)"
+            }
+          ]
+        },
+        {
+          "subject": "Mammoth",
+          "entityIds": [
+            "the-legion/unit/mammoth"
+          ],
+          "lines": [
+            {
+              "text": "Stomp damage per second reduced from 60 -> 45"
+            },
+            {
+              "text": "Removed line damage on unit kill"
+            },
+            {
+              "text": "Dark Disciple / Stormbringer mounted move speed bonus reduced from 125 -> 50"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "arandi",
+      "heading": "Arandi",
+      "entries": [
+        {
+          "subject": "Phoenix Guard",
+          "entityIds": [
+            "arandi/unit/arandi-phoenix-guard"
+          ],
+          "lines": [
+            {
+              "text": "Phoenix Guard cost reduced from 250/50 -> 225/50"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "free-corsairs",
+      "heading": "Free Corsairs",
+      "entries": [
+        {
+          "subject": "Deadeye",
+          "entityIds": [
+            "free-corsairs/unit/corsair-deadeye"
+          ],
+          "lines": [
+            {
+              "text": "Deadeye cost changed from 75/200 -> 100/175"
+            }
+          ]
+        },
+        {
+          "subject": "Raider",
+          "entityIds": [
+            "free-corsairs/unit/corsair-raider"
+          ],
+          "lines": [
+            {
+              "text": "Raider range increased from 8 -> 9"
+            }
+          ]
+        },
+        {
+          "subject": "Rover",
+          "entityIds": [
+            "free-corsairs/unit/corsair-rover"
+          ],
+          "lines": [
+            {
+              "text": "Rover heath increased from 320 -> 340"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Sharpshooter",
+          "entityIds": [
+            "marran/unit/marran-sharpshooter"
+          ],
+          "lines": [
+            {
+              "text": "Health and Shields reduced from 100 -> 80"
+            },
+            {
+              "text": "Damage reduced from 15 -> 14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "valkaru",
+      "heading": "Valkaru",
+      "entries": [
+        {
+          "subject": "Hound",
+          "entityIds": [
+            "valkaru/unit/valkaru-hound"
+          ],
+          "lines": [
+            {
+              "text": "Hound damage decreased from 18 -> 17"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

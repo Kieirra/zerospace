@@ -1,0 +1,310 @@
+{
+  "id": "1847920302250372",
+  "label": "Update #18",
+  "title": "Update #18: Vynthra Rework, Spectator Tools, Balance and More",
+  "date": "2026-11-03",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1847920302250372",
+  "sections": [
+    {
+      "faction": "arandi",
+      "heading": "Arandi",
+      "entries": [
+        {
+          "subject": "Asterion",
+          "entityIds": [
+            "arandi/unit/arandi-asterion"
+          ],
+          "lines": [
+            {
+              "text": "Cost 125/125 to 150/125"
+            },
+            {
+              "text": "Weapon cooldown 3s to 3.5s"
+            }
+          ],
+          "note": "Asterions are very powerful once you have a few (inherently making them an amazing Replicate target). We love how they work: dodging the orb and hitting enemies with it should feel meaningful, so we're aiming at the cooldown and slight cost increase for nerfs this week."
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Galavax",
+          "entityIds": [
+            "the-legion/hero/galavax"
+          ],
+          "lines": [
+            {
+              "text": "Fireball more reliably hits fast-moving units (like units using Dash)"
+            }
+          ]
+        },
+        {
+          "subject": "Dreadnought",
+          "entityIds": [
+            "the-legion/unit/dreadnought"
+          ],
+          "lines": [
+            {
+              "text": "Move speed 750 to 500"
+            },
+            {
+              "text": "AA turret no longer increases move speed"
+            },
+            {
+              "text": "Bomb module now gives +50 move speed"
+            }
+          ],
+          "note": "750 MS was unintended. We swapped MS from AA Turret to Bomb Module because it better fits its identity especially when attempting bombardment during fights. AA Turret feels good at what it does, so no compensatory buff this week, but we'll keep an eye on it."
+        },
+        {
+          "subject": "Terror Tank",
+          "entityIds": [
+            "the-legion/unit/terror-tank"
+          ],
+          "lines": [
+            {
+              "text": "Health while building 1300 to 1000, construction phase now matches the completed Terror Tank"
+            }
+          ]
+        },
+        {
+          "subject": "Storm Bringer",
+          "entityIds": [
+            "the-legion/unit/storm-bringer"
+          ],
+          "lines": [
+            {
+              "text": "Weapon slow 50% to 75%"
+            },
+            {
+              "text": "Weapon range 12 to 14"
+            },
+            {
+              "text": "Starting energy 0 to 25"
+            }
+          ],
+          "note": "Starting Energy buffed but stays below the thresh-hold to cast Tempest, we want for conduits and its energy upgrade to remain interesting options to accelerate the unit to its peak strength (Tempest).\n\nAdded slow and range to its basic attack to help its utility and safety outside of casting its ability, at 75% slow the Storm Bringer should become a good catching tool against valuable targets."
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Titan",
+          "entityIds": [
+            "protectorate/unit/titan"
+          ],
+          "lines": [
+            {
+              "text": "Armor type Medium to Heavy"
+            }
+          ],
+          "note": "Anti-Medium is now very prevalent in the meta, and Protectorate had too many medium units. Visually, the Titan looks chunky enough to accept the 'heavy' tag since its model re-work. In the mirror match-up (PvP) it opens up for Sentinels to push Titan players to diversify."
+        },
+        {
+          "subject": "Predator",
+          "entityIds": [
+            "protectorate/unit/predator"
+          ],
+          "lines": [
+            {
+              "text": "Build time 24s to 22s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Lasher",
+          "entityIds": [
+            "grell/unit/lasher"
+          ],
+          "lines": [
+            {
+              "text": "Move speed 575 to 600"
+            },
+            {
+              "text": "Build time (x2) 36s to 32s"
+            }
+          ],
+          "note": "Because Lashers are a core unit that players can mass, small changes can have a big impact. We will monitor, and if we need to push them further it'll continue to be very gradual."
+        },
+        {
+          "subject": "Vynthra",
+          "entityIds": [
+            "grell/hero/vynthra"
+          ],
+          "lines": [
+            {
+              "text": "Consume move speed bonus 20% to +125"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": "Orbital Laser",
+          "entityIds": [
+            "the-xol/topbar/orbital-laser"
+          ],
+          "lines": [
+            {
+              "text": "Duration 15s to 10s"
+            }
+          ],
+          "note": "It's very strong but more importantly it lasted too long, the ability is at its strongest and most fun in its early life, but continuing to manage or avoid it can begin feel like a chore for both players. We will monitor it; if further nerfs are needed, duration remains a good candidate."
+        },
+        {
+          "subject": "Echo",
+          "entityIds": [
+            "the-xol/unit/echo"
+          ],
+          "lines": [
+            {
+              "text": "Armor type Medium to Light"
+            }
+          ],
+          "note": "A better fit visually, and Xol already has a lot of Medium units."
+        },
+        {
+          "subject": "Defiant",
+          "entityIds": [
+            "the-xol/unit/defiant"
+          ],
+          "lines": [
+            {
+              "text": "Armor type Medium to Heavy"
+            }
+          ],
+          "note": "Both the Xyther and Defiant (frontline Xol units) got countered by the same units. This change should increase army diversity and interaction on both ends."
+        },
+        {
+          "subject": "Harvester",
+          "entityIds": [
+            "the-xol/unit/xol-harvester"
+          ],
+          "lines": [
+            {
+              "text": "Overclock cast range 8 to 12"
+            }
+          ],
+          "note": "A QoL change to make it easier to cast effectively."
+        },
+        {
+          "subject": "Overclock",
+          "entityIds": [
+            "the-xol/unit/synapse",
+            "the-xol/unit/xol-harvester"
+          ],
+          "lines": [
+            {
+              "text": "Bonus damage 35% to 25%"
+            },
+            {
+              "text": "Bonus move speed 35% to +150"
+            }
+          ],
+          "note": "Overclock is very prominent, so reducing its damage bonus from 35% to 25% is effectively an army-wide nerf, as Synapses are often a must-have support unit for sustain and Overclock. The move speed change is a smaller nerf that disproportionately affects faster Xol units. It also continues our shift toward flat bonuses in certain areas to prevent percentage-based bonuses from stacking out of control."
+        },
+        {
+          "subject": "Resonator",
+          "entityIds": [
+            "the-xol/building/resonator"
+          ],
+          "lines": [
+            {
+              "text": "Now needs any T1 production building instead of the Power Core"
+            }
+          ]
+        },
+        {
+          "subject": "Spectron",
+          "entityIds": [
+            "the-xol/unit/spectron"
+          ],
+          "lines": [
+            {
+              "text": "Molten form shot now fades after 4s instead of 5s when it does not hit"
+            }
+          ],
+          "note": "Should help some with disengaging against it. We'll continue to keep an eye on it."
+        },
+        {
+          "subject": "Paradox",
+          "entityIds": [
+            "the-xol/unit/paradox"
+          ],
+          "lines": [
+            {
+              "text": "Splash damage 100% to 50%"
+            }
+          ]
+        },
+        {
+          "subject": "Synapse",
+          "entityIds": [
+            "the-xol/unit/synapse"
+          ],
+          "lines": [
+            {
+              "text": "Heal duration 6s to 10s"
+            },
+            {
+              "text": "Heal per second 8 to 5"
+            },
+            {
+              "text": "Heal target interval 0.6s to 0.5s"
+            }
+          ],
+          "note": "Beautiful as their tentacles are, large numbers of Synapses flying over Xol armies can create visual clutter. Given their supportive role, we want players to feel less need to mass them while preserving their place as a core Xol unit.\n\nEach heal restores roughly the same total health, but over a longer duration, reducing its ability to keep individual units alive under fire while preserving strong out-of-combat recovery. Faster friendly slaps and longer-lasting heals allow a single Synapse to keep more units actively healing.\n\nThe aim is for fewer Synapses to cover an army's healing needs, making additional Synapses less valuable for healing alone. Note also that the Overclock nerf affects the other side of their value proposition."
+        },
+        {
+          "subject": "Replicate",
+          "entityIds": [
+            "the-xol/topbar/replicate"
+          ],
+          "lines": [
+            {
+              "text": "Cost multiplier increased by 14%"
+            },
+            {
+              "text": "No longer costs 1 base Power per unit replicated"
+            }
+          ],
+          "note": "Nerfing replicate is a faction-wide nerf. We want to keep interactions with mercs strong (they're already priced higher).\n\nSome Mercs like the aforementioned Asterion are natural synergy fits, but synergies are good! We are not considering independently pricing per unit outside of the current formula at the moment."
+        }
+      ]
+    },
+    {
+      "faction": null,
+      "heading": "All Factions",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Lifesteal no longer works on buildings"
+            },
+            {
+              "text": "Workers, Legion Harvesters, Kingdom Cultists and Valkaru Grabbers can now stack their heals and repairs on one target instead of spreading out"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

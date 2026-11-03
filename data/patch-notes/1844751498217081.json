@@ -1,0 +1,200 @@
+{
+  "id": "1844751498217081",
+  "label": "Update #14",
+  "title": "Update #14 Minor Bug Fixes & Small Balance Patch - September 22nd 2026",
+  "date": "2026-09-23",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1844751498217081",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "Ascension",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Updated materials on rocks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Building health regen decreased from 4 health/second to 1 health/second"
+            }
+          ]
+        },
+        {
+          "subject": "Harvester",
+          "entityIds": [
+            "grell/unit/gatherer"
+          ],
+          "lines": [
+            {
+              "text": "Health decreased from 275 to 250"
+            },
+            {
+              "text": "Base health regen removed"
+            },
+            {
+              "text": "No longer spawns Biomass when stationary"
+            },
+            {
+              "text": "Spawn Cultivator now starts on cooldown"
+            },
+            {
+              "text": "Spawn Cultivator can now be placed off of Biomass"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Galavax",
+          "entityIds": [
+            "the-legion/hero/galavax"
+          ],
+          "lines": [
+            {
+              "text": "Galavax Fireball speed is now consistent when cast range changes (Previously increased cast range would increase speed)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Aster",
+          "entityIds": [
+            "protectorate/hero/prefect-aster"
+          ],
+          "lines": [
+            {
+              "text": "Aster can now place his turret within the radius of Control Towers"
+            }
+          ]
+        },
+        {
+          "subject": "Hauler",
+          "entityIds": [
+            "protectorate/unit/hauler"
+          ],
+          "lines": [
+            {
+              "text": "Hauler Medbays Upgrade healing and radius increased by 25%"
+            }
+          ]
+        },
+        {
+          "subject": "Juggernaut",
+          "entityIds": [
+            "protectorate/unit/juggernaut"
+          ],
+          "lines": [
+            {
+              "text": "Irradiating Panels upgrade removed"
+            },
+            {
+              "text": "Heavy Plating upgrade added - Increases Juggernaut armor 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": "Defiant",
+          "entityIds": [
+            "the-xol/unit/defiant"
+          ],
+          "lines": [
+            {
+              "text": "Collision size increased by 12%"
+            },
+            {
+              "text": "Armor type changed from Heavy to Medium"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Rumbler Molten weapon damage changed from 50 (+100% vs Medium) to 70 (+100% vs Buildings)"
+            }
+          ]
+        },
+        {
+          "subject": "Spectron",
+          "entityIds": [
+            "the-xol/unit/spectron"
+          ],
+          "lines": [
+            {
+              "text": "Spectron Molten splash radius increased from 1.5 to 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Pulse Barrage",
+          "entityIds": [
+            "marran/topbar/pulse-barrage"
+          ],
+          "lines": [
+            {
+              "text": "Pulse Barrage damage per shot decreased from 50 to 45"
+            }
+          ]
+        },
+        {
+          "subject": "Bulwark",
+          "entityIds": [
+            "marran/building/marran-bulwark"
+          ],
+          "lines": [
+            {
+              "text": "Bulwark health reduced from 1,200 to 1,000"
+            }
+          ]
+        },
+        {
+          "subject": "Badger",
+          "entityIds": [
+            "marran/unit/marran-badger"
+          ],
+          "lines": [
+            {
+              "text": "Badger cost increased from 200/150 to 200/175"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

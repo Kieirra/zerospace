@@ -1,0 +1,268 @@
+{
+  "warnings": [
+    {
+      "code": "subject-unresolved",
+      "gid": "1847920302250372",
+      "faction": null,
+      "subject": null,
+      "detail": "Lifesteal no longer works on buildings"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1846651706683746",
+      "faction": "the-legion",
+      "subject": "Hero Upgrade Cost Changed"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1845383656388459",
+      "faction": "protectorate",
+      "subject": "Disruptor"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1845383656388459",
+      "faction": "the-xol",
+      "subject": null,
+      "detail": "Tier 2 Talent replaced with new talent: 25% faster production charge replenish rate and +1 max production changes (Xol production and Merc taverns)"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1845383656388459",
+      "faction": "free-corsairs",
+      "subject": null,
+      "detail": "Upgraded Mercenary Outposts can now load Spectrons and Rollers"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1844751498217081",
+      "faction": null,
+      "subject": null,
+      "detail": "Updated materials on rocks"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1844751498217081",
+      "faction": "grell",
+      "subject": null,
+      "detail": "Building health regen decreased from 4 health/second to 1 health/second"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1844751498217081",
+      "faction": "the-xol",
+      "subject": null,
+      "detail": "Rumbler Molten weapon damage changed from 50 (+100% vs Medium) to 70 (+100% vs Buildings)"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1844115010496648",
+      "faction": null,
+      "subject": null,
+      "detail": "Spectators now get replays"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1844115010496648",
+      "faction": "grell",
+      "subject": null,
+      "detail": "Biomass health regeneration reduced from 2hp/s to 1hp/s"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1844115010496648",
+      "faction": "protectorate",
+      "subject": null,
+      "detail": "Airstrip codes reduced from 100/0 to 75/0"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1844115010496648",
+      "faction": "the-xol",
+      "subject": null,
+      "detail": "Tier 6 talent now allows research of 2nd tier army upgrades"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1843481262696780",
+      "faction": null,
+      "subject": null,
+      "detail": "You can now drag players in a lobby to change their slot, or their team"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1843481262696780",
+      "faction": null,
+      "subject": null,
+      "detail": "Main base now starts with all Extractors at game start (previously missing 1)"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1843481262696780",
+      "faction": null,
+      "subject": "Flux Nodes"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1843481262696780",
+      "faction": "the-xol",
+      "subject": null,
+      "detail": "Removed Tier 2 Upgrades"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1843481262696780",
+      "faction": "valkaru",
+      "subject": null,
+      "detail": "NEW UNIT: Mortar Brute (You may recognize this unit from the campaign)"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1842212951312549",
+      "faction": null,
+      "subject": null,
+      "detail": "Heroes now grant XP based on owning player level rather than owning player XP (70 + 0.05 * player XP -> 70 + 70 * player level)"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1842212951305137",
+      "faction": null,
+      "subject": null,
+      "detail": "Added Versus/Survival specific news carousels"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1842212951305137",
+      "faction": "grell",
+      "subject": "Cultivator Attacker"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1842212951305137",
+      "faction": "the-legion",
+      "subject": "Guardian/Healing Obelisks"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1842212951305137",
+      "faction": "free-corsairs",
+      "subject": null,
+      "detail": "Bunker load capacity (Entrenched Hideouts talent) increased from 8 -> 16"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1841579228663890",
+      "faction": null,
+      "subject": "Resource Warfare"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1841579228663890",
+      "faction": null,
+      "subject": null,
+      "detail": "Fixed visuals for Arandi abduction"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1840944183778642",
+      "faction": null,
+      "subject": null,
+      "detail": "Replays now have match stats button"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1840944183778642",
+      "faction": "grell",
+      "subject": null,
+      "detail": "Boomer health reduced from 250 -> 150"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1840944183772520",
+      "faction": null,
+      "subject": null,
+      "detail": "Removed ‘Harvester’ armor type"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1840944183772520",
+      "faction": "grell",
+      "subject": null,
+      "detail": "Infused seedling health increased from 70 -> 75"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1840944183772520",
+      "faction": "the-legion",
+      "subject": null,
+      "detail": "Labourer move speed increased from 450 -> 500"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1840944183772520",
+      "faction": "endari",
+      "subject": "The Deep One"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1840310314342890",
+      "faction": null,
+      "subject": null,
+      "detail": "Low HP Hero speed boost decreased from +50% speed for 5 seconds -> +200 speed for 5 seconds"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1839676055886343",
+      "faction": null,
+      "subject": null,
+      "detail": "Melee hero health gain per level reduced by 4.5%"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1839676055886343",
+      "faction": "the-legion",
+      "subject": null,
+      "detail": "Emperor Weapon AOE radius increased from 1.5 -> 1.75"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1839676055886343",
+      "faction": "marran",
+      "subject": null,
+      "detail": "Mothership cost reduced from 100/25 -> 125/0"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1839041357031356",
+      "faction": null,
+      "subject": null,
+      "detail": "Melee hero health gain per level reduced from 39.2% -> 36.7%"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1839041357031356",
+      "faction": "grell",
+      "subject": null,
+      "detail": "Infused Seedling move speed decreased from 675 -> 650"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1839041357031356",
+      "faction": null,
+      "subject": null,
+      "detail": "Arandi Horned Mech move speed increased from 495 -> 500"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1838407329269740",
+      "faction": null,
+      "subject": null,
+      "detail": "Leaderboards now work properly"
+    },
+    {
+      "code": "section-not-found",
+      "gid": "1838407329264580",
+      "detail": "One Day to Go - Early Access Preview, First Look at Xol Gameplay & More"
+    }
+  ]
+}

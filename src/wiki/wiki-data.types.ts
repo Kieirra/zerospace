@@ -332,3 +332,41 @@ export interface UpgradeFile {
 }
 
 export type WikiEntity = FactionFile | UnitFile | BuildingFile | UpgradeFile;
+
+// Versus patch notes of a Steam announcement (data/patch-notes/<gid>.json), split by faction and subject.
+export interface PatchNoteLine {
+  // Raw line of the post, BBCode removed.
+  text: string;
+  lines?: PatchNoteLine[];
+}
+
+export interface PatchNoteEntry {
+  // Name as written in the post ("Overclock"), null for lines without a subject.
+  subject: string | null;
+  // Entities the entry concerns, [] when unresolved.
+  entityIds: string[];
+  // Bug fix brought back by data/patch-notes-overrides.json.
+  kind?: 'fix';
+  lines: PatchNoteLine[];
+  // Developer rationale, raw text, paragraphs separated by "\n\n".
+  note?: string;
+}
+
+export interface PatchNoteSection {
+  // Faction id ("grell"), null for All Factions, Heroes, General...
+  faction: string | null;
+  heading: string;
+  entries: PatchNoteEntry[];
+}
+
+export interface PatchNote {
+  // Steam gid.
+  id: string;
+  // "Update #18", or "Patch" when the title has no number.
+  label: string;
+  title: string;
+  // "YYYY-MM-DD", UTC.
+  date: string;
+  url: string;
+  sections: PatchNoteSection[];
+}

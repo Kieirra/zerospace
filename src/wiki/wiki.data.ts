@@ -2,7 +2,11 @@ import { getCollection } from 'astro:content';
 import { TABS } from './wiki.constants.ts';
 import { byName, byOrderThenName } from './wiki.helpers.ts';
 import type { SearchItem } from '../shared/search/search.helpers.ts';
+import { toEntityUpdates } from './entity-page/entity-updates/entity-updates.helpers.ts';
+import type { EntityUpdate } from './entity-page/entity-updates/entity-updates.helpers.ts';
 import type { EntityKind } from './wiki.types.ts';
+
+let patchHistory: Promise<Map<string, EntityUpdate[]>> | undefined;
 
 export const getFactions = async () => (await getCollection('factions')).map(({ data }) => data).sort(byName);
 
@@ -43,4 +47,20 @@ export const getSearchIndex = async () => {
     kind,
     faction: factions.get(faction)?.name ?? faction,
   }));
+};
+
+export const getPatchNotes = async () =>
+  (await getCollection('patchNotes'))
+    .map(({ data }) => data)
+    .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
+
+// Updates of every entity the patch notes concern, built once for all the entity pages.
+export const getPatchHistory = () => (patchHistory ??= buildPatchHistory());
+
+const buildPatchHistory = async () => {
+  const patches = await getPatchNotes();
+  const entityIds = new Set(
+    patches.flatMap(({ sections }) => sections.flatMap(({ entries }) => entries.flatMap((entry) => entry.entityIds))),
+  );
+  return new Map([...entityIds].map((entityId) => [entityId, toEntityUpdates(entityId, patches)]));
 };

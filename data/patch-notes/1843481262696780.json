@@ -1,0 +1,414 @@
+{
+  "id": "1843481262696780",
+  "label": "Patch",
+  "title": "New Co-op Missions, Revamped AI, Skirmish Updates, Refreshed Economy, & More!",
+  "date": "2026-09-12",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1843481262696780",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "Skirmish Swap Teams",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "You can now drag players in a lobby to change their slot, or their team"
+            },
+            {
+              "text": "Lobby now shows which player will spawn at which location"
+            },
+            {
+              "text": "Fixed Protectorate AI building excessive amounts of striders"
+            }
+          ],
+          "note": "Use the new maps to play a 2v2v2, or show your friends you really are good enough to 1v3 them"
+        }
+      ]
+    },
+    {
+      "faction": null,
+      "heading": "Economy",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Main base now starts with all Extractors at game start (previously missing 1)"
+            },
+            {
+              "text": "Gold Hexite Pit (All main bases are gold)",
+              "lines": [
+                {
+                  "text": "Bonus income rate reduced from +50% -> +33%"
+                },
+                {
+                  "text": "Max Hexite reduced from 6400 -> 5800"
+                }
+              ]
+            },
+            {
+              "text": "Max Harvester count reduced by 1 Flux node worth of Harvesters per faction",
+              "lines": [
+                {
+                  "text": "Xol 5 -> 4"
+                },
+                {
+                  "text": "Protectorate/Grell 10 -> 8"
+                },
+                {
+                  "text": "Legion 15 -> 12"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subject": "Flux Nodes",
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Max Flux reduced from 9999 -> 2000"
+            },
+            {
+              "text": "Now mines at reduced rate (25%) when depleted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Summoning Obelisk",
+          "entityIds": [
+            "the-legion/talent/summoning-obelisk"
+          ],
+          "lines": [
+            {
+              "text": "Summoned Thralls no longer have Reanimate debuff"
+            },
+            {
+              "text": "Summoned unit count decreased from 12 -> 10"
+            }
+          ]
+        },
+        {
+          "subject": "Inquisitress",
+          "entityIds": [
+            "the-legion/hero/inquisitress"
+          ],
+          "lines": [
+            {
+              "text": "NEW T2 Upgrade: Wake of Fire",
+              "lines": [
+                {
+                  "text": "Charge now leaves behind a trail of fire dealing 50 dps for 5 seconds"
+                },
+                {
+                  "text": "Charge increases armor by 3 for buff duration (3s as with the bonus movespeed)"
+                }
+              ]
+            },
+            {
+              "text": "One Life For Another",
+              "lines": [
+                {
+                  "text": "Max orbs reduced from 6 -> 3"
+                },
+                {
+                  "text": "Health gain increased from 1x sacrificed Thrall HP -> 2x"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subject": "Kraegar",
+          "entityIds": [
+            "the-legion/hero/kraegar"
+          ],
+          "lines": [
+            {
+              "text": "Kraegar Killer Instinct upgrade now additionally reduces cooldown from 8s -> 4s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Removed Tier 2 Upgrades"
+            }
+          ]
+        },
+        {
+          "subject": "Defiant",
+          "entityIds": [
+            "the-xol/unit/defiant"
+          ],
+          "lines": [
+            {
+              "text": "Defiant spin damage changed from 20 -> 15 + 50% vs Light"
+            }
+          ]
+        },
+        {
+          "subject": "Eradicator",
+          "entityIds": [
+            "the-xol/unit/eradicator"
+          ],
+          "lines": [
+            {
+              "text": "Eradicator armor reduced from 2 -> 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "arandi",
+      "heading": "Arandi",
+      "entries": [
+        {
+          "subject": "Penumbra Ascendant",
+          "entityIds": [
+            "arandi/talent/penumbra-ascendant"
+          ],
+          "lines": [
+            {
+              "text": "No longer unlocks/spawns 2 Judgements"
+            },
+            {
+              "text": "Now grants Penumbra an attack which stuns ground units in an area for 1.5 seconds"
+            },
+            {
+              "text": "Now increases Penumbra health by 50%"
+            }
+          ]
+        },
+        {
+          "subject": "Ethermancer",
+          "entityIds": [
+            "arandi/unit/arandi-ethermancer"
+          ],
+          "lines": [
+            {
+              "text": "Hallucination spawn aura removed (moved to Judgement)"
+            }
+          ]
+        },
+        {
+          "subject": "Judgement",
+          "entityIds": [
+            "arandi/unit/arandi-judgement"
+          ],
+          "lines": [
+            {
+              "text": "Now available from Penumbra without talent"
+            },
+            {
+              "text": "Removed on attack buff"
+            },
+            {
+              "text": "Gained Hallucination spawn aura"
+            },
+            {
+              "text": "Hallucination aura hallucination starting health increased from 25% -> 50%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "endari",
+      "heading": "Endari",
+      "entries": [
+        {
+          "subject": "Shadow Leech",
+          "entityIds": [
+            "endari/unit/endari-shadow-leech"
+          ],
+          "lines": [
+            {
+              "text": "Spawn count reduced from 4 -> 2"
+            },
+            {
+              "text": "Health increased from 80 -> 120"
+            },
+            {
+              "text": "Duration increased from 8s -> 12s"
+            },
+            {
+              "text": "Slow increased from 25% -> 30%"
+            },
+            {
+              "text": "Now has a maximum of 1 per target"
+            },
+            {
+              "text": "Can now target allies",
+              "lines": [
+                {
+                  "text": "Grants 30% lifesteal and attack speed"
+                },
+                {
+                  "text": "Still deals 8 DPS to friendly units"
+                },
+                {
+                  "text": "Infinite duration until unit dies"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "free-corsairs",
+      "heading": "Free Corsairs",
+      "entries": [
+        {
+          "subject": "Entrenched Hideouts",
+          "entityIds": [
+            "free-corsairs/talent/entrenched-hideouts"
+          ],
+          "lines": [
+            {
+              "text": "No longer unlocks/spawns 2 Hovercraft"
+            },
+            {
+              "text": "Increases sandbag HP by 125 and reduces land delay by 50%"
+            },
+            {
+              "text": "Now makes each Outpost spawn a free Corsair Raider every 30 seconds"
+            }
+          ]
+        },
+        {
+          "subject": "Hovercraft",
+          "entityIds": [
+            "free-corsairs/unit/corsair-hovercraft"
+          ],
+          "lines": [
+            {
+              "text": "Now available from Outpost without talent"
+            },
+            {
+              "text": "Starting/Max Mine charges reduced from 3 -> 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Life Path",
+          "entityIds": [
+            "marran/talent/life-path"
+          ],
+          "lines": [
+            {
+              "text": "Life Path XP Gain reduced from +30% -> +25%"
+            }
+          ]
+        },
+        {
+          "subject": "Bulwark Amplification",
+          "entityIds": [
+            "marran/talent/bulwark-amplification"
+          ],
+          "lines": [
+            {
+              "text": "Bulwark Amplification no longer unlocks/spawns 2 Heavy Troopers"
+            }
+          ]
+        },
+        {
+          "subject": "Heavy Trooper",
+          "entityIds": [
+            "marran/unit/marran-heavy-trooper"
+          ],
+          "lines": [
+            {
+              "text": "Now available from Bulwark without talent"
+            },
+            {
+              "text": "Attack range reduced from 15 -> 9"
+            },
+            {
+              "text": "Knockback reduced"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "valkaru",
+      "heading": "Valkaru",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "NEW UNIT: Mortar Brute (You may recognize this unit from the campaign)",
+              "lines": [
+                {
+                  "text": "Tier 2"
+                },
+                {
+                  "text": "AOE attack vs ground"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "subject": "Fallen Glory",
+          "entityIds": [
+            "valkaru/talent/pulverizers"
+          ],
+          "lines": [
+            {
+              "text": "Renamed to Pulverizers"
+            },
+            {
+              "text": "No longer grants attack speed for nearby dying units"
+            },
+            {
+              "text": "Now allows 3 charges of Valkaru Beast"
+            },
+            {
+              "text": "Reduces Beast cost from 22 -> 15"
+            }
+          ]
+        },
+        {
+          "subject": "Beast",
+          "entityIds": [
+            "valkaru/unit/valkaru-beast"
+          ],
+          "lines": [
+            {
+              "text": "Beast attack leash range increased from 2.5 -> 3 (attack cancelled less often vs fleeing targets)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

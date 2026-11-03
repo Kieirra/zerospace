@@ -1,0 +1,397 @@
+{
+  "id": "1839041357031356",
+  "label": "Patch",
+  "title": "Weekend Update (July 24) - Many bug fixes, portraits, balance changes, and more!",
+  "date": "2026-07-25",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1839041357031356",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "Heroes",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Melee hero health gain per level reduced from 39.2% -> 36.7%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": "Anrubic",
+          "entityIds": [
+            "the-xol/hero/anrubic"
+          ],
+          "lines": [
+            {
+              "text": "Anrubic Merge ability no longer grants permanent stat buffs"
+            }
+          ]
+        },
+        {
+          "subject": "Defiant",
+          "entityIds": [
+            "the-xol/unit/defiant"
+          ],
+          "lines": [
+            {
+              "text": "Defiant health increased from 375 -> 500"
+            },
+            {
+              "text": "Defiant radius increased from 1.55 -> 1.7"
+            }
+          ]
+        },
+        {
+          "subject": "Roller",
+          "entityIds": [
+            "the-xol/unit/roller"
+          ],
+          "lines": [
+            {
+              "text": "Roller health increased from 70 -> 80"
+            },
+            {
+              "text": "Roller move speed decreased from 800/400 -> 750/375"
+            }
+          ]
+        },
+        {
+          "subject": "Scouting Drone",
+          "entityIds": [
+            "the-xol/unit/scouting-drone"
+          ],
+          "lines": [
+            {
+              "text": "Scouting Drone move speed reduced from 750 -> 650"
+            },
+            {
+              "text": "Scouting Drone sight range decreased from 2100 -> 1800"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Infuse",
+          "entityIds": [
+            "grell/topbar/infusion"
+          ],
+          "lines": [
+            {
+              "text": "Infuse no longer grants cooldown reduction on abilities (previously unlisted on tooltip)"
+            }
+          ]
+        },
+        {
+          "subject": "Pheromon Invigoration",
+          "entityIds": [
+            "grell/talent/pheromone-invigoration"
+          ],
+          "lines": [
+            {
+              "text": "Pheromon Invigoration changed from +12% attack/move speed -> +20% attack speed / +10% move speed"
+            }
+          ]
+        },
+        {
+          "subject": "Catalyzed Infusion",
+          "entityIds": [
+            "grell/talent/catalyzed-infusion"
+          ],
+          "lines": [
+            {
+              "text": "Catalyzed Infusion speed bonus reduced from 3.03x -> 3x"
+            }
+          ]
+        },
+        {
+          "subject": "Lasher",
+          "entityIds": [
+            "grell/unit/lasher"
+          ],
+          "lines": [
+            {
+              "text": "Lasher Sinuous Musculature move speed bonus reduced from +30% (+165) -> +125"
+            }
+          ]
+        },
+        {
+          "subject": "Skrell",
+          "entityIds": [
+            "grell/unit/skrell"
+          ],
+          "lines": [
+            {
+              "text": "Skrell moved speed reduced from 900 -> 800"
+            }
+          ]
+        },
+        {
+          "subject": "Stinger",
+          "entityIds": [
+            "grell/unit/stinger"
+          ],
+          "lines": [
+            {
+              "text": "Stinger Extensor Adaption move speed bonus reduced from +50% (+300) -> +200"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Infused Seedling move speed decreased from 675 -> 650"
+            },
+            {
+              "text": "Infused Seedling sight range reduced from 1900 -> 1800"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Reanimate",
+          "entityIds": [
+            "the-legion/topbar/reanimate"
+          ],
+          "lines": [
+            {
+              "text": "Reanimate Hero energy cost increased from 8 -> 10"
+            },
+            {
+              "text": "Reanimate Hero can no longer be cast on Heroes already affected by Reanimate Hero debuff"
+            }
+          ]
+        },
+        {
+          "subject": "Inquisitress",
+          "entityIds": [
+            "the-legion/hero/inquisitress"
+          ],
+          "lines": [
+            {
+              "text": "Inquisitress Cleave cast time increased from 0.5s -> 0.6s"
+            }
+          ]
+        },
+        {
+          "subject": "Kraegar",
+          "entityIds": [
+            "the-legion/hero/kraegar"
+          ],
+          "lines": [
+            {
+              "text": "Kraegar Explosive Warhead cast time increased from 1.5s -> 1.6s"
+            }
+          ]
+        },
+        {
+          "subject": "Exalted",
+          "entityIds": [
+            "the-legion/unit/exalted"
+          ],
+          "lines": [
+            {
+              "text": "Exalted move speed reduced from 700 -> 650"
+            }
+          ]
+        },
+        {
+          "subject": "Steelsworn",
+          "entityIds": [
+            "the-legion/unit/steelsworn"
+          ],
+          "lines": [
+            {
+              "text": "Steelsworn Performance Enhancers move speed reduced from +25% (+137.5) -> +125"
+            }
+          ]
+        },
+        {
+          "subject": "Scouting Drone",
+          "entityIds": [
+            "the-legion/unit/scouting-drone"
+          ],
+          "lines": [
+            {
+              "text": "Scouting Drone move speed decreased from 750 -> 650"
+            },
+            {
+              "text": "Scouting Drone sight range decreased from 2100 -> 1800"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Air Strike",
+          "entityIds": [
+            "protectorate/topbar/airstrike"
+          ],
+          "lines": [
+            {
+              "text": "Air Strike base cast delay increased from 1.25s -> 1.5s"
+            }
+          ]
+        },
+        {
+          "subject": "Commando",
+          "entityIds": [
+            "protectorate/unit/commando"
+          ],
+          "lines": [
+            {
+              "text": "Commando weapon cooldown increased from 0.84s -> 0.89s"
+            }
+          ]
+        },
+        {
+          "subject": "Predator",
+          "entityIds": [
+            "protectorate/unit/predator"
+          ],
+          "lines": [
+            {
+              "text": "Predator move speed decreased from 900 -> 800"
+            }
+          ]
+        },
+        {
+          "subject": "Scouting Drone",
+          "entityIds": [
+            "protectorate/unit/recon-drone"
+          ],
+          "lines": [
+            {
+              "text": "Scouting Drone move speed decreased from 750 -> 650"
+            },
+            {
+              "text": "Scouting Drone sight range decreased from 2100 -> 1800"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": null,
+      "heading": "Mercenaries",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Arandi Horned Mech move speed increased from 495 -> 500"
+            },
+            {
+              "text": "Cha'Kru Warrior move speed decreased from 625/875 -> 575/800"
+            },
+            {
+              "text": "Advanced Sensors talent changed from +60% sight range / +20% move speed -> +75% sight range / +15% move speed"
+            }
+          ]
+        },
+        {
+          "subject": "Loi'Kru",
+          "entityIds": [
+            "chakru-kingdom/hero/loikru"
+          ],
+          "lines": [
+            {
+              "text": "Loi'Kru Earth Form weapon AOE damage reduced from 50% -> 40%"
+            }
+          ]
+        },
+        {
+          "subject": "Corsair Rover",
+          "entityIds": [
+            "free-corsairs/unit/corsair-rover"
+          ],
+          "lines": [
+            {
+              "text": "Corsair Rover move speed decreased from 750 -> 700"
+            }
+          ]
+        },
+        {
+          "subject": "Endari Needler",
+          "entityIds": [
+            "endari/unit/endari-needler"
+          ],
+          "lines": [
+            {
+              "text": "Endari Needler move speed decreased from 700 -> 650"
+            }
+          ]
+        },
+        {
+          "subject": "Endari Devourer",
+          "entityIds": [
+            "endari/unit/endari-devourer"
+          ],
+          "lines": [
+            {
+              "text": "Endari Devourer can no longer target Harvesters with Devour"
+            },
+            {
+              "text": "Endari Devourer push priority is now the same as other large units"
+            }
+          ]
+        },
+        {
+          "subject": "She Who Stalks",
+          "entityIds": [
+            "endari/hero/umbra"
+          ],
+          "lines": [
+            {
+              "text": "Jump cast time increased from 0.5s -> 0.6s"
+            },
+            {
+              "text": "Jump cast range increased from 1000 -> 1200"
+            },
+            {
+              "text": "Impaler form weapon cooldown increased from 1s -> 1.5s"
+            },
+            {
+              "text": "Impaler form attacked to trigger orbs reduced from 6 -> 5"
+            }
+          ]
+        },
+        {
+          "subject": "Marran Pulse Skimmer",
+          "entityIds": [
+            "marran/unit/marran-pulse-skimmer"
+          ],
+          "lines": [
+            {
+              "text": "Marran Pulse Skimmer move speed decreased from 800 -> 750"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

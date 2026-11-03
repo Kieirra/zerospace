@@ -22,6 +22,7 @@ import StatTiles from './stat-tiles/stat-tiles.astro';
 import EntitySummons from './entity-summons/entity-summons.astro';
 import EntityTurrets from './entity-turrets/entity-turrets.astro';
 import EntityUpgrades from './entity-upgrades/entity-upgrades.astro';
+import EntityUpdates from './entity-updates/entity-updates.astro';
 import EntityUpgradesTo from './entity-upgrades-to/entity-upgrades-to.astro';
 import EntityWeapons from './entity-weapons/entity-weapons.astro';
 
@@ -76,6 +77,7 @@ const hasInfo = hasInfoColumn(entity) || absorbedBy.length > 0;
         <EntityTurrets turrets={entity.turrets} maxTurrets={entity.maxTurrets} />
         <EntitySummons summons={entity.summons} />
         <EntityArea area={entity.area} />
+        <EntityUpdates entityId={entity.id} entityName={entity.name} />
       </div>
     </div>
   </article>

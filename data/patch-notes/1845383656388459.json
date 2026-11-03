@@ -1,0 +1,599 @@
+{
+  "id": "1845383656388459",
+  "label": "Patch",
+  "title": "XOL HAVE ARRIVED: Season 1 Beings with New Units, Commander, UI Updates, & More!",
+  "date": "2026-10-03",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1845383656388459",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "General",
+      "entries": [
+        {
+          "subject": "Mera",
+          "entityIds": [
+            "grell/hero/mera",
+            "protectorate/hero/mera"
+          ],
+          "lines": [
+            {
+              "text": "Melee",
+              "lines": [
+                {
+                  "text": "Weapon damage increased from 23 to 24"
+                },
+                {
+                  "text": "Weapon cooldown increased from 1.2s to 1.3s"
+                },
+                {
+                  "text": "Now deals 40% splash damage in 1.5 radius"
+                }
+              ]
+            },
+            {
+              "text": "Ranged",
+              "lines": [
+                {
+                  "text": "Weapon cooldown reduced from 1.5s to 1.3s"
+                },
+                {
+                  "text": "Now slows targets by 20% for 2 seconds"
+                }
+              ]
+            },
+            {
+              "text": "Charge",
+              "lines": [
+                {
+                  "text": "Now switches to melee weapon on cast"
+                },
+                {
+                  "text": "No longer grants armor or move speed"
+                },
+                {
+                  "text": "Now restores shield equal to 50% of damage dealth"
+                },
+                {
+                  "text": "Damage changed from 25 to current weapon damage"
+                }
+              ]
+            },
+            {
+              "text": "Shield ability replaced - now grants nearby allies 20 shields for 5 seconds"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "grell",
+      "heading": "Grell",
+      "entries": [
+        {
+          "subject": "Skyclutch",
+          "entityIds": [
+            "grell/building/skyclutch"
+          ],
+          "lines": [
+            {
+              "text": "Skyclutch requirements changed from Incubator (T2) to Broodwomb (T1)"
+            }
+          ]
+        },
+        {
+          "subject": "Harbinger",
+          "entityIds": [
+            "grell/unit/harbinger"
+          ],
+          "lines": [
+            {
+              "text": "Weapon cooldown decreased from 2s to 1.7s"
+            },
+            {
+              "text": "Range increased from 5.5 to 6"
+            },
+            {
+              "text": "Eruption damage increased from 125 to 125 (+100% vs Heavy)"
+            }
+          ]
+        },
+        {
+          "subject": "Lasher",
+          "entityIds": [
+            "grell/unit/lasher"
+          ],
+          "lines": [
+            {
+              "text": "Now builds 2 at a time"
+            },
+            {
+              "text": "Cost changed from 50/25 (x1) to 100/25 (x2)"
+            },
+            {
+              "text": "Build time changed from 26s (x1) to 36s (x2)"
+            },
+            {
+              "text": "Health decreased from 150 to 110"
+            },
+            {
+              "text": "Damage decreased from 18 to 11"
+            },
+            {
+              "text": "Range decreased from 8 to 7"
+            },
+            {
+              "text": "Size reduced by 10%"
+            }
+          ]
+        },
+        {
+          "subject": "Mandragora",
+          "entityIds": [
+            "grell/unit/mandragora"
+          ],
+          "lines": [
+            {
+              "text": "Mandragora armor increased from 0 to 1"
+            }
+          ]
+        },
+        {
+          "subject": "Skrell",
+          "entityIds": [
+            "grell/unit/skrell"
+          ],
+          "lines": [
+            {
+              "text": "Cost reduced from 50/75 (x3) to 50/50 (x3)"
+            },
+            {
+              "text": "Health increased from 60 to 70"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "Legion",
+      "entries": [
+        {
+          "subject": "Bestiary",
+          "entityIds": [
+            "the-legion/building/bestiary"
+          ],
+          "lines": [
+            {
+              "text": "Bestiary cost reduced from 100/0 to 75/0"
+            }
+          ]
+        },
+        {
+          "subject": "Exalted",
+          "entityIds": [
+            "the-legion/unit/exalted"
+          ],
+          "lines": [
+            {
+              "text": "Build time decreased from 30s to 28s"
+            },
+            {
+              "text": "Removed Infantry tag"
+            },
+            {
+              "text": "Now gains 100 move speed for 5 seconds after cliff jumping"
+            }
+          ]
+        },
+        {
+          "subject": "Stormbringer",
+          "entityIds": [
+            "the-legion/unit/storm-bringer"
+          ],
+          "lines": [
+            {
+              "text": "Stormbringer New Upgrade: Increase starting energy by 50 and energy gain from attacks by 100%"
+            }
+          ]
+        },
+        {
+          "subject": "Terror Tank",
+          "entityIds": [
+            "the-legion/unit/terror-tank"
+          ],
+          "lines": [
+            {
+              "text": "Terror Tank cost changed from 200/200 to 250/150"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "protectorate",
+      "heading": "Protectorate",
+      "entries": [
+        {
+          "subject": "Disruptor",
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Move speed slow while attacking reduced from 150 to 100"
+            },
+            {
+              "text": "Full weapon charge time reduced from 8s to 6s"
+            },
+            {
+              "text": "Upgraded full weapon charge time reduced from 4s to 3s"
+            },
+            {
+              "text": "Moved from War Foundry (T3) to Assembly Plant (T2)"
+            }
+          ]
+        },
+        {
+          "subject": "Griffin",
+          "entityIds": [
+            "protectorate/unit/griffin"
+          ],
+          "lines": [
+            {
+              "text": "Griffin +30% heal upgrade replaced with +1 Heal Beam upgrade"
+            }
+          ]
+        },
+        {
+          "subject": "Hellfire",
+          "entityIds": [
+            "protectorate/unit/hellfire"
+          ],
+          "lines": [
+            {
+              "text": "Moved from Assembly Plant (T2) to War Foundry (T3)"
+            },
+            {
+              "text": "Build time reduced from 65s to 50s"
+            }
+          ]
+        },
+        {
+          "subject": "Ironwing",
+          "entityIds": [
+            "protectorate/unit/ironwing"
+          ],
+          "lines": [
+            {
+              "text": "Cost reduced from 75/100 to 75/75"
+            },
+            {
+              "text": "Build time reduced from 50s to 40s"
+            },
+            {
+              "text": "Now has Sunder Missile ability by default"
+            },
+            {
+              "text": "Sunder Missile Ability Research replaced with Sunder Missile Upgrade: Doubles armor reduction and duration of Sunder Missile"
+            }
+          ]
+        },
+        {
+          "subject": "Juggernaut",
+          "entityIds": [
+            "protectorate/unit/juggernaut"
+          ],
+          "lines": [
+            {
+              "text": "Build time reduced from 70s to 60s"
+            },
+            {
+              "text": "Weapon cooldown decreased from 2.4s to 2.2s"
+            },
+            {
+              "text": "Weapon damage changed from 100 (+100% vs Heavy) to 120"
+            }
+          ]
+        },
+        {
+          "subject": "Predator",
+          "entityIds": [
+            "protectorate/unit/predator"
+          ],
+          "lines": [
+            {
+              "text": "Now build 1 at a time"
+            },
+            {
+              "text": "Cost changed from 125/25 (x2) to 75/0 (x1)"
+            },
+            {
+              "text": "Build time changed from 36s (x2) to 24s (x1)"
+            },
+            {
+              "text": "Mines",
+              "lines": [
+                {
+                  "text": "Re-enabled upgrade"
+                },
+                {
+                  "text": "No longer invisible, chases targets, or slows"
+                },
+                {
+                  "text": "Now deals 25 damage + 1.5s stun"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "Xol",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Tier 2 Talent replaced with new talent: 25% faster production charge replenish rate and +1 max production changes (Xol production and Merc taverns)"
+            }
+          ]
+        },
+        {
+          "subject": "Power Core",
+          "entityIds": [
+            "the-xol/building/power-core"
+          ],
+          "lines": [
+            {
+              "text": "Power Core now grants flying vision"
+            }
+          ]
+        },
+        {
+          "subject": "Echo",
+          "entityIds": [
+            "the-xol/unit/echo"
+          ],
+          "lines": [
+            {
+              "text": "Rotation rate increased by 25%"
+            },
+            {
+              "text": "Weapon fire angle increased from 100 degrees to 120 degrees"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "arandi",
+      "heading": "Arandi",
+      "entries": [
+        {
+          "subject": "I’olin",
+          "entityIds": [
+            "arandi/hero/iolin"
+          ],
+          "lines": [
+            {
+              "text": "Base Health and Shields increased from 120/120 to 130/130"
+            },
+            {
+              "text": "Singularity now reduces Teleport cooldown by 1s per target hit (applied when Singularity returns)"
+            }
+          ]
+        },
+        {
+          "subject": "Phoenix Guard",
+          "entityIds": [
+            "arandi/unit/arandi-phoenix-guard"
+          ],
+          "lines": [
+            {
+              "text": "Cost reduced from 225/50 (x2) to 225/0 (x2)"
+            },
+            {
+              "text": "Weapon damage increased from 7 to 7 (+50% vs Medium)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "endari",
+      "heading": "Endari",
+      "entries": [
+        {
+          "subject": "Umbra",
+          "entityIds": [
+            "endari/hero/umbra"
+          ],
+          "lines": [
+            {
+              "text": "Jump cooldown reduced from 15s to 13s"
+            },
+            {
+              "text": "Transform cooldown reduced from 110s to 100s"
+            },
+            {
+              "text": "Transform starting cooldown reduced from 120s to 100s"
+            }
+          ]
+        },
+        {
+          "subject": "Drake",
+          "entityIds": [
+            "endari/unit/endari-wyrm"
+          ],
+          "lines": [
+            {
+              "text": "Drake Scorch the Land radius reduced from 200 to 150"
+            }
+          ]
+        },
+        {
+          "subject": "Needler",
+          "entityIds": [
+            "endari/unit/endari-needler"
+          ],
+          "lines": [
+            {
+              "text": "Tech requirements changed from Tier 1 to Tier 2"
+            },
+            {
+              "text": "Cost increased from 175/25 to 175/50"
+            },
+            {
+              "text": "Weapon damage changed from 12 to 10 (+75% vs Medium)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "chakru-kingdom",
+      "heading": "Cha’Kru",
+      "entries": [
+        {
+          "subject": "Chas’ki",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-chaski"
+          ],
+          "lines": [
+            {
+              "text": "Chas’ki move speed in combat increased from 575 to 625"
+            }
+          ]
+        },
+        {
+          "subject": "Saq’chi",
+          "entityIds": [
+            "chakru-kingdom/unit/chakru-saqchi"
+          ],
+          "lines": [
+            {
+              "text": "Armor increased from 0 to 1"
+            },
+            {
+              "text": "Weapon range decreased from 2 to 1"
+            },
+            {
+              "text": "Slam area of effect is now centered around the target rather than Saq’chi"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "free-corsairs",
+      "heading": "Free Corsairs",
+      "entries": [
+        {
+          "subject": "Yearl",
+          "entityIds": [
+            "free-corsairs/hero/yearl"
+          ],
+          "lines": [
+            {
+              "text": "Yearl now gains 100 move speed for 5 seconds after cliff jumping"
+            }
+          ]
+        },
+        {
+          "subject": "Raider",
+          "entityIds": [
+            "free-corsairs/unit/corsair-raider"
+          ],
+          "lines": [
+            {
+              "text": "Weapon range increased from 9 to 10"
+            },
+            {
+              "text": "Now gains 100 move speed for 5 seconds after cliff jumping"
+            }
+          ]
+        },
+        {
+          "subject": "Rover",
+          "entityIds": [
+            "free-corsairs/unit/corsair-rover"
+          ],
+          "lines": [
+            {
+              "text": "Rover weapon cooldown decreased from 0.47s to 0.43s"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Upgraded Mercenary Outposts can now load Spectrons and Rollers"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "marran",
+      "heading": "Marran",
+      "entries": [
+        {
+          "subject": "Pulse Capacitors",
+          "entityIds": [
+            "marran/talent/pulse-capacitors"
+          ],
+          "lines": [
+            {
+              "text": "Pulse Capacitors (Level 4 Talent) +100% Passive Power Gain changed to +100% Shield Regen Rate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "valkaru",
+      "heading": "Valkaru",
+      "entries": [
+        {
+          "subject": "Beast",
+          "entityIds": [
+            "valkaru/unit/valkaru-beast"
+          ],
+          "lines": [
+            {
+              "text": "Beast health changed from 1,000 to 800 + 50 * Player Level"
+            }
+          ]
+        },
+        {
+          "subject": "Hound",
+          "entityIds": [
+            "valkaru/unit/valkaru-hound"
+          ],
+          "lines": [
+            {
+              "text": "Hound health reduced from 325 to 310"
+            }
+          ]
+        },
+        {
+          "subject": "Mortar Brute",
+          "entityIds": [
+            "valkaru/unit/valkaru-mortar-brute"
+          ],
+          "lines": [
+            {
+              "text": "Move speed decreased from 500 to 450"
+            },
+            {
+              "text": "Container load supply increased from 2 to 16"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
