@@ -49,6 +49,8 @@ export interface Heal {
   interval?: number;
   radius?: number;
   duration?: number;
+  // Seconds between two picks of the healed target (the function applying the heal effect runs again on a timer).
+  targetSwap?: number;
   targets?: string[];
 }
 

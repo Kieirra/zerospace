@@ -23,6 +23,7 @@ const toTiles = (heal: Heal) =>
     { label: 'Heal', value: formatOptionalNumber(heal.amount), isHeal: true },
     { label: 'HPS', value: formatOptionalNumber(heal.perSecond), isHeal: true },
     { label: 'Tick', value: formatOptionalSeconds(heal.interval) },
+    { label: 'Target swap', value: formatOptionalSeconds(heal.targetSwap) },
     { label: 'Radius', value: formatOptionalDistance(heal.radius) },
     { label: 'Duration', value: formatOptionalSeconds(heal.duration) },
     { label: 'Targets', value: formatTargets(heal), isHeal: true },

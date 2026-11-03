@@ -213,6 +213,7 @@ const entities = defineCollection({
           interval: z.number().optional(),
           radius: z.number().optional(),
           duration: z.number().optional(),
+          targetSwap: z.number().optional(),
           targets: z.array(z.string()).optional(),
         }),
       )

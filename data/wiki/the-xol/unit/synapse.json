@@ -72,7 +72,8 @@
       "amount": 5,
       "interval": 1,
       "duration": 10,
-      "radius": 700
+      "radius": 700,
+      "targetSwap": 0.5
     }
   ],
   "topbarEnergyCosts": {
