@@ -7,6 +7,16 @@
   "values": {
     "Duration": 6
   },
+  "stats": [
+    {
+      "label": "Damage Over Time",
+      "value": 15,
+      "unit": "/s",
+      "patchNote": {
+        "tooltip": "Raised from 7 to 15 in Update #18. Likely a mistake: the change was meant for co-op Vynthra, whose Thresher shares this projectile."
+      }
+    }
+  ],
   "order": 0,
   "cost": {
     "flux": 100
