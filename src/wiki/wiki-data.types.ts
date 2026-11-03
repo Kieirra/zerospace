@@ -21,7 +21,7 @@ export interface Weapon {
   // Percentage of the damage dealt to units in the splash radius.
   splashDamage?: number;
   // Field → value the patch notes announce where the game files differ ("splashDamage": "50%").
-  patchNotes?: Record<string, string>;
+  patchNotes?: Record<string, PatchNoteMismatch>;
   name?: string;
   damage?: number;
   cooldown?: number;
@@ -73,7 +73,12 @@ export interface Stat {
   unit?: '%' | 's' | '/s' | 'x';
   // With an array value: the effect level of each value (Infusion: 1st and 2nd infusion).
   levels?: number[];
+  patchNote?: PatchNoteMismatch;
 }
+
+// Value the patch notes announce where the game files differ ("+150"), or the whole tooltip text when the value
+// shown is not the game files' one ("In-game: +150. Game files: +250.").
+export type PatchNoteMismatch = string | { tooltip: string };
 
 export interface Ability {
   targets?: string[];
@@ -90,7 +95,7 @@ export interface Ability {
   charges?: number;
   summons?: Summon[];
   // Description variable → value the patch notes announce where the game files differ ("speed": "+150").
-  patchNotes?: Record<string, string>;
+  patchNotes?: Record<string, PatchNoteMismatch>;
 }
 
 // Entity created by a topbar, talent or ability; id is the wiki id when the entity has its own file.

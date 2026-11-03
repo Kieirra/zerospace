@@ -8,6 +8,7 @@ import type {
   EnergyCostChange,
   PatchNote,
   PatchNoteLine,
+  PatchNoteMismatch,
   Stat,
   TopbarEnergyCost,
   Weapon,
@@ -18,6 +19,8 @@ const generateId = ({ data }: { data: Record<string, unknown> }) => String(data.
 const ids = z.array(z.string());
 const descriptionValues = z.record(z.string(), z.union([z.number(), z.array(z.number()), z.string()]));
 
+const patchNoteMismatch: z.ZodType<PatchNoteMismatch> = z.union([z.string(), z.object({ tooltip: z.string() })]);
+
 const cost: z.ZodType<Cost> = z.object({
   hexite: z.number().optional(),
   flux: z.number().optional(),
@@ -27,7 +30,7 @@ const weapon: z.ZodType<Weapon> = z.looseObject({
   minRange: z.number().optional(),
   splashRadius: z.number().optional(),
   splashDamage: z.number().optional(),
-  patchNotes: z.record(z.string(), z.string()).optional(),
+  patchNotes: z.record(z.string(), patchNoteMismatch).optional(),
   name: z.string().optional(),
   damage: z.number().optional(),
   cooldown: z.number().optional(),
@@ -52,6 +55,7 @@ const gameStats: z.ZodType<Stat[]> = z.array(
     value: z.union([z.number(), z.array(z.number())]),
     unit: z.enum(['%', 's', '/s', 'x']).optional(),
     levels: z.array(z.number()).optional(),
+    patchNote: patchNoteMismatch.optional(),
   }),
 );
 
@@ -76,7 +80,7 @@ const ability: z.ZodType<Ability> = z.looseObject({
   range: z.number().optional(),
   charges: z.number().optional(),
   stats: gameStats.optional(),
-  patchNotes: z.record(z.string(), z.string()).optional(),
+  patchNotes: z.record(z.string(), patchNoteMismatch).optional(),
 });
 
 const topbarEnergyCost: z.ZodType<TopbarEnergyCost> = z.looseObject({

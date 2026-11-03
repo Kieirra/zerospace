@@ -1,13 +1,14 @@
 ---
-import Tooltip from '../../../shared/tooltip/tooltip.astro';
+import MismatchMarker from '../../../shared/mismatch-marker/mismatch-marker.astro';
 import { formatPatchNoteMismatch, toTextSegments } from '../../wiki.helpers.ts';
+import type { PatchNoteMismatch } from '../../wiki-data.types.ts';
 import type { DescriptionValues } from '../../wiki.types.ts';
 
 interface Props {
   text: string;
   values?: DescriptionValues;
   // Description variable → value the patch notes announce where the game files differ.
-  patchNotes?: Record<string, string>;
+  patchNotes?: Record<string, PatchNoteMismatch>;
 }
 
 const { text, values, patchNotes } = Astro.props;
@@ -17,9 +18,10 @@ const { text, values, patchNotes } = Astro.props;
   toTextSegments(text, values).map(({ text: part, variable }) => {
     const patchNote = variable === undefined ? undefined : patchNotes?.[variable];
     return patchNote ? (
-      <Tooltip text={formatPatchNoteMismatch(patchNote, part)} class="underline decoration-red-400 decoration-dotted underline-offset-2">
+      <>
         {part}
-      </Tooltip>
+        <MismatchMarker text={formatPatchNoteMismatch(patchNote, part)} />
+      </>
     ) : (
       part
     );

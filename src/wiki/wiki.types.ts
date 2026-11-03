@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import type { PatchNoteMismatch } from './wiki-data.types.ts';
 
 export type Faction = CollectionEntry<'factions'>['data'];
 export type Entity = CollectionEntry<'entities'>['data'];
@@ -21,7 +22,7 @@ export interface StatTile {
   // Spans two tile columns on wide enough grids, for tiles with long values.
   span?: 2;
   // Value the patch notes announce where the game files differ.
-  patchNote?: string;
+  patchNote?: PatchNoteMismatch;
 }
 
 export interface CostSegment {

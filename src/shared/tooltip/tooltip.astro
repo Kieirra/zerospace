@@ -4,14 +4,16 @@ import clsx from 'clsx';
 interface Props {
   text: string;
   class?: string;
+  // Accessible name of the trigger, when its content does not name it.
+  label?: string;
 }
 
-const { text, class: className } = Astro.props;
+const { text, class: className, label } = Astro.props;
 const id = `tooltip-${crypto.randomUUID()}`;
 // No whitespace between the trigger and the tooltip: texts shown with whitespace-pre-line would break the line.
 ---
 
-<button type="button" class={clsx('cursor-help', className)} aria-describedby={id} data-tooltip-trigger><slot /></button><span
+<button type="button" class={clsx('cursor-help', className)} aria-label={label} aria-describedby={id} data-tooltip-trigger><slot /></button><span
   id={id}
   popover="manual"
   role="tooltip"

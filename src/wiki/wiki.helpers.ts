@@ -1,4 +1,5 @@
 import { TABS } from './wiki.constants.ts';
+import type { PatchNoteMismatch } from './wiki-data.types.ts';
 import type { CostSegment, DescriptionValues, Entity, EntityKind, StatTile, Weapon } from './wiki.types.ts';
 
 const DISTANCE_SCALE = 100;
@@ -48,7 +49,8 @@ export const interpolate = (text: string, values?: DescriptionValues) =>
     .map(({ text: part }) => part)
     .join('');
 
-export const formatPatchNoteMismatch = (patchNote: string, gameValue: string) => `Patch notes: ${patchNote}. Game files: ${gameValue}.`;
+export const formatPatchNoteMismatch = (patchNote: PatchNoteMismatch, gameValue: string) =>
+  typeof patchNote === 'string' ? `Patch notes: ${patchNote}. Game files: ${gameValue}.` : patchNote.tooltip;
 
 export const formatCost = (cost?: Entity['cost'], divisor = 1) => {
   const segments = RESOURCES.flatMap((resource): CostSegment[] => {
@@ -72,13 +74,14 @@ const GAME_STAT_TILE_LABELS: Record<string, string> = {
 };
 
 export const toGameStatTiles = (stats: LabeledValue[] = []) =>
-  stats.map(({ label, value, unit = '', levels }) => ({
+  stats.map(({ label, value, unit = '', levels, patchNote }) => ({
     label: GAME_STAT_TILE_LABELS[label] ?? label,
     value: `${[value].flat().map(formatNumber).join('/')}${unit}`,
     levels:
       Array.isArray(value) && levels?.length === value.length
         ? value.map((levelValue, index) => ({ level: levels[index], value: `${formatNumber(levelValue)}${unit}` }))
         : undefined,
+    patchNote,
   }));
 
 // Main income of a base or harvester: the first per-minute figure of a resource.
@@ -158,6 +161,7 @@ interface LabeledValue {
   value: number | number[];
   unit?: string;
   levels?: number[];
+  patchNote?: PatchNoteMismatch;
 }
 
 interface TextSegment {

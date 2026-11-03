@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import CostValue from '../../cost-value/cost-value.astro';
 import StatIcon from '../stat-icon/stat-icon.astro';
-import Tooltip from '../../../shared/tooltip/tooltip.astro';
+import MismatchMarker from '../../../shared/mismatch-marker/mismatch-marker.astro';
 import { findImageUrl } from '../../game-image/game-image.helpers.ts';
 import { formatPatchNoteMismatch, toLabelResource } from '../../wiki.helpers.ts';
 import type { StatTile } from '../../wiki.types.ts';
@@ -76,7 +76,7 @@ const resourceIconUrls = tiles.map(({ label }) => {
               <CostValue value={value} />
             )}
             {patchNote && typeof value === 'string' && (
-              <Tooltip text={formatPatchNoteMismatch(patchNote, value)} class="ml-1 text-red-400">*</Tooltip>
+              <MismatchMarker text={formatPatchNoteMismatch(patchNote, value)} />
             )}
           </dd>
           {batch && (
