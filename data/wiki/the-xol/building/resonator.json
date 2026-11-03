@@ -26,8 +26,10 @@
       "Scouting Drone"
     ],
     "excludedTargets": [
-      "Hallucination",
-      "Temporarily mind controlled"
+      "Hero",
+      "Temporarily mind controlled",
+      "Objective",
+      "Dont Load"
     ]
   },
   "weapons": [
@@ -43,7 +45,9 @@
     }
   ],
   "requires": [
-    "the-xol/building/power-core"
+    "the-xol/building/gyroforge",
+    "the-xol/building/spectral-foundry",
+    "the-xol/building/xyther-assembler"
   ],
   "heals": [
     {

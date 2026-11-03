@@ -25,7 +25,7 @@
       "name": "Overclock",
       "description": "Gives the Overclock buff to nearby units, granting them {damage}% bonus damage and move speed for {second} seconds.",
       "values": {
-        "damage": 35,
+        "damage": 25,
         "second": 5
       },
       "hotkey": "G",

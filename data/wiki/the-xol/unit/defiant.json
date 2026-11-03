@@ -15,7 +15,7 @@
   "supply": 4,
   "hp": 500,
   "armorRating": 2,
-  "armorType": "medium",
+  "armorType": "heavy",
   "energy": 6,
   "speed": 575,
   "vision": 1600,
@@ -60,7 +60,7 @@
     "the-xol/unit/paradox"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 15.875
+    "the-xol/topbar/replicate": 17
   },
   "portrait": "Troop_Xol_Defiant",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Defiant"

@@ -14,7 +14,7 @@
   "buildTime": 16,
   "supply": 2,
   "hp": 125,
-  "armorType": "medium",
+  "armorType": "light",
   "speed": 800,
   "vision": 1800,
   "size": 100,
@@ -54,7 +54,7 @@
     "the-xol/unit/paradox"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 8.875
+    "the-xol/topbar/replicate": 9
   },
   "portrait": "Troop_Xol_Echo",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Echo"

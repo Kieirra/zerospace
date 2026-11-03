@@ -29,7 +29,9 @@
     "excludedTargets": [
       "Hero",
       "Air",
-      "Temporarily mind controlled"
+      "Temporarily mind controlled",
+      "Dont Load",
+      "Objective"
     ]
   },
   "loadBonuses": [

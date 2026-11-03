@@ -65,7 +65,7 @@
     "the-xol/unit/cataclyst"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 18.5
+    "the-xol/topbar/replicate": 20
   },
   "portrait": "Troop_Xol_Ripple",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Ripple"

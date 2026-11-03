@@ -14,7 +14,6 @@
   "armorRating": 1,
   "unlocks": [
     "the-xol/building/gyroforge",
-    "the-xol/building/resonator",
     "the-xol/building/spectral-foundry",
     "the-xol/building/xyther-assembler"
   ],

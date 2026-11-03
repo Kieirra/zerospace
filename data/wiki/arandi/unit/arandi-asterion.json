@@ -7,7 +7,7 @@
   "hotkey": "X",
   "order": 83,
   "cost": {
-    "hexite": 125,
+    "hexite": 150,
     "flux": 125
   },
   "count": 1,
@@ -26,14 +26,14 @@
       "damage": 60,
       "cooldown": 3,
       "burst": 1,
-      "burstCooldown": 3,
+      "burstCooldown": 3.5,
       "range": 1300,
       "excludedTargets": [
         "Air"
       ],
       "warmup": 0.15,
       "projectileSpeed": 600,
-      "dps": 20
+      "dps": 17.1429
     }
   ],
   "producedBy": [

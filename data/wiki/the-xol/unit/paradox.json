@@ -81,7 +81,7 @@
     }
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 40.375
+    "the-xol/topbar/replicate": 45
   },
   "portrait": "Troop_Xol_TimeBender",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Paradox"

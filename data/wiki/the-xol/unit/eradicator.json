@@ -70,7 +70,7 @@
     "the-xol/unit/cataclyst"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 31.625
+    "the-xol/topbar/replicate": 35
   },
   "portrait": "Troop_Xol_Eradicator",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Eradicator"

@@ -52,9 +52,6 @@
     {
       "name": "Anti-air Missile Turret",
       "description": "Turret that can attack while moving.\n\nPassive: +{Speed}% Dreadnought movement speed.",
-      "values": {
-        "Speed": 15
-      },
       "cost": {
         "flux": 100
       },

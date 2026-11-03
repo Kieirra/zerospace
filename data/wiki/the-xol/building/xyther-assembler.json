@@ -20,6 +20,7 @@
   ],
   "unlocks": [
     "the-xol/building/molten-core",
+    "the-xol/building/resonator",
     "the-xol/upgrade/world-engine-turret"
   ],
   "portrait": "Building_Xol_MP_XytherProducer",

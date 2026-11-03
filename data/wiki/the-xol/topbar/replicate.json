@@ -9,9 +9,21 @@
   },
   "order": 1,
   "energyCost": {
-    "unitCostMultiplier": 0.07,
-    "base": 1,
-    "fluxWeight": 1.25
+    "unitCostMultiplier": 0.08,
+    "fluxWeight": 1.25,
+    "targets": {
+      "the-xol/unit/aegis": 32,
+      "the-xol/unit/cataclyst": 87,
+      "the-xol/unit/defiant": 17,
+      "the-xol/unit/echo": 9,
+      "the-xol/unit/eradicator": 35,
+      "the-xol/unit/gravitron": 20,
+      "the-xol/unit/paradox": 45,
+      "the-xol/unit/roller": 2,
+      "the-xol/unit/spectron": 7,
+      "the-xol/unit/synapse": 19,
+      "the-xol/unit/xyther": 6
+    }
   },
   "excludedTargets": [
     "Hero",

@@ -39,7 +39,7 @@
       "name": "Overclock",
       "description": "Gives the Overclock buff to nearby units, granting them {damage}% bonus damage and move speed for {second} seconds.",
       "values": {
-        "damage": 35,
+        "damage": 25,
         "second": 5
       },
       "hotkey": "G",
@@ -65,14 +65,14 @@
   "heals": [
     {
       "name": "Synapse",
-      "amount": 8,
+      "amount": 5,
       "interval": 1,
-      "duration": 6,
+      "duration": 10,
       "radius": 700
     }
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 17.625
+    "the-xol/topbar/replicate": 19
   },
   "portrait": "Troop_Xol_Synapse",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Synapse"

@@ -11,7 +11,7 @@
     "flux": 150
   },
   "buildTime": 90,
-  "hp": 1300,
+  "hp": 1000,
   "produces": [
     "the-legion/unit/terror-tank"
   ],

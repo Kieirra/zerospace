@@ -58,7 +58,7 @@
     "the-xol/unit/synapse"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 7.125
+    "the-xol/topbar/replicate": 7
   },
   "portrait": "Troop_Xol_Spectron",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Spectron"

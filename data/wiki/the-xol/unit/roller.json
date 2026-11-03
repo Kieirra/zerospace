@@ -42,7 +42,7 @@
     "the-xol/unit/gravitron"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 2.75
+    "the-xol/topbar/replicate": 2
   },
   "portrait": "Troop_Xol_Rumbler",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Rumbler"

@@ -4,9 +4,6 @@
   "faction": "the-legion",
   "name": "Anti-air Missile Turret",
   "description": "Turret that can attack while moving.\n\nPassive: +{Speed}% Dreadnought movement speed.",
-  "values": {
-    "Speed": 15
-  },
   "stats": [
     {
       "label": "Splash Radius",

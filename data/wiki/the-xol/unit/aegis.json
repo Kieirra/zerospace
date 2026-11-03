@@ -64,7 +64,7 @@
     "the-xol/unit/cataclyst"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 29
+    "the-xol/topbar/replicate": 32
   },
   "portrait": "Troop_Xol_Aegis",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Aegis"

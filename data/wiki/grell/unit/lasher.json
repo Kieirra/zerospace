@@ -11,11 +11,11 @@
     "flux": 25
   },
   "count": 2,
-  "buildTime": 36,
+  "buildTime": 32,
   "supply": 2,
   "hp": 110,
   "armorType": "light",
-  "speed": 575,
+  "speed": 600,
   "vision": 1800,
   "size": 78.5,
   "weapons": [

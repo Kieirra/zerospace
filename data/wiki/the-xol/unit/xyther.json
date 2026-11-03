@@ -55,7 +55,7 @@
     "the-xol/unit/defiant"
   ],
   "topbarEnergyCosts": {
-    "the-xol/topbar/replicate": 6.25
+    "the-xol/topbar/replicate": 6
   },
   "portrait": "Troop_Xol_Xyther",
   "asset": "Archetypes_ResearchItems/Troops/RI_Troop_X_Xyther"
