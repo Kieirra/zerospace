@@ -51,7 +51,7 @@
   "turrets": [
     {
       "name": "Anti-air Missile Turret",
-      "description": "Turret that can attack while moving.\n\nPassive: +{Speed}% Dreadnought movement speed.",
+      "description": "Turret that can attack while moving.",
       "cost": {
         "flux": 100
       },
@@ -86,9 +86,10 @@
     },
     {
       "name": "Bomb Bay",
-      "description": "Increases the amount of bombs dropped during Bombardment by {N}.",
+      "description": "Increases the amount of bombs dropped during Bombardment by {N}.\n\nPassive: +{Speed} Dreadnought movement speed.",
       "values": {
-        "N": 4
+        "N": 4,
+        "Speed": 50
       },
       "cost": {
         "flux": 100
