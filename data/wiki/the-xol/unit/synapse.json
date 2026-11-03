@@ -45,7 +45,10 @@
       },
       "hotkey": "G",
       "cooldown": 30,
-      "range": 800
+      "range": 800,
+      "patchNotes": {
+        "speed": "+150"
+      }
     }
   ],
   "requires": [

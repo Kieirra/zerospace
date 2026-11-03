@@ -18,6 +18,10 @@ export interface Cost {
 export interface Weapon {
   minRange?: number;
   splashRadius?: number;
+  // Percentage of the damage dealt to units in the splash radius.
+  splashDamage?: number;
+  // Field → value the patch notes announce where the game files differ ("splashDamage": "50%").
+  patchNotes?: Record<string, string>;
   name?: string;
   damage?: number;
   cooldown?: number;
@@ -83,6 +87,8 @@ export interface Ability {
   range?: number;
   charges?: number;
   summons?: Summon[];
+  // Description variable → value the patch notes announce where the game files differ ("speed": "+150").
+  patchNotes?: Record<string, string>;
 }
 
 // Entity created by a topbar, talent or ability; id is the wiki id when the entity has its own file.

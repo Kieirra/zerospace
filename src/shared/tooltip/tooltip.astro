@@ -1,0 +1,51 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className } = Astro.props;
+const id = `tooltip-${crypto.randomUUID()}`;
+// No whitespace between the trigger and the tooltip: texts shown with whitespace-pre-line would break the line.
+---
+
+<button type="button" class={clsx('cursor-help', className)} aria-describedby={id} data-tooltip-trigger><slot /></button><span
+  id={id}
+  popover="manual"
+  role="tooltip"
+  class="pointer-events-none inset-auto m-0 max-w-64 bevel-sm bg-surface-raised px-2.5 py-1.5 text-xs font-normal whitespace-normal text-text"
+  >{text}</span
+>
+
+<script>
+  // The tooltip lives in the top layer (popover): the bevelled cards clip anything positioned inside them.
+  const GAP_PX = 6;
+  const MARGIN_PX = 8;
+
+  const place = (trigger: HTMLElement, tooltip: HTMLElement) => {
+    const anchor = trigger.getBoundingClientRect();
+    const centered = anchor.left + anchor.width / 2 - tooltip.offsetWidth / 2;
+    const above = anchor.top - tooltip.offsetHeight - GAP_PX;
+    tooltip.style.left = `${Math.max(MARGIN_PX, Math.min(centered, window.innerWidth - tooltip.offsetWidth - MARGIN_PX))}px`;
+    tooltip.style.top = `${above >= MARGIN_PX ? above : anchor.bottom + GAP_PX}px`;
+  };
+
+  for (const trigger of document.querySelectorAll<HTMLElement>('[data-tooltip-trigger]')) {
+    const tooltip = document.getElementById(trigger.getAttribute('aria-describedby') ?? '');
+    if (!tooltip) continue;
+    const show = () => {
+      if (!tooltip.matches(':popover-open')) tooltip.showPopover();
+      place(trigger, tooltip);
+    };
+    const hide = () => {
+      if (tooltip.matches(':popover-open')) tooltip.hidePopover();
+    };
+    trigger.addEventListener('mouseenter', show);
+    trigger.addEventListener('focus', show);
+    trigger.addEventListener('mouseleave', hide);
+    trigger.addEventListener('blur', hide);
+    trigger.addEventListener('keydown', (event) => event.key === 'Escape' && hide());
+  }
+</script>

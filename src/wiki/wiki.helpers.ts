@@ -2,7 +2,8 @@ import { TABS } from './wiki.constants.ts';
 import type { CostSegment, DescriptionValues, Entity, EntityKind, StatTile, Weapon } from './wiki.types.ts';
 
 const DISTANCE_SCALE = 100;
-const VARIABLE_PATTERN = /\{([^{}]+)\}/g;
+// A variable with its sign before and its percent after, shown as one value: "+{speed}" → "+250".
+const SHOWN_VALUE_PATTERN = /([+-]?)\{([^{}]+)\}(%?)/g;
 const RESOURCES: CostSegment['resource'][] = ['hexite', 'flux'];
 
 export const formatNumber = (value: number) => String(Number(value.toFixed(2)));
@@ -27,13 +28,27 @@ export const formatDps = (weapon: Weapon) => {
   return dps === undefined ? undefined : String(Number(dps.toFixed(1)));
 };
 
+// Text cut around its resolved variables; a variable without value stays visible as plain text.
+export const toTextSegments = (text: string, values?: DescriptionValues) => {
+  const segments: TextSegment[] = [];
+  let end = 0;
+  for (const match of text.matchAll(SHOWN_VALUE_PATTERN)) {
+    const [whole, sign, variable, percent] = match;
+    const value = formatValue(values?.[variable]);
+    if (value === undefined) continue;
+    segments.push({ text: text.slice(end, match.index) }, { text: `${sign}${value}${percent}`, variable });
+    end = match.index + whole.length;
+  }
+  segments.push({ text: text.slice(end) });
+  return segments.filter(({ text: part }) => part !== '');
+};
+
 export const interpolate = (text: string, values?: DescriptionValues) =>
-  text.replace(VARIABLE_PATTERN, (variable, key: string) => {
-    const value = values?.[key];
-    if (value === undefined) return variable;
-    if (typeof value === 'string') return value;
-    return Array.isArray(value) ? value.map(formatNumber).join('/') : formatNumber(value);
-  });
+  toTextSegments(text, values)
+    .map(({ text: part }) => part)
+    .join('');
+
+export const formatPatchNoteMismatch = (patchNote: string, gameValue: string) => `Patch notes: ${patchNote}. Game files: ${gameValue}.`;
 
 export const formatCost = (cost?: Entity['cost'], divisor = 1) => {
   const segments = RESOURCES.flatMap((resource): CostSegment[] => {
@@ -129,6 +144,11 @@ export const describeEnergyCost = (parameters: EnergyParameters) =>
     return value === undefined ? [] : [describe(formatNumber(value))];
   });
 
+const formatValue = (value?: DescriptionValues[string]) => {
+  if (value === undefined || typeof value === 'string') return value;
+  return Array.isArray(value) ? value.map(formatNumber).join('/') : formatNumber(value);
+};
+
 const toTierRank = ({ tier }: Entity) => Number(tier?.match(/\d+/)?.[0] ?? 1);
 
 const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
@@ -138,6 +158,11 @@ interface LabeledValue {
   value: number | number[];
   unit?: string;
   levels?: number[];
+}
+
+interface TextSegment {
+  text: string;
+  variable?: string;
 }
 
 interface Ordered {

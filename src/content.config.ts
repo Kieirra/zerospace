@@ -24,6 +24,8 @@ const cost: z.ZodType<Cost> = z.object({
 const weapon: z.ZodType<Weapon> = z.looseObject({
   minRange: z.number().optional(),
   splashRadius: z.number().optional(),
+  splashDamage: z.number().optional(),
+  patchNotes: z.record(z.string(), z.string()).optional(),
   name: z.string().optional(),
   damage: z.number().optional(),
   cooldown: z.number().optional(),
@@ -72,6 +74,7 @@ const ability: z.ZodType<Ability> = z.looseObject({
   range: z.number().optional(),
   charges: z.number().optional(),
   stats: gameStats.optional(),
+  patchNotes: z.record(z.string(), z.string()).optional(),
 });
 
 const topbarEnergyCost: z.ZodType<TopbarEnergyCost> = z.looseObject({

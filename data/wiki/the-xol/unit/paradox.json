@@ -38,7 +38,11 @@
       "splashRadius": 200,
       "warmup": 0.22,
       "projectileSpeed": 1400,
-      "dps": 14.2857
+      "dps": 14.2857,
+      "splashDamage": 100,
+      "patchNotes": {
+        "splashDamage": "50%"
+      }
     }
   ],
   "abilities": [

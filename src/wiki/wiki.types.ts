@@ -20,6 +20,8 @@ export interface StatTile {
   levels?: { level: number; value: string }[];
   // Spans two tile columns on wide enough grids, for tiles with long values.
   span?: 2;
+  // Value the patch notes announce where the game files differ.
+  patchNote?: string;
 }
 
 export interface CostSegment {

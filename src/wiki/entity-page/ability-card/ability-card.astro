@@ -1,8 +1,9 @@
 ---
 import clsx from 'clsx';
+import InterpolatedText from '../interpolated-text/interpolated-text.astro';
 import StatTiles from '../stat-tiles/stat-tiles.astro';
 import { buildAbilityMeta } from '../entity-abilities/entity-abilities.helpers.ts';
-import { interpolate, toGameStatTiles } from '../../wiki.helpers.ts';
+import { toGameStatTiles } from '../../wiki.helpers.ts';
 import type { Entity } from '../../wiki.types.ts';
 
 type Ability = NonNullable<Entity['abilities']>[number];
@@ -28,8 +29,20 @@ const stats = toGameStatTiles(ability.stats);
       ))
     }
   </dl>
-  {ability.description && <p class="mt-2 text-sm whitespace-pre-line">{interpolate(ability.description, ability.values)}</p>}
-  {ability.details && <p class="mt-2 text-sm whitespace-pre-line text-muted">{interpolate(ability.details, ability.values)}</p>}
+  {
+    ability.description && (
+      <p class="mt-2 text-sm whitespace-pre-line">
+        <InterpolatedText text={ability.description} values={ability.values} patchNotes={ability.patchNotes} />
+      </p>
+    )
+  }
+  {
+    ability.details && (
+      <p class="mt-2 text-sm whitespace-pre-line text-muted">
+        <InterpolatedText text={ability.details} values={ability.values} patchNotes={ability.patchNotes} />
+      </p>
+    )
+  }
   {
     stats.length > 0 && (
       <div class="mt-2">

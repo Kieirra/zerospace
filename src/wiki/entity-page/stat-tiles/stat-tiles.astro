@@ -2,8 +2,9 @@
 import clsx from 'clsx';
 import CostValue from '../../cost-value/cost-value.astro';
 import StatIcon from '../stat-icon/stat-icon.astro';
+import Tooltip from '../../../shared/tooltip/tooltip.astro';
 import { findImageUrl } from '../../game-image/game-image.helpers.ts';
-import { toLabelResource } from '../../wiki.helpers.ts';
+import { formatPatchNoteMismatch, toLabelResource } from '../../wiki.helpers.ts';
 import type { StatTile } from '../../wiki.types.ts';
 import { toBatchPrefix, toShortLabel, toTileMinWidth } from './stat-tiles.helpers.ts';
 
@@ -28,7 +29,7 @@ const resourceIconUrls = tiles.map(({ label }) => {
         isNested,
       )}`}
     >
-      {tiles.map(({ label, value, batch, isAccent, isHeal, levels, span }, tileIndex) => (
+      {tiles.map(({ label, value, batch, isAccent, isHeal, levels, span, patchNote }, tileIndex) => (
         <div
           class={clsx('min-w-0 bevel-sm px-2.5 py-1.5', isNested ? 'bg-surface-raised' : 'bg-surface', span === 2 && 'sm:col-span-2')}
         >
@@ -73,6 +74,9 @@ const resourceIconUrls = tiles.map(({ label }) => {
               ))
             ) : (
               <CostValue value={value} />
+            )}
+            {patchNote && typeof value === 'string' && (
+              <Tooltip text={formatPatchNoteMismatch(patchNote, value)} class="ml-1 text-red-400">*</Tooltip>
             )}
           </dd>
           {batch && (
