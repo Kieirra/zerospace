@@ -40,14 +40,16 @@
       "description": "Gives the Overclock buff to nearby units, granting them {damage}% bonus damage and +{speed} move speed for {second} seconds.",
       "values": {
         "damage": 25,
-        "speed": 250,
+        "speed": 150,
         "second": 5
       },
       "hotkey": "G",
       "cooldown": 30,
       "range": 800,
       "patchNotes": {
-        "speed": "+150"
+        "speed": {
+          "tooltip": "In-game: +150. Game files: +250."
+        }
       }
     }
   ],

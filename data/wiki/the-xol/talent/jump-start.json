@@ -15,7 +15,10 @@
     },
     {
       "label": "Movement Speed",
-      "value": 250
+      "value": 150,
+      "patchNote": {
+        "tooltip": "In-game: 150. Game files: 250."
+      }
     }
   ],
   "researchTime": 0,
