@@ -18,6 +18,11 @@
     "chakru-kingdom/unit/chakru-pako",
     "chakru-kingdom/unit/chakru-saqchi"
   ],
+  "productionCharges": {
+    "initial": 1,
+    "max": 4,
+    "recharge": 90
+  },
   "portrait": "TGUI_portrait_building_chakru_earth",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_ChakruA"
 }

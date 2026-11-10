@@ -26,6 +26,11 @@
     "endari/unit/endari-shadow-leech",
     "endari/unit/endari-wyrm"
   ],
+  "productionCharges": {
+    "initial": 1,
+    "max": 4,
+    "recharge": 90
+  },
   "portrait": "Building_Merc_Endari",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Endari"
 }

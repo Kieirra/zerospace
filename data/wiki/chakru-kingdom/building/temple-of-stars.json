@@ -18,6 +18,11 @@
     "chakru-kingdom/unit/chakru-ghost-crab",
     "chakru-kingdom/unit/chakru-hatun"
   ],
+  "productionCharges": {
+    "initial": 1,
+    "max": 4,
+    "recharge": 90
+  },
   "portrait": "TGUI_portrait_building_chakru_water",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_ChakruB"
 }

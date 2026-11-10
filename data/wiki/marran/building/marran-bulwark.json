@@ -19,6 +19,11 @@
     "marran/unit/marran-pulse-skimmer",
     "marran/unit/marran-sharpshooter"
   ],
+  "productionCharges": {
+    "initial": 1,
+    "max": 4,
+    "recharge": 90
+  },
   "portrait": "Troop_Marran_Mothership",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Marran"
 }

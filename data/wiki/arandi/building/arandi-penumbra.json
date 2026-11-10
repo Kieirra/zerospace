@@ -20,6 +20,11 @@
     "arandi/unit/arandi-judgement",
     "arandi/unit/arandi-phoenix-guard"
   ],
+  "productionCharges": {
+    "initial": 1,
+    "max": 4,
+    "recharge": 90
+  },
   "portrait": "TGUI_portrait_building_arandi_mothership",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Arandi"
 }

@@ -32,6 +32,11 @@
     "free-corsairs/unit/corsair-raider",
     "free-corsairs/unit/corsair-rover"
   ],
+  "productionCharges": {
+    "initial": 1,
+    "max": 4,
+    "recharge": 90
+  },
   "portrait": "TGUI_portrait_building_dread_bunker",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Dread"
 }

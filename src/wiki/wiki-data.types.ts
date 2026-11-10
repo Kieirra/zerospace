@@ -259,6 +259,8 @@ export interface BuildingFile {
   maxTurrets?: number;
   turrets?: Turret[];
   produces?: string[];
+  // Mercenary buildings: units come out instantly, each one spends a charge that recharges over time.
+  productionCharges?: ProductionCharges;
   requires?: string[];
   unlocks?: string[];
   topbarEnergyCosts?: Record<string, number>;
@@ -268,6 +270,13 @@ export interface BuildingFile {
   upgradesTo?: BuildingUpgrade[];
   portrait?: string;
   asset: string;
+}
+
+// Instant production charges (NovaProductionComponent): charges at construction, maximum stored, seconds per charge.
+export interface ProductionCharges {
+  initial: number;
+  max: number;
+  recharge: number;
 }
 
 // Building a building turns into: its file, the upgrade entity that does it, the upgrade's cost and duration

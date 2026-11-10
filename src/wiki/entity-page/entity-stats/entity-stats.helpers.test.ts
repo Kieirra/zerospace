@@ -36,6 +36,26 @@ describe('Entity stat tiles', () => {
     expect(labels.indexOf('Stun resistance')).toBeGreaterThan(labels.indexOf('HP'));
   });
 
+  it('should show the production charges of a mercenary building after its build time', () => {
+    const outpost: Entity = {
+      id: 'free-corsairs/building/free-corsair-mercenary-outpost',
+      kind: 'building',
+      faction: 'free-corsairs',
+      name: 'Free Corsair Mercenary Outpost',
+      buildTime: 50,
+      productionCharges: { initial: 1, max: 4, recharge: 90 },
+    };
+
+    const tiles = buildStatTiles(outpost).map(({ label, value }) => [label, value]);
+
+    expect(tiles).toEqual([
+      ['Build time', '50s'],
+      ['Starting charges', '1'],
+      ['Max charges', '4'],
+      ['Charge time', '90s'],
+    ]);
+  });
+
   it('should let the transport accepts tile span two tiles because its value can be long', () => {
     const strider: Entity = {
       id: 'protectorate/unit/strider',

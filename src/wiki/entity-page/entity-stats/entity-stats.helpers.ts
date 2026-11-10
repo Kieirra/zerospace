@@ -15,6 +15,9 @@ export const buildStatTiles = (entity: Entity) =>
   keepFilledTiles([
     { label: 'Cost', value: formatUnitCost(entity), batch: toBatch(entity) },
     { label: 'Build time', value: formatOptionalSeconds(entity.buildTime) },
+    { label: 'Starting charges', value: formatOptionalNumber(entity.productionCharges?.initial) },
+    { label: 'Max charges', value: formatOptionalNumber(entity.productionCharges?.max) },
+    { label: 'Charge time', value: formatOptionalSeconds(entity.productionCharges?.recharge) },
     { label: 'Research time', value: formatOptionalSeconds(entity.researchTime) },
     { label: 'Supply', value: formatOptionalNumber(entity.supply) },
     { label: 'HP', value: formatOptionalNumber(entity.hp) },

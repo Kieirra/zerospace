@@ -19,6 +19,11 @@
     "valkaru/unit/valkaru-shock-trooper",
     "valkaru/unit/valkaru-tow-bot"
   ],
+  "productionCharges": {
+    "initial": 1,
+    "max": 4,
+    "recharge": 90
+  },
   "portrait": "TGUI_portrait_building_valkaru_tavern",
   "asset": "Archetypes_ResearchItems/Buildings/RI_MercBuilding_Valkaru"
 }
