@@ -59,4 +59,4 @@ export const NEW_GUIDE_DAYS = 7;
 
 export const OUTDATED_PATCH_GAP = 2;
 
-export const ADD_GUIDE_URL = `${GITHUB_URL}/issues/new?template=guide.yml`;
+export const ADD_GUIDE_URL = `${GITHUB_URL}/issues/new?template=guide.md`;

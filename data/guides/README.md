@@ -4,7 +4,7 @@ One markdown file per guide, published on `/guides`. The file name is the URL: `
 
 A guide with a ` ```bo ` block is a **build order**. Without it, it is a **general guide**. The build fails on any invalid guide, with the file and the line to fix.
 
-To propose a guide without a pull request, open the [Add a guide](https://github.com/kieirra/zerospace/issues/new?template=guide.yml) issue form.
+To propose a guide without a pull request, open the [Add a guide](https://github.com/kieirra/zerospace/issues/new?template=guide.md) issue template.
 
 ## Frontmatter
 

@@ -33,7 +33,7 @@ One markdown file per guide in [`data/guides/`](data/guides/), with a ` ```bo ` 
 
 Full format: [`data/guides/README.md`](data/guides/README.md).
 
-To add a guide, open a pull request on `data/guides/`, fill the [Add a guide](https://github.com/kieirra/zerospace/issues/new?template=guide.yml) issue form, or contact Kieirra on the ZeroSpace Discord.
+To add a guide, open a pull request on `data/guides/`, fill the [Add a guide](https://github.com/kieirra/zerospace/issues/new?template=guide.md) issue template, or contact Kieirra on the ZeroSpace Discord.
 
 ## Development
 
