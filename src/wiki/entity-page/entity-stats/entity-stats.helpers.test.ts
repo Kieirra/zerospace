@@ -56,6 +56,26 @@ describe('Entity stat tiles', () => {
     ]);
   });
 
+  it('should show the supply a building provides with a plus sign in the supply tile', () => {
+    const powerCore: Entity = {
+      id: 'the-xol/building/power-core',
+      kind: 'building',
+      faction: 'the-xol',
+      name: 'Power Core',
+      buildTime: 20,
+      supplyProvided: 8,
+      hp: 400,
+    };
+
+    const tiles = buildStatTiles(powerCore).map(({ label, value }) => [label, value]);
+
+    expect(tiles).toEqual([
+      ['Build time', '20s'],
+      ['Supply', '+8'],
+      ['HP', '400'],
+    ]);
+  });
+
   it('should let the transport accepts tile span two tiles because its value can be long', () => {
     const strider: Entity = {
       id: 'protectorate/unit/strider',

@@ -8,6 +8,7 @@
   },
   "buildTime": 12,
   "hp": 1000,
+  "supplyProvided": 12,
   "unlocks": [
     "protectorate/building/barracks"
   ],

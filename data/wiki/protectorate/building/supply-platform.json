@@ -12,6 +12,7 @@
   "buildTime": 12,
   "hp": 500,
   "armorRating": 1,
+  "supplyProvided": 12,
   "unlocks": [
     "protectorate/building/barracks"
   ],

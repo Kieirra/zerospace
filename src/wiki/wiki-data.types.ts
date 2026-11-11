@@ -261,6 +261,8 @@ export interface BuildingFile {
   produces?: string[];
   // Mercenary buildings: units come out instantly, each one spends a charge that recharges over time.
   productionCharges?: ProductionCharges;
+  // Supply added to the cap (GrantSupply). Not the supply cost of units.
+  supplyProvided?: number;
   requires?: string[];
   unlocks?: string[];
   topbarEnergyCosts?: Record<string, number>;

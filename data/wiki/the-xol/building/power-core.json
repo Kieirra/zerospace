@@ -12,6 +12,7 @@
   "buildTime": 3,
   "hp": 350,
   "armorRating": 1,
+  "supplyProvided": 8,
   "unlocks": [
     "the-xol/building/gyroforge",
     "the-xol/building/spectral-foundry",

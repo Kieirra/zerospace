@@ -13,6 +13,7 @@
   "hp": 500,
   "armorRating": 1,
   "energy": 100,
+  "supplyProvided": 12,
   "unlocks": [
     "the-legion/building/barracks",
     "the-legion/building/bestiary"

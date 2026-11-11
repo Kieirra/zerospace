@@ -251,6 +251,7 @@ const entities = defineCollection({
     producedBy: ids.optional(),
     produces: ids.optional(),
     productionCharges: z.object({ initial: z.number(), max: z.number(), recharge: z.number() }).optional(),
+    supplyProvided: z.number().optional(),
     requires: ids.optional(),
     unlocks: ids.optional(),
     upgrades: ids.optional(),

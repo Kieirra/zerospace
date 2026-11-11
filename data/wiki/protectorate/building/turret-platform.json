@@ -29,6 +29,7 @@
       ]
     }
   ],
+  "supplyProvided": 12,
   "unlocks": [
     "protectorate/building/barracks"
   ],

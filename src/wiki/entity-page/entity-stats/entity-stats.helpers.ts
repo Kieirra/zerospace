@@ -3,6 +3,7 @@ import {
   formatTargets,
   formatArmor,
   formatCost,
+  formatNumber,
   formatOptionalDistance,
   formatOptionalNumber,
   formatOptionalSeconds,
@@ -19,7 +20,8 @@ export const buildStatTiles = (entity: Entity) =>
     { label: 'Max charges', value: formatOptionalNumber(entity.productionCharges?.max) },
     { label: 'Charge time', value: formatOptionalSeconds(entity.productionCharges?.recharge) },
     { label: 'Research time', value: formatOptionalSeconds(entity.researchTime) },
-    { label: 'Supply', value: formatOptionalNumber(entity.supply) },
+    // Units cost supply, buildings provide it: a single tile, the provided supply signed to tell them apart.
+    { label: 'Supply', value: formatOptionalNumber(entity.supply) ?? formatSupplyProvided(entity.supplyProvided) },
     { label: 'HP', value: formatOptionalNumber(entity.hp) },
     ...toGameStatTiles(entity.combatStats),
     { label: 'Shields', value: formatOptionalNumber(entity.shields) },
@@ -41,6 +43,8 @@ export const buildStatTiles = (entity: Entity) =>
     // The accepted targets list can be long: let it span two tiles instead of growing tall.
     { label: 'Transport accepts', value: entity.transport && formatTargets(entity.transport), span: 2 },
   ]);
+
+const formatSupplyProvided = (value?: number) => (value === undefined ? undefined : `+${formatNumber(value)}`);
 
 const toBatch = ({ cost, count = 1 }: Entity) => {
   const batchCost = formatCost(cost);
