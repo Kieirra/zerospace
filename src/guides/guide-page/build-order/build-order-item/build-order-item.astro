@@ -1,0 +1,16 @@
+---
+import EntityPill from '../../../entity-pill/entity-pill.astro';
+import type { ResolvedBuildOrderItem } from '../../../guides.types.ts';
+
+interface Props {
+  item: ResolvedBuildOrderItem;
+}
+
+const { item } = Astro.props;
+---
+
+<span class="inline-flex flex-wrap items-center gap-1">
+  {item.count > 1 && <span class="text-sm tabular-nums">{item.count}×</span>}
+  {item.entity ? <EntityPill entity={item.entity} base={item.base} /> : <span>{item.text}</span>}
+  {item.note !== undefined && <sup class="-ml-0.5 text-accent-soft">{item.note}</sup>}
+</span>

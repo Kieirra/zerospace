@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { MAIN_FACTION_ORDER } from './guides/guides.constants.ts';
 import type {
   Ability,
   Cost,
@@ -293,4 +294,31 @@ const patchNotes = defineCollection({
   schema: patchNote,
 });
 
-export const collections = { factions, entities, patchNotes };
+const mainFaction = z.enum(MAIN_FACTION_ORDER);
+
+// Build order fields are required or forbidden depending on the ```bo block: checked in guides.data.ts.
+const guides = defineCollection({
+  loader: glob({ base: './data/guides', pattern: ['*.md', '!README.md'] }),
+  schema: z.strictObject({
+    title: z.string().min(3).max(60),
+    author: z.string().min(1),
+    description: z.string().min(40).max(240),
+    patch: z.int().positive(),
+    added: z.coerce.date(),
+    faction: mainFaction.optional(),
+    mercenary: z.enum(['arandi', 'chakru-kingdom', 'endari', 'free-corsairs', 'marran', 'valkaru']).optional(),
+    hero: z.string().optional(),
+    talents: z
+      .union([z.string(), z.number()])
+      .transform(String)
+      .pipe(z.string().regex(/^[12]{7}$/))
+      .optional(),
+    army: z.array(z.string()).min(1).optional(),
+    vs: z.partialRecord(mainFaction, z.int().min(1).max(5)).optional(),
+    style: z.enum(['one-base', 'expand', 'all-in']).optional(),
+    strengths: z.array(z.string()).min(1).max(6).optional(),
+    weaknesses: z.array(z.string()).min(1).max(6).optional(),
+  }),
+});
+
+export const collections = { factions, entities, patchNotes, guides };

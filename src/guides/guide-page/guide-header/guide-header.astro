@@ -1,0 +1,32 @@
+---
+import DensePanel from '../../../wiki/dense-panel/dense-panel.astro';
+import GuideFactions from '../../guide-factions/guide-factions.astro';
+import GuideStatus from '../../guide-status/guide-status.astro';
+import GuideTags from '../../guide-tags/guide-tags.astro';
+import type { Guide } from '../../guides.types.ts';
+
+interface Props {
+  guide: Guide;
+}
+
+const { guide } = Astro.props;
+---
+
+<header class="mt-3">
+  <DensePanel factionId={guide.type === 'build-order' ? guide.faction.id : undefined}>
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-col gap-1.5">
+        <h1 class="text-2xl font-bold break-words">{guide.title}</h1>
+        <GuideTags guide={guide} />
+      </div>
+      {guide.type === 'build-order' && <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />}
+      <p class="max-w-[70ch] text-muted">{guide.description}</p>
+      <p class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
+        <span class="text-muted">
+          by <span class="font-semibold text-text">{guide.author}</span> · patch <span class="tabular-nums">{guide.patch}</span>
+        </span>
+        <GuideStatus status={guide.patchStatus} added={guide.added} />
+      </p>
+    </div>
+  </DensePanel>
+</header>

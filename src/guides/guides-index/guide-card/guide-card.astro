@@ -1,0 +1,80 @@
+---
+import clsx from 'clsx';
+import { findImageUrl } from '../../../wiki/game-image/game-image.helpers.ts';
+import GuideFactions from '../../guide-factions/guide-factions.astro';
+import GuideStatus from '../../guide-status/guide-status.astro';
+import GuideTags from '../../guide-tags/guide-tags.astro';
+import { GUIDE_FACTION_ACCENTS } from '../../guides.constants.ts';
+import type { Guide } from '../../guides.types.ts';
+
+interface Props {
+  guide: Guide;
+}
+
+const { guide } = Astro.props;
+const artUrl = guide.type === 'build-order' ? findImageUrl(`art/${guide.faction.id}`) : undefined;
+const titleId = `guide-title-${guide.slug}`;
+const accent = guide.type === 'build-order' ? GUIDE_FACTION_ACCENTS[guide.faction.id] : 'var(--color-accent-soft)';
+---
+
+<a
+  href={`/guides/${guide.slug}`}
+  aria-labelledby={titleId}
+  style={`--guide-accent: ${accent}`}
+  class={clsx(
+    'group block h-full bevel-sm p-0.5 transition',
+    'hover:bg-(--guide-accent) focus-visible:bg-(--guide-accent) focus-visible:outline-none',
+    guide.patchStatus === 'outdated' && 'opacity-60 hover:opacity-100 focus-visible:opacity-100',
+  )}
+>
+  <div class="flex h-full flex-col bevel-sm bg-surface">
+    <div class={clsx('relative h-20 overflow-hidden', guide.type === 'guide' && 'bg-surface-raised')}>
+      {
+        artUrl && (
+          <img
+            src={artUrl}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            class={clsx(
+              'pointer-events-none absolute inset-0 size-full object-cover object-[center_20%] opacity-35 mask-b-from-10% mask-b-to-100%',
+              'transition-transform duration-350 motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]',
+            )}
+          />
+        )
+      }
+      <div class="absolute top-2 right-2">
+        <GuideStatus status={guide.patchStatus} added={guide.added} />
+      </div>
+      <div class="relative flex h-full items-center px-4">
+        {
+          guide.type === 'build-order' ? (
+            <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />
+          ) : (
+            <p class="text-sm text-muted label-caps">Guide</p>
+          )
+        }
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col gap-3 p-4">
+      <div class="flex flex-col gap-1.5">
+        <h2 id={titleId} class="line-clamp-2 text-xl font-bold">{guide.title}</h2>
+        <GuideTags guide={guide} />
+      </div>
+      <p class="line-clamp-4 min-h-[4lh] text-sm text-text/80">{guide.description}</p>
+      <p class="mt-auto flex justify-between gap-4 text-sm">
+        <span><span class="text-muted">by</span> <span class="font-semibold text-text">{guide.author}</span></span>
+        <span class="text-muted tabular-nums">patch {guide.patch}</span>
+      </p>
+      <span
+        class={clsx(
+          'inline-flex h-10 items-center self-center px-4 bevel-sm',
+          'bg-text text-xs font-bold tracking-[.16em] text-bg uppercase transition-colors',
+          'group-hover:bg-(--guide-accent) group-focus-visible:bg-(--guide-accent)',
+        )}
+      >
+        {guide.type === 'build-order' ? 'View build order' : 'Read guide'}
+      </span>
+    </div>
+  </div>
+</a>

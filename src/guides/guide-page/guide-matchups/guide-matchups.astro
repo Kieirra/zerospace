@@ -1,0 +1,37 @@
+---
+import clsx from 'clsx';
+import GameImage from '../../../wiki/game-image/game-image.astro';
+import type { BuildOrderGuide } from '../../guides.types.ts';
+
+interface Props {
+  vs: BuildOrderGuide['vs'];
+  accent: string;
+}
+
+const { vs, accent } = Astro.props;
+const SEGMENTS = [1, 2, 3, 4, 5];
+---
+
+<section style={`--guide-accent: ${accent}`} class="bevel-sm bg-surface p-4">
+  <h2 class="mb-3 text-xs text-muted label-caps">VS</h2>
+  <ul class="flex flex-col gap-3">
+    {
+      vs.map(({ faction, rating }) => (
+        <li class="flex flex-col gap-1.5">
+          <span class="inline-flex items-center gap-1.5 text-sm">
+            <GameImage id={faction.id} name={faction.name} size="mini" />
+            {faction.name}
+          </span>
+          <div role="img" aria-label={`${rating} out of ${SEGMENTS.length} against ${faction.name}`} class="flex items-center gap-1">
+            {SEGMENTS.map((segment) => (
+              <span class={clsx('h-1.5 w-5', segment <= rating ? 'bg-(--guide-accent)' : 'bg-line')} />
+            ))}
+            <span class="ml-2 text-xs tabular-nums">
+              {rating}/{SEGMENTS.length}
+            </span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

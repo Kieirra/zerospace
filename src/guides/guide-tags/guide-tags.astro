@@ -1,0 +1,14 @@
+---
+import { toGuideTags } from '../guides.helpers.ts';
+import type { Guide } from '../guides.types.ts';
+
+interface Props {
+  guide: Guide;
+}
+
+const tags = toGuideTags(Astro.props.guide);
+---
+
+<ul class="flex flex-wrap gap-1.5">
+  {tags.map((tag) => <li class="inline-flex h-6 items-center bevel-sm bg-surface-raised px-2 text-sm">{tag}</li>)}
+</ul>

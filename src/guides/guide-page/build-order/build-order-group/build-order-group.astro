@@ -1,0 +1,18 @@
+---
+import type { ResolvedBuildOrderItem } from '../../../guides.types.ts';
+import BuildOrderItem from '../build-order-item/build-order-item.astro';
+
+interface Props {
+  // Items started together.
+  items: ResolvedBuildOrderItem[];
+}
+---
+
+{
+  Astro.props.items.map((item, index) => (
+    <span class="inline-flex items-center gap-2">
+      {index > 0 && <span class="text-muted">+</span>}
+      <BuildOrderItem item={item} />
+    </span>
+  ))
+}

@@ -1,0 +1,31 @@
+---
+import EntityPill from '../../entity-pill/entity-pill.astro';
+import type { Entity } from '../../../wiki/wiki.types.ts';
+
+interface Props {
+  army: Entity[];
+}
+
+const { army } = Astro.props;
+const sections = [
+  { title: 'Heroes', entities: army.filter(({ kind }) => kind === 'hero') },
+  { title: 'Army', entities: army.filter(({ kind }) => kind === 'unit') },
+].filter(({ entities }) => entities.length > 0);
+---
+
+<div class="flex flex-col gap-6 bevel-sm bg-surface p-4">
+  {
+    sections.map(({ title, entities }) => (
+      <section>
+        <h2 class="mb-3 text-xs text-muted label-caps">{title}</h2>
+        <ul class="flex flex-wrap gap-2">
+          {entities.map((entity) => (
+            <li>
+              <EntityPill entity={entity} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</div>

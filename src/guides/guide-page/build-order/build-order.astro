@@ -1,0 +1,99 @@
+---
+import GameImage from '../../../wiki/game-image/game-image.astro';
+import DensePanel from '../../../wiki/dense-panel/dense-panel.astro';
+import { entityHref } from '../../../wiki/wiki.helpers.ts';
+import EntityPill from '../../entity-pill/entity-pill.astro';
+import type { BuildOrderGuide } from '../../guides.types.ts';
+import BuildOrderGroup from './build-order-group/build-order-group.astro';
+import BuildOrderLoop from './build-order-loop/build-order-loop.astro';
+import BuildOrderRow from './build-order-row/build-order-row.astro';
+import { toBuildOrderPhases } from './build-order.helpers.ts';
+
+interface Props {
+  guide: BuildOrderGuide;
+}
+
+const { guide } = Astro.props;
+const { steps, notes, source } = guide.buildOrder;
+const phases = toBuildOrderPhases(steps);
+const PHASE_TITLE = 'bevel-sm bg-surface-raised/70 px-3 py-2 text-xs label-caps';
+---
+
+<DensePanel factionId={guide.faction.id}>
+  <div class="flex items-center justify-between gap-4">
+    <h2 class="text-xs text-muted label-caps">Build order</h2>
+    <button
+      type="button"
+      data-copy-build-order
+      data-source={`## ${guide.title}\n\n${source}`}
+      class="bevel-sm bg-surface-raised px-3 py-1 text-xs transition-colors hover:bg-surface-hover"
+    >
+      Copy
+    </button>
+  </div>
+  <section class="mt-4">
+    <h3 class={PHASE_TITLE}>Phase 0</h3>
+    <div class="mt-2 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line py-2.5">
+      <EntityPill entity={guide.hero} />
+      <div class="flex flex-wrap items-center gap-2">
+        <h4 class="mr-1 text-xs text-muted label-caps">Talents</h4>
+        {
+          guide.talents.map((talent) => (
+            <a href={entityHref(talent.id)} title={talent.name} aria-label={talent.name}>
+              <GameImage id={talent.id} name={talent.name} size="mini" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  {
+    phases.map((phase, index) => (
+      <section class="mt-6">
+        <h3 class={PHASE_TITLE}>
+          Phase {phase.number}
+          {phase.goal && <span class="font-sans text-sm font-normal tracking-normal text-muted normal-case"> · {phase.goal}</span>}
+        </h3>
+        <table class="mt-2 w-full text-left">
+          <thead class={index === 0 ? 'max-sm:sr-only' : 'sr-only'}>
+            <tr class="text-xs text-muted label-caps">
+              <th scope="col" class="py-2 font-semibold">#</th>
+              <th scope="col" class="py-2 font-semibold max-sm:hidden">When</th>
+              <th scope="col" class="py-2 font-semibold">Build</th>
+            </tr>
+          </thead>
+          <tbody>
+            {phase.rows.map((row) => (
+              <BuildOrderRow row={row}>
+                {'loop' in row ? <BuildOrderLoop entity={row.loop} /> : <BuildOrderGroup items={row.items} />}
+              </BuildOrderRow>
+            ))}
+          </tbody>
+        </table>
+      </section>
+    ))
+  }
+  {
+    notes.length > 0 && (
+      <ol class="mt-4 flex flex-col gap-1 text-sm text-muted">
+        {notes.map(({ mark, text }) => (
+          <li>
+            <sup class="text-accent-soft">{mark}</sup> {text}
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</DensePanel>
+
+<script>
+  const COPIED_MS = 1500;
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-copy-build-order]')) {
+    button.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(button.dataset.source ?? '');
+      button.textContent = 'Copied';
+      setTimeout(() => (button.textContent = 'Copy'), COPIED_MS);
+    });
+  }
+</script>

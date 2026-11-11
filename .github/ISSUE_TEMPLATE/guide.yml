@@ -1,0 +1,82 @@
+name: Add a guide
+description: Propose a build order or a general guide.
+title: 'Guide: '
+labels: [guide]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Format: data/guides/README.md. Use exact names from the wiki.
+        `+` same time, `->` after the previous group is done, `(-> X)` as soon as the previous item is started, `(loop X)` unit or hero produced in a loop, `when X starts:` or `when X done:` before a group to wait for X (named on an earlier line), `2 Bestiary` quantity, `goal:` step goal, `^1` note. Keep each step to 2 to 4 lines.
+  - type: input
+    id: title
+    attributes: { label: Title, placeholder: Exalted Arandi }
+    validations: { required: true }
+  - type: input
+    id: author
+    attributes: { label: Author (shown on the site) }
+    validations: { required: true }
+  - type: textarea
+    id: description
+    attributes: { label: Description (40 to 240 characters), placeholder: Double Bestiary with Labourers queued on placement for two instant Exalted. }
+    validations: { required: true }
+  - type: input
+    id: patch
+    attributes: { label: Game patch, placeholder: '18' }
+    validations: { required: true }
+  - type: dropdown
+    id: faction
+    attributes: { label: Faction, options: [Protectorate, Grell, The Legion, The Xol, General guide] }
+    validations: { required: true }
+  - type: dropdown
+    id: mercenary
+    attributes: { label: Mercenary, options: [None, Arandi, "Cha'Kru Kingdom", Endari, Free Corsairs, Marran, Valkaru] }
+  - type: dropdown
+    id: style
+    attributes: { label: Style, options: [One base, Expand, All-in] }
+  - type: input
+    id: hero
+    attributes: { label: Starting hero, placeholder: Galavax }
+  - type: input
+    id: talents
+    attributes: { label: 'Talents (7 digits, 1 = top, 2 = bottom)', placeholder: '1212111' }
+  - type: textarea
+    id: build-order
+    attributes:
+      label: Build order
+      render: text
+      placeholder: |
+        1. Idal Conduit + 2 Bestiary (loop Exalted) (-> 3 Legion Labourer) + Citadel
+           -> Idal Conduit + Altar
+           goal: 2 Exalted out of the Bestiaries
+  - type: input
+    id: army
+    attributes: { label: Army, placeholder: 'Exalted, Arandi Judgement, Kraegar' }
+  - type: dropdown
+    id: vs-protectorate
+    attributes: { label: vs Protectorate, options: [Not played, '1', '2', '3', '4', '5'] }
+  - type: dropdown
+    id: vs-grell
+    attributes: { label: vs Grell, options: [Not played, '1', '2', '3', '4', '5'] }
+  - type: dropdown
+    id: vs-legion
+    attributes: { label: vs The Legion, options: [Not played, '1', '2', '3', '4', '5'] }
+  - type: dropdown
+    id: vs-xol
+    attributes: { label: vs The Xol, options: [Not played, '1', '2', '3', '4', '5'] }
+  - type: textarea
+    id: strengths
+    attributes: { label: 'Strengths (one per line, up to 6)', placeholder: Very strong early game that needs little micro. }
+  - type: textarea
+    id: weaknesses
+    attributes: { label: 'Weaknesses (one per line, up to 6)', placeholder: Weak against Skrells. }
+  - type: textarea
+    id: content
+    attributes: { label: Guide content (Markdown), placeholder: "## Key timings\n\n## Economy" }
+  - type: checkboxes
+    id: license
+    attributes:
+      label: License
+      options:
+        - label: I agree to publish this guide under CC BY 4.0.
+          required: true

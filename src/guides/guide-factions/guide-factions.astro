@@ -1,0 +1,23 @@
+---
+import GameImage from '../../wiki/game-image/game-image.astro';
+import { MERCENARY_ACCENTS } from '../guides.constants.ts';
+import type { Faction } from '../../wiki/wiki.types.ts';
+
+interface Props {
+  faction: Faction;
+  mercenary: Faction;
+}
+
+const { faction, mercenary } = Astro.props;
+---
+
+<p class="flex flex-col items-start gap-0.5">
+  <span class="inline-flex items-center gap-1.5 text-sm font-bold label-caps">
+    <GameImage id={faction.id} name={faction.name} size="mini" />
+    {faction.name}
+  </span>
+  <span style={`color: ${MERCENARY_ACCENTS[mercenary.id]}`} class="inline-flex items-center gap-1.5 text-xs label-caps *:mx-0.5 *:size-5">
+    <GameImage id={mercenary.id} name={mercenary.name} size="mini" />
+    {mercenary.name}
+  </span>
+</p>

@@ -1,0 +1,28 @@
+---
+import type { BuildOrderRow } from '../../../guides.types.ts';
+
+interface Props {
+  row: BuildOrderRow;
+}
+
+const { row } = Astro.props;
+---
+
+<tr class="border-t border-line align-top">
+  <td class="w-10 py-2.5 pr-2 leading-8 font-bold tabular-nums">{row.number}</td>
+  <td class="hidden w-44 pt-4 pr-4 pb-2.5 text-sm sm:table-cell">
+    {row.when && <span class="text-accent-soft">{row.when}</span>}
+  </td>
+  <td class="py-2.5">
+    {
+      row.when && (
+        <p class="mb-1.5 text-xs label-caps sm:hidden">
+          <span class="text-accent-soft">{row.when}</span>
+        </p>
+      )
+    }
+    <div class="flex flex-wrap items-center gap-2">
+      <slot />
+    </div>
+  </td>
+</tr>

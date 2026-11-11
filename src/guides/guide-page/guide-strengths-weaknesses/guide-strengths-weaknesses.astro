@@ -1,0 +1,29 @@
+---
+interface Props {
+  strengths: string[];
+  weaknesses: string[];
+}
+
+const { strengths, weaknesses } = Astro.props;
+const sections = [
+  { title: 'Strengths', points: strengths },
+  { title: 'Weaknesses', points: weaknesses },
+].filter(({ points }) => points.length > 0);
+---
+
+{
+  sections.length > 0 && (
+    <div class="flex flex-col gap-6 bevel-sm bg-surface p-4">
+      {sections.map(({ title, points }) => (
+        <section>
+          <h2 class="mb-3 text-xs text-muted label-caps">{title}</h2>
+          <ul class="flex list-disc flex-col gap-1.5 pl-5 text-sm">
+            {points.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  )
+}

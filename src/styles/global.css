@@ -14,6 +14,8 @@
   --color-accent: #8f2fbc;
   --color-accent-soft: #bd81df;
   --color-heal: #6ccf9c;
+  --color-unit: #4f8fd6;
+  --color-upgrade: #d9a441;
 }
 
 @utility bevel {
@@ -61,5 +63,35 @@
   .bevel:focus-visible,
   .bevel-sm:focus-visible {
     outline-offset: -2px;
+  }
+}
+
+@layer components {
+  .guide-prose h2 {
+    @apply mt-8 mb-3 text-xs text-muted label-caps first:mt-0;
+  }
+
+  .guide-prose p {
+    @apply my-3 leading-relaxed;
+  }
+
+  .guide-prose ul {
+    @apply my-3 list-disc pl-5;
+  }
+
+  .guide-prose ol {
+    @apply my-3 list-decimal pl-5;
+  }
+
+  .guide-prose li {
+    @apply my-1;
+  }
+
+  .guide-prose a {
+    @apply text-accent-soft underline-offset-2 hover:underline;
+  }
+
+  .guide-prose code {
+    @apply bg-surface-raised px-1;
   }
 }

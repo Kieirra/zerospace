@@ -1,0 +1,41 @@
+---
+import clsx from 'clsx';
+import GameImage from '../../wiki/game-image/game-image.astro';
+import { entityHref, formatOptionalSeconds, formatUnitCost } from '../../wiki/wiki.helpers.ts';
+import type { Entity } from '../../wiki/wiki.types.ts';
+
+interface Props {
+  entity: Entity;
+  // Expansion number of a headquarters.
+  base?: number;
+}
+
+const { entity, base } = Astro.props;
+const cost = formatUnitCost(entity)?.map(({ amount, resource }) => `${amount} ${resource}`) ?? [];
+const title = [entity.name, ...cost, formatOptionalSeconds(entity.buildTime)].filter(Boolean).join(' · ');
+const isProduced = entity.kind === 'unit' || entity.kind === 'hero';
+// The bevel clip-path cuts a ring at the corners: the frame draws the border, the fill sits on the panel color.
+const isUpgrade = entity.kind === 'upgrade';
+---
+
+<a
+  href={entityHref(entity.id)}
+  title={title}
+  class={clsx('group/pill inline-flex h-8 text-sm', isUpgrade && 'bevel-sm p-px bg-upgrade/35')}
+>
+  <span
+    class={clsx(
+      'inline-flex items-center gap-1.5 px-2.5 transition-colors',
+      isProduced && 'rounded-full bg-unit/18 ring-1 ring-unit/35 ring-inset group-hover/pill:bg-unit/30',
+      isUpgrade && 'bevel-sm bg-[color-mix(in_oklab,var(--color-upgrade)_18%,var(--color-panel))]',
+      isUpgrade && 'group-hover/pill:bg-[color-mix(in_oklab,var(--color-upgrade)_30%,var(--color-panel))]',
+      !isProduced && !isUpgrade && 'bevel-sm bg-surface-raised group-hover/pill:bg-surface-hover',
+    )}
+  >
+    {base !== undefined && <span class="text-[10px] text-accent-soft label-caps">B{base}</span>}
+    {entity.kind === 'upgrade' && <span class="text-[10px] text-muted label-caps">UP</span>}
+    <GameImage id={entity.id} name={entity.name} size="mini" />
+    <span>{entity.name}</span>
+    <slot />
+  </span>
+</a>

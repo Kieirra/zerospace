@@ -1,0 +1,13 @@
+---
+import GuidePage from '../../guides/guide-page/guide-page.astro';
+import { getGuidePaths } from '../../guides/guides.data.ts';
+import Layout from '../../shared/layout/layout.astro';
+
+export const getStaticPaths = getGuidePaths;
+
+const { guide } = Astro.props;
+---
+
+<Layout title={guide.title}>
+  <GuidePage guide={guide} />
+</Layout>

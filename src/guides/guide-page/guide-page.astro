@@ -1,0 +1,42 @@
+---
+import { render } from 'astro:content';
+import { GUIDE_FACTION_ACCENTS } from '../guides.constants.ts';
+import type { Guide } from '../guides.types.ts';
+import BuildOrder from './build-order/build-order.astro';
+import { hasProse } from './build-order/build-order.helpers.ts';
+import GuideArmy from './guide-army/guide-army.astro';
+import GuideHeader from './guide-header/guide-header.astro';
+import GuideMatchups from './guide-matchups/guide-matchups.astro';
+import GuideStrengthsWeaknesses from './guide-strengths-weaknesses/guide-strengths-weaknesses.astro';
+
+interface Props {
+  guide: Guide;
+}
+
+const { guide } = Astro.props;
+const { Content } = await render(guide.entry);
+---
+
+<a href="/guides" class="text-sm text-muted hover:text-text">‹ Guides</a>
+<GuideHeader guide={guide} />
+{
+  guide.type === 'build-order' && (
+    <div class="mt-6 grid gap-4 lg:grid-cols-[2fr_1fr] lg:items-start">
+      <BuildOrder guide={guide} />
+      <aside class="flex flex-col gap-4">
+        <GuideArmy army={guide.army} />
+        <GuideMatchups vs={guide.vs} accent={GUIDE_FACTION_ACCENTS[guide.faction.id]} />
+        <GuideStrengthsWeaknesses strengths={guide.strengths} weaknesses={guide.weaknesses} />
+      </aside>
+    </div>
+  )
+}
+{
+  hasProse(guide.entry.body ?? '') && (
+    <div class="mt-6 bevel bg-panel/95 p-6">
+      <div class="guide-prose max-w-[70ch]">
+        <Content />
+      </div>
+    </div>
+  )
+}

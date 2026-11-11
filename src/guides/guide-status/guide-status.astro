@@ -1,0 +1,43 @@
+---
+import clsx from 'clsx';
+import type { PatchStatus } from '../guides.types.ts';
+
+interface Props {
+  status: PatchStatus;
+  // YYYY-MM-DD
+  added: string;
+}
+
+const { status, added } = Astro.props;
+const LABEL = 'bevel-sm px-2 py-0.5 text-[10px] whitespace-nowrap label-caps';
+---
+
+{
+  status === 'outdated' ? (
+    <span class={clsx(LABEL, 'bg-surface-raised text-muted')}>OUTDATED</span>
+  ) : (
+    <span data-guide-status>
+      {status === 'current' && (
+        <span data-guide-patch class={clsx(LABEL, 'bg-heal/15 text-heal')}>
+          UP TO DATE
+        </span>
+      )}
+      <span data-guide-new data-added={added} hidden class={clsx(LABEL, 'bg-accent text-text')}>
+        NEW
+      </span>
+    </span>
+  )
+}
+
+<script>
+  import { isNewGuide } from '../guides.helpers.ts';
+
+  // Computed in the browser: a guide stops being new without a rebuild.
+  const now = new Date();
+  for (const label of document.querySelectorAll<HTMLElement>('[data-guide-new]')) {
+    if (!isNewGuide(label.dataset.added ?? '', now)) continue;
+    label.hidden = false;
+    const patchLabel = label.closest('[data-guide-status]')?.querySelector<HTMLElement>('[data-guide-patch]');
+    if (patchLabel) patchLabel.hidden = true;
+  }
+</script>

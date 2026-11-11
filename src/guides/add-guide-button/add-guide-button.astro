@@ -1,0 +1,17 @@
+---
+import clsx from 'clsx';
+import { ADD_GUIDE_URL } from '../guides.constants.ts';
+---
+
+<a
+  href={ADD_GUIDE_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={clsx(
+    'inline-flex h-10 shrink-0 items-center px-4 bevel-sm',
+    'bg-text text-xs font-bold tracking-[.16em] text-bg uppercase transition-colors',
+    'hover:bg-accent hover:text-text focus-visible:bg-accent focus-visible:text-text focus-visible:outline-none',
+  )}
+>
+  Add a guide ↗
+</a>

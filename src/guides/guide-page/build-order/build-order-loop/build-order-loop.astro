@@ -1,0 +1,13 @@
+---
+import infinity from 'lucide-static/icons/infinity.svg?raw';
+import EntityPill from '../../../entity-pill/entity-pill.astro';
+import type { Entity } from '../../../../wiki/wiki.types.ts';
+
+interface Props {
+  entity: Entity;
+}
+---
+
+<EntityPill entity={Astro.props.entity}>
+  <span aria-hidden="true" class="inline-flex [&>svg]:size-4" set:html={infinity} />
+</EntityPill>

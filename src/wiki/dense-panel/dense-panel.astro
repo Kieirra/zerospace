@@ -2,10 +2,11 @@
 import { findImageUrl } from '../game-image/game-image.helpers.ts';
 
 interface Props {
-  factionId: string;
+  factionId?: string;
 }
 
-const artUrl = findImageUrl(`art/${Astro.props.factionId}`);
+const { factionId } = Astro.props;
+const artUrl = factionId && findImageUrl(`art/${factionId}`);
 ---
 
 <div class="relative -mx-2 bevel bg-panel/95 sm:mx-0">
