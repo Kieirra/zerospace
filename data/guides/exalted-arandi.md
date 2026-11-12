@@ -28,10 +28,11 @@ weaknesses:
    -> More Feed + Explosive Warhead
    goal: Kraegar out, take B2 and fast tech
 3. Inquisitress + Arandi Judgement + Lightning Spear + Improved Charge + Wake of Fire + Burning Fireball
-   -> Garrison Tower + Idal Conduit + 2 Exalted
+   -> Garrison Tower + Idal Conduit + 2 Bestiary^1
    goal: Late game, every hero upgrade, close the game
 4. Dreadnought [unit]
    goal: Dreadnought finisher
+^1: 2 Bestiary per Garrison Tower.
 ```
 
 ## Key timings
@@ -48,14 +49,22 @@ weaknesses:
 
 ## Against Skrells and air
 
+Skip the Terror Tower and the Armory in phase 2: go straight for 2 Barracks to mass Thralls, and get the Arandi Judgement first.
+
+```bo
+2. when Kraegar starts: Garrison Tower + Idal Conduit + 2 Barracks (loop Thrall) + Arandi Penumbra
+   -> Arandi Judgement
+   goal: Kraegar out, take B2 and hold the air
+```
+
 - Mix in Thralls from B2 on. Exalted alone cannot fight Skrells, especially when big units like Valkaru Hounds back them up.
 - Build close to the flux nodes so your harvesters are hard to target when Skrells harass, especially the Bestiaries.
 - Upgrade every base to a Garrison Tower Turret so it attacks.
 - Do not hesitate to add an extra tower next to the flux nodes where your harvesters work, on top of the base, to protect them.
 
-## Against Protectorate Marran
+## Against Marran Badgers
 
-As soon as you scout Badgers, stay on B1 and fast tech Kraegar's Explosive Warhead.
+Play this phase 2 only when you scout Marran Badgers, not against every Protectorate Marran. Stay on B1 and fast tech Kraegar's Explosive Warhead.
 
 ```bo
 2. when Altar done: Inquisitress + Armory + Terror Tower

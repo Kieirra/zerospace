@@ -8,43 +8,16 @@ Found a wrong value? Open an [issue](https://github.com/kieirra/zerospace/issues
 
 ## Guides
 
-One markdown file per guide in [`data/guides/`](data/guides/), with an optional ` ```bo ` block for the build order. Only `title`, `author`, `description`, `patch` and `added` are required. `mercenary`, `hero`, `talents`, `army` and a ` ```bo ` block need `faction`, `talents` also needs `mercenary`.
-
-| Notation | Meaning |
-|---|---|
-| `1.` | Starts phase 1 (a block can start at any number) |
-| `A + B` | A and B at the same time |
-| `A -> B` | B when A is done |
-| `A (-> B)` | B as soon as A is started |
-| `Bestiary (loop Exalted)` | Exalted produced in a loop |
-| `when X starts:` / `when X done:` | The group waits for X |
-| `when 150 hexite and 100 flux:` / `when 2:30:` / `when they scout you:` | The group waits for resources, a time or anything else |
-| `2 Bestiary` | Quantity |
-| `goal: text` | Goal of the phase |
+One markdown file per guide in [`data/guides/`](data/guides/), with build orders written in a short notation linked to the wiki:
 
 ```bo
 1. Idal Conduit + 2 Bestiary (loop Exalted) (-> 3 Legion Labourer) + Citadel
-   -> Idal Conduit + Altar
+   -> Altar
    -> Kraegar + Hallowed Strike
-   goal: Take map control and the 3 XP towers
-2. when Kraegar starts: Garrison Tower + Idal Conduit + Terror Tower + Armory + Arandi Penumbra
-   -> More Feed + Explosive Warhead
-   goal: Kraegar out, take B2 and fast tech
+   goal: Take map control
 ```
 
-**Several build orders**: a ` ```bo ` block at the very top of the guide is the opener, shown at the top of the page. Every other ` ```bo ` block is shown in the prose where it is written, for example one per opponent reaction under its own title. A guide can also start with text and have no opener.
-
-````md
-## If they go Skrells
-
-```bo
-2. when they show Skrells: Barracks
-   -> 4 Thrall
-   goal: Hold the air harass
-```
-````
-
-Full format: [`data/guides/README.md`](data/guides/README.md).
+Format and examples: [`data/guides/README.md`](data/guides/README.md).
 
 To add a guide, open a pull request on `data/guides/`, fill the [Add a guide](https://github.com/kieirra/zerospace/issues/new?template=guide.md) issue template, or contact Kieirra on the ZeroSpace Discord.
 

@@ -45,7 +45,7 @@ interface ResolutionScope {
   label: string;
 }
 
-// Advanced by the resolution: the end of the main build order is the start of each branch.
+// Advanced by the resolution, from the bases of the main build order before the first phase of each branch.
 interface ResolutionState {
   nextBase: number;
   // First line of each entity, for the conditions. 0 = in the main build order.
@@ -100,7 +100,7 @@ export const parseBuildOrder = (text: string): BuildOrder => {
   return { steps, notes };
 };
 
-// Each branch starts where the main build order ends, or from B2 without a main build order.
+// A branch starting at phase N counts the bases of the main build order before phase N, from B2.
 export const resolveBuildOrders = ({ main, branches }: BuildOrderSources, scope: ResolutionScope) => {
   const mainState: ResolutionState = { nextBase: 2, firstLines: new Map() };
   const mainOrder =
@@ -109,15 +109,23 @@ export const resolveBuildOrders = ({ main, branches }: BuildOrderSources, scope:
   return {
     main: mainOrder,
     branches: branches.map((source, index) =>
-      inBranch(index + firstBranchBlock, () =>
-        resolveBuildOrder(parseBuildOrder(source), scope, {
-          nextBase: mainState.nextBase,
+      inBranch(index + firstBranchBlock, () => {
+        const order = parseBuildOrder(source);
+        const firstPhase = order.steps[0]?.number ?? 1;
+        const mainBases = (mainOrder?.steps ?? [])
+          .filter(({ number }) => number < firstPhase)
+          .flatMap(({ groups }) => groups.flatMap(collectBases));
+        return resolveBuildOrder(order, scope, {
+          nextBase: 2 + mainBases.length,
           firstLines: new Map([...mainState.firstLines.keys()].map((id) => [id, 0])),
-        }),
-      ),
+        });
+      }),
     ),
   };
 };
+
+const collectBases = ({ items }: ResolvedBuildOrderGroup): number[] =>
+  items.flatMap(({ base, trigger = [] }) => [...(base === undefined ? [] : [base]), ...trigger.flatMap(collectBases)]);
 
 export const resolveBuildOrder = (
   order: BuildOrder,

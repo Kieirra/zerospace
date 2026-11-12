@@ -366,18 +366,40 @@ describe('Build order name resolution', () => {
 describe('Build order branches', () => {
   const firstItems = ({ steps }: ReturnType<typeof resolveBuildOrder>) => steps[0].groups[0].items;
 
-  it('should continue the base count of the main build order when a branch takes a base', () => {
+  it('should start the base count from B2 when a branch starts at phase 2 and the main build order takes its bases in phases 2 and 3', () => {
     const {
       main,
-      branches: [firstBranch, secondBranch],
+      branches: [branch],
     } = resolveBuildOrders(
-      { main: '1. Garrison Tower\n2. Garrison Tower', branches: ['1. Garrison Tower', '1. Bestiary + Garrison Tower'] },
+      { main: '1. Altar\n2. Garrison Tower\n3. Garrison Tower', branches: ['2. Garrison Tower + Garrison Tower'] },
       SCOPE,
     );
 
-    expect(main?.steps.map(({ groups }) => groups[0].items[0].base)).toEqual([2, 3]);
+    expect(main?.steps.slice(1).map(({ groups }) => groups[0].items[0].base)).toEqual([2, 3]);
+    expect(firstItems(branch).map(({ base }) => base)).toEqual([2, 3]);
+  });
+
+  it('should continue the base count of the main build order phases before the first phase of the branch', () => {
+    const {
+      branches: [firstBranch, secondBranch],
+    } = resolveBuildOrders(
+      {
+        main: '1. Garrison Tower\n2. Altar (-> Garrison Tower)\n3. Garrison Tower',
+        branches: ['3. Garrison Tower', '3. Bestiary + Garrison Tower'],
+      },
+      SCOPE,
+    );
+
     expect(firstItems(firstBranch)[0].base).toBe(4);
     expect(firstItems(secondBranch)[1].base).toBe(4);
+  });
+
+  it('should start the base count from B2 when a branch starts at phase 1', () => {
+    const {
+      branches: [branch],
+    } = resolveBuildOrders({ main: '1. Garrison Tower\n2. Garrison Tower', branches: ['1. Garrison Tower'] }, SCOPE);
+
+    expect(firstItems(branch)[0].base).toBe(2);
   });
 
   it('should accept the condition when a branch waits for an entity of the main build order', () => {
