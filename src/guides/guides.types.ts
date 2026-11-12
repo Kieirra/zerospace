@@ -1,11 +1,9 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Entity, EntityKind, Faction } from '../wiki/wiki.types.ts';
-import type { BUILD_ORDER_FIELDS } from './guides.constants.ts';
 
 export type ResolvableKind = Exclude<EntityKind, 'talent'>;
 export type PatchStatus = 'current' | 'previous' | 'outdated';
 export type GuideStyle = NonNullable<CollectionEntry<'guides'>['data']['style']>;
-export type BuildOrderField = (typeof BUILD_ORDER_FIELDS)[number];
 export type BuildOrderEvent = 'starts' | 'done';
 
 // Build order block before name resolution.
@@ -50,6 +48,13 @@ export interface BuildOrderStep {
 export interface BuildOrder {
   steps: BuildOrderStep[];
   notes: { mark: number; text: string }[];
+}
+
+// Raw text of the ```bo blocks of a guide.
+export interface BuildOrderSources {
+  // Absent when the body does not start with a block.
+  main?: string;
+  branches: string[];
 }
 
 export interface ResolvedBuildOrderItem {
@@ -103,7 +108,7 @@ export interface ResolvedBuildOrder {
   source: string;
 }
 
-export interface GuideBase {
+export interface Guide {
   slug: string;
   title: string;
   author: string;
@@ -113,16 +118,12 @@ export interface GuideBase {
   added: string;
   patchStatus: PatchStatus;
   entry: CollectionEntry<'guides'>;
-}
-
-export interface BuildOrderGuide extends GuideBase {
-  type: 'build-order';
-  style: GuideStyle;
-  faction: Faction;
-  mercenary: Faction;
+  style?: GuideStyle;
+  faction?: Faction;
+  mercenary?: Faction;
   // Free starting hero.
-  hero: Entity;
-  // One per level, in level order.
+  hero?: Entity;
+  // One per level, in level order. Empty without talents.
   talents: Entity[];
   army: Entity[];
   // P, G, L, X order.
@@ -130,11 +131,8 @@ export interface BuildOrderGuide extends GuideBase {
   matchupTags: string[];
   strengths: string[];
   weaknesses: string[];
-  buildOrder: ResolvedBuildOrder;
+  // Absent when the body does not start with a ```bo block: no build order panel.
+  mainBuildOrder?: ResolvedBuildOrder;
+  // Other ```bo blocks, rendered in the prose.
+  branches: Omit<ResolvedBuildOrder, 'source'>[];
 }
-
-export interface GeneralGuide extends GuideBase {
-  type: 'guide';
-}
-
-export type Guide = BuildOrderGuide | GeneralGuide;

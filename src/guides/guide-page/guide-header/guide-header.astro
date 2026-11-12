@@ -13,13 +13,13 @@ const { guide } = Astro.props;
 ---
 
 <header class="mt-3">
-  <DensePanel factionId={guide.type === 'build-order' ? guide.faction.id : undefined}>
+  <DensePanel factionId={guide.faction?.id}>
     <div class="flex flex-col gap-3">
       <div class="flex flex-col gap-1.5">
         <h1 class="text-2xl font-bold break-words">{guide.title}</h1>
         <GuideTags guide={guide} />
       </div>
-      {guide.type === 'build-order' && <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />}
+      {guide.faction && <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />}
       <p class="max-w-[70ch] text-muted">{guide.description}</p>
       <p class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
         <span class="text-muted">

@@ -5,7 +5,7 @@ import type { Faction } from '../../wiki/wiki.types.ts';
 
 interface Props {
   faction: Faction;
-  mercenary: Faction;
+  mercenary?: Faction;
 }
 
 const { faction, mercenary } = Astro.props;
@@ -16,8 +16,12 @@ const { faction, mercenary } = Astro.props;
     <GameImage id={faction.id} name={faction.name} size="mini" />
     {faction.name}
   </span>
-  <span style={`color: ${MERCENARY_ACCENTS[mercenary.id]}`} class="inline-flex items-center gap-1.5 text-xs label-caps *:mx-0.5 *:size-5">
-    <GameImage id={mercenary.id} name={mercenary.name} size="mini" />
-    {mercenary.name}
-  </span>
+  {
+    mercenary && (
+      <span style={`color: ${MERCENARY_ACCENTS[mercenary.id]}`} class="inline-flex items-center gap-1.5 text-xs label-caps *:mx-0.5 *:size-5">
+        <GameImage id={mercenary.id} name={mercenary.name} size="mini" />
+        {mercenary.name}
+      </span>
+    )
+  }
 </p>

@@ -10,19 +10,6 @@ export const MAIN_FACTION_LETTERS: Record<string, string> = {
   'the-xol': 'X',
 };
 
-// Front matter of a build order, forbidden in a general guide.
-export const BUILD_ORDER_FIELDS = [
-  'faction',
-  'mercenary',
-  'hero',
-  'talents',
-  'army',
-  'vs',
-  'style',
-  'strengths',
-  'weaknesses',
-] as const;
-
 // Each occurrence in a build order is an expansion.
 export const HEADQUARTER_IDS = new Set([
   'protectorate/building/operating-tower',

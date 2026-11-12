@@ -296,7 +296,7 @@ const patchNotes = defineCollection({
 
 const mainFaction = z.enum(MAIN_FACTION_ORDER);
 
-// Build order fields are required or forbidden depending on the ```bo block: checked in guides.data.ts.
+// Fields that need the faction scope are checked in guides.data.ts.
 const guides = defineCollection({
   loader: glob({ base: './data/guides', pattern: ['*.md', '!README.md'] }),
   schema: z.strictObject({

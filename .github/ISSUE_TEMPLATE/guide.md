@@ -1,9 +1,11 @@
 ---
 name: Add a guide
-about: Propose a build order or a general guide
+about: Propose a guide
 title: 'Guide: '
 labels: guide
 ---
+
+Only `title`, `author`, `description`, `patch` and `added` are required, remove what you do not need. `mercenary`, `hero`, `talents`, `army` and a ` ```bo ` block need `faction`, `talents` also needs `mercenary`.
 
 ````md
 ---
@@ -44,4 +46,11 @@ weaknesses:
 ## Against Skrells and air
 
 - Mix in Thralls from B2 on.
+
+## If they go Skrells
+
+```bo
+1. Barracks -> 4 Thrall
+   goal: Hold the air harass
+```
 ````

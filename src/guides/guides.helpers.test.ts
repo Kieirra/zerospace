@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Entity } from '../wiki/wiki.types.ts';
 import {
-  assertGeneralGuideFields,
+  assertFieldDependencies,
   findClosestName,
   getPatchStatus,
   isNewGuide,
@@ -69,21 +69,39 @@ describe('New guide', () => {
   });
 });
 
-describe('General guide fields', () => {
-  it('should fail when a general guide lists strengths', () => {
-    expect(() => assertGeneralGuideFields({ strengths: ['Strong early game.'] })).toThrow(
-      'strengths is only allowed in a build order.',
+describe('Field dependencies', () => {
+  it('should accept the guide when no optional field is set', () => {
+    expect(() => assertFieldDependencies({}, false)).not.toThrow();
+  });
+
+  it('should accept the guide when a bo block has a faction and no other field', () => {
+    expect(() => assertFieldDependencies({ faction: 'the-legion' }, true)).not.toThrow();
+  });
+
+  it('should fail when the mercenary is set without faction', () => {
+    expect(() => assertFieldDependencies({ mercenary: 'arandi' }, false)).toThrow('mercenary requires faction.');
+  });
+
+  it('should fail when the hero is set without faction', () => {
+    expect(() => assertFieldDependencies({ hero: 'Galavax' }, false)).toThrow('hero requires faction.');
+  });
+
+  it('should fail when the army is set without faction', () => {
+    expect(() => assertFieldDependencies({ army: ['Exalted'] }, false)).toThrow('army requires faction.');
+  });
+
+  it('should fail when the talents are set without faction', () => {
+    expect(() => assertFieldDependencies({ talents: '1222211' }, false)).toThrow('talents requires faction.');
+  });
+
+  it('should fail when the talents are set without mercenary', () => {
+    expect(() => assertFieldDependencies({ faction: 'the-legion', talents: '1222211' }, false)).toThrow(
+      'talents requires mercenary.',
     );
   });
 
-  it('should fail when a general guide lists weaknesses', () => {
-    expect(() => assertGeneralGuideFields({ weaknesses: ['Weak against Skrells.'] })).toThrow(
-      'weaknesses is only allowed in a build order.',
-    );
-  });
-
-  it('should accept the guide when no build order field is set', () => {
-    expect(() => assertGeneralGuideFields({})).not.toThrow();
+  it('should fail when the guide has a bo block without faction', () => {
+    expect(() => assertFieldDependencies({}, true)).toThrow('a bo block requires faction.');
   });
 });
 
@@ -98,17 +116,20 @@ describe('Matchup tags', () => {
 });
 
 describe('Guide tags', () => {
-  it('should list Versus, the match-ups and the style when the guide is a build order', () => {
-    expect(toGuideTags({ type: 'build-order', matchupTags: ['LvP', 'LvX'], style: 'one-base' })).toEqual([
-      'Versus',
-      'LvP',
-      'LvX',
-      'One base',
-    ]);
+  it('should list Versus, the match-ups and the style when both are set', () => {
+    expect(toGuideTags({ matchupTags: ['LvP', 'LvX'], style: 'one-base' })).toEqual(['Versus', 'LvP', 'LvX', 'One base']);
   });
 
-  it('should only tag Guide when the guide is a general guide', () => {
-    expect(toGuideTags({ type: 'guide' })).toEqual(['Guide']);
+  it('should only list Versus and the match-ups when the style is not set', () => {
+    expect(toGuideTags({ matchupTags: ['PvG'] })).toEqual(['Versus', 'PvG']);
+  });
+
+  it('should only list the style when there is no match-up', () => {
+    expect(toGuideTags({ matchupTags: [], style: 'expand' })).toEqual(['Expand']);
+  });
+
+  it('should only tag Guide when there is no other tag', () => {
+    expect(toGuideTags({ matchupTags: [] })).toEqual(['Guide']);
   });
 });
 

@@ -4,7 +4,7 @@ import { findImageUrl } from '../../../wiki/game-image/game-image.helpers.ts';
 import GuideFactions from '../../guide-factions/guide-factions.astro';
 import GuideStatus from '../../guide-status/guide-status.astro';
 import GuideTags from '../../guide-tags/guide-tags.astro';
-import { GUIDE_FACTION_ACCENTS } from '../../guides.constants.ts';
+import { toGuideAccent } from '../../guides.helpers.ts';
 import type { Guide } from '../../guides.types.ts';
 
 interface Props {
@@ -12,9 +12,10 @@ interface Props {
 }
 
 const { guide } = Astro.props;
-const artUrl = guide.type === 'build-order' ? findImageUrl(`art/${guide.faction.id}`) : undefined;
+const artUrl = guide.faction && findImageUrl(`art/${guide.faction.id}`);
 const titleId = `guide-title-${guide.slug}`;
-const accent = guide.type === 'build-order' ? GUIDE_FACTION_ACCENTS[guide.faction.id] : 'var(--color-accent-soft)';
+const accent = toGuideAccent(guide.faction);
+const hasBuildOrderBlock = guide.mainBuildOrder !== undefined || guide.branches.length > 0;
 ---
 
 <a
@@ -28,7 +29,7 @@ const accent = guide.type === 'build-order' ? GUIDE_FACTION_ACCENTS[guide.factio
   )}
 >
   <div class="flex h-full flex-col bevel-sm bg-surface">
-    <div class={clsx('relative h-20 overflow-hidden', guide.type === 'guide' && 'bg-surface-raised')}>
+    <div class={clsx('relative h-20 overflow-hidden', !guide.faction && 'bg-surface-raised')}>
       {
         artUrl && (
           <img
@@ -48,7 +49,7 @@ const accent = guide.type === 'build-order' ? GUIDE_FACTION_ACCENTS[guide.factio
       </div>
       <div class="relative flex h-full items-center px-4">
         {
-          guide.type === 'build-order' ? (
+          guide.faction ? (
             <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />
           ) : (
             <p class="text-sm text-muted label-caps">Guide</p>
@@ -73,7 +74,7 @@ const accent = guide.type === 'build-order' ? GUIDE_FACTION_ACCENTS[guide.factio
           'group-hover:bg-(--guide-accent) group-focus-visible:bg-(--guide-accent)',
         )}
       >
-        {guide.type === 'build-order' ? 'View build order' : 'Read guide'}
+        {hasBuildOrderBlock ? 'View build order' : 'Read guide'}
       </span>
     </div>
   </div>

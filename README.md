@@ -8,7 +8,7 @@ Found a wrong value? Open an [issue](https://github.com/kieirra/zerospace/issues
 
 ## Guides
 
-One markdown file per guide in [`data/guides/`](data/guides/), with a ` ```bo ` block for the build order.
+One markdown file per guide in [`data/guides/`](data/guides/), with an optional ` ```bo ` block for the build order. Only `title`, `author`, `description`, `patch` and `added` are required. `mercenary`, `hero`, `talents`, `army` and a ` ```bo ` block need `faction`, `talents` also needs `mercenary`.
 
 | Notation | Meaning |
 |---|---|
@@ -30,6 +30,17 @@ One markdown file per guide in [`data/guides/`](data/guides/), with a ` ```bo ` 
    -> More Feed + Explosive Warhead
    goal: Kraegar out, take B2 and fast tech
 ```
+
+**Several build orders**: a ` ```bo ` block at the very top of the guide is the opener, shown at the top of the page. Every other ` ```bo ` block is shown in the prose where it is written, for example one per opponent reaction under its own title. A guide can also start with text and have no opener.
+
+````md
+## If they go Skrells
+
+```bo
+1. Barracks -> 4 Thrall
+   goal: Hold the air harass
+```
+````
 
 Full format: [`data/guides/README.md`](data/guides/README.md).
 

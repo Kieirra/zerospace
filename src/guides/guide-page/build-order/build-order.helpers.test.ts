@@ -2,7 +2,13 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { Entity } from '../../../wiki/wiki.types.ts';
 import type { BuildOrderItem } from '../../guides.types.ts';
-import { extractBuildOrder, parseBuildOrder, resolveBuildOrder, toBuildOrderPhases } from './build-order.helpers.ts';
+import {
+  extractBuildOrders,
+  parseBuildOrder,
+  resolveBuildOrder,
+  resolveBuildOrders,
+  toBuildOrderPhases,
+} from './build-order.helpers.ts';
 
 const entity = (
   name: string,
@@ -164,10 +170,20 @@ describe('Build order parsing', () => {
     expect(() => parseBuildOrder('1. Bestiary\n^2: unused')).toThrow('bo: note ^2 is never used.');
   });
 
-  it('should fail when the guide has two bo blocks', () => {
-    expect(() => extractBuildOrder('```bo\n1. Bestiary\n```\n\n```bo\n1. Altar\n```\n')).toThrow(
-      'only one bo block is allowed.',
-    );
+  it('should extract the first block as the main build order when it starts the body', () => {
+    const body = '\n```bo\n1. Bestiary\n```\n\n## If they go Skrells\n\n```bo\n1. Altar\n```\n\n```bo\n1. Citadel\n```\n';
+
+    expect(extractBuildOrders(body)).toEqual({ main: '1. Bestiary', branches: ['1. Altar', '1. Citadel'] });
+  });
+
+  it('should extract every block as a branch when text comes before the first block', () => {
+    const body = '## Scouting\n\n```bo\n1. Altar\n```\n\n```bo\n1. Citadel\n```\n';
+
+    expect(extractBuildOrders(body)).toEqual({ branches: ['1. Altar', '1. Citadel'] });
+  });
+
+  it('should extract no block when the guide has no bo block', () => {
+    expect(extractBuildOrders('## Economy\n\nSome text.')).toEqual({ branches: [] });
   });
 });
 
@@ -255,6 +271,101 @@ describe('Build order name resolution', () => {
       note: undefined,
       trigger: undefined,
     });
+  });
+});
+
+describe('Build order branches', () => {
+  const firstItems = ({ steps }: ReturnType<typeof resolveBuildOrder>) => steps[0].groups[0].items;
+
+  it('should continue the base count of the main build order when a branch takes a base', () => {
+    const {
+      main,
+      branches: [firstBranch, secondBranch],
+    } = resolveBuildOrders(
+      { main: '1. Garrison Tower\n2. Garrison Tower', branches: ['1. Garrison Tower', '1. Bestiary + Garrison Tower'] },
+      SCOPE,
+    );
+
+    expect(main?.steps.map(({ groups }) => groups[0].items[0].base)).toEqual([2, 3]);
+    expect(firstItems(firstBranch)[0].base).toBe(4);
+    expect(firstItems(secondBranch)[1].base).toBe(4);
+  });
+
+  it('should accept the condition when a branch waits for an entity of the main build order', () => {
+    const {
+      branches: [branch],
+    } = resolveBuildOrders({ main: '1. Altar\n2. Kraegar', branches: ['1. when Kraegar starts: Armory'] }, SCOPE);
+
+    expect(branch.steps[0].groups[0].condition?.entity.id).toBe('the-legion/hero/kraegar');
+  });
+
+  it('should fail when a branch waits for an entity of another branch', () => {
+    expect(() =>
+      resolveBuildOrders({ main: '1. Altar', branches: ['1. Armory', '1. when Armory done: More Feed'] }, SCOPE),
+    ).toThrow(
+      'bo block 3, line 1: "Armory" must appear earlier in the build order.',
+    );
+  });
+
+  it('should keep the notes of each block when the blocks define the same mark', () => {
+    const {
+      main,
+      branches: [branch],
+    } = resolveBuildOrders({ main: '1. Altar^1\n^1: main note', branches: ['1. Armory^1\n^1: branch note'] }, SCOPE);
+
+    expect(main?.notes).toEqual([{ mark: 1, text: 'main note' }]);
+    expect(branch.notes).toEqual([{ mark: 1, text: 'branch note' }]);
+  });
+
+  it('should fail when a branch uses a note defined only in the main build order', () => {
+    expect(() => resolveBuildOrders({ main: '1. Altar^1\n^1: main note', branches: ['1. Armory^1'] }, SCOPE)).toThrow(
+      'bo block 2: note ^1 is not defined.',
+    );
+  });
+
+  it('should prefix the error with the block and its own line when a branch is invalid', () => {
+    expect(() => resolveBuildOrders({ main: '1. Altar', branches: ['1. Armory\n   -> Bestairy'] }, SCOPE)).toThrow(
+      'bo block 2, line 2: "Bestairy" not found in the-legion + arandi. Did you mean "Bestiary"?',
+    );
+    expect(() => resolveBuildOrders({ main: '1. Altar', branches: ['1. Armory\n3. Altar'] }, SCOPE)).toThrow(
+      'bo block 2, line 2: expected step 2.',
+    );
+  });
+
+  it('should keep the error unprefixed when the main build order is invalid', () => {
+    expect(() => resolveBuildOrders({ main: '1. Altar\n-> Bestairy', branches: ['1. Armory'] }, SCOPE)).toThrow(
+      'bo line 2: "Bestairy" not found in the-legion + arandi. Did you mean "Bestiary"?',
+    );
+  });
+
+  it('should keep the source of the main build order for Copy', () => {
+    expect(resolveBuildOrders({ main: '1. Altar', branches: [] }, SCOPE).main?.source).toBe('1. Altar');
+  });
+
+  it('should start the base count from B2 when there is no main build order', () => {
+    const { main, branches } = resolveBuildOrders(
+      { branches: ['1. Garrison Tower\n2. Garrison Tower', '1. Garrison Tower'] },
+      SCOPE,
+    );
+
+    expect(main).toBeUndefined();
+    expect(branches[0].steps.map(({ groups }) => groups[0].items[0].base)).toEqual([2, 3]);
+    expect(firstItems(branches[1])[0].base).toBe(2);
+  });
+
+  it('should number the first block 1 in the errors when there is no main build order', () => {
+    expect(() => resolveBuildOrders({ branches: ['1. Armory\n   -> Bestairy'] }, SCOPE)).toThrow(
+      'bo block 1, line 2: "Bestairy" not found in the-legion + arandi. Did you mean "Bestiary"?',
+    );
+    expect(() => resolveBuildOrders({ branches: ['1. Altar', '1. Armory\n3. Altar'] }, SCOPE)).toThrow(
+      'bo block 2, line 2: expected step 2.',
+    );
+  });
+
+  it('should fail when a branch waits for an entity outside its block and there is no main build order', () => {
+    expect(() => resolveBuildOrders({ branches: ['1. Altar', '1. when Altar done: Armory'] }, SCOPE)).toThrow(
+      'bo block 2, line 1: "Altar" must appear earlier in the build order.',
+    );
   });
 });
 
@@ -348,7 +459,9 @@ describe('Build order table', () => {
 describe('Exalted Arandi guide', () => {
   it('should parse into 4 steps with their groups and goals', () => {
     const body = readFileSync(new URL('../../../../data/guides/exalted-arandi.md', import.meta.url), 'utf8');
-    const { steps } = parseBuildOrder(extractBuildOrder(body) ?? '');
+    const [, , guideBody] = body.split(/^---$/m);
+    const { main = '' } = extractBuildOrders(guideBody);
+    const { steps } = parseBuildOrder(main);
 
     expect(steps.map(({ groups }) => groups.length)).toEqual([3, 2, 2, 1]);
     expect(steps[0].groups[0].items[1].loop).toEqual({

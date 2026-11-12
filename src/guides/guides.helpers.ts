@@ -1,19 +1,21 @@
 import {
-  BUILD_ORDER_FIELDS,
+  GUIDE_FACTION_ACCENTS,
   GUIDE_STYLE_LABELS,
   MAIN_FACTION_LETTERS,
   MAIN_FACTION_ORDER,
   NEW_GUIDE_DAYS,
   OUTDATED_PATCH_GAP,
 } from './guides.constants.ts';
-import type { Entity } from '../wiki/wiki.types.ts';
-import type { BuildOrderField, GuideStyle, PatchStatus } from './guides.types.ts';
+import type { Entity, Faction } from '../wiki/wiki.types.ts';
+import type { GuideStyle, PatchStatus } from './guides.types.ts';
 
 const DAY_MS = 86_400_000;
 const PATCH_LABEL_PATTERN = /^Update #(\d+)$/;
 const MAX_SUGGESTION_DISTANCE = 3;
 // Levels where the second talent is the mercenary one.
 const MERCENARY_TALENT_LEVELS = new Set([2, 4, 6]);
+// Fields that need the faction: checked when faction is absent.
+const FACTION_SCOPED_FIELDS = ['mercenary', 'hero', 'talents', 'army'] as const;
 
 export const getPatchStatus = (patch: number, latest: number): PatchStatus => {
   const gap = latest - patch;
@@ -24,9 +26,13 @@ export const getPatchStatus = (patch: number, latest: number): PatchStatus => {
 export const isNewGuide = (added: string, now: Date) =>
   now.getTime() - Date.parse(`${added}T00:00:00Z`) < NEW_GUIDE_DAYS * DAY_MS;
 
-export const assertGeneralGuideFields = (data: Partial<Record<BuildOrderField, unknown>>) => {
-  const field = BUILD_ORDER_FIELDS.find((key) => data[key] !== undefined);
-  if (field) throw new Error(`${field} is only allowed in a build order.`);
+export const assertFieldDependencies = (data: DependentFields, hasBuildOrderBlock: boolean) => {
+  if (data.faction === undefined) {
+    const field = FACTION_SCOPED_FIELDS.find((key) => data[key] !== undefined);
+    if (field) throw new Error(`${field} requires faction.`);
+    if (hasBuildOrderBlock) throw new Error('a bo block requires faction.');
+  }
+  if (data.talents !== undefined && data.mercenary === undefined) throw new Error('talents requires mercenary.');
 };
 
 // "LvX": the guide faction against each opponent, in P, G, L, X order.
@@ -35,8 +41,14 @@ export const toMatchupTags = (faction: string, vsKeys: string[]) =>
     (key) => `${MAIN_FACTION_LETTERS[faction]}v${MAIN_FACTION_LETTERS[key]}`,
   );
 
-export const toGuideTags = (guide: TaggedGuide) =>
-  guide.type === 'build-order' ? ['Versus', ...guide.matchupTags, GUIDE_STYLE_LABELS[guide.style]] : ['Guide'];
+export const toGuideTags = ({ matchupTags, style }: TaggedGuide) => {
+  const versus = matchupTags.length > 0 ? ['Versus', ...matchupTags] : [];
+  const tags = style ? [...versus, GUIDE_STYLE_LABELS[style]] : versus;
+  return tags.length > 0 ? tags : ['Guide'];
+};
+
+export const toGuideAccent = (faction?: Faction) =>
+  faction ? GUIDE_FACTION_ACCENTS[faction.id] : 'var(--color-accent-soft)';
 
 // One digit per level: 1 = top talent, 2 = bottom talent (the mercenary one on levels 2, 4 and 6).
 export const resolveTalents = (code: string, factionTalents: Entity[], mercenaryTalents: Entity[]) =>
@@ -68,7 +80,12 @@ export const byAddedThenTitle = (a: Sortable, b: Sortable) => b.added.localeComp
 
 export const normalizeName = (name: string) => name.trim().toLowerCase().replace(/\s+/g, ' ');
 
-type TaggedGuide = { type: 'build-order'; matchupTags: string[]; style: GuideStyle } | { type: 'guide' };
+type DependentFields = Partial<Record<'faction' | (typeof FACTION_SCOPED_FIELDS)[number], unknown>>;
+
+interface TaggedGuide {
+  matchupTags: string[];
+  style?: GuideStyle;
+}
 
 interface Sortable {
   added: string;

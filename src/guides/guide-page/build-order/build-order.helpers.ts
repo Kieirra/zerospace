@@ -1,5 +1,6 @@
 import { HEADQUARTER_IDS } from '../../guides.constants.ts';
 import { findClosestName, normalizeName } from '../../guides.helpers.ts';
+import { findBuildOrderBlocks } from '../../strip-build-order.ts';
 import type { Entity } from '../../../wiki/wiki.types.ts';
 import type {
   BuildOrder,
@@ -9,6 +10,7 @@ import type {
   BuildOrderName,
   BuildOrderPhase,
   BuildOrderRow,
+  BuildOrderSources,
   BuildOrderStep,
   BuildOrderTarget,
   ResolvableKind,
@@ -17,7 +19,6 @@ import type {
   ResolvedBuildOrderItem,
 } from '../../guides.types.ts';
 
-const BLOCK_PATTERN = /^```bo[ \t]*\r?\n([\s\S]*?)^```[ \t]*$/gm;
 const NOTE_DEFINITION_PATTERN = /^\^(\d+):\s*(.*)$/;
 const GOAL_PATTERN = /^goal:\s*(.*)$/;
 const STEP_PATTERN = /^(\d+)\.\s*(.*)$/;
@@ -37,14 +38,19 @@ interface ResolutionScope {
   label: string;
 }
 
-// Text of the ```bo block, undefined for a general guide.
-export const extractBuildOrder = (body: string) => {
-  const blocks = [...body.matchAll(BLOCK_PATTERN)];
-  if (blocks.length > 1) throw new Error('only one bo block is allowed.');
-  return blocks[0]?.[1].replace(/\r?\n$/, '');
-};
+// Advanced by the resolution: the end of the main build order is the start of each branch.
+interface ResolutionState {
+  nextBase: number;
+  // First line of each entity, for the conditions. 0 = in the main build order.
+  firstLines: Map<string, number>;
+}
 
-export const hasProse = (body: string) => body.replace(BLOCK_PATTERN, '').trim() !== '';
+// Text of each ```bo block. Without a main build order, every block is a branch.
+export const extractBuildOrders = (body: string): BuildOrderSources => {
+  const { blocks, hasMain } = findBuildOrderBlocks(body);
+  const sources = blocks.map(({ source }) => source);
+  return hasMain ? { main: sources[0], branches: sources.slice(1) } : { branches: sources };
+};
 
 export const parseBuildOrder = (text: string): BuildOrder => {
   const steps: BuildOrderStep[] = [];
@@ -84,10 +90,31 @@ export const parseBuildOrder = (text: string): BuildOrder => {
   return { steps, notes };
 };
 
-export const resolveBuildOrder = (order: BuildOrder, scope: ResolutionScope): Omit<ResolvedBuildOrder, 'source'> => {
-  let nextBase = 2;
-  // First line of each entity, for the conditions.
-  const firstLines = new Map<string, number>();
+// Each branch starts where the main build order ends, or from B2 without a main build order.
+export const resolveBuildOrders = ({ main, branches }: BuildOrderSources, scope: ResolutionScope) => {
+  const mainState: ResolutionState = { nextBase: 2, firstLines: new Map() };
+  const mainOrder =
+    main === undefined ? undefined : { ...resolveBuildOrder(parseBuildOrder(main), scope, mainState), source: main };
+  const firstBranchBlock = main === undefined ? 1 : 2;
+  return {
+    main: mainOrder,
+    branches: branches.map((source, index) =>
+      inBranch(index + firstBranchBlock, () =>
+        resolveBuildOrder(parseBuildOrder(source), scope, {
+          nextBase: mainState.nextBase,
+          firstLines: new Map([...mainState.firstLines.keys()].map((id) => [id, 0])),
+        }),
+      ),
+    ),
+  };
+};
+
+export const resolveBuildOrder = (
+  order: BuildOrder,
+  scope: ResolutionScope,
+  state: ResolutionState = { nextBase: 2, firstLines: new Map() },
+): Omit<ResolvedBuildOrder, 'source'> => {
+  const { firstLines } = state;
   const see = (entity: Entity, line: number) => {
     if (!firstLines.has(entity.id)) firstLines.set(entity.id, line);
     return entity;
@@ -97,7 +124,7 @@ export const resolveBuildOrder = (order: BuildOrder, scope: ResolutionScope): Om
     const entity = see(findEntity(target, scope, line), line);
     return {
       entity,
-      base: HEADQUARTER_IDS.has(entity.id) ? nextBase++ : undefined,
+      base: HEADQUARTER_IDS.has(entity.id) ? state.nextBase++ : undefined,
     };
   };
   const resolveCondition = ({ name, kind, event, line }: BuildOrderCondition) => {
@@ -254,8 +281,8 @@ const splitTopLevel = (text: string, separator: string) => {
 const checkNotes = (steps: BuildOrderStep[], notes: BuildOrder['notes']) => {
   const used = new Set(steps.flatMap(({ groups }) => groups.flatMap(collectNoteMarks)));
   const defined = new Set(notes.map(({ mark }) => mark));
-  for (const mark of used) if (!defined.has(mark)) throw new Error(`bo: note ^${mark} is not defined.`);
-  for (const mark of defined) if (!used.has(mark)) throw new Error(`bo: note ^${mark} is never used.`);
+  for (const mark of used) if (!defined.has(mark)) throw new BuildOrderError(`note ^${mark} is not defined.`);
+  for (const mark of defined) if (!used.has(mark)) throw new BuildOrderError(`note ^${mark} is never used.`);
 };
 
 const collectNoteMarks = ({ items }: BuildOrderGroup): number[] =>
@@ -288,4 +315,25 @@ const findLoopEntity = (loop: BuildOrderName, scope: ResolutionScope, line: numb
 const isResolvableKind = (kind: string): kind is ResolvableKind =>
   RESOLVABLE_KINDS.some((candidate) => candidate === kind);
 
-const lineError = (line: number, message: string) => new Error(`bo line ${line}: ${message}`);
+const lineError = (line: number, message: string) => new BuildOrderError(message, line);
+
+class BuildOrderError extends Error {
+  detail: string;
+  line?: number;
+
+  constructor(detail: string, line?: number) {
+    super(`bo${line === undefined ? '' : ` line ${line}`}: ${detail}`);
+    this.detail = detail;
+    this.line = line;
+  }
+}
+
+// "bo block 2, line 3: ...": the line is relative to the branch block.
+const inBranch = <Result>(block: number, run: () => Result) => {
+  try {
+    return run();
+  } catch (error) {
+    if (!(error instanceof BuildOrderError)) throw error;
+    throw new Error(`bo block ${block}${error.line === undefined ? '' : `, line ${error.line}`}: ${error.detail}`);
+  }
+};

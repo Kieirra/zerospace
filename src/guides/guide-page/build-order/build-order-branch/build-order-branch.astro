@@ -1,0 +1,14 @@
+---
+import type { Guide } from '../../../guides.types.ts';
+import BuildOrderPhases from '../build-order-phases/build-order-phases.astro';
+
+interface Props {
+  branch: Guide['branches'][number];
+}
+
+const { branch } = Astro.props;
+---
+
+<div class="mt-4 mb-8 bevel-sm bg-surface p-4 *:first:mt-0">
+  <BuildOrderPhases steps={branch.steps} notes={branch.notes} />
+</div>

@@ -2,30 +2,30 @@
 
 One markdown file per guide, published on `/guides`. The file name is the URL: `exalted-arandi.md` is `/guides/exalted-arandi`.
 
-A guide with a ` ```bo ` block is a **build order**. Without it, it is a **general guide**. The build fails on any invalid guide, with the file and the line to fix.
+Only `title`, `author`, `description`, `patch` and `added` are required: any other field, and any ` ```bo ` block, is optional, from a full build order to plain text. The page only shows what the guide has. The build fails on any invalid guide, with the file and the line to fix.
 
 To propose a guide without a pull request, open the [Add a guide](https://github.com/kieirra/zerospace/issues/new?template=guide.md) issue template.
 
 ## Frontmatter
 
-| Field | Build order | General guide | Rule |
-|---|---|---|---|
-| `title` | required | required | 3 to 60 characters |
-| `author` | required | required | not empty |
-| `description` | required | required | 40 to 240 characters, a summary of the build or the guide |
-| `patch` | required | required | `N` of a known `Update #N` patch |
-| `added` | required | required | `YYYY-MM-DD`, date the guide is added (NEW label and order) |
-| `faction` | required | forbidden | `protectorate`, `grell`, `the-legion`, `the-xol` |
-| `mercenary` | required | forbidden | `arandi`, `chakru-kingdom`, `endari`, `free-corsairs`, `marran`, `valkaru` |
-| `hero` | required | forbidden | exact name of a hero of the faction or the mercenary: the free starting hero. Other heroes go in the build order steps |
-| `talents` | required | forbidden | 7 digits, `1` or `2`, one per talent level |
-| `army` | required (1 or more) | forbidden | exact unit or hero names of the faction or the mercenary |
-| `vs` | required (1 key or more) | forbidden | opponent faction (`protectorate`, `grell`, `the-legion`, `the-xol`) to a rating from 1 to 5 |
-| `style` | required | forbidden | `one-base`, `expand` or `all-in` |
-| `strengths` | optional (1 to 6) | forbidden | list of short sentences, shown next to the build order |
-| `weaknesses` | optional (1 to 6) | forbidden | list of short sentences, shown next to the build order |
+| Field | Required | Rule |
+|---|---|---|
+| `title` | yes | 3 to 60 characters |
+| `author` | yes | not empty |
+| `description` | yes | 40 to 240 characters, a summary of the build or the guide |
+| `patch` | yes | `N` of a known `Update #N` patch |
+| `added` | yes | `YYYY-MM-DD`, date the guide is added (NEW label and order) |
+| `faction` | no | `protectorate`, `grell`, `the-legion`, `the-xol`. Required by `mercenary`, `hero`, `talents`, `army` and any ` ```bo ` block |
+| `mercenary` | no | `arandi`, `chakru-kingdom`, `endari`, `free-corsairs`, `marran`, `valkaru`. Required by `talents` |
+| `hero` | no | exact name of a hero of the faction or the mercenary: the free starting hero. Other heroes go in the build order steps |
+| `talents` | no | 7 digits, `1` or `2`, one per talent level |
+| `army` | no (1 or more) | exact unit or hero names of the faction or the mercenary |
+| `vs` | no | opponent faction (`protectorate`, `grell`, `the-legion`, `the-xol`) to a rating from 1 to 5 |
+| `style` | no | `one-base`, `expand` or `all-in` |
+| `strengths` | no (1 to 6) | list of short sentences |
+| `weaknesses` | no (1 to 6) | list of short sentences |
 
-Any other field fails the build.
+Any other field fails the build. The side column of the page shows Starting hero and Talents (`hero`, `talents`), Heroes and Army (`army`), VS (`vs`) and Strengths and Weaknesses, each only when set. Without any of them, the guide uses the full width.
 
 ## Talents
 
@@ -61,7 +61,20 @@ Do not use curly braces in any text of a guide: the site check rejects them.
 
 ## Prose
 
-Write the guide below the frontmatter (and below the ` ```bo ` block): free Markdown shown under the build order (tips, game plan).
+Write the guide below the frontmatter: free Markdown (tips, game plan). Markdown tables are supported.
+
+## Several build orders
+
+A ` ```bo ` block placed first in the body, before any text, is the opener: it is shown at the top. Every other ` ```bo ` block is shown in the prose, where it is written, for example one per opponent reaction under its own title. A guide that starts with text has no opener: the prose starts at the top. In each block, steps start again at 1, bases continue from the opener if there is one (B4 after an opener ending on B3, otherwise B2), `when X` can target the block or the opener, and notes belong to their block. Errors read `bo block 2, line 1: ...`. Open each block with ` ```bo ` and close it with ` ``` `, at the start of a line, outside any list, quote or other block.
+
+````md
+## If they go Skrells
+
+```bo
+1. Barracks -> 4 Thrall
+   goal: Hold the air harass
+```
+````
 
 ## Example
 
