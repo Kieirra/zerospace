@@ -1,9 +1,12 @@
 ---
 import clsx from 'clsx';
+import GameImage from '../../../wiki/game-image/game-image.astro';
 import { findImageUrl } from '../../../wiki/game-image/game-image.helpers.ts';
+import { getFactionMap } from '../../../wiki/wiki.data.ts';
 import GuideFactions from '../../guide-factions/guide-factions.astro';
 import GuideStatus from '../../guide-status/guide-status.astro';
 import GuideTags from '../../guide-tags/guide-tags.astro';
+import { GUIDE_KIND_LABELS, MAIN_FACTION_ORDER } from '../../guides.constants.ts';
 import { toGuideAccent } from '../../guides.helpers.ts';
 import type { Guide } from '../../guides.types.ts';
 
@@ -11,11 +14,19 @@ interface Props {
   guide: Guide;
 }
 
+// Sections listed on a guide card, the others are counted.
+const MAX_SECTIONS = 3;
+
 const { guide } = Astro.props;
-const artUrl = guide.faction && findImageUrl(`art/${guide.faction.id}`);
+// A guide without faction covers them all: its header shows the 4 faction arts side by side.
+const artFactionIds = guide.faction ? [guide.faction.id] : [...MAIN_FACTION_ORDER];
+const artUrls = artFactionIds.flatMap((id) => findImageUrl(`art/${id}`) ?? []);
+const factions = await getFactionMap();
 const titleId = `guide-title-${guide.slug}`;
 const accent = toGuideAccent(guide.faction);
-const hasBuildOrderBlock = guide.mainBuildOrder !== undefined || guide.branches.length > 0;
+const isGuide = guide.kind === 'guide';
+const hasTags = guide.matchupTags.length > 0 || guide.style !== undefined;
+const hiddenSections = guide.sections.length - MAX_SECTIONS;
 ---
 
 <a
@@ -29,21 +40,19 @@ const hasBuildOrderBlock = guide.mainBuildOrder !== undefined || guide.branches.
   )}
 >
   <div class="flex h-full flex-col bevel-sm bg-surface">
-    <div class={clsx('relative h-20 overflow-hidden', !guide.faction && 'bg-surface-raised')}>
-      {
-        artUrl && (
-          <img
-            src={artUrl}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            class={clsx(
-              'pointer-events-none absolute inset-0 size-full object-cover object-[center_20%] opacity-35 mask-b-from-10% mask-b-to-100%',
-              'transition-transform duration-350 motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]',
-            )}
-          />
-        )
-      }
+    <div class="relative h-16 overflow-hidden">
+      <div
+        class={clsx(
+          'pointer-events-none absolute inset-0 flex opacity-35 mask-b-from-10% mask-b-to-100%',
+          'transition-transform duration-350 motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]',
+        )}
+      >
+        {
+          artUrls.map((url) => (
+            <img src={url} alt="" loading="lazy" decoding="async" class="h-full min-w-0 flex-1 object-cover object-[center_20%]" />
+          ))
+        }
+      </div>
       <div class="absolute top-2 right-2">
         <GuideStatus status={guide.patchStatus} added={guide.added} />
       </div>
@@ -52,20 +61,41 @@ const hasBuildOrderBlock = guide.mainBuildOrder !== undefined || guide.branches.
           guide.faction ? (
             <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />
           ) : (
-            <p class="text-sm text-muted label-caps">Guide</p>
+            <p class="flex gap-1.5">
+              {MAIN_FACTION_ORDER.map((id) => (
+                <GameImage id={id} name={factions.get(id)?.name ?? id} size="mini" />
+              ))}
+            </p>
           )
         }
       </div>
     </div>
     <div class="flex flex-1 flex-col gap-3 p-4">
       <div class="flex flex-col gap-1.5">
+        <p class="flex flex-wrap gap-x-2 text-xs label-caps">
+          <span class="text-(--guide-accent)">{GUIDE_KIND_LABELS[guide.kind].one}</span>
+          {isGuide && <span class="text-muted">{guide.readingMinutes} min</span>}
+        </p>
         <h2 id={titleId} class="line-clamp-2 text-xl font-bold">{guide.title}</h2>
-        <GuideTags guide={guide} />
+        {hasTags && <GuideTags guide={guide} />}
       </div>
-      <p class="line-clamp-4 min-h-[4lh] text-sm text-text/80">{guide.description}</p>
+      <p class={clsx('text-sm text-text/80', isGuide ? 'line-clamp-3' : 'line-clamp-4 min-h-[4lh]')}>{guide.description}</p>
+      {
+        isGuide && guide.sections.length > 0 && (
+          <ol class="flex flex-col gap-1 border-l border-line pl-3 text-sm">
+            {guide.sections.slice(0, MAX_SECTIONS).map((section, index) => (
+              <li class="flex gap-2">
+                <span class="text-muted tabular-nums">{index + 1}</span>
+                <span class="truncate">{section.text}</span>
+              </li>
+            ))}
+            {hiddenSections > 0 && <li class="text-muted">+{hiddenSections}</li>}
+          </ol>
+        )
+      }
       <p class="mt-auto flex justify-between gap-4 text-sm">
         <span><span class="text-muted">by</span> <span class="font-semibold text-text">{guide.author}</span></span>
-        <span class="text-muted tabular-nums">patch {guide.patch}</span>
+        {guide.patch !== undefined && <span class="text-muted tabular-nums">patch {guide.patch}</span>}
       </p>
       <span
         class={clsx(
@@ -74,7 +104,7 @@ const hasBuildOrderBlock = guide.mainBuildOrder !== undefined || guide.branches.
           'group-hover:bg-(--guide-accent) group-focus-visible:bg-(--guide-accent)',
         )}
       >
-        {hasBuildOrderBlock ? 'View build order' : 'Read guide'}
+        {isGuide ? 'Read guide' : 'View build order'}
       </span>
     </div>
   </div>

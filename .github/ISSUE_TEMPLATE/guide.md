@@ -5,7 +5,7 @@ title: 'Guide: '
 labels: guide
 ---
 
-Only `title`, `author`, `description`, `patch` and `added` are required, remove what you do not need. `mercenary`, `hero`, `talents`, `army` and a ` ```bo ` block need `faction`, `talents` also needs `mercenary`.
+Only `title`, `author`, `description` and `added` are required, remove what you do not need. `mercenary`, `hero`, `talents`, `army` and a ` ```bo ` block need `faction`, `talents` also needs `mercenary`.
 
 ````md
 ---

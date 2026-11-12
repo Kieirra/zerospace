@@ -1,0 +1,21 @@
+---
+import { RESOURCE_AMOUNT_CLASS, RESOURCE_ICON_CLASS, resourceIconUrl, splitResourceWords } from '../resource-words.ts';
+
+interface Props {
+  text: string;
+}
+
+const parts = splitResourceWords(Astro.props.text);
+---
+
+{
+  parts.map((part) =>
+    typeof part === 'string' ? (
+      part
+    ) : part.amount === undefined ? (
+      <span class="whitespace-nowrap"><img src={resourceIconUrl(part.resource)} alt="" width="16" height="16" decoding="async" class:list={[RESOURCE_ICON_CLASS, 'mr-0.5']} />{part.resource}</span>
+    ) : (
+      <span class={RESOURCE_AMOUNT_CLASS}>{part.amount}<img src={resourceIconUrl(part.resource)} alt={part.resource} width="16" height="16" decoding="async" class={RESOURCE_ICON_CLASS} /></span>
+    ),
+  )
+}

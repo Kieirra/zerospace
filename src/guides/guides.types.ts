@@ -5,6 +5,8 @@ export type ResolvableKind = Exclude<EntityKind, 'talent'>;
 export type PatchStatus = 'current' | 'previous' | 'outdated';
 export type GuideStyle = NonNullable<CollectionEntry<'guides'>['data']['style']>;
 export type BuildOrderEvent = 'starts' | 'done';
+// A build order has at least one ```bo block, a guide has none.
+export type GuideKind = 'guide' | 'build-order';
 
 // Build order block before name resolution.
 export interface BuildOrderName {
@@ -150,11 +152,16 @@ export interface Guide {
   title: string;
   author: string;
   description: string;
-  patch: number;
+  // Absent for a guide that spans the patches.
+  patch?: number;
   // YYYY-MM-DD
   added: string;
-  patchStatus: PatchStatus;
+  patchStatus?: PatchStatus;
   entry: CollectionEntry<'guides'>;
+  kind: GuideKind;
+  // The ## headings, in order: slug is the anchor of the heading on the guide page.
+  sections: { slug: string; text: string }[];
+  readingMinutes: number;
   style?: GuideStyle;
   faction?: Faction;
   mercenary?: Faction;

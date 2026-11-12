@@ -1,0 +1,47 @@
+---
+import type { Guide } from '../../guides.types.ts';
+
+interface Props {
+  sections: Guide['sections'];
+}
+
+const { sections } = Astro.props;
+---
+
+<nav aria-labelledby="guide-toc-title" class="bevel-sm bg-surface p-4 lg:sticky lg:top-16">
+  <h2 id="guide-toc-title" class="mb-3 text-xs text-muted label-caps">On this page</h2>
+  <ol class="flex flex-col gap-1 text-sm">
+    {
+      sections.map(({ slug, text }) => (
+        <li>
+          <a
+            href={`#${slug}`}
+            data-toc-link={slug}
+            class="-mx-2 block px-2 py-1 text-muted hover:text-text aria-[current=true]:bg-surface-raised aria-[current=true]:text-text"
+          >
+            {text}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<script>
+  // The current section is the last one whose heading went above the sticky site header.
+  const HEADER_OFFSET = 96;
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+  const headings = links.flatMap((link) => document.getElementById(link.dataset.tocLink ?? '') ?? []);
+
+  const highlight = () => {
+    const current = headings.findLast((heading) => heading.getBoundingClientRect().top <= HEADER_OFFSET) ?? headings[0];
+    for (const link of links) link.setAttribute('aria-current', String(link.dataset.tocLink === current?.id));
+  };
+
+  let frame = 0;
+  addEventListener('scroll', () => {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(highlight);
+  }, { passive: true });
+  highlight();
+</script>

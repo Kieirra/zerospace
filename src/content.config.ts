@@ -303,7 +303,7 @@ const guides = defineCollection({
     title: z.string().min(3).max(60),
     author: z.string().min(1),
     description: z.string().min(40).max(240),
-    patch: z.int().positive(),
+    patch: z.int().positive().optional(),
     added: z.coerce.date(),
     faction: mainFaction.optional(),
     mercenary: z.enum(['arandi', 'chakru-kingdom', 'endari', 'free-corsairs', 'marran', 'valkaru']).optional(),

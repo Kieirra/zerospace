@@ -10,6 +10,7 @@ import GuideHeader from './guide-header/guide-header.astro';
 import GuideMatchups from './guide-matchups/guide-matchups.astro';
 import GuideStart from './guide-start/guide-start.astro';
 import GuideStrengthsWeaknesses from './guide-strengths-weaknesses/guide-strengths-weaknesses.astro';
+import GuideToc from './guide-toc/guide-toc.astro';
 
 interface Props {
   guide: Guide;
@@ -21,7 +22,9 @@ const html = guide.entry.rendered?.html ?? '';
 const proseParts = html.split(BRANCH_MARKER_PATTERN);
 const hasStart = guide.hero !== undefined || guide.talents.length > 0;
 const hasStrengthsWeaknesses = guide.strengths.length > 0 || guide.weaknesses.length > 0;
-const hasModules = hasStart || guide.army.length > 0 || guide.vs.length > 0 || hasStrengthsWeaknesses;
+// A build order is read from its panel: only a guide gets the table of contents.
+const hasToc = guide.kind === 'guide' && guide.sections.length > 1;
+const hasModules = hasStart || guide.army.length > 0 || guide.vs.length > 0 || hasStrengthsWeaknesses || hasToc;
 ---
 
 <a href="/guides" class="text-sm text-muted hover:text-text">‹ Guides</a>
@@ -29,11 +32,12 @@ const hasModules = hasStart || guide.army.length > 0 || guide.vs.length > 0 || h
 <div class={clsx('mt-6 grid gap-4', hasModules && 'lg:grid-cols-[2fr_1fr] lg:items-start')}>
   {
     hasModules && (
-      <aside class="flex flex-col gap-4 lg:order-last">
+      <aside class="flex flex-col gap-4 lg:order-last lg:self-stretch">
         {hasStart && <GuideStart hero={guide.hero} talents={guide.talents} />}
         {guide.army.length > 0 && <GuideArmy army={guide.army} />}
         {guide.vs.length > 0 && <GuideMatchups vs={guide.vs} accent={toGuideAccent(guide.faction)} />}
         {hasStrengthsWeaknesses && <GuideStrengthsWeaknesses strengths={guide.strengths} weaknesses={guide.weaknesses} />}
+        {hasToc && <GuideToc sections={guide.sections} />}
       </aside>
     )
   }
@@ -41,10 +45,10 @@ const hasModules = hasStart || guide.army.length > 0 || guide.vs.length > 0 || h
     {guide.mainBuildOrder && <BuildOrder title={guide.title} factionId={guide.faction?.id} buildOrder={guide.mainBuildOrder} />}
     {
       html.trim() !== '' && (
-        <div class="bevel bg-panel/95 p-6">
+        <div style={`--guide-accent: ${toGuideAccent(guide.faction)}`} class="bevel bg-panel/95 p-6">
           {proseParts.map((part, index) => (
             <>
-              <div class="guide-prose max-w-[70ch]" set:html={part} />
+              <div class="guide-prose max-w-[75ch]" set:html={part} />
               {guide.branches[index] && <BuildOrderBranch branch={guide.branches[index]} />}
             </>
           ))}

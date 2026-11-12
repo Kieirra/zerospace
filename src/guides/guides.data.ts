@@ -1,4 +1,5 @@
 import { getCollection } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import { getEntities, getFactionMap, getPatchNotes } from '../wiki/wiki.data.ts';
 import type { Entity, Faction } from '../wiki/wiki.types.ts';
@@ -12,6 +13,7 @@ import {
   normalizeName,
   resolveTalents,
   toMatchupTags,
+  toReadingMinutes,
 } from './guides.helpers.ts';
 import type { Guide } from './guides.types.ts';
 
@@ -55,11 +57,12 @@ const toGuideOrFail = (entry: GuideEntry, context: GuideContext) => {
 
 const toGuide = (entry: GuideEntry, context: GuideContext): Guide => {
   const { data } = entry;
-  if (!context.patchLabels.includes(`Update #${data.patch}`)) {
+  if (data.patch !== undefined && !context.patchLabels.includes(`Update #${data.patch}`)) {
     throw new Error(`patch ${data.patch} is not a known patch (latest: ${context.latestPatch}).`);
   }
   const sources = extractBuildOrders(entry.body ?? '');
-  assertFieldDependencies(data, sources.main !== undefined || sources.branches.length > 0);
+  const hasBuildOrderBlock = sources.main !== undefined || sources.branches.length > 0;
+  assertFieldDependencies(data, hasBuildOrderBlock);
   const faction = data.faction === undefined ? undefined : findFaction(data.faction, context);
   const mercenary = data.mercenary === undefined ? undefined : findFaction(data.mercenary, context);
   const scopeIds: string[] = [data.faction, data.mercenary].filter((id) => id !== undefined);
@@ -76,8 +79,11 @@ const toGuide = (entry: GuideEntry, context: GuideContext): Guide => {
     description: data.description,
     patch: data.patch,
     added: data.added.toISOString().slice(0, 10),
-    patchStatus: getPatchStatus(data.patch, context.latestPatch),
+    patchStatus: data.patch === undefined ? undefined : getPatchStatus(data.patch, context.latestPatch),
     entry,
+    kind: hasBuildOrderBlock ? 'build-order' : 'guide',
+    sections: ((entry.rendered?.metadata?.headings ?? []) as MarkdownHeading[]).filter(({ depth }) => depth === 2).map(({ slug, text }) => ({ slug, text })),
+    readingMinutes: toReadingMinutes(entry.body ?? ''),
     style: data.style,
     faction,
     mercenary,

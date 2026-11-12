@@ -59,6 +59,12 @@
     @apply outline-2 outline-offset-2 outline-accent-soft;
   }
 
+  /* Tailwind v4 leaves the default cursor on buttons. */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
   /* clip-path hides an outer outline: draw it inside bevelled elements */
   .bevel:focus-visible,
   .bevel-sm:focus-visible {
@@ -68,7 +74,11 @@
 
 @layer components {
   .guide-prose h2 {
-    @apply mt-8 mb-3 text-xs text-muted label-caps first:mt-0;
+    @apply mt-14 mb-4 scroll-mt-20 text-2xl font-bold text-(--guide-accent) first:mt-0;
+  }
+
+  .guide-prose h3 {
+    @apply mt-8 mb-2 text-lg font-semibold;
   }
 
   .guide-prose p {
@@ -93,6 +103,10 @@
 
   .guide-prose code {
     @apply bg-surface-raised px-1;
+  }
+
+  .guide-prose img:not(.resource-icon) {
+    @apply mx-auto my-6;
   }
 
   .guide-prose table {

@@ -1,5 +1,5 @@
 import { GITHUB_URL } from '../shared/site.constants.ts';
-import type { GuideStyle } from './guides.types.ts';
+import type { GuideKind, GuideStyle } from './guides.types.ts';
 
 export const MAIN_FACTION_ORDER = ['protectorate', 'grell', 'the-legion', 'the-xol'] as const;
 
@@ -26,6 +26,9 @@ export const GUIDE_FACTION_ACCENTS: Record<string, string> = {
   'the-xol': '#e0484a',
 };
 
+// Accent of a guide without faction: no faction or mercenary uses cyan.
+export const GENERAL_GUIDE_ACCENT = '#4cc9e6';
+
 // Display accents: the game colors are too dark on the site background (Free Corsairs, Endari, Valkaru) or clash with the site accent (Arandi).
 export const MERCENARY_ACCENTS: Record<string, string> = {
   arandi: '#e05bff',
@@ -40,6 +43,11 @@ export const GUIDE_STYLE_LABELS: Record<GuideStyle, string> = {
   'one-base': 'One base',
   expand: 'Expand',
   'all-in': 'All-in',
+};
+
+export const GUIDE_KIND_LABELS: Record<GuideKind, { one: string; many: string }> = {
+  guide: { one: 'Guide', many: 'Guides' },
+  'build-order': { one: 'Build order', many: 'Build orders' },
 };
 
 export const NEW_GUIDE_DAYS = 7;

@@ -9,6 +9,7 @@ import {
   resolveTalents,
   toGuideTags,
   toMatchupTags,
+  toReadingMinutes,
 } from './guides.helpers.ts';
 
 const talent = (name: string, faction: string, level: number, position: string): Entity => ({
@@ -184,5 +185,15 @@ describe('Name suggestion', () => {
 
   it('should suggest nothing when every name is more than 3 edits away', () => {
     expect(findClosestName('Mammoth', ['Altar', 'Bestiary', 'Citadel'])).toBeUndefined();
+  });
+});
+
+describe('Reading time', () => {
+  it('counts 220 words per minute', () => {
+    expect(toReadingMinutes(Array.from({ length: 660 }, () => 'word').join(' '))).toBe(3);
+  });
+
+  it('reads a short guide in 1 minute', () => {
+    expect(toReadingMinutes('## Title\n\nA few words.')).toBe(1);
   });
 });

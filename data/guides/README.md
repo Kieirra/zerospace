@@ -48,7 +48,7 @@ Free text, tips, tables... and another build order for this case:
 | `when X done:` / `when 400 hexite:` / `when 2:30:` / `when any text:` | Condition of the line: a building, resources in the bank, a time, or free text |
 | `goal:` | Goal of the phase |
 
-Use the exact names of the wiki (`Legion Labourer`, not `harv`). A ` ```bo ` block at the top is the main build order, the others are shown where you write them.
+Use the exact names of the wiki (`Legion Labourer`, not `harv`). Write `hexite`, `flux` and `supply` in lowercase to get their icon, in the text and in the build orders. A ` ```bo ` block at the top is the main build order, the others are shown where you write them.
 
 ## Frontmatter
 
@@ -57,7 +57,7 @@ Use the exact names of the wiki (`Legion Labourer`, not `harv`). A ` ```bo ` blo
 | `title` | yes | 3 to 60 characters |
 | `author` | yes | your name |
 | `description` | yes | 40 to 240 characters |
-| `patch` | yes | game patch number, e.g. `18` |
+| `patch` | no | game patch number, e.g. `18`. Leave it out for a guide that spans the patches |
 | `added` | yes | `YYYY-MM-DD` |
 | `faction` | no | `protectorate`, `grell`, `the-legion`, `the-xol`. Needed by a ` ```bo ` block and the fields below |
 | `mercenary` | no | `arandi`, `chakru-kingdom`, `endari`, `free-corsairs`, `marran`, `valkaru` |

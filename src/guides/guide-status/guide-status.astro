@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import type { PatchStatus } from '../guides.types.ts';
 
 interface Props {
-  status: PatchStatus;
+  // Absent without patch: only the NEW label.
+  status?: PatchStatus;
   // YYYY-MM-DD
   added: string;
 }

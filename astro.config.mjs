@@ -3,6 +3,8 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
+import { addResourceIcons } from './src/guides/add-resource-icons.ts';
+import { openLinksInNewTab } from './src/guides/open-links-in-new-tab.ts';
 import { stripBuildOrder } from './src/guides/strip-build-order.ts';
 
 // Latin files of the installed @fontsource packages, served by the site: no font request leaves the domain.
@@ -45,7 +47,7 @@ export default defineConfig({
     },
   ],
   markdown: {
-    processor: satteri({ mdastPlugins: [stripBuildOrder] }),
+    processor: satteri({ mdastPlugins: [stripBuildOrder], hastPlugins: [openLinksInNewTab, addResourceIcons] }),
   },
   vite: {
     plugins: [tailwindcss()],

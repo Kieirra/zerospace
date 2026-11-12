@@ -23,7 +23,8 @@ const { guide } = Astro.props;
       <p class="max-w-[70ch] text-muted">{guide.description}</p>
       <p class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
         <span class="text-muted">
-          by <span class="font-semibold text-text">{guide.author}</span> · patch <span class="tabular-nums">{guide.patch}</span>
+          by <span class="font-semibold text-text">{guide.author}</span>
+          {guide.patch !== undefined && <> · patch <span class="tabular-nums">{guide.patch}</span></>}
         </span>
         <GuideStatus status={guide.patchStatus} added={guide.added} />
       </p>

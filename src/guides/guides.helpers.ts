@@ -1,4 +1,5 @@
 import {
+  GENERAL_GUIDE_ACCENT,
   GUIDE_FACTION_ACCENTS,
   GUIDE_STYLE_LABELS,
   MAIN_FACTION_LETTERS,
@@ -12,6 +13,7 @@ import type { GuideStyle, PatchStatus } from './guides.types.ts';
 const DAY_MS = 86_400_000;
 const PATCH_LABEL_PATTERN = /^Update #(\d+)$/;
 const MAX_SUGGESTION_DISTANCE = 3;
+const WORDS_PER_MINUTE = 220;
 // Levels where the second talent is the mercenary one.
 const MERCENARY_TALENT_LEVELS = new Set([2, 4, 6]);
 // Fields that need the faction: checked when faction is absent.
@@ -48,7 +50,7 @@ export const toGuideTags = ({ matchupTags, style }: TaggedGuide) => {
 };
 
 export const toGuideAccent = (faction?: Faction) =>
-  faction ? GUIDE_FACTION_ACCENTS[faction.id] : 'var(--color-accent-soft)';
+  faction ? GUIDE_FACTION_ACCENTS[faction.id] : GENERAL_GUIDE_ACCENT;
 
 // One digit per level: 1 = top talent, 2 = bottom talent (the mercenary one on levels 2, 4 and 6).
 export const resolveTalents = (code: string, factionTalents: Entity[], mercenaryTalents: Entity[]) =>
@@ -75,6 +77,9 @@ export const findClosestName = (name: string, names: string[]) => {
   }
   return closest?.name;
 };
+
+export const toReadingMinutes = (body: string) =>
+  Math.max(1, Math.round(body.split(/\s+/).filter(Boolean).length / WORDS_PER_MINUTE));
 
 export const byAddedThenTitle = (a: Sortable, b: Sortable) => b.added.localeCompare(a.added) || a.title.localeCompare(b.title);
 

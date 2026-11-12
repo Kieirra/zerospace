@@ -1,20 +1,54 @@
 ---
+import clsx from 'clsx';
 import AddGuideButton from '../add-guide-button/add-guide-button.astro';
+import { GUIDE_KIND_LABELS } from '../guides.constants.ts';
 import { getGuides } from '../guides.data.ts';
+import type { GuideKind } from '../guides.types.ts';
 import GuideCard from './guide-card/guide-card.astro';
 
 const guides = await getGuides();
+const kinds = (Object.keys(GUIDE_KIND_LABELS) as GuideKind[]).flatMap((kind) => {
+  const count = guides.filter((guide) => guide.kind === kind).length;
+  return count > 0 ? [{ kind, label: GUIDE_KIND_LABELS[kind].many, count }] : [];
+});
+// One filter per kind, after All: useless with a single kind.
+const filters = kinds.length > 1 ? [{ kind: 'all', label: 'All', count: guides.length }, ...kinds] : [];
 ---
 
 <h1 class="sr-only">Guides</h1>
-<div class="mb-4 flex justify-end">
-  <AddGuideButton />
+<div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+  {
+    filters.length > 0 && (
+      <ul class="flex flex-wrap gap-2" aria-label="Filter guides">
+        {filters.map(({ kind, label, count }) => (
+          <li>
+            <button
+              type="button"
+              data-guide-filter={kind}
+              aria-pressed={kind === 'all' ? 'true' : 'false'}
+              class={clsx(
+                'flex h-10 items-center gap-2 bevel-sm bg-surface px-4 text-sm text-muted',
+                'aria-[pressed=false]:hover:bg-surface-hover aria-[pressed=false]:hover:text-text',
+                'aria-pressed:bg-text aria-pressed:font-semibold aria-pressed:text-bg',
+              )}
+            >
+              {label}
+              <span class="tabular-nums opacity-70">{count}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  <div class="ml-auto">
+    <AddGuideButton />
+  </div>
 </div>
 {
   guides.length > 0 ? (
     <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {guides.map((guide) => (
-        <li>
+        <li data-guide-kind={guide.kind}>
           <GuideCard guide={guide} />
         </li>
       ))}
@@ -28,3 +62,29 @@ const guides = await getGuides();
     </div>
   )
 }
+
+<script>
+  // ?type=guide or ?type=build-order keeps the filter in the URL: a filtered list can be shared.
+  const PARAM = 'type';
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-guide-filter]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-guide-kind]')];
+
+  const applyFilter = (kind: string) => {
+    for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.guideFilter === kind));
+    for (const card of cards) card.hidden = kind !== 'all' && card.dataset.guideKind !== kind;
+  };
+
+  const initial = new URLSearchParams(location.search).get(PARAM);
+  if (initial && buttons.some((button) => button.dataset.guideFilter === initial)) applyFilter(initial);
+
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const kind = button.dataset.guideFilter ?? 'all';
+      applyFilter(kind);
+      const url = new URL(location.href);
+      if (kind === 'all') url.searchParams.delete(PARAM);
+      else url.searchParams.set(PARAM, kind);
+      history.replaceState(null, '', url);
+    });
+  }
+</script>

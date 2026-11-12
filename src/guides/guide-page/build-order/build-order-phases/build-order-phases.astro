@@ -4,6 +4,7 @@ import BuildOrderGroup from '../build-order-group/build-order-group.astro';
 import BuildOrderLoop from '../build-order-loop/build-order-loop.astro';
 import BuildOrderRow from '../build-order-row/build-order-row.astro';
 import { toBuildOrderPhases } from '../build-order.helpers.ts';
+import ResourceText from '../../../resource-text/resource-text.astro';
 
 type Props = Omit<ResolvedBuildOrder, 'source'>;
 
@@ -16,7 +17,7 @@ const phases = toBuildOrderPhases(steps);
     <section class="mt-6">
       <h3 class="bevel-sm bg-surface-raised/70 px-3 py-2 text-xs label-caps">
         Phase {phase.number}
-        {phase.goal && <span class="font-sans text-sm font-normal tracking-normal text-muted normal-case"> · {phase.goal}</span>}
+        {phase.goal && <span class="font-sans text-sm font-normal tracking-normal text-muted normal-case"> · <ResourceText text={phase.goal} /></span>}
       </h3>
       <table class="mt-2 w-full text-left">
         <thead class={index === 0 ? 'max-sm:sr-only' : 'sr-only'}>
@@ -42,7 +43,7 @@ const phases = toBuildOrderPhases(steps);
     <ol class="mt-4 flex flex-col gap-1 text-sm text-muted">
       {notes.map(({ mark, text }) => (
         <li>
-          <sup class="text-accent-soft">{mark}</sup> {text}
+          <sup class="text-accent-soft">{mark}</sup> <ResourceText text={text} />
         </li>
       ))}
     </ol>
