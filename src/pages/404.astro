@@ -1,8 +1,9 @@
 ---
 import Layout from '../shared/layout/layout.astro';
+import { SITE_NAME } from '../shared/site.constants.ts';
 ---
 
-<Layout title="404">
+<Layout title={`404 · ${SITE_NAME}`} isNoIndex>
   <h1 class="text-4xl font-bold">404</h1>
   <p class="mt-2 text-muted">Page not found</p>
   <a href="/wiki" class="mt-4 inline-block text-accent-soft hover:underline">Wiki</a>

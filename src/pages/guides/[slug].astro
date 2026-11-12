@@ -1,13 +1,23 @@
 ---
 import GuidePage from '../../guides/guide-page/guide-page.astro';
 import { getGuidePaths } from '../../guides/guides.data.ts';
+import { describeGuide, toGuideArticle, toGuideBreadcrumb, toGuideTitle } from '../../guides/guides-seo.helpers.ts';
 import Layout from '../../shared/layout/layout.astro';
+import { toBreadcrumbList } from '../../shared/seo/seo.helpers.ts';
+import { findImageUrl } from '../../wiki/game-image/game-image.helpers.ts';
 
 export const getStaticPaths = getGuidePaths;
 
 const { guide } = Astro.props;
+const factionId = (guide.faction ?? guide.mercenary)?.id;
 ---
 
-<Layout title={guide.title}>
+<Layout
+  title={toGuideTitle(guide)}
+  description={describeGuide(guide)}
+  image={factionId && findImageUrl(factionId)}
+  ogType="article"
+  jsonLd={[toGuideArticle(guide), toBreadcrumbList(toGuideBreadcrumb(guide), Astro.site)]}
+>
   <GuidePage guide={guide} />
 </Layout>

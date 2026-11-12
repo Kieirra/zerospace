@@ -1,5 +1,6 @@
 ---
 import Layout from '../layout/layout.astro';
+import { SITE_NAME } from '../site.constants.ts';
 
 interface Props {
   target: string;
@@ -8,10 +9,8 @@ interface Props {
 const { target } = Astro.props;
 ---
 
-<Layout title="Redirecting" isCentered>
-  <meta http-equiv="refresh" content={`0;url=${target}`} />
-  <meta name="robots" content="noindex" />
-  <link rel="canonical" href={target} />
+<Layout title={`Redirecting · ${SITE_NAME}`} canonicalPath={target} isNoIndex isCentered>
+  <meta slot="head" http-equiv="refresh" content={`0;url=${target}`} />
   <script is:inline define:vars={{ target }}>
     location.replace(target);
   </script>

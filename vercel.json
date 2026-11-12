@@ -1,0 +1,7 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/wiki", "permanent": false },
+    { "source": "/wiki/:faction", "destination": "/wiki/:faction/units", "permanent": false },
+    { "source": "/wiki/:faction/", "destination": "/wiki/:faction/units", "permanent": false }
+  ]
+}

@@ -1,13 +1,26 @@
 ---
+import { getEntry } from 'astro:content';
+import { getGameVersion } from '../../../../shared/latest-patch/latest-patch.data.ts';
 import Layout from '../../../../shared/layout/layout.astro';
+import { toBreadcrumbList } from '../../../../shared/seo/seo.helpers.ts';
 import EntityPage from '../../../../wiki/entity-page/entity-page.astro';
+import { findImageUrl } from '../../../../wiki/game-image/game-image.helpers.ts';
 import { getEntityPaths } from '../../../../wiki/wiki.data.ts';
+import { describeEntity, toEntityBreadcrumb, toEntityTitle } from '../../../../wiki/wiki-seo.helpers.ts';
 
 export const getStaticPaths = getEntityPaths;
 
 const { entity } = Astro.props;
+const faction = (await getEntry('factions', entity.faction))?.data;
+const factionName = faction?.name ?? entity.faction;
+const version = await getGameVersion();
 ---
 
-<Layout title={entity.name}>
+<Layout
+  title={toEntityTitle(entity, factionName, version)}
+  description={describeEntity(entity, factionName, version)}
+  image={findImageUrl(entity.id) ?? findImageUrl(entity.faction)}
+  jsonLd={faction && [toBreadcrumbList(toEntityBreadcrumb(entity, faction), Astro.site)]}
+>
   <EntityPage entity={entity} />
 </Layout>

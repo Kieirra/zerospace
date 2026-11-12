@@ -1,5 +1,5 @@
 import { TABS } from './wiki.constants.ts';
-import type { PatchNoteMismatch } from './wiki-data.types.ts';
+import type { PatchNote, PatchNoteMismatch } from './wiki-data.types.ts';
 import type { CostSegment, DescriptionValues, Entity, EntityKind, StatTile, Weapon } from './wiki.types.ts';
 
 const DISTANCE_SCALE = 100;
@@ -116,6 +116,11 @@ export const byName = (a: { name: string }, b: { name: string }) => a.name.local
 export const byOrderThenName = (a: Ordered, b: Ordered) => toOrderRank(a) - toOrderRank(b) || byName(a, b);
 
 export const byTierThenOrder = (a: Entity, b: Entity) => toTierRank(a) - toTierRank(b) || byOrderThenName(a, b);
+
+type DatedPatch = Pick<PatchNote, 'id' | 'date'>;
+
+// Most recent patch note first, the highest id breaking a tie.
+export const byNewestPatch = (a: DatedPatch, b: DatedPatch) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id);
 
 export const toInitial = (name: string) => name.charAt(0);
 

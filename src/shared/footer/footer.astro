@@ -1,12 +1,19 @@
 ---
+import { getLatestPatch } from '../latest-patch/latest-patch.data.ts';
+import { formatPatchWithDate } from '../latest-patch/latest-patch.helpers.ts';
 import { GITHUB_URL, STEAM_BUILD_ID } from '../site.constants.ts';
+
+const latestPatch = await getLatestPatch();
 ---
 
 <footer class="bg-bg/60">
   <p class="mx-auto flex min-h-8 max-w-6xl flex-wrap items-center gap-x-2 px-4 py-1.5 text-xs text-muted">
     <span>Fan site, not affiliated with Starlance Studios</span>
     <span aria-hidden="true">·</span>
-    <span>Data: ZeroSpace build {STEAM_BUILD_ID}</span>
+    <span>
+      Data: game build {STEAM_BUILD_ID} ·{' '}
+      <a href={latestPatch.url} class="underline hover:text-text">{formatPatchWithDate(latestPatch)}</a>
+    </span>
     <span aria-hidden="true">·</span>
     <a href={GITHUB_URL} class="underline hover:text-text">GitHub</a>
   </p>

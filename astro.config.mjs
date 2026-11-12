@@ -1,5 +1,6 @@
 import { satteri } from '@astrojs/markdown-satteri';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import { stripBuildOrder } from './src/guides/strip-build-order.ts';
@@ -12,8 +13,21 @@ const fontsourceFile = (family, weight) => ({
   style: 'normal',
 });
 
+// Pages that only redirect (/ and /wiki/<faction>), and the 404: kept out of the sitemap.
+const NOT_IN_SITEMAP = /^\/(wiki\/[^/]+\/?|404\/?)?$/;
+
+// Same URLs as the canonical links: the internal links have no trailing slash.
+const withoutTrailingSlash = (item) => ({ ...item, url: item.url.replace(/\/$/, '') });
+
 export default defineConfig({
-  integrations: [react()],
+  site: 'https://www.zerospace.fr',
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !NOT_IN_SITEMAP.test(new URL(page).pathname),
+      serialize: withoutTrailingSlash,
+    }),
+  ],
   fonts: [
     {
       provider: fontProviders.local(),

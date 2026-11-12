@@ -1,10 +1,41 @@
 ---
+import { getGameVersion, getLatestPatch } from '../../shared/latest-patch/latest-patch.data.ts';
 import Layout from '../../shared/layout/layout.astro';
+import { toAbsoluteUrl } from '../../shared/seo/seo.helpers.ts';
+import { GITHUB_URL, SITE_NAME, STEAM_BUILD_ID, STEAM_STORE_URL } from '../../shared/site.constants.ts';
 import WikiBanner from '../../wiki/wiki-index/wiki-banner/wiki-banner.astro';
 import WikiIndex from '../../wiki/wiki-index/wiki-index.astro';
+import { getFactions } from '../../wiki/wiki.data.ts';
+import { describeWiki, toWikiTitle } from '../../wiki/wiki-seo.helpers.ts';
+
+const latestPatch = await getLatestPatch();
+const version = await getGameVersion();
+const title = toWikiTitle(version);
+const description = describeWiki(await getFactions(), version);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: toAbsoluteUrl('/', Astro.site),
+    inLanguage: 'en',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: `${SITE_NAME} Wiki`,
+    description,
+    url: toAbsoluteUrl('/wiki', Astro.site),
+    version: STEAM_BUILD_ID,
+    dateModified: latestPatch.date,
+    inLanguage: 'en',
+    isBasedOn: { '@type': 'VideoGame', name: SITE_NAME, url: STEAM_STORE_URL },
+    creator: { '@type': 'Organization', name: `${SITE_NAME} Wiki`, url: GITHUB_URL },
+  },
+];
 ---
 
-<Layout title="Wiki" isCentered>
+<Layout title={title} description={description} jsonLd={jsonLd} isCentered>
   <WikiBanner slot="hero" />
   <WikiIndex />
 </Layout>

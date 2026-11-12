@@ -1,13 +1,24 @@
 ---
+import { getGameVersion } from '../../../shared/latest-patch/latest-patch.data.ts';
 import Layout from '../../../shared/layout/layout.astro';
+import { toBreadcrumbList } from '../../../shared/seo/seo.helpers.ts';
 import FactionPage from '../../../wiki/faction-page/faction-page.astro';
-import { getFactionTabPaths } from '../../../wiki/wiki.data.ts';
+import { findImageUrl } from '../../../wiki/game-image/game-image.helpers.ts';
+import { getFactionEntities, getFactionTabPaths } from '../../../wiki/wiki.data.ts';
+import { describeFactionTab, toFactionTabBreadcrumb, toFactionTabTitle } from '../../../wiki/wiki-seo.helpers.ts';
 
 export const getStaticPaths = getFactionTabPaths;
 
 const { faction, tab } = Astro.props;
+const version = await getGameVersion();
+const count = (await getFactionEntities(faction.id, tab.kind)).length;
 ---
 
-<Layout title={`${tab.label} · ${faction.name}`}>
+<Layout
+  title={toFactionTabTitle(faction, tab, version)}
+  description={describeFactionTab(faction, tab, count, version)}
+  image={findImageUrl(faction.id)}
+  jsonLd={[toBreadcrumbList(toFactionTabBreadcrumb(faction, tab), Astro.site)]}
+>
   <FactionPage faction={faction} tab={tab} />
 </Layout>

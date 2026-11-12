@@ -4,3 +4,4 @@ export const SITE_NAME = 'ZeroSpace';
 export const GITHUB_URL = 'https://github.com/kieirra/zerospace';
 export const STEAM_BUILD_ID = source.steamBuildId;
 export const WIKI_IMAGES_PATH = '/images/wiki';
+export const STEAM_STORE_URL = 'https://store.steampowered.com/app/1605850/';

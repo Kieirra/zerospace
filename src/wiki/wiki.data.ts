@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
 import { TABS } from './wiki.constants.ts';
-import { byName, byOrderThenName } from './wiki.helpers.ts';
+import { byName, byNewestPatch, byOrderThenName } from './wiki.helpers.ts';
 import type { SearchItem } from '../shared/search/search.helpers.ts';
 import { toEntityUpdates } from './entity-page/entity-updates/entity-updates.helpers.ts';
 import type { EntityUpdate } from './entity-page/entity-updates/entity-updates.helpers.ts';
@@ -52,7 +52,7 @@ export const getSearchIndex = async () => {
 export const getPatchNotes = async () =>
   (await getCollection('patchNotes'))
     .map(({ data }) => data)
-    .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
+    .sort(byNewestPatch);
 
 // Updates of every entity the patch notes concern, built once for all the entity pages.
 export const getPatchHistory = () => (patchHistory ??= buildPatchHistory());

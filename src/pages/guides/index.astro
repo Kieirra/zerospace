@@ -1,8 +1,10 @@
 ---
 import GuidesIndex from '../../guides/guides-index/guides-index.astro';
+import { getGuides } from '../../guides/guides.data.ts';
+import { describeGuides, GUIDES_TITLE } from '../../guides/guides-seo.helpers.ts';
 import Layout from '../../shared/layout/layout.astro';
 ---
 
-<Layout title="Guides">
+<Layout title={GUIDES_TITLE} description={describeGuides(await getGuides())}>
   <GuidesIndex />
 </Layout>

@@ -4,14 +4,15 @@ import clsx from 'clsx';
 import '../../styles/global.css';
 import Footer from '../footer/footer.astro';
 import Nav from '../nav/nav.astro';
+import SeoMeta from '../seo/seo-meta.astro';
+import type { Props as SeoMetaProps } from '../seo/seo-meta.astro';
 import { SITE_NAME } from '../site.constants.ts';
 
-interface Props {
-  title?: string;
+interface Props extends Partial<SeoMetaProps> {
   isCentered?: boolean;
 }
 
-const { title, isCentered } = Astro.props;
+const { title = SITE_NAME, isCentered, ...seo } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,7 +20,9 @@ const { title, isCentered } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title ? `${title} · ${SITE_NAME}` : SITE_NAME}</title>
+    <title>{title}</title>
+    <SeoMeta title={title} {...seo} />
+    <slot name="head" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
