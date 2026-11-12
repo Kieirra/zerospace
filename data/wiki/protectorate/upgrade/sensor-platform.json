@@ -3,7 +3,7 @@
   "kind": "upgrade",
   "faction": "protectorate",
   "name": "Sensor Platform",
-  "description": "Upgrade to provide vision over a large area.\nProvides high ground vision.",
+  "description": "Provides vision over a large area.\nProvides high ground vision.",
   "hotkey": "W",
   "order": 10,
   "cost": {

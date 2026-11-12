@@ -2,6 +2,20 @@
   "warnings": [
     {
       "code": "subject-unresolved",
+      "gid": "1849192144184571",
+      "faction": null,
+      "subject": null,
+      "detail": "Queued units are canceled when the tech building they need is destroyed"
+    },
+    {
+      "code": "subject-unresolved",
+      "gid": "1849192144184571",
+      "faction": null,
+      "subject": null,
+      "detail": "Lifesteal still worked on buildings in some cases"
+    },
+    {
+      "code": "subject-unresolved",
       "gid": "1847920302250372",
       "faction": null,
       "subject": null,

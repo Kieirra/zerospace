@@ -37,7 +37,7 @@
   "abilities": [
     {
       "name": "Overclock",
-      "description": "Gives the Overclock buff to nearby units, granting them {damage}% bonus damage and +{speed} move speed for {second} seconds.",
+      "description": "Gives the Overclock buff to nearby units, granting them {damage}% bonus damage and {speed} move speed for {second} seconds.",
       "values": {
         "damage": 25,
         "speed": 150,

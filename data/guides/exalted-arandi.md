@@ -1,7 +1,7 @@
 ---
 title: Exalted Arandi
 author: Kieirra
-patch: 18
+patch: 19
 added: 2026-11-11
 description: Strong build order to take map control early and snowball, choking the opponent and keeping them off the XP towers.
 faction: the-legion

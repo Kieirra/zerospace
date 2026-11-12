@@ -1,0 +1,88 @@
+{
+  "id": "1849192144184571",
+  "label": "Update #19",
+  "title": "Update #19: Xol Invasion, Alliance Fleets and More",
+  "date": "2026-11-12",
+  "url": "https://store.steampowered.com/news/app/1605850/view/1849192144184571",
+  "sections": [
+    {
+      "faction": null,
+      "heading": "All Factions",
+      "entries": [
+        {
+          "subject": null,
+          "entityIds": [],
+          "lines": [
+            {
+              "text": "Queued units are canceled when the tech building they need is destroyed"
+            }
+          ]
+        },
+        {
+          "subject": null,
+          "entityIds": [],
+          "kind": "fix",
+          "lines": [
+            {
+              "text": "Lifesteal still worked on buildings in some cases"
+            },
+            {
+              "text": "Healers with a damage weapon attacked hurt allies they could not heal"
+            },
+            {
+              "text": "Units pushed off their path could turn back or get stuck"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-legion",
+      "heading": "The Legion",
+      "entries": [
+        {
+          "subject": "Emperor Projection",
+          "entityIds": [
+            "the-legion/topbar/ritual"
+          ],
+          "kind": "fix",
+          "lines": [
+            {
+              "text": "The Emperor could freeze in place with a large number of souls"
+            }
+          ]
+        },
+        {
+          "subject": "Dreadnought",
+          "entityIds": [
+            "the-legion/unit/dreadnought"
+          ],
+          "kind": "fix",
+          "lines": [
+            {
+              "text": "Dreadnought turrets stayed visible after the Dreadnought died in online games"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "faction": "the-xol",
+      "heading": "The Xol",
+      "entries": [
+        {
+          "subject": "Replicate",
+          "entityIds": [
+            "the-xol/topbar/replicate"
+          ],
+          "kind": "fix",
+          "lines": [
+            {
+              "text": "Replicate did not copy the cost of the unit"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

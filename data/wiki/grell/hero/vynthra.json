@@ -64,7 +64,7 @@
     },
     {
       "name": "Life Harvest",
-      "description": "Consume {Health} health from a friendly unit.\nVynthra heals, and gains +{Speed} movement speed for {Duration} seconds.\nOn self-cast, affect nearby friendly units instead.",
+      "description": "Consume {Health} health from a friendly unit.\nVynthra heals, and gains {Speed} increased movement speed for {Duration} seconds.\nOn self-cast, affect nearby friendly units instead.",
       "values": {
         "Health": 250,
         "Speed": 125,

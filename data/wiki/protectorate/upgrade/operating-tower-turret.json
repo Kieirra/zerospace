@@ -3,7 +3,7 @@
   "kind": "upgrade",
   "faction": "protectorate",
   "name": "Operating Tower Turret",
-  "description": "Upgrade to attach a defensive turret.",
+  "description": "A Supply Platform equipped with a defensive turret",
   "hotkey": "E",
   "order": 15,
   "cost": {

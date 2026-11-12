@@ -31,6 +31,47 @@
   },
   "ignore": {},
   "include": {
+    "1849192144184571": [
+      {
+        "faction": null,
+        "heading": "All Factions",
+        "subject": null,
+        "entityIds": [],
+        "lines": ["Queued units are canceled when the tech building they need is destroyed"]
+      },
+      {
+        "faction": null,
+        "subject": null,
+        "entityIds": [],
+        "kind": "fix",
+        "lines": [
+          "Lifesteal still worked on buildings in some cases",
+          "Healers with a damage weapon attacked hurt allies they could not heal",
+          "Units pushed off their path could turn back or get stuck"
+        ]
+      },
+      {
+        "faction": "the-legion",
+        "subject": "Emperor Projection",
+        "entityIds": ["the-legion/topbar/ritual"],
+        "kind": "fix",
+        "lines": ["The Emperor could freeze in place with a large number of souls"]
+      },
+      {
+        "faction": "the-legion",
+        "subject": "Dreadnought",
+        "entityIds": ["the-legion/unit/dreadnought"],
+        "kind": "fix",
+        "lines": ["Dreadnought turrets stayed visible after the Dreadnought died in online games"]
+      },
+      {
+        "faction": "the-xol",
+        "subject": "Replicate",
+        "entityIds": ["the-xol/topbar/replicate"],
+        "kind": "fix",
+        "lines": ["Replicate did not copy the cost of the unit"]
+      }
+    ],
     "1846018067937263": [
       {
         "faction": "the-xol",
