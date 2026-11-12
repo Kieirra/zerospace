@@ -119,7 +119,7 @@ describe('Build order parsing', () => {
     const [group] = parseBuildOrder('1. when Kraegar starts: Garrison Tower + Armory').steps[0].groups;
 
     expect(group).toEqual({
-      condition: { name: 'Kraegar', kind: undefined, event: 'starts', line: 1 },
+      condition: { type: 'entity', name: 'Kraegar', kind: undefined, event: 'starts', line: 1 },
       items: [item('Garrison Tower'), item('Armory')],
     });
   });
@@ -129,7 +129,7 @@ describe('Build order parsing', () => {
 
     expect(first.condition).toBeUndefined();
     expect(second).toEqual({
-      condition: { name: 'Armory', kind: undefined, event: 'done', line: 2 },
+      condition: { type: 'entity', name: 'Armory', kind: undefined, event: 'done', line: 2 },
       items: [item('More Feed', 1, 2)],
     });
   });
@@ -137,7 +137,75 @@ describe('Build order parsing', () => {
   it('should keep the kind of the condition when the name is followed by [unit]', () => {
     const [, phase] = parseBuildOrder('1. Bestiary\n2. when Dreadnought [unit] done: Altar').steps;
 
-    expect(phase.groups[0].condition).toEqual({ name: 'Dreadnought', kind: 'unit', event: 'done', line: 2 });
+    expect(phase.groups[0].condition).toEqual({
+      type: 'entity',
+      name: 'Dreadnought',
+      kind: 'unit',
+      event: 'done',
+      line: 2,
+    });
+  });
+
+  it('should read the resources when the condition lists an amount of hexite', () => {
+    expect(parseBuildOrder('1. when 150 hexite: Altar').steps[0].groups[0].condition).toEqual({
+      type: 'resources',
+      resources: [{ amount: '150', resource: 'hexite' }],
+    });
+  });
+
+  it('should read both resources when the condition joins hexite and flux with and', () => {
+    expect(parseBuildOrder('1. Citadel\n   -> when 150 hexite and 100 flux: Altar').steps[0].groups[1].condition).toEqual({
+      type: 'resources',
+      resources: [
+        { amount: '150', resource: 'hexite' },
+        { amount: '100', resource: 'flux' },
+      ],
+    });
+  });
+
+  it('should read the timer and keep the items when the condition is m:ss', () => {
+    expect(parseBuildOrder('1. when 2:30: Altar').steps[0].groups[0]).toEqual({
+      condition: { type: 'timer', time: '2:30' },
+      items: [item('Altar')],
+    });
+  });
+
+  it('should keep the free text when the condition matches no other form', () => {
+    expect(parseBuildOrder('1. when they scout you: Altar').steps[0].groups[0]).toEqual({
+      condition: { type: 'text', text: 'they scout you' },
+      items: [item('Altar')],
+    });
+  });
+
+  it('should keep the colon of a time in the free text when the text ends with a time before the colon', () => {
+    expect(parseBuildOrder('1. when they push at 4:00: Altar').steps[0].groups[0]).toEqual({
+      condition: { type: 'text', text: 'they push at 4:00' },
+      items: [item('Altar')],
+    });
+  });
+
+  it('should fail when the resource is unknown', () => {
+    expect(() => parseBuildOrder('1. when 100 flx: Altar')).toThrow(
+      'bo line 1: unknown resource "flx". Use hexite or flux.',
+    );
+  });
+
+  it('should fail when the resource is repeated', () => {
+    expect(() => parseBuildOrder('1. when 100 hexite and 50 hexite: Altar')).toThrow(
+      'bo line 1: resource "hexite" is repeated. Use each resource once.',
+    );
+  });
+
+  it('should fail when the resource amount is 0', () => {
+    expect(() => parseBuildOrder('1. when 0 flux: Altar')).toThrow(
+      'bo line 1: invalid amount "0 flux". Use a number above 0.',
+    );
+  });
+
+  it('should fail when the seconds of the timer are above 59', () => {
+    expect(() => parseBuildOrder('1. when 2:75: Altar')).toThrow(
+      'bo line 1: invalid time "2:75". Use seconds from 00 to 59.',
+    );
   });
 
   it('should fail when a trigger is nested', () => {
@@ -156,6 +224,10 @@ describe('Build order parsing', () => {
 
   it('should fail when the steps are not consecutive', () => {
     expect(() => parseBuildOrder('1. Bestiary\n3. Altar')).toThrow('bo line 2: expected step 2.');
+  });
+
+  it('should fail when the steps are not consecutive after a block that starts at 2', () => {
+    expect(() => parseBuildOrder('2. Bestiary\n4. Altar')).toThrow('bo line 2: expected step 3.');
   });
 
   it('should fail when a step has two goals', () => {
@@ -232,6 +304,7 @@ describe('Build order name resolution', () => {
 
   it('should resolve the condition entity when the name differs only by case', () => {
     expect(resolveSteps('1. Altar\n2. when altar done: Kraegar')[1].groups[0].condition).toEqual({
+      type: 'entity',
       entity: expect.objectContaining({ id: 'the-legion/building/altar' }),
       event: 'done',
     });
@@ -240,13 +313,13 @@ describe('Build order name resolution', () => {
   it('should pick the entity of the kind when the condition name has [kind]', () => {
     const [, phase] = resolveSteps('1. Dreadnought [unit]\n2. when Dreadnought [unit] done: Altar');
 
-    expect(phase.groups[0].condition?.entity.id).toBe('the-legion/unit/dreadnought');
+    expect(phase.groups[0].condition).toMatchObject({ entity: { id: 'the-legion/unit/dreadnought' } });
   });
 
   it('should accept the condition when the name only appears in a loop of an earlier line', () => {
     const [, phase] = resolveSteps('1. Bestiary (loop Exalted)\n2. when Exalted starts: Altar');
 
-    expect(phase.groups[0].condition?.entity.id).toBe('the-legion/unit/exalted');
+    expect(phase.groups[0].condition).toMatchObject({ entity: { id: 'the-legion/unit/exalted' } });
   });
 
   it('should fail when the condition name does not appear in an earlier line', () => {
@@ -262,6 +335,22 @@ describe('Build order name resolution', () => {
     expect(() => resolveSteps('1. Altar\n2. when Altr done: Kraegar')).toThrow(
       'bo line 2: "Altr" not found in the-legion + arandi. Did you mean "Altar"?',
     );
+  });
+
+  it('should fail and not fall back to free text when the condition name ends with done but is not in scope', () => {
+    expect(() => resolveSteps('1. Citadel\n2. when Altor done: Kraegar')).toThrow(
+      'bo line 2: "Altor" not found in the-legion + arandi. Did you mean "Altar"?',
+    );
+  });
+
+  it('should keep the resources, the timer and the free text unresolved when the condition names no entity', () => {
+    const [phase] = resolveSteps('1. when 150 hexite: Altar\n-> when 2:30: Citadel\n-> when Kraegar shows up: Armory');
+
+    expect(phase.groups.map(({ condition }) => condition)).toEqual([
+      { type: 'resources', resources: [{ amount: '150', resource: 'hexite' }] },
+      { type: 'timer', time: '2:30' },
+      { type: 'text', text: 'Kraegar shows up' },
+    ]);
   });
 
   it('should keep free text unresolved when an item is quoted', () => {
@@ -296,7 +385,7 @@ describe('Build order branches', () => {
       branches: [branch],
     } = resolveBuildOrders({ main: '1. Altar\n2. Kraegar', branches: ['1. when Kraegar starts: Armory'] }, SCOPE);
 
-    expect(branch.steps[0].groups[0].condition?.entity.id).toBe('the-legion/hero/kraegar');
+    expect(branch.steps[0].groups[0].condition).toMatchObject({ entity: { id: 'the-legion/hero/kraegar' } });
   });
 
   it('should fail when a branch waits for an entity of another branch', () => {
@@ -374,6 +463,13 @@ describe('Build order table', () => {
   const toRows = (text: string) => toPhases(text).flatMap(({ rows }) => rows);
   const whenOf = (text: string) => toRows(text).map(({ when }) => when);
 
+  it('should keep the written phase numbers and number the rows from 1 when a block starts at 2', () => {
+    const phases = toPhases('2. Bestiary\n3. Altar');
+
+    expect(phases.map(({ number }) => number)).toEqual([2, 3]);
+    expect(phases.flatMap(({ rows }) => rows.map(({ number }) => number))).toEqual([1, 2]);
+  });
+
   it('should number the rows across phases and name the trigger on its first row only when groups and triggers follow each other', () => {
     const phases = toPhases(
       '1. Idal Conduit + 2 Bestiary (-> Legion Labourer -> Exalted)\n-> Idal Conduit\n2. Garrison Tower',
@@ -423,6 +519,24 @@ describe('Build order table', () => {
     expect(whenOf(text)).toEqual([undefined, 'When Altar done', 'When Kraegar starts', 'When Altar done']);
   });
 
+  it('should label the timer At m:ss and the resources When, and keep the free text, when the groups have these conditions', () => {
+    const text = '1. Altar\n-> when 2:30: Kraegar\n-> when 150 hexite and 100 flux: Armory\n-> when they scout you: Citadel';
+
+    expect(whenOf(text)).toEqual([
+      undefined,
+      { type: 'timer', time: '2:30', label: 'At 2:30' },
+      {
+        type: 'resources',
+        resources: [
+          { amount: '150', resource: 'hexite' },
+          { amount: '100', resource: 'flux' },
+        ],
+        label: 'When 150 hexite and 100 flux',
+      },
+      { type: 'text', text: 'they scout you' },
+    ]);
+  });
+
   it('should leave the row empty when no entity of the row depends on the previous group', () => {
     expect(whenOf('1. Kraegar + Bestiary\n-> Altar')).toEqual([undefined, undefined]);
   });
@@ -469,6 +583,7 @@ describe('Exalted Arandi guide', () => {
       kind: undefined,
     });
     expect(steps[1].groups[0].condition).toEqual({
+      type: 'entity',
       name: 'Kraegar',
       kind: undefined,
       event: 'starts',

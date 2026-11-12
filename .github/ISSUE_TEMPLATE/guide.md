@@ -30,7 +30,7 @@ weaknesses:
 
 ```bo
 1. Idal Conduit + 2 Bestiary (loop Exalted) (-> 3 Legion Labourer) + Citadel
-   -> Idal Conduit + Altar
+   -> when 100 flux: Idal Conduit + Altar
    -> Kraegar + Hallowed Strike
    goal: Take map control and the 3 XP towers
 2. when Kraegar starts: Garrison Tower + Idal Conduit + Terror Tower + Armory + Arandi Penumbra
@@ -50,7 +50,8 @@ weaknesses:
 ## If they go Skrells
 
 ```bo
-1. Barracks -> 4 Thrall
+2. when they show Skrells: Barracks
+   -> 4 Thrall
    goal: Hold the air harass
 ```
 ````

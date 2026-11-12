@@ -12,12 +12,13 @@ One markdown file per guide in [`data/guides/`](data/guides/), with an optional 
 
 | Notation | Meaning |
 |---|---|
-| `1.` | Starts phase 1 |
+| `1.` | Starts phase 1 (a block can start at any number) |
 | `A + B` | A and B at the same time |
 | `A -> B` | B when A is done |
 | `A (-> B)` | B as soon as A is started |
 | `Bestiary (loop Exalted)` | Exalted produced in a loop |
 | `when X starts:` / `when X done:` | The group waits for X |
+| `when 150 hexite and 100 flux:` / `when 2:30:` / `when they scout you:` | The group waits for resources, a time or anything else |
 | `2 Bestiary` | Quantity |
 | `goal: text` | Goal of the phase |
 
@@ -37,7 +38,8 @@ One markdown file per guide in [`data/guides/`](data/guides/), with an optional 
 ## If they go Skrells
 
 ```bo
-1. Barracks -> 4 Thrall
+2. when they show Skrells: Barracks
+   -> 4 Thrall
    goal: Hold the air harass
 ```
 ````

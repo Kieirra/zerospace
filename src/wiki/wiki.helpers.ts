@@ -5,7 +5,7 @@ import type { CostSegment, DescriptionValues, Entity, EntityKind, StatTile, Weap
 const DISTANCE_SCALE = 100;
 // A variable with its sign before and its percent after, shown as one value: "+{speed}" → "+250".
 const SHOWN_VALUE_PATTERN = /([+-]?)\{([^{}]+)\}(%?)/g;
-const RESOURCES: CostSegment['resource'][] = ['hexite', 'flux'];
+export const RESOURCES: CostSegment['resource'][] = ['hexite', 'flux'];
 
 export const formatNumber = (value: number) => String(Number(value.toFixed(2)));
 

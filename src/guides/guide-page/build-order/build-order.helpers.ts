@@ -1,7 +1,8 @@
 import { HEADQUARTER_IDS } from '../../guides.constants.ts';
 import { findClosestName, normalizeName } from '../../guides.helpers.ts';
 import { findBuildOrderBlocks } from '../../strip-build-order.ts';
-import type { Entity } from '../../../wiki/wiki.types.ts';
+import { RESOURCES } from '../../../wiki/wiki.helpers.ts';
+import type { CostSegment, Entity } from '../../../wiki/wiki.types.ts';
 import type {
   BuildOrder,
   BuildOrderCondition,
@@ -13,8 +14,10 @@ import type {
   BuildOrderSources,
   BuildOrderStep,
   BuildOrderTarget,
+  BuildOrderWhen,
   ResolvableKind,
   ResolvedBuildOrder,
+  ResolvedBuildOrderCondition,
   ResolvedBuildOrderGroup,
   ResolvedBuildOrderItem,
 } from '../../guides.types.ts';
@@ -23,7 +26,11 @@ const NOTE_DEFINITION_PATTERN = /^\^(\d+):\s*(.*)$/;
 const GOAL_PATTERN = /^goal:\s*(.*)$/;
 const STEP_PATTERN = /^(\d+)\.\s*(.*)$/;
 const CONTINUATION_PATTERN = /^->\s*(.*)$/;
-const CONDITION_PATTERN = /^when\s+(.+?)\s+(starts|done):\s*(.*)$/;
+// The condition ends at the first colon not followed by a digit: `when 2:30: Altar`.
+const CONDITION_PATTERN = /^when\s+(.+?):(?!\d)\s*(.*)$/;
+const ENTITY_CONDITION_PATTERN = /^(.+?)\s+(starts|done)$/;
+const RESOURCES_CONDITION_PATTERN = /^\d+\s+[a-z]+(?:\s+and\s+\d+\s+[a-z]+)*$/i;
+const TIMER_CONDITION_PATTERN = /^\d+:(\d{2})$/;
 // An item, its loop and its trigger: `2 Bestiary (loop Exalted) (-> 3 Legion Labourer)`.
 const SUFFIXES_PATTERN = /^((?:"[^"]*"|[^"(])*?)\s*(?:\(loop\s+([^()]*)\))?\s*(?:\((.*)\))?$/;
 const ITEM_PATTERN = /^(?:([1-9]\d*)\s+)?(?:"([^"]*)"|([^"()[\]^]+?))\s*(?:\[([a-z]+)\])?\s*(?:\^(\d+))?$/;
@@ -66,10 +73,13 @@ export const parseBuildOrder = (text: string): BuildOrder => {
     }
     const stepStart = content.match(STEP_PATTERN);
     if (stepStart) {
-      const expected = steps.length + 1;
-      if (Number(stepStart[1]) !== expected) throw lineError(line, `expected step ${expected}.`);
+      // The first step can carry any number, the next ones follow it.
+      const number = Number(stepStart[1]);
+      const previous = steps.at(-1);
+      const expected = previous ? previous.number + 1 : Math.max(number, 1);
+      if (number !== expected) throw lineError(line, `expected step ${expected}.`);
       steps.push({
-        number: expected,
+        number,
         groups: stepStart[2] === '' ? [] : parseGroups(stepStart[2], line, false),
       });
       return;
@@ -127,12 +137,14 @@ export const resolveBuildOrder = (
       base: HEADQUARTER_IDS.has(entity.id) ? state.nextBase++ : undefined,
     };
   };
-  const resolveCondition = ({ name, kind, event, line }: BuildOrderCondition) => {
+  const resolveCondition = (condition: BuildOrderCondition): ResolvedBuildOrderCondition => {
+    if (condition.type !== 'entity') return condition;
+    const { name, kind, event, line } = condition;
     const entity = findEntity({ name, kind }, scope, line);
     const firstLine = firstLines.get(entity.id);
     if (firstLine === undefined || firstLine >= line)
       throw lineError(line, `"${name}" must appear earlier in the build order.`);
-    return { entity, event };
+    return { type: 'entity', entity, event };
   };
   const resolveItem = ({ count, target, note, loop, trigger, line }: BuildOrderItem): ResolvedBuildOrderItem => ({
     count,
@@ -162,7 +174,7 @@ export const toBuildOrderPhases = (steps: ResolvedBuildOrder['steps']): BuildOrd
     {
       number: ++lastNumber,
       items,
-      when: condition ? `When ${condition.entity.name} ${condition.event}` : derivedWhen,
+      when: condition ? toConditionWhen(condition) : derivedWhen,
     },
     ...items.flatMap(toItemRows),
   ];
@@ -203,6 +215,17 @@ const toWaitLabel = (awaited: ResolvedBuildOrderItem[], items: ResolvedBuildOrde
   return names.size === 0 ? undefined : `When ${joinNames([...names])} done`;
 };
 
+const toConditionWhen = (condition: ResolvedBuildOrderCondition): BuildOrderWhen => {
+  if (condition.type === 'entity') return `When ${condition.entity.name} ${condition.event}`;
+  if (condition.type === 'timer') return { ...condition, label: `At ${condition.time}` };
+  if (condition.type === 'resources')
+    return {
+      ...condition,
+      label: `When ${condition.resources.map(({ amount, resource }) => `${amount} ${resource}`).join(' and ')}`,
+    };
+  return condition;
+};
+
 const itemName = (item: ResolvedBuildOrderItem) => item.entity?.name ?? item.text ?? '';
 
 // "A", "A and B", "A, B and C".
@@ -213,18 +236,37 @@ const parseGroups = (text: string, line: number, isTrigger: boolean) =>
   splitTopLevel(text, GROUP_SEPARATOR).map((group) => parseGroup(group, line, isTrigger));
 
 const parseGroup = (text: string, line: number, isTrigger: boolean): BuildOrderGroup => {
-  const [, name, event, items = text] = text.match(CONDITION_PATTERN) ?? [];
+  const [, condition, items = text] = text.match(CONDITION_PATTERN) ?? [];
   return {
-    condition: name === undefined ? undefined : parseCondition(name, event, text, line),
+    condition: condition === undefined ? undefined : parseCondition(condition, text, line),
     items: splitTopLevel(items, ITEM_SEPARATOR).map((item) => parseItem(item, line, isTrigger)),
   };
 };
 
-const parseCondition = (name: string, event: string, text: string, line: number): BuildOrderCondition => ({
-  ...parseName(name, text, line),
-  event: event === 'starts' ? 'starts' : 'done',
-  line,
-});
+// The first form that matches wins: entity, resources, timer, then free text.
+const parseCondition = (condition: string, text: string, line: number): BuildOrderCondition => {
+  const [, name, event] = condition.match(ENTITY_CONDITION_PATTERN) ?? [];
+  if (name !== undefined)
+    return { type: 'entity', ...parseName(name, text, line), event: event === 'starts' ? 'starts' : 'done', line };
+  if (RESOURCES_CONDITION_PATTERN.test(condition))
+    return { type: 'resources', resources: parseResources(condition, line) };
+  const [, seconds] = condition.match(TIMER_CONDITION_PATTERN) ?? [];
+  if (seconds === undefined) return { type: 'text', text: condition };
+  if (Number(seconds) > 59) throw lineError(line, `invalid time "${condition}". Use seconds from 00 to 59.`);
+  return { type: 'timer', time: condition };
+};
+
+// "150 hexite and 100 flux", each resource once.
+const parseResources = (condition: string, line: number) =>
+  condition.split(/\s+and\s+/i).reduce<CostSegment[]>((resources, part) => {
+    const [amount, name] = part.split(/\s+/);
+    const resource = RESOURCES.find((candidate) => candidate === name.toLowerCase());
+    if (!resource) throw lineError(line, `unknown resource "${name}". Use hexite or flux.`);
+    if (Number(amount) === 0) throw lineError(line, `invalid amount "${part}". Use a number above 0.`);
+    if (resources.some((other) => other.resource === resource))
+      throw lineError(line, `resource "${resource}" is repeated. Use each resource once.`);
+    return [...resources, { amount, resource }];
+  }, []);
 
 const parseItem = (text: string, line: number, isTrigger: boolean): BuildOrderItem => {
   const [, head, loop, trigger] = text.match(SUFFIXES_PATTERN) ?? [];

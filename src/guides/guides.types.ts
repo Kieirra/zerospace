@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import type { Entity, EntityKind, Faction } from '../wiki/wiki.types.ts';
+import type { CostSegment, Entity, EntityKind, Faction } from '../wiki/wiki.types.ts';
 
 export type ResolvableKind = Exclude<EntityKind, 'talent'>;
 export type PatchStatus = 'current' | 'previous' | 'outdated';
@@ -27,10 +27,47 @@ export interface BuildOrderItem {
 }
 
 // `when Kraegar starts:` before a group.
-export interface BuildOrderCondition extends BuildOrderName {
+export interface BuildOrderEntityCondition extends BuildOrderName {
+  type: 'entity';
   event: BuildOrderEvent;
   line: number;
 }
+
+// `when 150 hexite and 100 flux:`: resources in the bank.
+export interface BuildOrderResourcesCondition {
+  type: 'resources';
+  resources: CostSegment[];
+}
+
+// `when 2:30:`
+export interface BuildOrderTimerCondition {
+  type: 'timer';
+  time: string;
+}
+
+// `when they scout you:`
+export interface BuildOrderTextCondition {
+  type: 'text';
+  text: string;
+}
+
+export type BuildOrderCondition =
+  | BuildOrderEntityCondition
+  | BuildOrderResourcesCondition
+  | BuildOrderTimerCondition
+  | BuildOrderTextCondition;
+
+export type ResolvedBuildOrderCondition =
+  | { type: 'entity'; entity: Entity; event: BuildOrderEvent }
+  | BuildOrderResourcesCondition
+  | BuildOrderTimerCondition
+  | BuildOrderTextCondition;
+
+// The resources or the timer, rendered as a chip read by its label: "When 150 hexite and 100 flux", "At 2:30".
+export type BuildOrderChipWhen = (BuildOrderResourcesCondition | BuildOrderTimerCondition) & { label: string };
+
+// "When Altar done", the chip of the resources or the timer, or the free text, rendered with their own style.
+export type BuildOrderWhen = string | BuildOrderChipWhen | BuildOrderTextCondition;
 
 export interface BuildOrderGroup {
   // Replaces the condition derived from the awaited group.
@@ -70,14 +107,14 @@ export interface ResolvedBuildOrderItem {
 }
 
 export interface ResolvedBuildOrderGroup {
-  condition?: { entity: Entity; event: BuildOrderEvent };
+  condition?: ResolvedBuildOrderCondition;
   items: ResolvedBuildOrderItem[];
 }
 
 interface BuildOrderRowBase {
   number: number;
   // "When Bestiary starts", "When Citadel done"... empty when nothing to wait for.
-  when?: string;
+  when?: BuildOrderWhen;
 }
 
 interface BuildOrderGroupRow extends BuildOrderRowBase {

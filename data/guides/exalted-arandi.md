@@ -55,6 +55,13 @@ weaknesses:
 
 ## Against Protectorate Marran
 
-- As soon as you scout Badgers, stay on B1 and fast tech Kraegar's Explosive Warhead. Played well, it lands around 6:30.
+As soon as you scout Badgers, stay on B1 and fast tech Kraegar's Explosive Warhead.
+
+```bo
+2. when Altar done: Inquisitress + Armory + Terror Tower
+   -> More Feed + Explosive Warhead
+   goal: Explosive Warhead around 6:30, no B2
+```
+
 - Do not hesitate to start with Kraegar and get Inquisitress second. She is stronger than Galavax against Badgers, and Kraegar first lets you fast tech the nuke safely.
 - Do not take B2 and watch your flux. If you cannot hide your harvesters, take Efficient Upgrades instead of Lore of Flux at talent level 2.

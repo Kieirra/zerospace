@@ -1,0 +1,20 @@
+---
+import type { BuildOrderWhen } from '../../../guides.types.ts';
+import BuildOrderWhenChip from './build-order-when-chip/build-order-when-chip.astro';
+
+interface Props {
+  when: BuildOrderWhen;
+}
+
+const { when } = Astro.props;
+---
+
+{
+  typeof when === 'string' ? (
+    <span class="text-accent-soft">{when}</span>
+  ) : when.type === 'text' ? (
+    <span class="text-muted italic">{when.text}</span>
+  ) : (
+    <BuildOrderWhenChip when={when} />
+  )
+}
