@@ -32,7 +32,7 @@ Be careful with flux harvesters. Their number is capped, and when one dies it co
 
 ### XP towers and talents
 
-Experience is what really sets ZeroSpace apart from other RTS games. XP unlocks talents, which are passive or active abilities, and they are strong enough to decide a game.
+Experience is what really sets ZeroSpace apart from other RTS games. XP raises your level, and your heroes grow with it, since their health, damage and other stats depend on the level. XP also unlocks talents, which are passive or active abilities strong enough to decide a game. In short, every tower you take makes your heroes stronger.
 
 ![A hero walking to an XP tower guarded by creeps, with the capture circle around it](/images/guides/getting-started-versus/xp-tower.webp)
 
