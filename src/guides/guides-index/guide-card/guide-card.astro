@@ -5,17 +5,13 @@ import { findImageUrl } from '../../../wiki/game-image/game-image.helpers.ts';
 import { getFactionMap } from '../../../wiki/wiki.data.ts';
 import GuideFactions from '../../guide-factions/guide-factions.astro';
 import GuideStatus from '../../guide-status/guide-status.astro';
-import GuideTags from '../../guide-tags/guide-tags.astro';
-import { GUIDE_KIND_LABELS, MAIN_FACTION_ORDER } from '../../guides.constants.ts';
+import { GUIDE_KIND_LABELS, GUIDE_STYLE_LABELS, MAIN_FACTION_ORDER } from '../../guides.constants.ts';
 import { toGuideAccent } from '../../guides.helpers.ts';
 import type { Guide } from '../../guides.types.ts';
 
 interface Props {
   guide: Guide;
 }
-
-// Sections listed on a guide card, the others are counted.
-const MAX_SECTIONS = 3;
 
 const { guide } = Astro.props;
 // A guide without faction covers them all: its header shows the 4 faction arts side by side.
@@ -25,87 +21,90 @@ const factions = await getFactionMap();
 const titleId = `guide-title-${guide.slug}`;
 const accent = toGuideAccent(guide.faction);
 const isGuide = guide.kind === 'guide';
-const hasTags = guide.matchupTags.length > 0 || guide.style !== undefined;
-const hiddenSections = guide.sections.length - MAX_SECTIONS;
+// Versus is true for every build order: the card shows the matchups and the style only.
+const tags = guide.style ? [...guide.matchupTags, GUIDE_STYLE_LABELS[guide.style]] : guide.matchupTags;
+// A guide without patch is general: its reading time replaces the patch.
+const patchLine =
+  guide.patch === undefined
+    ? `${guide.readingMinutes} min`
+    : `Patch ${guide.patch}${guide.patchStatus === 'outdated' ? ' · Outdated' : ''}`;
 ---
 
-<a
-  href={`/guides/${guide.slug}`}
-  aria-labelledby={titleId}
-  style={`--guide-accent: ${accent}`}
-  class={clsx(
-    'group block h-full bevel-sm p-0.5 transition',
-    'hover:bg-(--guide-accent) focus-visible:bg-(--guide-accent) focus-visible:outline-none',
-    guide.patchStatus === 'outdated' && 'opacity-60 hover:opacity-100 focus-visible:opacity-100',
-  )}
->
-  <div class="flex h-full flex-col bevel-sm bg-surface">
-    <div class="relative h-16 overflow-hidden">
-      <div
-        class={clsx(
-          'pointer-events-none absolute inset-0 flex opacity-35 mask-b-from-10% mask-b-to-100%',
-          'transition-transform duration-350 motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]',
-        )}
-      >
-        {
-          artUrls.map((url) => (
-            <img src={url} alt="" loading="lazy" decoding="async" class="h-full min-w-0 flex-1 object-cover object-[center_20%]" />
-          ))
-        }
+<div class="relative h-full">
+  <a
+    href={`/guides/${guide.slug}`}
+    aria-labelledby={titleId}
+    style={`--guide-accent: ${accent}`}
+    class={clsx(
+      'group block h-full bevel-sm p-0.5 transition',
+      'hover:bg-(--guide-accent) focus-visible:bg-(--guide-accent) focus-visible:outline-none',
+      guide.patchStatus === 'outdated' && 'opacity-60 hover:opacity-100 focus-visible:opacity-100',
+    )}
+  >
+    <div class="flex h-full flex-col bevel-sm bg-surface">
+      <div class="relative h-14 overflow-hidden">
+        <div
+          class={clsx(
+            'pointer-events-none absolute inset-0 flex opacity-35 mask-b-from-10% mask-b-to-100%',
+            'transition-transform duration-350 motion-safe:group-hover:scale-[1.04] motion-safe:group-focus-visible:scale-[1.04]',
+          )}
+        >
+          {
+            artUrls.map((url) => (
+              <img src={url} alt="" loading="lazy" decoding="async" class="h-full min-w-0 flex-1 object-cover object-[center_20%]" />
+            ))
+          }
+        </div>
+        <div class="relative flex h-full items-center justify-between gap-2 px-4">
+          <p class="flex shrink-0 flex-col gap-0.5 text-xs label-caps">
+            <span class="text-(--guide-accent)">{GUIDE_KIND_LABELS[guide.kind].one}</span>
+            <span class={clsx('tabular-nums', guide.patchStatus === 'current' ? 'text-heal' : 'text-muted')}>{patchLine}</span>
+          </p>
+          {
+            guide.faction ? (
+              <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />
+            ) : (
+              <p class="flex gap-1.5">
+                {MAIN_FACTION_ORDER.map((id) => (
+                  <GameImage id={id} name={factions.get(id)?.name ?? id} size="mini" />
+                ))}
+              </p>
+            )
+          }
+        </div>
       </div>
-      <div class="absolute top-2 right-2">
-        <GuideStatus status={guide.patchStatus} added={guide.added} />
-      </div>
-      <div class="relative flex h-full items-center px-4">
-        {
-          guide.faction ? (
-            <GuideFactions faction={guide.faction} mercenary={guide.mercenary} />
-          ) : (
-            <p class="flex gap-1.5">
-              {MAIN_FACTION_ORDER.map((id) => (
-                <GameImage id={id} name={factions.get(id)?.name ?? id} size="mini" />
-              ))}
-            </p>
-          )
-        }
+      <div class="flex flex-1 flex-col gap-3 p-4">
+        <div class="flex h-32 flex-col gap-4">
+          <div class="flex flex-col gap-1">
+            <h2 id={titleId} class="line-clamp-1 text-xl font-bold">{guide.title}</h2>
+            {
+              tags.length > 0 && (
+                <ul class="flex flex-wrap gap-1">
+                  {tags.map((tag) => (
+                    <li class="inline-flex h-5 items-center bg-surface-raised px-1.5 text-xs">{tag}</li>
+                  ))}
+                </ul>
+              )
+            }
+          </div>
+          <p class={clsx('text-sm text-text/80', isGuide ? 'line-clamp-4' : 'line-clamp-3')}>{guide.description}</p>
+        </div>
+        <div class="mt-auto flex items-end justify-between gap-2 pt-4">
+          <p class="min-w-0 truncate text-sm"><span class="text-muted">by</span> <span class="font-semibold text-text">{guide.author}</span></p>
+          <span
+            class={clsx(
+              'inline-flex h-9 shrink-0 items-center px-3 bevel-sm',
+              'bg-text text-xs font-bold tracking-[.12em] text-bg uppercase transition-colors',
+              'group-hover:bg-(--guide-accent) group-focus-visible:bg-(--guide-accent)',
+            )}
+          >
+            {isGuide ? 'Read guide' : 'View build order'}
+          </span>
+        </div>
       </div>
     </div>
-    <div class="flex flex-1 flex-col gap-3 p-4">
-      <div class="flex flex-col gap-1.5">
-        <p class="flex flex-wrap gap-x-2 text-xs label-caps">
-          <span class="text-(--guide-accent)">{GUIDE_KIND_LABELS[guide.kind].one}</span>
-          {isGuide && <span class="text-muted">{guide.readingMinutes} min</span>}
-        </p>
-        <h2 id={titleId} class="line-clamp-2 text-xl font-bold">{guide.title}</h2>
-        {hasTags && <GuideTags guide={guide} />}
-      </div>
-      <p class={clsx('text-sm text-text/80', isGuide ? 'line-clamp-3' : 'line-clamp-4 min-h-[4lh]')}>{guide.description}</p>
-      {
-        isGuide && guide.sections.length > 0 && (
-          <ol class="flex flex-col gap-1 border-l border-line pl-3 text-sm">
-            {guide.sections.slice(0, MAX_SECTIONS).map((section, index) => (
-              <li class="flex gap-2">
-                <span class="text-muted tabular-nums">{index + 1}</span>
-                <span class="truncate">{section.text}</span>
-              </li>
-            ))}
-            {hiddenSections > 0 && <li class="text-muted">+{hiddenSections}</li>}
-          </ol>
-        )
-      }
-      <p class="mt-auto flex justify-between gap-4 text-sm">
-        <span><span class="text-muted">by</span> <span class="font-semibold text-text">{guide.author}</span></span>
-        {guide.patch !== undefined && <span class="text-muted tabular-nums">patch {guide.patch}</span>}
-      </p>
-      <span
-        class={clsx(
-          'inline-flex h-10 items-center self-center px-4 bevel-sm',
-          'bg-text text-xs font-bold tracking-[.16em] text-bg uppercase transition-colors',
-          'group-hover:bg-(--guide-accent) group-focus-visible:bg-(--guide-accent)',
-        )}
-      >
-        {isGuide ? 'Read guide' : 'View build order'}
-      </span>
-    </div>
+  </a>
+  <div class="absolute top-0 left-1/2 -translate-1/2">
+    <GuideStatus added={guide.added} />
   </div>
-</a>
+</div>

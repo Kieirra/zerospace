@@ -7,12 +7,15 @@ import type { GuideKind } from '../guides.types.ts';
 import GuideCard from './guide-card/guide-card.astro';
 
 const guides = await getGuides();
+// One section per kind, in GUIDE_KIND_LABELS order; getGuides() order is kept inside each.
 const kinds = (Object.keys(GUIDE_KIND_LABELS) as GuideKind[]).flatMap((kind) => {
-  const count = guides.filter((guide) => guide.kind === kind).length;
-  return count > 0 ? [{ kind, label: GUIDE_KIND_LABELS[kind].many, count }] : [];
+  const ofKind = guides.filter((guide) => guide.kind === kind);
+  return ofKind.length > 0 ? [{ kind, label: GUIDE_KIND_LABELS[kind].many, count: ofKind.length, guides: ofKind }] : [];
 });
 // One filter per kind, after All: useless with a single kind.
 const filters = kinds.length > 1 ? [{ kind: 'all', label: 'All', count: guides.length }, ...kinds] : [];
+// Section titles only in the All view: a single kind or an active filter already names the list.
+const showTitles = filters.length > 0;
 ---
 
 <h1 class="sr-only">Guides</h1>
@@ -46,15 +49,26 @@ const filters = kinds.length > 1 ? [{ kind: 'all', label: 'All', count: guides.l
 </div>
 {
   guides.length > 0 ? (
-    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {guides.map((guide) => (
-        <li data-guide-kind={guide.kind}>
-          <GuideCard guide={guide} />
-        </li>
+    <div class="flex flex-col gap-6">
+      {kinds.map(({ kind, label, guides }) => (
+        <section data-guide-section={kind} aria-labelledby={showTitles ? `guides-${kind}` : undefined}>
+          {showTitles && (
+            <h2 id={`guides-${kind}`} class="mb-3 text-sm font-bold label-caps">
+              {label}
+            </h2>
+          )}
+          <ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {guides.map((guide) => (
+              <li>
+                <GuideCard guide={guide} />
+              </li>
+            ))}
+          </ul>
+        </section>
       ))}
-    </ul>
+    </div>
   ) : (
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       <div class="flex min-h-44 flex-col items-center justify-center gap-4 border border-dashed border-line p-4">
         <p class="text-muted">No guides</p>
         <AddGuideButton />
@@ -67,11 +81,14 @@ const filters = kinds.length > 1 ? [{ kind: 'all', label: 'All', count: guides.l
   // ?type=guide or ?type=build-order keeps the filter in the URL: a filtered list can be shared.
   const PARAM = 'type';
   const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-guide-filter]')];
-  const cards = [...document.querySelectorAll<HTMLElement>('[data-guide-kind]')];
+  const sections = [...document.querySelectorAll<HTMLElement>('[data-guide-section]')];
+  const titles = [...document.querySelectorAll<HTMLElement>('[data-guide-section] > h2')];
 
   const applyFilter = (kind: string) => {
     for (const button of buttons) button.setAttribute('aria-pressed', String(button.dataset.guideFilter === kind));
-    for (const card of cards) card.hidden = kind !== 'all' && card.dataset.guideKind !== kind;
+    for (const section of sections) section.hidden = kind !== 'all' && section.dataset.guideSection !== kind;
+    // The active filter names the single visible section.
+    for (const title of titles) title.hidden = kind !== 'all';
   };
 
   const initial = new URLSearchParams(location.search).get(PARAM);
