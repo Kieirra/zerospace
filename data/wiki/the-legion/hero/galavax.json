@@ -48,7 +48,7 @@
       },
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.8,
           "unit": "s"
         },

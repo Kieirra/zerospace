@@ -32,7 +32,7 @@ const SHORT_LABELS: Record<string, string> = {
   'harvesters per node': 'Per node',
   'damage over time': 'DoT',
   // Hero ability stats
-  'cast time': 'Cast',
+  immobilized: 'Immobile',
   'launch delay': 'Launch',
   'impact delay': 'Impact',
   'arming delay': 'Arming',

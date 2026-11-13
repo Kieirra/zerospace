@@ -48,7 +48,7 @@
       },
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.1,
           "unit": "s"
         },
@@ -76,7 +76,7 @@
       },
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.15,
           "unit": "s"
         },

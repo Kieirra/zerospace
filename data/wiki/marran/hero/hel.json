@@ -43,7 +43,7 @@
       "description": "Fire a grenade that pushes all units away. Enemy units also take 25 damage and are slowed.",
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.1,
           "unit": "s"
         },
@@ -106,7 +106,7 @@
       },
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 1.2,
           "unit": "s"
         },

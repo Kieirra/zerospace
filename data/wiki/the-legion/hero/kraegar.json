@@ -44,7 +44,7 @@
       "description": "Deal 60 damage in linear area",
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.8,
           "unit": "s"
         },

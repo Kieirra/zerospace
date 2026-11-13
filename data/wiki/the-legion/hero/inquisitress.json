@@ -48,7 +48,7 @@
       "description": "Deal 65 damage and slows by 50% for 2 seconds to enemy units in front of the hero",
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.6,
           "unit": "s"
         },

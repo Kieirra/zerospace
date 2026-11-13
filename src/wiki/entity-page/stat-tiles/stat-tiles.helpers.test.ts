@@ -34,7 +34,7 @@ describe('Tile labels', () => {
   });
 
   it('should shorten the hero ability stat labels', () => {
-    expect(toShortLabel('Cast Time')).toBe('Cast');
+    expect(toShortLabel('Immobilized')).toBe('Immobile');
     expect(toShortLabel('Building Damage')).toBe('vs Bldg');
     expect(toShortLabel('Movement Speed (Water Form)')).toBe('Water move');
   });

@@ -51,7 +51,7 @@
       },
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.1,
           "unit": "s"
         },
@@ -82,7 +82,7 @@
       "description": "Teleport to target location.",
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.15,
           "unit": "s"
         }
@@ -96,7 +96,7 @@
       "description": "Pulls enemies to the middle of a target area.",
       "stats": [
         {
-          "label": "Cast Time",
+          "label": "Immobilized",
           "value": 0.3,
           "unit": "s"
         },
