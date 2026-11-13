@@ -40,7 +40,7 @@
     },
     {
       "label": "Hexite / min (rich)",
-      "value": 504,
+      "value": 448,
       "unit": "/min"
     },
     {
@@ -63,7 +63,7 @@
     },
     {
       "label": "Pit hexite (rich)",
-      "value": 6500
+      "value": 5800
     },
     {
       "label": "Rate when depleted",

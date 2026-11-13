@@ -26,7 +26,7 @@ Each faction has its own way of playing.
 
 ### Economy
 
-Your starting base sits on a rich hexite field and gives 504 hexite per minute, while a standard expansion gives 336 hexite. Expanding is still useful, but less than in other RTS games. This is why many builds make units first and take their second base a bit later.
+Your starting base sits on a rich hexite field and gives 448 hexite per minute, while a standard expansion gives 336 hexite. Expanding is still useful, but less than in other RTS games. This is why many builds make units first and take their second base a bit later.
 
 Be careful with flux harvesters. Their number is capped, and when one dies it comes back for free. You can never go below the number you have built, so think before you add one.
 
@@ -56,7 +56,7 @@ In the early game it pays more to choke your opponent. Keep them from leaving th
 
 ### High ground
 
-Units on high ground deal 15% more damage to units below them. On top of that, units below have no vision of the high ground, so they cannot fire back even while they take damage. Only air units can reach them, or units that walk up the ramp, which is rarely a good idea.
+Ranged units that shoot up at the high ground deal 15% less damage, and the units on top get no bonus. Melee units do not have this penalty, unlike in Age of Empires II. On top of that, units below have no vision of the high ground, so they cannot fire back even while they take damage. Only air units can reach them, or units that walk up the ramp, which is rarely a good idea.
 
 ## After the game
 
