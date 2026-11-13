@@ -3,6 +3,7 @@ import GameImage from '../../../wiki/game-image/game-image.astro';
 import { entityHref } from '../../../wiki/wiki.helpers.ts';
 import type { Entity } from '../../../wiki/wiki.types.ts';
 import EntityPill from '../../entity-pill/entity-pill.astro';
+import { toPreviewId, toPreviewSummaryId } from '../../entity-previews/entity-previews.helpers.ts';
 
 interface Props {
   hero?: Entity;
@@ -28,7 +29,14 @@ const { hero, talents } = Astro.props;
         <ul class="flex flex-wrap items-center gap-2">
           {talents.map((talent) => (
             <li>
-              <a href={entityHref(talent.id)} title={talent.name} aria-label={talent.name}>
+              <a
+                href={entityHref(talent.id)}
+                target="_blank"
+                rel="noopener"
+                aria-label={talent.name}
+                aria-describedby={toPreviewSummaryId(talent.id)}
+                data-entity-preview={toPreviewId(talent.id)}
+              >
                 <GameImage id={talent.id} name={talent.name} size="mini" />
               </a>
             </li>

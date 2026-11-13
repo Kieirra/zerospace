@@ -1,11 +1,12 @@
 import type { Entity } from '../../wiki/wiki.types.ts';
 import type { Guide, ResolvedBuildOrderGroup } from '../guides.types.ts';
 
-// Entities shown as pills on the guide page, once each.
-export const collectPillEntities = ({ hero, army, mainBuildOrder, branches }: Guide) => {
+// Entities of the guide page with a preview card (pills and talent icons), once each.
+export const collectPreviewEntities = ({ hero, talents, army, mainBuildOrder, branches }: Guide) => {
   const buildOrders = mainBuildOrder ? [mainBuildOrder, ...branches] : branches;
   const entities = [
     ...(hero ? [hero] : []),
+    ...talents,
     ...army,
     ...buildOrders.flatMap(({ steps }) => steps.flatMap(({ groups }) => collectGroupEntities(groups))),
   ];

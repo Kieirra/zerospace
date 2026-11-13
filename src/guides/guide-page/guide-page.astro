@@ -11,7 +11,7 @@ import GuideHeader from './guide-header/guide-header.astro';
 import GuideMatchups from './guide-matchups/guide-matchups.astro';
 import GuideStart from './guide-start/guide-start.astro';
 import GuideStrengthsWeaknesses from './guide-strengths-weaknesses/guide-strengths-weaknesses.astro';
-import { collectPillEntities } from './guide-page.helpers.ts';
+import { collectPreviewEntities } from './guide-page.helpers.ts';
 import GuideToc from './guide-toc/guide-toc.astro';
 
 interface Props {
@@ -59,4 +59,4 @@ const hasModules = hasStart || guide.army.length > 0 || guide.vs.length > 0 || h
     }
   </div>
 </div>
-<EntityPreviews entities={collectPillEntities(guide)} />
+<EntityPreviews entities={collectPreviewEntities(guide)} />
