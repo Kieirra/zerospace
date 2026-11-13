@@ -5,9 +5,6 @@
   "name": "Loi'kru",
   "description": "Melee hero who transforms between a shielding Earth form and Healing water form.",
   "order": 0,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 300,
   "combatStats": [
@@ -50,6 +47,13 @@
       "values": {
         "Damage": 50
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.15,
+          "unit": "s"
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 12,
       "range": 800,
@@ -63,6 +67,18 @@
       "values": {
         "health": 50
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.1,
+          "unit": "s"
+        },
+        {
+          "label": "Travel Time",
+          "value": 1.44,
+          "unit": "s"
+        }
+      ],
       "hotkey": "W",
       "cooldown": 18,
       "range": 2000
@@ -75,6 +91,12 @@
         "damage": 50,
         "duration": 10
       },
+      "stats": [
+        {
+          "label": "Explosion Radius",
+          "value": 5
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 15,
       "range": 1500,
@@ -89,6 +111,27 @@
         "stunduration": 2,
         "damage": 75
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.1,
+          "unit": "s"
+        },
+        {
+          "label": "Radius",
+          "value": 2
+        },
+        {
+          "label": "Arming Delay",
+          "value": 0.2,
+          "unit": "s"
+        },
+        {
+          "label": "Travel Time",
+          "value": 2,
+          "unit": "s"
+        }
+      ],
       "hotkey": "W",
       "cooldown": 18,
       "range": 2000,
@@ -103,6 +146,13 @@
         "armor": 1,
         "regen": 2
       },
+      "stats": [
+        {
+          "label": "Movement Speed (Water Form)",
+          "value": 20,
+          "unit": "%"
+        }
+      ],
       "hotkey": "E"
     }
   ],

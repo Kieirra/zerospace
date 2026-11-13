@@ -4,6 +4,12 @@
   "faction": "the-legion",
   "name": "Lightning Spear",
   "description": "Sacrifical Spear releases lightning upon impact, dealing 40 damage and slowing 4 nearby enemies",
+  "stats": [
+    {
+      "label": "Radius",
+      "value": 8
+    }
+  ],
   "order": 0,
   "cost": {
     "flux": 100

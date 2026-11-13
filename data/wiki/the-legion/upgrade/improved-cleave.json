@@ -7,6 +7,12 @@
   "values": {
     "area": 100
   },
+  "stats": [
+    {
+      "label": "Width",
+      "value": 3
+    }
+  ],
   "order": 1,
   "cost": {
     "flux": 100

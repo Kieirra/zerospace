@@ -9,6 +9,27 @@
     "dot": 150,
     "duration": 5
   },
+  "stats": [
+    {
+      "label": "Radius",
+      "value": 2.5
+    },
+    {
+      "label": "Tick Interval",
+      "value": 0.5,
+      "unit": "s"
+    },
+    {
+      "label": "Cast Time",
+      "value": 1.6,
+      "unit": "s"
+    },
+    {
+      "label": "Cooldown",
+      "value": 20,
+      "unit": "s"
+    }
+  ],
   "order": 3,
   "cost": {
     "flux": 150

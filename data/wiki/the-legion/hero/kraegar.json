@@ -42,6 +42,17 @@
     {
       "name": "Piercing Shot",
       "description": "Deal 60 damage in linear area",
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.8,
+          "unit": "s"
+        },
+        {
+          "label": "Width",
+          "value": 0.6
+        }
+      ],
       "hotkey": "E",
       "cooldown": 8,
       "energyCost": 30,
@@ -53,6 +64,12 @@
     {
       "name": "Speedburst",
       "description": "Kraegar and Sabretooth gain increased movement speed for 10s",
+      "stats": [
+        {
+          "label": "Movement Speed",
+          "value": 200
+        }
+      ],
       "hotkey": "R",
       "energyCost": 15
     }

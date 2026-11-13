@@ -4,6 +4,26 @@
   "faction": "the-legion",
   "name": "Burning Fireball",
   "description": "Fireball explodes when it reaches the target setting the ground on fire.",
+  "stats": [
+    {
+      "label": "Explosion Radius",
+      "value": 5.5
+    },
+    {
+      "label": "Initial Damage",
+      "value": 25
+    },
+    {
+      "label": "Damage Over Time",
+      "value": 25,
+      "unit": "/s"
+    },
+    {
+      "label": "Duration",
+      "value": 8,
+      "unit": "s"
+    }
+  ],
   "order": 3,
   "cost": {
     "flux": 150

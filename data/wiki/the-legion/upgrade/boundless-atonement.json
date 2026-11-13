@@ -4,6 +4,16 @@
   "faction": "the-legion",
   "name": "Boundless Atonement",
   "description": "Doubles heal radius and rate of healing for Sacrificial Spear.",
+  "stats": [
+    {
+      "label": "Heal Radius",
+      "value": 11
+    },
+    {
+      "label": "Heal",
+      "value": 20
+    }
+  ],
   "order": 1,
   "cost": {
     "flux": 100

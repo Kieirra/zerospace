@@ -7,6 +7,13 @@
   "values": {
     "Speed": 75
   },
+  "stats": [
+    {
+      "label": "Travel Time",
+      "value": 2.06,
+      "unit": "s"
+    }
+  ],
   "order": 4,
   "cost": {
     "flux": 150

@@ -5,9 +5,6 @@
   "name": "Umbra",
   "description": "Mobile hero who can cloak and jump to ambush enemies. Can temporarily transform into an Twisted Visage, which deals devastating melee damage.",
   "order": 0,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 250,
   "combatStats": [
@@ -47,6 +44,21 @@
         "slow": 50,
         "slowduration": 2
       },
+      "stats": [
+        {
+          "label": "Radius",
+          "value": 2
+        },
+        {
+          "label": "Jump Duration",
+          "value": 0.6,
+          "unit": "s"
+        },
+        {
+          "label": "Jump Speed (Transform)",
+          "value": 2000
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 13,
       "range": 1400,
@@ -61,6 +73,26 @@
         "x": 20,
         "healpercent": 20
       },
+      "stats": [
+        {
+          "label": "Max Health",
+          "value": 100,
+          "unit": "%"
+        },
+        {
+          "label": "Melee Damage",
+          "value": 50
+        },
+        {
+          "label": "Melee DPS",
+          "value": 33.33,
+          "unit": "/s"
+        },
+        {
+          "label": "Melee Range",
+          "value": 2.5
+        }
+      ],
       "hotkey": "W",
       "cooldown": 100
     },

@@ -46,6 +46,37 @@
         "Initial": 90,
         "tick": 40
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.8,
+          "unit": "s"
+        },
+        {
+          "label": "Width",
+          "value": 5
+        },
+        {
+          "label": "Launch Delay",
+          "value": 0.75,
+          "unit": "s"
+        },
+        {
+          "label": "Travel Time",
+          "value": 3.6,
+          "unit": "s"
+        },
+        {
+          "label": "Tick Interval",
+          "value": 0.2,
+          "unit": "s"
+        },
+        {
+          "label": "Building Damage",
+          "value": 40,
+          "unit": "%"
+        }
+      ],
       "hotkey": "D",
       "cooldown": 14,
       "energyCost": 40,
@@ -62,6 +93,35 @@
         "Slow Duration": 5,
         "Healing Duration": 15
       },
+      "stats": [
+        {
+          "label": "Impact Delay",
+          "value": 1,
+          "unit": "s"
+        },
+        {
+          "label": "Slow",
+          "value": 50,
+          "unit": "%"
+        },
+        {
+          "label": "Totem Health",
+          "value": 150
+        },
+        {
+          "label": "Heal Radius",
+          "value": 5.5
+        },
+        {
+          "label": "Heal",
+          "value": 10
+        },
+        {
+          "label": "Tick Interval",
+          "value": 1.5,
+          "unit": "s"
+        }
+      ],
       "hotkey": "F",
       "cooldown": 10,
       "energyCost": 20,

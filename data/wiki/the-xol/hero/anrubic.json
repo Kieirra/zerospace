@@ -5,9 +5,6 @@
   "name": "Anrubic",
   "description": "Powerful hero that can grapple enemies and merge with other Xol units to augment its abilities.",
   "order": 0,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 250,
   "combatStats": [
@@ -53,6 +50,13 @@
         "damage": 30,
         "damage_percent": 10
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.2,
+          "unit": "s"
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 16,
       "range": 500
@@ -63,6 +67,21 @@
       "values": {
         "damage": 40
       },
+      "stats": [
+        {
+          "label": "Launch Delay",
+          "value": 0.5,
+          "unit": "s"
+        },
+        {
+          "label": "Grapple Speed",
+          "value": 6000
+        },
+        {
+          "label": "Width",
+          "value": 1.2
+        }
+      ],
       "hotkey": "W",
       "cooldown": 14,
       "range": 2000,

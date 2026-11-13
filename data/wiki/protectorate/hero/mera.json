@@ -5,9 +5,6 @@
   "name": "Mera",
   "description": "Hero that can switch between a sword and a sidearm. Attacking units with her sword grants her temporary attack speed. Can dash through enemies and create an armor field around her.",
   "order": 2,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 150,
   "combatStats": [
@@ -52,6 +49,29 @@
       "values": {
         "shieldpercent": 50
       },
+      "stats": [
+        {
+          "label": "Width",
+          "value": 1.2
+        },
+        {
+          "label": "Dash Speed",
+          "value": 6000
+        },
+        {
+          "label": "Armor per Enemy Hit",
+          "value": 0.5
+        },
+        {
+          "label": "Max Stacks",
+          "value": 10
+        },
+        {
+          "label": "Armor Duration",
+          "value": 2,
+          "unit": "s"
+        }
+      ],
       "hotkey": "W",
       "cooldown": 17,
       "range": 1500,
@@ -67,6 +87,12 @@
         "shields": 20,
         "duration": 5
       },
+      "stats": [
+        {
+          "label": "Radius",
+          "value": 4.5
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 40,
       "range": 1700

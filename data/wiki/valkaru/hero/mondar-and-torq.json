@@ -5,9 +5,6 @@
   "name": "Mondar and Torq",
   "description": "Dual heroes. One melee, one ranged. Each has a unique ranged weapon. Mondar and Torq can pass each other their hammer and become enraged when the other dies.",
   "order": 0,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 5,
   "hp": 280,
   "combatStats": [
@@ -49,9 +46,22 @@
       },
       "stats": [
         {
-          "label": "Slow",
-          "value": 50,
-          "unit": "%"
+          "label": "Hammer Speed",
+          "value": 2000
+        },
+        {
+          "label": "Radius",
+          "value": 2
+        },
+        {
+          "label": "Re-hit Delay",
+          "value": 0.7,
+          "unit": "s"
+        },
+        {
+          "label": "Buff Duration",
+          "value": 10,
+          "unit": "s"
         }
       ],
       "hotkey": "Q",

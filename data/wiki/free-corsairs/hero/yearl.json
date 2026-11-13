@@ -5,9 +5,6 @@
   "name": "Yearl",
   "description": "Hero that can cliffwalk, fire a disrupting projectile, throw sticky bombs, and become drop a mine while becoming invisible.",
   "order": 0,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 150,
   "combatStats": [
@@ -44,6 +41,35 @@
     {
       "name": "Disrupting Shot",
       "description": "The blast deals 30 damage, slows enemies, and prevents them from using attacking or using abilities for 3s.",
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.2,
+          "unit": "s"
+        },
+        {
+          "label": "Projectile Speed",
+          "value": 1700
+        },
+        {
+          "label": "Width",
+          "value": 2.5
+        },
+        {
+          "label": "Length",
+          "value": 4
+        },
+        {
+          "label": "Slow",
+          "value": 50,
+          "unit": "%"
+        },
+        {
+          "label": "Building Stun",
+          "value": 3,
+          "unit": "s"
+        }
+      ],
       "hotkey": "Z",
       "range": 2000,
       "excludedTargets": [
@@ -58,6 +84,31 @@
         "Damage": 30,
         "Seconds": 3
       },
+      "stats": [
+        {
+          "label": "Movement Speed",
+          "value": 150
+        },
+        {
+          "label": "Mine Health",
+          "value": 50
+        },
+        {
+          "label": "Mine Arming Time",
+          "value": 0.5,
+          "unit": "s"
+        },
+        {
+          "label": "Mine Attack Slow",
+          "value": 50,
+          "unit": "%"
+        },
+        {
+          "label": "Mine Slow",
+          "value": 75,
+          "unit": "%"
+        }
+      ],
       "hotkey": "W"
     },
     {
@@ -69,6 +120,25 @@
         "Damage": 50,
         "Stun time": 4
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.3,
+          "unit": "s"
+        },
+        {
+          "label": "Stick Radius",
+          "value": 2.2
+        },
+        {
+          "label": "Starting Radius",
+          "value": 1.25
+        },
+        {
+          "label": "Max Radius",
+          "value": 5
+        }
+      ],
       "hotkey": "E",
       "cooldown": 45,
       "range": 1600,

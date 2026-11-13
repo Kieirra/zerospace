@@ -4,6 +4,12 @@
   "faction": "the-legion",
   "name": "Speedburst Upgrade",
   "description": "Speedburst applies buff to all friendly units around Kraegar.",
+  "stats": [
+    {
+      "label": "Radius",
+      "value": 6
+    }
+  ],
   "order": 0,
   "cost": {
     "flux": 100

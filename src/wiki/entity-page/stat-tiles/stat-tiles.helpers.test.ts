@@ -33,6 +33,12 @@ describe('Tile labels', () => {
     expect(toTileMinWidth(['Cost', 'HP', 'Regen', 'Stun resistance', 'Transport accepts'])).toBe('6.5rem');
   });
 
+  it('should shorten the hero ability stat labels', () => {
+    expect(toShortLabel('Cast Time')).toBe('Cast');
+    expect(toShortLabel('Building Damage')).toBe('vs Bldg');
+    expect(toShortLabel('Movement Speed (Water Form)')).toBe('Water move');
+  });
+
   it('should widen the tiles when a label of the set is longer than the default width allows', () => {
     expect(toTileMinWidth(['HP', 'Cost'])).toBe('6.5rem');
     expect(toTileMinWidth(['HP', 'Lifesteal'], true)).toBe('7rem');

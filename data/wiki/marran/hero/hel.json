@@ -5,9 +5,6 @@
   "name": "Hel",
   "description": "A long range hero, Hel can launch units away with his Shockwave Grenade, enter stealth, and Snipe enemies.",
   "order": 0,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 130,
   "combatStats": [
@@ -44,6 +41,35 @@
     {
       "name": "Shockwave Grenade",
       "description": "Fire a grenade that pushes all units away. Enemy units also take 25 damage and are slowed.",
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.1,
+          "unit": "s"
+        },
+        {
+          "label": "Projectile Speed",
+          "value": 1700
+        },
+        {
+          "label": "Radius",
+          "value": 3
+        },
+        {
+          "label": "Damage",
+          "value": 30
+        },
+        {
+          "label": "Slow",
+          "value": 50,
+          "unit": "%"
+        },
+        {
+          "label": "Slow Duration",
+          "value": 4,
+          "unit": "s"
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 18,
       "range": 1600,
@@ -58,6 +84,17 @@
     {
       "name": "Stealth",
       "description": "Stealth and +40% movement speed for 10s",
+      "stats": [
+        {
+          "label": "Duration",
+          "value": 8,
+          "unit": "s"
+        },
+        {
+          "label": "Movement Speed",
+          "value": 150
+        }
+      ],
       "hotkey": "W"
     },
     {
@@ -67,6 +104,21 @@
         "Amount": 40,
         "Duration": 3
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 1.2,
+          "unit": "s"
+        },
+        {
+          "label": "Damage",
+          "value": 60
+        },
+        {
+          "label": "Leash Range",
+          "value": 25
+        }
+      ],
       "hotkey": "E",
       "cooldown": 25,
       "range": 1900

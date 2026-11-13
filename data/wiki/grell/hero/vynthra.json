@@ -5,9 +5,6 @@
   "name": "Vynthra",
   "description": "Hero that can slow and damage enemy units, burrow to biomass, and consume self or allies to heal and gain movespeed.",
   "order": 0,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 280,
   "combatStats": [
@@ -48,6 +45,31 @@
         "Damage": 12,
         "Duration": 6
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.15,
+          "unit": "s"
+        },
+        {
+          "label": "Projectile Speed",
+          "value": 2000
+        },
+        {
+          "label": "Radius",
+          "value": 3.6
+        },
+        {
+          "label": "Tick Interval",
+          "value": 0.5,
+          "unit": "s"
+        },
+        {
+          "label": "Slow Duration",
+          "value": 0.8,
+          "unit": "s"
+        }
+      ],
       "hotkey": "Z",
       "cooldown": 15,
       "range": 2000,
@@ -58,6 +80,13 @@
     {
       "name": "Root Passage",
       "description": "Tunnel to a visible location on biomass.",
+      "stats": [
+        {
+          "label": "Travel Time",
+          "value": 1.36,
+          "unit": "s"
+        }
+      ],
       "hotkey": "W",
       "cooldown": 30,
       "range": 1000000
@@ -70,6 +99,12 @@
         "Speed": 125,
         "Duration": 10
       },
+      "stats": [
+        {
+          "label": "Heal",
+          "value": 250
+        }
+      ],
       "hotkey": "E",
       "cooldown": 45
     }

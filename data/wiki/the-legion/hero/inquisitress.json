@@ -46,6 +46,17 @@
     {
       "name": "Cleave",
       "description": "Deal 65 damage and slows by 50% for 2 seconds to enemy units in front of the hero",
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.6,
+          "unit": "s"
+        },
+        {
+          "label": "Width",
+          "value": 2
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 5,
       "energyCost": 23,
@@ -61,6 +72,16 @@
         "Speed": 150,
         "Duration": 5
       },
+      "stats": [
+        {
+          "label": "Charge Speed",
+          "value": 2800
+        },
+        {
+          "label": "Hit Radius",
+          "value": 1
+        }
+      ],
       "hotkey": "W",
       "cooldown": 7,
       "energyCost": 14,

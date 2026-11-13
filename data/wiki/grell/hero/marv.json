@@ -5,9 +5,6 @@
   "name": "Marv",
   "description": "Can slow and damage enemies in line, teleport or swap with other units, and grant a shield to friendly units.",
   "order": 2,
-  "cost": {
-    "hexite": 220
-  },
   "supply": 10,
   "hp": 130,
   "combatStats": [
@@ -49,6 +46,21 @@
         "slowpercent": 50,
         "slowduration": 4
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.1,
+          "unit": "s"
+        },
+        {
+          "label": "Width",
+          "value": 2.8
+        },
+        {
+          "label": "Projectile Speed",
+          "value": 1700
+        }
+      ],
       "hotkey": "Q",
       "cooldown": 25,
       "range": 2200,
@@ -62,6 +74,21 @@
       "values": {
         "duration": 5
       },
+      "stats": [
+        {
+          "label": "Cast Time",
+          "value": 0.15,
+          "unit": "s"
+        },
+        {
+          "label": "Projectile Speed",
+          "value": 2500
+        },
+        {
+          "label": "Min Swap Distance",
+          "value": 2.5
+        }
+      ],
       "hotkey": "W",
       "cooldown": 15,
       "range": 2000
@@ -74,6 +101,12 @@
         "shield": 100,
         "shieldbuff": 25
       },
+      "stats": [
+        {
+          "label": "Max Captured Supply",
+          "value": 2
+        }
+      ],
       "hotkey": "E",
       "cooldown": 30,
       "range": 1500,
