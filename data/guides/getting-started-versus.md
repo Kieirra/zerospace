@@ -56,7 +56,7 @@ In the early game it pays more to choke your opponent. Keep them from leaving th
 
 ### High ground
 
-Ranged units that shoot up at the high ground deal 15% less damage, and the units on top get no bonus. Melee units do not have this penalty, unlike in Age of Empires II. On top of that, units below have no vision of the high ground, so they cannot fire back even while they take damage. Only air units can reach them, or units that walk up the ramp, which is rarely a good idea.
+Ranged units that shoot up at the high ground deal 15% less damage, while melee units keep their full damage. On top of that, units below have no vision of the high ground, so they cannot fire back even while they take damage. Only air units can reach them, or units that walk up the ramp, which is rarely a good idea.
 
 ## After the game
 
