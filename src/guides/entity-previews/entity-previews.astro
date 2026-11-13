@@ -1,0 +1,40 @@
+---
+import type { Entity } from '../../wiki/wiki.types.ts';
+import EntityPreview from './entity-preview/entity-preview.astro';
+
+interface Props {
+  // One card per entity: every pill of the entity shows it.
+  entities: Entity[];
+}
+---
+
+{Astro.props.entities.map((entity) => <EntityPreview entity={entity} />)}
+
+<script>
+  import { placePopover } from '../../shared/tooltip/place-popover.ts';
+
+  const OPEN_DELAY_MS = 150;
+
+  // Hover and keyboard focus only: a tap opens the link without leaving a card behind.
+  for (const pill of document.querySelectorAll<HTMLElement>('[data-entity-preview]')) {
+    const card = document.getElementById(pill.dataset.entityPreview ?? '');
+    if (!card) continue;
+    let openTimer: number | undefined;
+    const show = () => {
+      window.clearTimeout(openTimer);
+      openTimer = window.setTimeout(() => {
+        if (!card.matches(':popover-open')) card.showPopover();
+        placePopover(pill, card);
+      }, OPEN_DELAY_MS);
+    };
+    const hide = () => {
+      window.clearTimeout(openTimer);
+      if (card.matches(':popover-open')) card.hidePopover();
+    };
+    pill.addEventListener('pointerenter', (event) => event.pointerType === 'mouse' && show());
+    pill.addEventListener('focus', () => pill.matches(':focus-visible') && show());
+    pill.addEventListener('pointerleave', hide);
+    pill.addEventListener('blur', hide);
+    pill.addEventListener('keydown', (event) => event.key === 'Escape' && hide());
+  }
+</script>

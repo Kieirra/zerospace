@@ -1,5 +1,6 @@
 ---
 import clsx from 'clsx';
+import EntityPreviews from '../entity-previews/entity-previews.astro';
 import { toGuideAccent } from '../guides.helpers.ts';
 import type { Guide } from '../guides.types.ts';
 import { BRANCH_MARKER_PATTERN } from '../strip-build-order.ts';
@@ -10,6 +11,7 @@ import GuideHeader from './guide-header/guide-header.astro';
 import GuideMatchups from './guide-matchups/guide-matchups.astro';
 import GuideStart from './guide-start/guide-start.astro';
 import GuideStrengthsWeaknesses from './guide-strengths-weaknesses/guide-strengths-weaknesses.astro';
+import { collectPillEntities } from './guide-page.helpers.ts';
 import GuideToc from './guide-toc/guide-toc.astro';
 
 interface Props {
@@ -57,3 +59,4 @@ const hasModules = hasStart || guide.army.length > 0 || guide.vs.length > 0 || h
     }
   </div>
 </div>
+<EntityPreviews entities={collectPillEntities(guide)} />

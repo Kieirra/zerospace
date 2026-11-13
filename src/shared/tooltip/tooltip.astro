@@ -22,24 +22,15 @@ const id = `tooltip-${crypto.randomUUID()}`;
 >
 
 <script>
+  import { placePopover } from './place-popover.ts';
+
   // The tooltip lives in the top layer (popover): the bevelled cards clip anything positioned inside them.
-  const GAP_PX = 6;
-  const MARGIN_PX = 8;
-
-  const place = (trigger: HTMLElement, tooltip: HTMLElement) => {
-    const anchor = trigger.getBoundingClientRect();
-    const centered = anchor.left + anchor.width / 2 - tooltip.offsetWidth / 2;
-    const above = anchor.top - tooltip.offsetHeight - GAP_PX;
-    tooltip.style.left = `${Math.max(MARGIN_PX, Math.min(centered, window.innerWidth - tooltip.offsetWidth - MARGIN_PX))}px`;
-    tooltip.style.top = `${above >= MARGIN_PX ? above : anchor.bottom + GAP_PX}px`;
-  };
-
   for (const trigger of document.querySelectorAll<HTMLElement>('[data-tooltip-trigger]')) {
     const tooltip = document.getElementById(trigger.getAttribute('aria-describedby') ?? '');
     if (!tooltip) continue;
     const show = () => {
       if (!tooltip.matches(':popover-open')) tooltip.showPopover();
-      place(trigger, tooltip);
+      placePopover(trigger, tooltip);
     };
     const hide = () => {
       if (tooltip.matches(':popover-open')) tooltip.hidePopover();

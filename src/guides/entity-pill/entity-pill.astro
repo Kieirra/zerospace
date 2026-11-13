@@ -1,8 +1,9 @@
 ---
 import clsx from 'clsx';
 import GameImage from '../../wiki/game-image/game-image.astro';
-import { entityHref, formatOptionalSeconds, formatUnitCost } from '../../wiki/wiki.helpers.ts';
+import { entityHref } from '../../wiki/wiki.helpers.ts';
 import type { Entity } from '../../wiki/wiki.types.ts';
+import { toPreviewId, toPreviewSummaryId } from '../entity-previews/entity-previews.helpers.ts';
 
 interface Props {
   entity: Entity;
@@ -11,8 +12,6 @@ interface Props {
 }
 
 const { entity, base } = Astro.props;
-const cost = formatUnitCost(entity)?.map(({ amount, resource }) => `${amount} ${resource}`) ?? [];
-const title = [entity.name, ...cost, formatOptionalSeconds(entity.buildTime)].filter(Boolean).join(' · ');
 const isProduced = entity.kind === 'unit' || entity.kind === 'hero';
 // The bevel clip-path cuts a ring at the corners: the frame draws the border, the fill sits on the panel color.
 const isUpgrade = entity.kind === 'upgrade';
@@ -20,7 +19,10 @@ const isUpgrade = entity.kind === 'upgrade';
 
 <a
   href={entityHref(entity.id)}
-  title={title}
+  target="_blank"
+  rel="noopener"
+  aria-describedby={toPreviewSummaryId(entity.id)}
+  data-entity-preview={toPreviewId(entity.id)}
   class={clsx('group/pill inline-flex h-8 text-sm', isUpgrade && 'bevel-sm p-px bg-upgrade/35')}
 >
   <span

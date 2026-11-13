@@ -1,0 +1,48 @@
+---
+import GameImage from '../../../wiki/game-image/game-image.astro';
+import { buildStatTiles } from '../../../wiki/entity-page/entity-stats/entity-stats.helpers.ts';
+import StatTiles from '../../../wiki/entity-page/stat-tiles/stat-tiles.astro';
+import { KIND_LABELS } from '../../../wiki/wiki.constants.ts';
+import { interpolate, toGameStatTiles } from '../../../wiki/wiki.helpers.ts';
+import type { Entity } from '../../../wiki/wiki.types.ts';
+import { formatPreviewSummary, hasPreviewDescription, toPreviewId, toPreviewSummaryId } from '../entity-previews.helpers.ts';
+
+interface Props {
+  entity: Entity;
+}
+
+const { entity } = Astro.props;
+// Same tiles as the top of the wiki page: the game stats, then the entity stats.
+const tiles = [...toGameStatTiles(entity.stats), ...buildStatTiles(entity)];
+// The bevel clip-path cuts a ring at the corners: the frame draws the border, the fill sits on the surface color.
+---
+
+<div
+  id={toPreviewId(entity.id)}
+  popover="manual"
+  role="tooltip"
+  class="pointer-events-none inset-auto m-0 w-80 max-w-[calc(100vw-1rem)] bevel-sm bg-line p-px text-sm font-normal text-text"
+>
+  <div class="bevel-sm bg-surface p-3">
+    <span id={toPreviewSummaryId(entity.id)} hidden>{formatPreviewSummary(entity)}</span>
+    <div class="flex items-center gap-2">
+      <GameImage id={entity.id} name={entity.name} size="thumb" />
+      <div class="min-w-0">
+        <p class="font-semibold">{entity.name}</p>
+        <p class="text-xs text-muted">{KIND_LABELS[entity.kind]}</p>
+      </div>
+    </div>
+    {
+      hasPreviewDescription(entity) && entity.description && (
+        <p class="mt-2 whitespace-pre-line text-muted">{interpolate(entity.description, entity.values)}</p>
+      )
+    }
+    {
+      tiles.length > 0 && (
+        <div class="mt-2">
+          <StatTiles tiles={tiles} isNested />
+        </div>
+      )
+    }
+  </div>
+</div>
