@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { encodeBuildLink } from '../link/link.codec.ts';
-import { toLoadPlan } from './build-editor.load.ts';
+import { getCatalog, sideFiles } from '../engine/engine.wiki-fixtures.ts';
+import { toLoadPlan, toNewBuildAction } from './build-editor.load.ts';
 import type { BuildLink } from '../build-order.types.ts';
 
 const SIDES = { factionIds: ['protectorate'], mercenaryIds: ['arandi', 'marran'] };
@@ -21,8 +22,14 @@ const SHARED = encodeBuildLink(link('Shared', 2));
 const kindOf = (hash: string) => toLoadPlan(hash, SIDES).kind;
 
 describe('Editor loading order', () => {
-  it('should open the side choice without a build in the hash', () => {
-    expect(kindOf('')).toBe('picker');
+  it('should open an empty build without a build in the hash', () => {
+    expect(kindOf('')).toBe('empty');
+  });
+
+  it('should make the empty build Legion, with the first mercenary and the default Legion hero (Kieirra 2026-11-19)', () => {
+    const sides = sideFiles.map(({ id }) => getCatalog(id).side);
+
+    expect(toNewBuildAction(sides)).toEqual({ type: 'create', factionId: 'the-legion', mercenaryId: 'arandi', heroId: 'the-legion/hero/galavax' });
   });
 
   it('should open a link', () => {

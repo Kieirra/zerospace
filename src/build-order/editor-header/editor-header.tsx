@@ -70,17 +70,31 @@ export const EditorHeader = ({
         </label>
       </div>
       <div className="ml-auto flex flex-wrap items-center gap-2">
-        <SideSelect label="Faction" value={build.factionId} options={toSideOptions(sides, 'faction')} accent={faction?.accent} onChange={onFaction} />
+        <SideSelect
+          label="Faction"
+          value={build.factionId}
+          options={toSideOptions(sides, 'faction')}
+          accent={faction?.accent}
+          imageUrl={faction?.imageUrl}
+          onChange={onFaction}
+        />
         {/* No game without a mercenary (Kieirra 2026-11-19): no « No mercenary » choice. */}
         <SideSelect
           label="Mercenary"
           value={build.mercenaryId ?? ''}
           options={toSideOptions(sides, 'mercenary')}
           accent={mercenary?.accent}
+          imageUrl={mercenary?.imageUrl}
           onChange={onMercenary}
         />
         {heroOptions.length > 0 && (
-          <SideSelect label="Hero" value={build.heroId ?? ''} options={heroOptions} accent={faction?.accent} onChange={onHero} />
+          <SideSelect
+            label="Hero"
+            value={build.heroId ?? ''}
+            options={heroOptions}
+            accent={faction?.accent}
+            onChange={onHero}
+          />
         )}
         <HistoryButtons {...history} />
         <ResetButton isDisabled={isEmptyBuild(build)} onReset={onReset} />

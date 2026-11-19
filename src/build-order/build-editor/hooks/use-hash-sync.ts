@@ -8,8 +8,6 @@ import type { Build } from '../../build-order.types.ts';
 // Another code in the address bar (a pasted link, Back, Forward) calls `onOutsideChange`: the editor reads it again.
 export const useHashSync = (build: Build | null, onOutsideChange: () => void) => {
   const lastCode = useRef<string | null>(null);
-  // Start building: the new build gets its own history entry at once, so Back returns to the side choice.
-  const isNewEntry = useRef(false);
 
   const handleHashChange = useEffectEvent(() => {
     const code = readBuildCode(window.location.hash);
@@ -27,24 +25,11 @@ export const useHashSync = (build: Build | null, onOutsideChange: () => void) =>
 
   useEffect(() => {
     if (build === null) return;
-    const write = () => {
+    const timer = setTimeout(() => {
       const code = encodeBuild(build);
-      if (isNewEntry.current) history.pushState(null, '', toEditUrl(code));
-      else if (code !== lastCode.current) history.replaceState(null, '', toEditUrl(code));
+      if (code !== lastCode.current) history.replaceState(null, '', toEditUrl(code));
       lastCode.current = code;
-      isNewEntry.current = false;
-    };
-    if (isNewEntry.current) {
-      write();
-      return;
-    }
-    const timer = setTimeout(write, HASH_SYNC_DELAY_MS);
+    }, HASH_SYNC_DELAY_MS);
     return () => clearTimeout(timer);
   }, [build]);
-
-  const startNewEntry = () => {
-    isNewEntry.current = true;
-  };
-
-  return { startNewEntry };
 };
