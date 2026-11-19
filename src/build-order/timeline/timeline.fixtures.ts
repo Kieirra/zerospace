@@ -17,6 +17,7 @@ export const CATALOG = toCatalogMap([BARRACKS, BULWARK, SENTINEL, SKIMMER, ROUND
 export const order = (stepUid: string, target: BuildEntity, fields: Partial<OrderTiming> = {}): OrderTiming => ({
   stepUid,
   entityId: target.id,
+  occurrence: 0,
   laneId: null,
   clickAt: 0,
   startAt: 0,

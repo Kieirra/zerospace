@@ -20,6 +20,8 @@ export interface PlannedStep {
   atTick?: number;
   // Lane the step is pinned on (BASE_UID or a building uid); undefined = Auto.
   producerUid?: string;
+  // Unit made again on its building until every step outside the loops is done (D6).
+  repeat: boolean;
   rank: StartRank;
   // Index in `timed` or in `queued`: breaks the ties of the start priority.
   tie: number;
@@ -77,6 +79,8 @@ export interface HeroSlots {
 export interface OrderState {
   plan: PlannedStep;
   entity: BuildEntity;
+  // 0 for the step itself, then 1, 2… for the copies of its loop.
+  occurrence: number;
   clickTick?: number;
   startTick?: number;
   endTick?: number;
@@ -130,5 +134,7 @@ export interface SimulationState {
   nextCheckTick: number;
   // Started orders not done, in plan order.
   running: OrderState[];
+  // Orders outside the loops not done yet: the loops go on while there is one.
+  openCount: number;
   setupHero: SetupHero | null;
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { toCatalogMap } from '../build-order.helpers.ts';
 import { RESEARCH_LOCATIONS } from '../game-data/game-data.constants.ts';
-import { getResearchLocation } from './engine.placement.ts';
+import { getResearchLocation } from './engine.research-location.ts';
 import { getCatalog } from './engine.wiki-fixtures.ts';
 
 const ARMORY = 'the-legion/building/armory';

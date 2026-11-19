@@ -5,6 +5,7 @@ import { joinNames, toStepKind } from '../../build-order.helpers.ts';
 import { toRequiresConjunction } from '../../engine/engine.analysis.ts';
 import { toNames } from '../../engine/engine.placement.ts';
 import { ERROR_COLOR } from '../../timeline/timeline.styles.ts';
+import { WikiLink } from '../../wiki-link/wiki-link.tsx';
 import { toAllSteps } from '../build-editor.helpers.ts';
 import { ClickAtField } from './click-at-field/click-at-field.tsx';
 import { useFocusReturn } from './hooks/use-focus-return.ts';
@@ -13,6 +14,7 @@ import { usePanelDismiss } from './hooks/use-panel-dismiss.ts';
 import { MadeInSelect } from './made-in-select/made-in-select.tsx';
 import { toMadeInOptions } from './made-in-select/made-in-select.helpers.ts';
 import { PanelButton } from './panel-button/panel-button.tsx';
+import { RepeatField } from './repeat-field/repeat-field.tsx';
 import { toPanelPosition, toStepErrors } from './step-panel.helpers.ts';
 import { StepTimes } from './step-times/step-times.tsx';
 import type { Dispatch } from 'react';
@@ -37,8 +39,8 @@ const PANEL_WIDTH_PX = 320;
 
 const AS_SOON_AS_POSSIBLE = 'As soon as possible';
 
-// The step selected on the timeline: its errors first, its click time and its building (Kieirra 2026-11-19), its Click,
-// Start and Ready times, Remove. Next to its first mark.
+// The step selected on the timeline: its errors first, its click time and its building (Kieirra 2026-11-19), the loop
+// of a unit, its Click, Start and Ready times, its wiki page and Remove. Next to its first mark.
 export const StepPanel = ({ stepUid, build, result, context, dispatch, onRemove, onClose, onEscape }: StepPanelProps) => {
   const { ref, height } = useElementHeight<HTMLDivElement>();
   const anchor = useStepAnchor(stepUid);
@@ -101,8 +103,15 @@ export const StepPanel = ({ stepUid, build, result, context, dispatch, onRemove,
           onCommit={(at) => dispatch({ type: 'set-queued-at', uids: [stepUid], at })}
         />
       )}
+      {!isTimed && entity.category === 'unit' && (
+        <RepeatField
+          isRepeated={'repeat' in step && step.repeat === true}
+          onChange={(repeat) => dispatch({ type: 'set-repeat', uids: [stepUid], repeat })}
+        />
+      )}
       <StepTimes timing={timing} waits={order?.waits ?? {}} requirement={requirement} stepAt={step.at} />
-      <div className="flex justify-end border-t border-line pt-2.5">
+      <div className="flex items-center justify-between border-t border-line pt-2.5">
+        <WikiLink entityId={entity.id} />
         <PanelButton title="Remove" onClick={onRemove}>
           Remove
         </PanelButton>

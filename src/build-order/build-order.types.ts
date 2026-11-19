@@ -116,6 +116,8 @@ export interface QueuedStep {
   producerUid?: string;
   // Not released before, whole seconds; absent = as soon as possible (Kieirra 2026-11-19).
   at?: number;
+  // Unit made again on its building until the end of the last step outside the loops (D6).
+  repeat?: true;
 }
 
 export interface Build {
@@ -147,6 +149,7 @@ export interface BuildLinkQueued {
   ref: string;
   producerIndex: number | null;
   at: number | null;
+  repeat?: true;
 }
 
 export interface BuildLink {
@@ -164,7 +167,6 @@ export type DecodeResult = { status: 'invalid' } | { status: 'ok'; link: BuildLi
 
 export interface ResolvedBuild {
   build: Build;
-  droppedStepCount: number;
   isDataVersionChanged: boolean;
   linkDataVersion: string;
 }

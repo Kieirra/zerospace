@@ -54,7 +54,7 @@ const resolve = (fields: Partial<BuildLink>) => resolveBuildLink(toLink(fields),
 
 describe('Link v3: round trip', () => {
   it('should give back the same build, pins and recruit time included', () => {
-    expect(roundTrip(BUILD)).toEqual({ build: BUILD, droppedStepCount: 0, isDataVersionChanged: false, linkDataVersion: STEAM_BUILD_ID });
+    expect(roundTrip(BUILD)).toEqual({ build: BUILD, isDataVersionChanged: false, linkDataVersion: STEAM_BUILD_ID });
   });
 
   it('should number the steps s1 to sN, the timed ones first, and sort them by time', () => {
@@ -103,7 +103,7 @@ describe('Link v3: tolerant resolution', () => {
     expect(build.queued.map(({ producerUid }) => producerUid)).toEqual([undefined, undefined, undefined]);
   });
 
-  it('should drop and count the unknown refs, the steps in the wrong list and the units no building can make', () => {
+  it('should drop the unknown refs, the steps in the wrong list and the units no building can make', () => {
     const resolved = resolve({
       timed: [
         { ref: 'b.nowhere', at: 0, producerIndex: null },
@@ -117,7 +117,6 @@ describe('Link v3: tolerant resolution', () => {
 
     expect(resolved.build.timed).toEqual([]);
     expect(resolved.build.queued.map(({ entityId }) => entityId)).toEqual(['protectorate/unit/prospector']);
-    expect(resolved.droppedStepCount).toBe(3);
   });
 
   it('should keep the time of every queued step, a unit as a recruit (Kieirra 2026-11-19)', () => {
@@ -130,6 +129,21 @@ describe('Link v3: tolerant resolution', () => {
     });
 
     expect(build.queued.map(({ at }) => at)).toEqual([30, 30]);
+  });
+
+  it('should keep the loop of a unit and its pin, and drop the loop of a harvester', () => {
+    const { build } = resolve({
+      timed: [{ ref: 'b.barracks', at: 0, producerIndex: null }],
+      queued: [
+        { ref: 'u.sentinel', producerIndex: 0, at: null, repeat: true },
+        { ref: 'u.prospector', producerIndex: -1, at: null, repeat: true },
+      ],
+    });
+
+    expect(build.queued).toEqual([
+      { uid: 's2', entityId: 'protectorate/unit/sentinel', producerUid: 's1', repeat: true },
+      { uid: 's3', entityId: 'protectorate/unit/prospector', producerUid: 'base' },
+    ]);
   });
 
   it('should replace a hero outside the pool by the default one and flag an older data version', () => {

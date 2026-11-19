@@ -54,6 +54,7 @@ export const toResult = (
 const toOrderTiming = (order: OrderState, state: SimulationState): OrderTiming => ({
   stepUid: order.plan.uid,
   entityId: order.entity.id,
+  occurrence: order.occurrence,
   laneId: toOrderLaneId(order, state),
   clickAt: toOptionalSeconds(order.clickTick),
   startAt: toOptionalSeconds(order.startTick),
@@ -66,6 +67,7 @@ const toOrderLaneId = (order: OrderState, state: SimulationState) => {
   return instance ? toLaneId(instance) : null;
 };
 
+// The step itself (occurrence 0): the copies of its loop are orders only.
 const toStepTiming = (plan: PlannedStep, state: SimulationState, context: SimulationContext): StepTiming => {
   const order = state.ordersByUid.get(plan.uid);
   const timing = order ? toOrderTiming(order, state) : undefined;

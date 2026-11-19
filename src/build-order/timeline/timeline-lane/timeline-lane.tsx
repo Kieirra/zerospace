@@ -27,7 +27,7 @@ export const TimelineLane = ({ lane, scale, catalog, highlightedStepUid, events,
       {children}
       {lane.items.map((item) => (
         <LaneItem
-          key={item.stepUid}
+          key={`${item.stepUid}#${item.occurrence}`}
           item={item}
           scale={scale}
           imageUrl={catalog.get(item.entityId)?.imageUrl}

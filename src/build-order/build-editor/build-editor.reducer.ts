@@ -1,7 +1,16 @@
 import { STEAM_BUILD_ID } from '../../shared/site.constants.ts';
 import { createStepUids, isEmptyBuild, isFullBuild, isOnSide, removeSteps, toAllSteps, withOptional } from './build-editor.helpers.ts';
 import { toDuplicatedSteps, toPastedSteps } from './build-editor.clipboard.ts';
-import { addQueued, dropOrphanUnits, dropPickedHero, moveToLane, setQueuedAt, setQueuedProducer, shiftQueuedAt } from './build-editor.queued.ts';
+import {
+  addQueued,
+  dropOrphanUnits,
+  dropPickedHero,
+  moveToLane,
+  setQueuedAt,
+  setQueuedProducer,
+  setQueuedRepeat,
+  shiftQueuedAt,
+} from './build-editor.queued.ts';
 import { addTimed, setTimedAt, setTimedProducer, shiftTimedAt } from './build-editor.timed.ts';
 import type { Build, BuildCatalog, QueuedStep, TimedStep } from '../build-order.types.ts';
 import type { ClipboardResult, ClipboardSteps, PasteTarget } from './build-editor.clipboard.ts';
@@ -36,6 +45,7 @@ export type EditorAction =
   | { type: 'set-producer'; uid: string; producerUid?: string }
   | { type: 'move-to-lane'; uids: string[]; laneUid: string; beforeUid: string | null }
   | { type: 'set-queued-at'; uids: string[]; at: number | null }
+  | { type: 'set-repeat'; uids: string[]; repeat: boolean }
   | { type: 'remove-steps'; uids: string[]; catalog: BuildCatalog }
   | { type: 'paste-steps'; steps: ClipboardSteps; target: PasteTarget; catalog: BuildCatalog }
   | { type: 'duplicate-steps'; uids: string[]; catalog: BuildCatalog };
@@ -86,6 +96,8 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
       return toState(state, moveToLane(build, action.uids, action.laneUid, action.beforeUid));
     case 'set-queued-at':
       return toState(state, setQueuedAt(build, action.uids, action.at));
+    case 'set-repeat':
+      return toState(state, setQueuedRepeat(build, action.uids, action.repeat));
     case 'remove-steps':
       return toState(state, withoutOrphans(removeSteps(build, action.uids), action.catalog));
     case 'paste-steps':
@@ -119,7 +131,7 @@ const toCopiedState = (state: EditorState, result: ClipboardResult, catalog: Bui
   return { ...next, skippedCount: result.skippedCount };
 };
 
-const withoutOrphans = (build: Build, catalog: BuildCatalog) => dropOrphanUnits(build, catalog).build;
+const withoutOrphans = (build: Build, catalog: BuildCatalog) => dropOrphanUnits(build, catalog);
 
 // The steps of the side left behind leave with it.
 const withoutSide = (build: Build, sideId: string | null): Build => {

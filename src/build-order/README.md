@@ -9,7 +9,7 @@ Click **Theorycraft** in the site menu, or open http://localhost:4321/build-orde
 
 | Screen | When | What it does |
 |---|---|---|
-| Side choice | The address has no build | Pick a faction and a mercenary faction, then **Start building** |
+| Side choice | The address has no build | Pick a faction and a mercenary faction (the first one preselected: no game without a mercenary), then **Start building** |
 | Editor | The address holds a build (`#b=3.…`) | Write the build with a live timeline |
 
 The address is the only storage: the build lives entirely in its link (`#b=3.…`), rewritten 300 ms after each change
@@ -44,6 +44,11 @@ The build is two lists:
 - A unit with a time `at` never enters before it, pinned or Auto; until then it holds no one: the next units of its
   lane may enter before it. Setting or moving a time sorts `queued` by time, the units without one
   first, so the order of a lane follows the times.
+- A unit set to **Loop until the end** is made again on the building that made it once its previous copy is done,
+  until every step outside the loops (timed or queued) is done: the copy in production then finishes, a copy still
+  waiting is cancelled. A copy enters after the units of the build waiting for that building, with the start priority
+  of any unit: a loop that spends everything keeps a Citadel waiting. While a step outside the loops never ends, the
+  loop goes on up to the horizon (30 minutes). Only a unit loops, never a harvester, an Altar hero or a recruit.
 - A recruit enters when a slot of its own mercenary building is ready and, if set, its time `at` has come; it starts
   as soon as its cost is in the bank.
 - A transformation goes to its building, else to the first building of its kind not transformed yet; once done, the
@@ -63,19 +68,24 @@ the name and the time of the step they refer to.
 
 ## Editor
 
-- Header: title and author; faction, mercenary and setup hero; Undo, Redo, **↺ Reset** (empties the build, Undo in its
+- Header: title and author; faction, mercenary (always one) and setup hero; Undo, Redo, **↺ Reset** (empties the build, Undo in its
   toast) and **⤴ Share** (copies the link).
 - Timeline: one lane per building, in the order they begin, under the Hexite and Flux curves and the free supply
   (cap minus used, never below 0, hidden when the supply is not checked), with idle time, ready marks and the time
   cursor; orange lines where a mercenary slot can be spent. It fits the width up to 3 minutes; a longer build keeps
-  3 minutes visible and scrolls sideways (scrollbar, wheel, Shift + wheel or trackpad), the lane names staying on the
-  left; at either end the wheel scrolls the page. The time cursor card shows only over the curves or the void of the
+  3 minutes visible and scrolls sideways (scrollbar, Shift + wheel or trackpad), the lane names staying on the left.
+  Its height stops at the bottom of the window, so the page does not scroll: the lanes scroll up and down inside it
+  (wheel, scrollbar or trackpad), the axis staying on top. Hold the wheel button and move to pan both ways. Ctrl +
+  wheel is the browser's zoom. The time cursor card shows only over the curves or the void of the
   lanes: it hides over any mark, its ✕ or a click handle, and while dragging. Hovering a step shows no tooltip.
   An empty build shows how to start under the axis; errors of no step are listed above the timeline.
 - Colors: red only means an error. A step in error is filled red with « ✖ » before its name; researches and the
-  buildings where they are done are indigo.
+  buildings where they are done are indigo. A short or instant step keeps a chip wide enough for its icon, the start
+  of its name and a click; when it runs over the next step of its lane, that step goes to the row below.
 - Add panel, left of the timeline: Buildings, Units, Research and Merc, four cards a row; only the cards scroll,
-  title, Find and tabs stay on top. Units: what the starting building makes first (harvesters, then the others), then
+  title, Find and tabs stay on top. ◂ at its top right folds it and the timeline takes the room; a narrow bar
+  (▸ Add step) brings it back (for the page only). Two entities of a side with the same name show what they upgrade,
+  else their kind: « Performance Enhancers (Thrall) », « Performance Enhancers (Steelsworn) ». Units: what the starting building makes first (harvesters, then the others), then
   the wiki order, then the Legion's Altar heroes. Research: by research building in the Buildings order, then by
   upgraded entity, tier and name; transformations after the research of the building they transform; no building last.
   Costs one resource a line: Hexite, Flux, Supply.
@@ -85,9 +95,11 @@ the name and the time of the step they refer to.
   selection.
 - Step panel (one step selected): its errors, **Click at** (`m:ss` or seconds, Enter or leaving the field records it,
   Escape restores it; optional for a unit, « As soon as possible » when empty), **Made in** for a unit or a
-  transformation (Auto or one of the lanes able to make it), then its times read only: Click (only for a unit made as
-  soon as possible: when it entered its building's queue; else the Click at field shows it), Start with why it waited
-  (« Never starts » in red), Ready; Remove.
+  transformation (Auto or one of the lanes able to make it), **Loop until the end** for a unit (« ∞ » before its name
+  on the timeline; the copies of its loop can be neither moved nor deleted, a click on one selects the step), then its
+  times read only: Click (only for a unit made as soon as possible: when it entered its building's queue; else the
+  Click at field shows it), Start with why it waited (« Never starts » in red), Ready; **View on wiki** (new tab) and
+  Remove. A click on the setup hero opens its card, with the same link.
 - Click handle: the click symbol of a step whose click waits (a building, research or transformation, or a unit with a
   time) turns the pointer into ↔; drag it sideways to move that step's time `at` alone, by whole seconds, between 0 and
   the end of the timeline, the dashed line on it (« Click 0:18 · starts ≈ 0:57 »). The step starts where the simulation
@@ -117,6 +129,10 @@ Open data points:
 
 - **PO8**: research locations of Grell, the Legion and the Xol, and `veterancy` of the Protectorate;
 - **PO10**: some units have no producer in the data.
+- The upgrades no building can host are absent from the tool for now (Legion Terror Tank and Dreadnought upgrades and
+  turrets, Xol molten units, Grell Biomass Healing, Protectorate Veterancy): they are done on a unit, which is no lane.
+- A unit made only by the building of its name is that building (Dreadnought, Terror Tank, Strider): the unit is absent,
+  the building keeps its own cost and time and takes the unit's supply when it starts.
 
 ## Code
 

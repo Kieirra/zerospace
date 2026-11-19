@@ -1,6 +1,7 @@
 import { RemovableMark } from '../removable-mark/removable-mark.tsx';
 import { BAR_LABEL_MIN_PX } from '../timeline.constants.ts';
 import { toItemButtonProps } from '../timeline.helpers.ts';
+import { toBarWidthPx } from './timeline-bar.helpers.ts';
 import { useTimelineMetrics } from '../timeline.metrics.ts';
 import {
   BAR_STYLES,
@@ -26,10 +27,6 @@ interface TimelineBarProps {
   events: TimelineItemEvents;
 }
 
-const MIN_BAR_PX = 3;
-// Room left at the end of a unit bar: copies made one after another read one by one, even too short for their
-// name (harvesters, Mazar 2026-11-17).
-const UNIT_GAP_PX = 2;
 // The entity icon shows from this width; the name needs BAR_LABEL_MIN_PX more.
 const ICON_MIN_PX = 20;
 const ICON_PX = 15;
@@ -54,8 +51,7 @@ export const TimelineBar = ({
   events,
 }: TimelineBarProps) => {
   const { rowHeight, barHeight } = useTimelineMetrics();
-  const gap = item.shape === 'unit' ? UNIT_GAP_PX : 0;
-  const width = Math.max(MIN_BAR_PX, (endAt - startAt) * scale.pixelsPerSecond - gap);
+  const width = toBarWidthPx(endAt - startAt, item.shape === 'unit', contentInset, scale.pixelsPerSecond);
   const shapeStyle = item.isMercenary
     ? MERCENARY_BUILDING_STYLE
     : item.isResearchBuilding

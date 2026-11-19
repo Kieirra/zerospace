@@ -1,5 +1,6 @@
 import { canProduce, toLaneProducers, toStepKind } from '../build-order.helpers.ts';
 import { missingProducer, unknownProducer, unknownResearchLocation, wrongProducer } from './engine.diagnostics.ts';
+import { getResearchLocation } from './engine.research-location.ts';
 import type { LaneProducer } from '../build-order.helpers.ts';
 import type { Build, BuildCatalog, BuildEntity } from '../build-order.types.ts';
 import type { Thread } from './engine.internal.types.ts';
@@ -21,19 +22,6 @@ export interface BuildScope {
 export const toBuildScope = (build: Build, catalog: BuildCatalog): BuildScope => {
   const lanes = toLaneProducers(build, catalog);
   return { lanes, available: new Set(lanes.flatMap(({ entity, transformedInto }) => [entity.id, ...transformedInto])) };
-};
-
-// Only place that decides where a research is launched (PO8).
-export const getResearchLocation = (
-  upgrade: BuildEntity,
-  catalog: BuildCatalog,
-  overrides: Record<string, string>,
-) => {
-  const override = overrides[upgrade.id];
-  if (override) return override;
-  if (upgrade.transformsInto) return upgrade.appliesTo[0];
-  const buildings = upgrade.requires.filter((id) => catalog.get(id)?.kind === 'building');
-  return buildings.length === 1 ? buildings[0] : undefined;
 };
 
 // Without a producer in the data or in the build, the order stays outside any thread (shown on the base lane).

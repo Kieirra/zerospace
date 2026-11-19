@@ -15,14 +15,15 @@ interface FrameScroll {
   clientWidth: number;
 }
 
-// New scrollLeft of the frame for a vertical wheel turn (Kieirra 2026-11-19), null when the page keeps the wheel: no
-// horizontal scrollbar, already at the end it goes to, a sideways scroll the browser handles (trackpad, Shift + wheel)
-// or a Ctrl + wheel zoom.
-export const toWheelScrollLeft = (wheel: WheelInput, frame: FrameScroll) => {
-  if (wheel.shiftKey || wheel.ctrlKey || Math.abs(wheel.deltaX) >= Math.abs(wheel.deltaY)) return null;
+// New scrollLeft of the frame for Shift + wheel (Kieirra 2026-11-19), null when the browser keeps the wheel: no Shift
+// (the wheel scrolls the lanes up and down, a trackpad both ways), a Ctrl + wheel zoom, no horizontal scrollbar or
+// already at the end it goes to. The browser may give Shift + wheel as a sideways turn: the larger delta counts.
+export const toShiftWheelScrollLeft = (wheel: WheelInput, frame: FrameScroll) => {
+  if (!wheel.shiftKey || wheel.ctrlKey) return null;
   const maxLeft = frame.scrollWidth - frame.clientWidth;
   if (maxLeft <= 0) return null;
-  const delta = wheel.deltaY * toUnitPx(wheel.deltaMode, frame.clientWidth);
+  const turn = Math.abs(wheel.deltaY) >= Math.abs(wheel.deltaX) ? wheel.deltaY : wheel.deltaX;
+  const delta = turn * toUnitPx(wheel.deltaMode, frame.clientWidth);
   const isAtEnd = delta < 0 ? frame.scrollLeft <= 0 : frame.scrollLeft >= maxLeft - 1;
   return isAtEnd ? null : Math.min(Math.max(frame.scrollLeft + delta, 0), maxLeft);
 };

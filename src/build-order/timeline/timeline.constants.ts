@@ -23,6 +23,8 @@ export const CURVE_HEIGHT_PX = 40;
 // Room on the right for the last axis label.
 export const TRACK_END_PADDING_PX = 32;
 export const BAR_LABEL_MIN_PX = 48;
+// Smallest bar (Kieirra 2026-11-19): its icon, the start of its name and room to click it, beside its ✕.
+export const MIN_CHIP_PX = 64;
 // Horizontal room taken by a mercenary mark and its label, kept free when stacking rows.
 export const MERCENARY_MARK_PX = 120;
 
@@ -31,6 +33,8 @@ export const CLICK_TIP_RATIO = 7 / 20;
 export const CLICK_ICON_PX = 24;
 
 export const TIMELINE_BACKGROUND = '#0D0D12';
+// Ghost, line and label of a drop.
+export const DROP_COLOR = '#c8b6ff';
 
 export const SETUP_HERO_KEY = 'setup-hero';
 

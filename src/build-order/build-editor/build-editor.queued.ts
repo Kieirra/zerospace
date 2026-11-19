@@ -15,6 +15,13 @@ export const setQueuedProducer = (build: Build, uid: string, producerUid?: strin
 export const setQueuedAt = (build: Build, uids: string[], at: number | null) =>
   updateQueuedAt(build, uids, () => (at === null ? undefined : clampAt(at)));
 
+// Loop until the end (D6): the units of `uids` are made again on their building, or once.
+export const setQueuedRepeat = (build: Build, uids: string[], repeat: boolean) => {
+  const selected = new Set(uids);
+  const queued = build.queued.map((step) => (selected.has(step.uid) ? withOptional(step, 'repeat', repeat ? true : undefined) : step));
+  return queued.every((step, index) => step === build.queued[index]) ? build : { ...build, queued };
+};
+
 // Every moved unit goes to its origin (by uid) plus the same whole seconds, each time held between 0 and the end.
 export const shiftQueuedAt = (build: Build, origins: Record<string, number>, delta: number) =>
   updateQueuedAt(build, Object.keys(origins), ({ uid }) => clampAt(origins[uid] + Math.round(delta)));
@@ -46,7 +53,7 @@ export const dropOrphanUnits = (build: Build, catalog: BuildCatalog) => {
     return !entity || toStepKind(entity) !== 'queued' || toCapableProducerUids(entity, build, catalog).length > 0;
   });
   const isSame = queued.length === build.queued.length && queued.every((step, index) => step === build.queued[index]);
-  return { build: isSame ? build : { ...build, queued }, droppedCount: build.queued.length - queued.length };
+  return isSame ? build : { ...build, queued };
 };
 
 // A setup hero picked from the header takes it out of the Altar: a hero is picked once, the setup one first.

@@ -1,5 +1,5 @@
 import { formatClock, toCapableProducerUids } from '../build-order.helpers.ts';
-import { getResearchLocation } from '../engine/engine.placement.ts';
+import { getResearchLocation } from '../engine/engine.research-location.ts';
 import { toLaneId } from '../engine/engine.state.ts';
 import { RESEARCH_LOCATIONS } from '../game-data/game-data.constants.ts';
 import {
@@ -44,10 +44,12 @@ export const packRows = (intervals: { start: number; end: number }[], minSpan = 
 
 // One item per order, plus the setup hero; rows are set by toProducerLanes. A unit never taken by a building shows on
 // its pinned lane, else on the first lane able to make it, with its never-starts mark. A unit with a time waits from
-// that time, not from its entry in the production queue (Kieirra 2026-11-19).
+// that time, not from its entry in the production queue (Kieirra 2026-11-19). A unit in a loop is named « ∞ Exalted »,
+// the copies of its loop « Exalted », each from its own click.
 export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog, build: Pick<Build, 'timed' | 'queued'>): TimelineItem[] => {
   const laneLabels = new Map(result.lanes.map(({ id, label }) => [id, label]));
   const queuedAts = new Map(build.queued.flatMap(({ uid, at }) => (at === undefined ? [] : [[uid, at]])));
+  const repeatedUids = new Set(build.queued.filter(({ repeat }) => repeat).map(({ uid }) => uid));
   const stepsWithError = new Set(
     result.steps.filter(({ diagnostics }) => diagnostics.some(({ severity }) => severity === 'error')).map(({ stepUid }) => stepUid),
   );
@@ -61,23 +63,27 @@ export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog,
     if (!entity) return [];
     const shape = SHAPES[entity.category];
     const laneId = order.laneId ?? toWaitingLaneId(order.stepUid, entity, build, catalog, laneLabels);
-    const timing = { clickAt: queuedAts.get(order.stepUid) ?? order.clickAt, startAt: order.startAt };
+    const isCopy = order.occurrence > 0;
+    const stepAt = isCopy ? undefined : queuedAts.get(order.stepUid);
+    const timing = { clickAt: stepAt ?? order.clickAt, startAt: order.startAt };
+    const isLoopStep = !isCopy && repeatedUids.has(order.stepUid);
     return [
       {
         stepUid: order.stepUid,
+        occurrence: order.occurrence,
         entityId: order.entityId,
         shape,
         isMercenary: entity.category === 'mercenary-building',
         isResearchBuilding: entity.category === 'building' && researchBuildingIds.has(entity.id),
         laneId,
-        label: shape === 'mercenary' ? `${entity.displayName} ×${entity.count}` : entity.displayName,
+        label: shape === 'mercenary' ? `${entity.displayName} ×${entity.count}` : `${isLoopStep ? '∞ ' : ''}${entity.displayName}`,
         where: laneId === null ? '' : (laneLabels.get(laneId) ?? ''),
         clickAt: timing.clickAt,
         startAt: order.startAt,
         endAt: order.endAt,
         waitLabel: toWaitLabel(timing),
         isClickedEarly: isOrderClickedEarly(timing),
-        hasClickTime: queuedAts.has(order.stepUid) || build.timed.some(({ uid }) => uid === order.stepUid),
+        hasClickTime: stepAt !== undefined || build.timed.some(({ uid }) => uid === order.stepUid),
         neverStartsFrom: result.lanes.find(({ id }) => id === laneId)?.readyAt ?? 0,
         hasError: stepsWithError.has(order.stepUid),
         row: 0,
@@ -126,6 +132,8 @@ export const toItemButtonProps = (item: TimelineItem, events: TimelineItemEvents
     'aria-label': toItemAriaLabel(item),
     // Every mark of a step: the editor finds where its step panel goes.
     'data-step-uid': item.stepUid,
+    // A copy of a loop is never dragged.
+    'data-copy': item.occurrence > 0 || undefined,
     onMouseEnter: enter,
     onFocus: enter,
     onMouseLeave: events.onLeave,
@@ -157,6 +165,7 @@ const toSetupHeroItem = (result: SimulationResult, catalog: BuildCatalog): Timel
   if (!setup || !hero) return null;
   return {
     stepUid: SETUP_HERO_KEY,
+    occurrence: 0,
     entityId: hero.id,
     shape: 'setup-hero',
     isMercenary: false,

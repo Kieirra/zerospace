@@ -7,7 +7,7 @@ import { createSimulationContext, simulateBuild } from '../engine/engine.ts';
 import { MAX_STEPS } from '../link/link.constants.ts';
 import { resolveRules } from '../rules/rules.helpers.ts';
 import { FIRST_PREVIOUS, resolveAnchor } from './bo-plan.anchors.ts';
-import type { Build, SideCatalog } from '../build-order.types.ts';
+import type { Build, QueuedStep, SideCatalog, TimedStep } from '../build-order.types.ts';
 import type { SimulationContext, SimulationResult } from '../engine/engine.types.ts';
 import type { AnchorLookup, PreviousGroup } from './bo-plan.anchors.ts';
 import type { BoGroup, BoItem, BoPlan } from './bo-plan.types.ts';
@@ -63,10 +63,22 @@ const createImportState = (plan: BoPlan, catalogs: BoCatalogs) => {
   return state;
 };
 
-// A group left empty by the losses is skipped: the next `->` waits for the group before it.
+const AFTER_PREVIOUS = { kind: 'after-previous' } as const;
+
+// A group left empty by the losses is skipped: the next `->` waits for the group before it. The loops of a group are
+// never awaited, by `->` (D1) or by a trigger. `A + B + C` keeps its order (Kieirra 2026-11-19): each item placed waits
+// for the start of every copy of the one placed before it, like a trigger, else one second after its time; its copies
+// and loops share its time, a lost item is skipped.
 const placeGroup = (state: ImportState, group: BoGroup, previous: PreviousGroup): PreviousGroup => {
   const at = resolveAnchor(group.anchor, previous, state.lookup);
-  const placed = group.items.map((item) => ({ item, uids: addCopies(state, item, at) }));
+  let before: PreviousGroup | null = null;
+  const placed = group.items.map((item) => {
+    const itemAt = before === null ? at : resolveAnchor(AFTER_PREVIOUS, before, state.lookup);
+    const uids = addCopies(state, item, itemAt);
+    addLoops(state, item, uids, itemAt);
+    if (uids.length > 0) before = { at: itemAt + 1, uids, event: 'starts' };
+    return { item, uids };
+  });
   for (const { item, uids } of placed) {
     (item.trigger ?? []).reduce<PreviousGroup>(
       (triggerPrevious, triggerGroup) => placeGroup(state, triggerGroup, triggerPrevious),
@@ -82,15 +94,31 @@ const addCopies = (state: ImportState, { entityId, count }: BoItem, at: number) 
   if (!entity || entityId === state.build.heroId) return [];
   const uids: string[] = [];
   for (let copy = 0; copy < count && state.stepCount < MAX_STEPS; copy += 1) {
-    state.stepCount += 1;
-    const uid = `s${state.stepCount}`;
     const steps = toStepKind(entity) === 'timed' ? state.build.timed : state.build.queued;
-    steps.push({ uid, entityId, at });
-    if (!state.lookup.firstUids.has(entityId)) state.lookup.firstUids.set(entityId, uid);
-    uids.push(uid);
+    uids.push(addStep(state, steps, { entityId, at }));
   }
-  if (uids.length > 0) state.result = undefined;
   return uids;
+};
+
+// `(loop X)`: one X per copy of the item, pinned on it, made in a loop when X is a unit (D6), else once.
+const addLoops = (state: ImportState, { loop }: BoItem, producerUids: string[], at: number) => {
+  const entity = loop === undefined ? undefined : state.context.catalog.get(loop);
+  if (!entity || toStepKind(entity) !== 'queued' || entity.id === state.build.heroId) return;
+  for (const producerUid of producerUids) {
+    if (state.stepCount >= MAX_STEPS) return;
+    const repeat = entity.category === 'unit' && { repeat: true as const };
+    addStep(state, state.build.queued, { entityId: entity.id, producerUid, at, ...repeat });
+  }
+};
+
+// Uids `s1`, `s2`… in the order of the build order.
+const addStep = (state: ImportState, steps: (TimedStep | QueuedStep)[], step: Omit<TimedStep, 'uid'> | Omit<QueuedStep, 'uid'>) => {
+  state.stepCount += 1;
+  const uid = `s${state.stepCount}`;
+  steps.push({ uid, ...step });
+  if (!state.lookup.firstUids.has(step.entityId)) state.lookup.firstUids.set(step.entityId, uid);
+  state.result = undefined;
+  return uid;
 };
 
 const toCurrentBuild = ({ build }: ImportState): Build => ({

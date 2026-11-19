@@ -14,6 +14,8 @@ export type TimelineItemShape = 'building' | 'unit' | 'research' | 'mercenary' |
 export interface TimelineItem {
   // 'setup-hero' for the setup hero.
   stepUid: string;
+  // 0 for the step itself, then 1, 2… for the copies of its loop: neither moved nor removed, a click selects the step.
+  occurrence: number;
   entityId: string;
   shape: TimelineItemShape;
   // Mercenary building: same bevelled bar, mercenary color.

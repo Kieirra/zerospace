@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import { resolveRules } from '../rules/rules.helpers.ts';
+import { getDefaultMercenaryId } from '../catalog/catalog.helpers.ts';
 import type { Side } from '../build-order.types.ts';
 
 interface SidePickerProps {
@@ -8,13 +8,12 @@ interface SidePickerProps {
   onStart: (factionId: string, mercenaryId: string | null) => void;
 }
 
-// 'New build': faction required, mercenary optional (hidden when the faction plays without one).
+// 'New build': a faction and a mercenary, the first one preselected (no game without a mercenary, Kieirra 2026-11-19).
 export const SidePicker = ({ sides, onStart }: SidePickerProps) => {
   const [factionId, setFactionId] = useState<string | null>(null);
-  const [mercenaryId, setMercenaryId] = useState<string | null>(null);
+  const [mercenaryId, setMercenaryId] = useState(() => getDefaultMercenaryId(sides));
   const factions = sides.filter(({ kind }) => kind === 'faction');
   const mercenaries = sides.filter(({ kind }) => kind === 'mercenary');
-  const isMercenaryAllowed = factionId === null || resolveRules(factionId).mercenaryAllowed.value;
 
   return (
     <section aria-labelledby="new-build-title" className="flex flex-col gap-6 border border-line bg-panel px-6 py-5">
@@ -46,38 +45,36 @@ export const SidePicker = ({ sides, onStart }: SidePickerProps) => {
           ))}
         </div>
       </div>
-      {isMercenaryAllowed && (
-        <div role="radiogroup" aria-labelledby="new-build-mercenary" className="flex flex-col gap-3">
-          <h2 id="new-build-mercenary" className="label-caps text-xs text-muted">
-            Mercenary
-          </h2>
-          <div className="flex flex-wrap gap-2">
-            {[null, ...mercenaries].map((side) => (
-              <button
-                key={side?.id ?? 'none'}
-                type="button"
-                role="radio"
-                aria-checked={(side?.id ?? null) === mercenaryId}
-                onClick={() => setMercenaryId(side?.id ?? null)}
-                style={{ borderLeftColor: side?.accent ?? 'var(--color-line)' }}
-                className={clsx(
-                  'flex cursor-pointer items-center gap-2 border-l-4 px-3 py-2 text-sm',
-                  'bg-surface hover:bg-surface-hover',
-                  (side?.id ?? null) === mercenaryId && 'ring-2 ring-accent-soft ring-inset',
-                )}
-              >
-                {side?.imageUrl && <img src={side.imageUrl} alt="" width={28} height={28} className="size-7 object-contain" />}
-                {side?.name ?? 'No mercenary'}
-              </button>
-            ))}
-          </div>
+      <div role="radiogroup" aria-labelledby="new-build-mercenary" className="flex flex-col gap-3">
+        <h2 id="new-build-mercenary" className="label-caps text-xs text-muted">
+          Mercenary
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {mercenaries.map((side) => (
+            <button
+              key={side.id}
+              type="button"
+              role="radio"
+              aria-checked={side.id === mercenaryId}
+              onClick={() => setMercenaryId(side.id)}
+              style={{ borderLeftColor: side.accent }}
+              className={clsx(
+                'flex cursor-pointer items-center gap-2 border-l-4 px-3 py-2 text-sm',
+                'bg-surface hover:bg-surface-hover',
+                side.id === mercenaryId && 'ring-2 ring-accent-soft ring-inset',
+              )}
+            >
+              {side.imageUrl && <img src={side.imageUrl} alt="" width={28} height={28} className="size-7 object-contain" />}
+              {side.name}
+            </button>
+          ))}
         </div>
-      )}
+      </div>
       <div className="flex justify-end">
         <button
           type="button"
           disabled={factionId === null}
-          onClick={() => factionId !== null && onStart(factionId, isMercenaryAllowed ? mercenaryId : null)}
+          onClick={() => factionId !== null && onStart(factionId, mercenaryId)}
           className="bevel-sm cursor-pointer bg-accent px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#9f3fcc] disabled:cursor-default disabled:opacity-40"
         >
           Start building

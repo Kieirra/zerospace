@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { getResearchLocation } from '../engine/engine.placement.ts';
+import { getResearchLocation } from '../engine/engine.research-location.ts';
 import { MAX_FLUX_NODES, RESEARCH_LOCATIONS } from '../game-data/game-data.constants.ts';
 import { toCatalogMap } from '../build-order.helpers.ts';
 import { resolveGameValue } from '../game-data/game-data.helpers.ts';

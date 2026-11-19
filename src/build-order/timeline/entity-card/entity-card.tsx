@@ -1,6 +1,6 @@
 import { useEffect, useEffectEvent, useRef } from 'react';
-import { entityHref } from '../../../wiki/wiki.helpers.ts';
 import { EntityIcon } from '../../entity-icon/entity-icon.tsx';
+import { WikiLink } from '../../wiki-link/wiki-link.tsx';
 import type { ReactNode } from 'react';
 import type { BuildEntity } from '../../build-order.types.ts';
 
@@ -61,9 +61,7 @@ export const EntityCard = ({ entity, anchor, facts, onClose }: EntityCardProps) 
         {entity.displayName}
       </p>
       <div className="flex flex-wrap items-center gap-3 text-xs">{facts}</div>
-      <a href={entityHref(entity.id)} className="text-xs text-accent-soft hover:underline">
-        Open wiki page
-      </a>
+      <WikiLink entityId={entity.id} />
     </div>
   );
 };

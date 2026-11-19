@@ -83,7 +83,11 @@ export const toRemovedText = (before: Build, after: Build | null, catalog: Build
 };
 
 // An absent value is left out, never written as undefined: the link and the comparisons stay clean.
-export const withOptional = <S extends TimedStep | QueuedStep, K extends keyof S & ('producerUid' | 'at')>(step: S, key: K, value: S[K]): S => {
+export const withOptional = <S extends TimedStep | QueuedStep, K extends keyof S & ('producerUid' | 'at' | 'repeat')>(
+  step: S,
+  key: K,
+  value: S[K],
+): S => {
   if (step[key] === value) return step;
   if (value !== undefined) return { ...step, [key]: value };
   const rest = { ...step };

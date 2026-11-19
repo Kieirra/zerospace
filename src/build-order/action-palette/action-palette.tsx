@@ -1,32 +1,36 @@
 import clsx from 'clsx';
 import { useId, useRef, useState } from 'react';
 import { useTabNavigation } from '../hooks/use-tab-navigation.ts';
+import { useWindowFitHeight } from '../hooks/use-window-fit-height.ts';
 import { filterTiles, toDefaultTabId, toPaletteTabs } from './action-palette.helpers.ts';
 import { usePaletteHotkeys } from './hooks/use-palette-hotkeys.ts';
 import { PaletteGrid } from './palette-grid/palette-grid.tsx';
+import type { ReactNode } from 'react';
 import type { Build, BuildEntity } from '../build-order.types.ts';
 import type { PaletteContext, PaletteTabId } from './action-palette.helpers.ts';
 
 interface ActionPaletteProps {
   build: Build;
   context: PaletteContext;
-  // Room taken by the sticky header above it.
-  stickyTop: number;
+  // Top right of the header, beside the title.
+  headerAction?: ReactNode;
   onAdd: (entity: BuildEntity) => void;
 }
 
-const STICKY_GAP_PX = 8;
-// Page around the palette at rest: main top padding and gap above it (40), main bottom padding and footer below it (56).
-// Kept out of its height so a long list never makes the page scroll (Kieirra 2026-11-19).
-const RESTING_CHROME_PX = 96;
+// Page under the palette: main bottom padding and footer (56), kept out of its height so a long list never makes the
+// page scroll (Kieirra 2026-11-19).
+const BOTTOM_CHROME_PX = 56;
+const MIN_HEIGHT_PX = 240;
 
 // 'Add step': Find across every tab, or the tiles of the active tab (kept for the page) and its hotkeys.
 // Only the tiles scroll (Kieirra 2026-11-19), title, Find and tabs stay on top, the page never scrolls with them. Gutter
 // kept so the tiles never shift when a long tab brings the scrollbar, set in the right padding; thin thumb.
-export const ActionPalette = ({ build, context, stickyTop, onAdd }: ActionPaletteProps) => {
+export const ActionPalette = ({ build, context, headerAction, onAdd }: ActionPaletteProps) => {
   const [activeTabId, setActiveTabId] = useState<PaletteTabId>(() => toDefaultTabId(build));
   const [query, setQuery] = useState('');
   const findRef = useRef<HTMLInputElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const maxHeight = useWindowFitHeight(sectionRef, BOTTOM_CHROME_PX, MIN_HEIGHT_PX);
   const baseId = useId();
   const tabs = toPaletteTabs(build, context);
   const activeTab = tabs.find(({ id }) => id === activeTabId) ?? tabs[0];
@@ -40,14 +44,16 @@ export const ActionPalette = ({ build, context, stickyTop, onAdd }: ActionPalett
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby={`${baseId}-title`}
-      className="sticky flex flex-col gap-2.5 self-start overflow-hidden border border-line bg-panel p-3"
-      style={{ top: stickyTop + STICKY_GAP_PX, maxHeight: `calc(100dvh - ${stickyTop + RESTING_CHROME_PX}px)` }}
+      className="flex flex-col gap-2.5 self-start overflow-hidden border border-line bg-panel p-3"
+      style={{ maxHeight: maxHeight ?? undefined }}
     >
       <div className="flex shrink-0 items-baseline justify-between">
         <h2 id={`${baseId}-title`} className="label-caps text-xs">
           Add step
         </h2>
+        {headerAction}
       </div>
       <input
         ref={findRef}

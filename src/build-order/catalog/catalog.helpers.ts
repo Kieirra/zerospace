@@ -1,6 +1,7 @@
 import { byOrderThenName } from '../../wiki/wiki.helpers.ts';
 import { FACTION_ACCENTS } from '../../wiki/wiki.constants.ts';
 import { HERO_OVERRIDES, SUPPLY_PROVIDED_OVERRIDES } from '../game-data/game-data.constants.ts';
+import { toOfferedEntities } from './catalog.offer.ts';
 import type { EconomyStat } from '../../wiki/wiki-data.types.ts';
 import type { Entity } from '../../wiki/wiki.types.ts';
 import type { HeroOverride } from '../game-data/game-data.constants.ts';
@@ -50,11 +51,13 @@ export const toSideEntities = (
   entities: Entity[],
   findImageUrl: (id: string) => string | undefined,
 ) =>
-  entities
-    .filter(isBuildableEntity)
-    .filter((entity) => entity.faction === side.id)
-    .sort(byOrderThenName)
-    .map((entity) => toBuildEntity(entity, side.kind, findImageUrl(entity.id)));
+  toOfferedEntities(
+    entities
+      .filter(isBuildableEntity)
+      .filter((entity) => entity.faction === side.id)
+      .sort(byOrderThenName)
+      .map((entity) => toBuildEntity(entity, side.kind, findImageUrl(entity.id))),
+  );
 
 export const toBuildEntity = (
   entity: BuildableEntity,
@@ -154,6 +157,9 @@ export const getHeroPool = (
     ? mercenary.heroIds.map((heroId): HeroPoolEntry => ({ heroId, origin: 'mercenary' }))
     : []),
 ];
+
+// No game without a mercenary (Kieirra 2026-11-19): the first one of the sides, as New build preselects it.
+export const getDefaultMercenaryId = (sides: Pick<Side, 'id' | 'kind'>[]) => sides.find(({ kind }) => kind === 'mercenary')?.id ?? null;
 
 export const getDefaultHeroId = (pool: HeroPoolEntry[]) =>
   (pool.find(({ origin }) => origin === 'faction') ?? pool[0])?.heroId ?? null;

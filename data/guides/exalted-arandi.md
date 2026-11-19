@@ -30,7 +30,7 @@ weaknesses:
 3. Inquisitress + Arandi Judgement + Lightning Spear + Improved Charge + Wake of Fire + Burning Fireball
    -> Garrison Tower + Idal Conduit + 2 Bestiary^1
    goal: Late game, every hero upgrade, close the game
-4. Dreadnought [unit]
+4. Dreadnought [building]
    goal: Dreadnought finisher
 ^1: 2 Bestiary per Garrison Tower.
 ```

@@ -1,15 +1,16 @@
 import { useEffect } from 'react';
-import { toWheelScrollLeft } from './use-wheel-scroll.helpers.ts';
+import { toShiftWheelScrollLeft } from './use-wheel-scroll.helpers.ts';
 import type { RefObject } from 'react';
 
-// The vertical wheel scrolls the frame sideways while it has a horizontal scrollbar (Kieirra 2026-11-19), else the page.
-// Native listener: React's onWheel is passive, its preventDefault would not keep the page still.
+// The wheel scrolls the lanes up and down and a trackpad both ways, as the browser does; Shift + wheel scrolls the
+// frame sideways (Kieirra 2026-11-19). Native listener: React's onWheel is passive, its preventDefault would not keep
+// the browser from scrolling too.
 export const useWheelScroll = (frameRef: RefObject<HTMLElement | null>) => {
   useEffect(() => {
     const frame = frameRef.current;
     if (!frame) return;
     const handleWheel = (event: WheelEvent) => {
-      const scrollLeft = toWheelScrollLeft(event, frame);
+      const scrollLeft = toShiftWheelScrollLeft(event, frame);
       if (scrollLeft === null) return;
       event.preventDefault();
       frame.scrollLeft = scrollLeft;

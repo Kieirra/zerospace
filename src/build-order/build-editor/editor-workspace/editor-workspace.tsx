@@ -2,12 +2,10 @@ import { useMemo } from 'react';
 import { EditorHeader } from '../../editor-header/editor-header.tsx';
 import { SHARE_TEXTS } from '../../editor-header/share-button/share-button.constants.ts';
 import { createSimulationContext, simulateBuild } from '../../engine/engine.ts';
-import { useElementHeight } from '../../hooks/use-element-height.ts';
 import { useHighlight } from '../../hooks/use-highlight.ts';
 import { encodeBuild } from '../../link/link.codec.ts';
 import { toAbsoluteUrl, toEditUrl } from '../../link/link.helpers.ts';
 import { NoticeBanner } from '../../notice-banner/notice-banner.tsx';
-import { SITE_NAV_HEIGHT_PX } from '../build-editor.constants.ts';
 import { toRemovedText } from '../build-editor.helpers.ts';
 import { editorReducer } from '../build-editor.reducer.ts';
 import { EditorPalette } from '../editor-palette/editor-palette.tsx';
@@ -19,6 +17,7 @@ import { useEditorShortcuts } from '../hooks/use-editor-shortcuts.ts';
 import { useEditorToasts } from '../hooks/use-editor-toasts.ts';
 import { useEditorTimelineEditing } from '../hooks/use-editor-timeline-editing.ts';
 import { useTimelineSelection } from '../hooks/use-timeline-selection.ts';
+import { PaletteFold } from '../palette-fold/palette-fold.tsx';
 import { StepPanel } from '../step-panel/step-panel.tsx';
 import type { Dispatch } from 'react';
 import type { Build, Side, SideCatalog } from '../../build-order.types.ts';
@@ -45,7 +44,7 @@ const RESET_TEXT = 'Build reset.';
 const WIDE_LAYOUT_STYLE = { width: 'min(100vw - 48px, 1800px)', marginLeft: 'calc(50% - min(50vw - 24px, 900px))' };
 
 // The editor once the build and its catalogs are there: every change is simulated again in the same frame.
-// One-line header, then the palette beside the live timeline.
+// One-line header, then the palette (foldable) beside the live timeline; nothing follows the page scroll.
 export const EditorWorkspace = ({ state, sides, faction, mercenary, notices, dispatch, history, ask, ensureSides }: EditorWorkspaceProps) => {
   const { build } = state;
   // Title and author change nothing simulated: typing them neither simulates again nor redraws the timeline.
@@ -59,7 +58,6 @@ export const EditorWorkspace = ({ state, sides, faction, mercenary, notices, dis
   }, [simulated, faction, mercenary]);
   const { catalog } = context;
   const { highlightedStepUid, highlight } = useHighlight();
-  const header = useElementHeight<HTMLDivElement>();
   const toasts = useEditorToasts(build);
   const { showMessage } = toasts;
   const selection = useTimelineSelection(simulated);
@@ -96,41 +94,42 @@ export const EditorWorkspace = ({ state, sides, faction, mercenary, notices, dis
 
   return (
     <div className="flex flex-col gap-4" style={WIDE_LAYOUT_STYLE}>
-      <div ref={header.ref} className="sticky z-20" style={{ top: SITE_NAV_HEIGHT_PX }}>
-        <EditorHeader
-          build={build}
-          sides={sides}
-          catalog={catalog}
-          history={history}
-          share={{
-            getUrl: () => toAbsoluteUrl(toEditUrl(encodeBuild(build)), window.location.origin),
-            onCopied: () => showMessage(SHARE_TEXTS.copied),
-            onFailed: () => showMessage(SHARE_TEXTS.failed),
-          }}
-          onFaction={actions.changeFaction}
-          onMercenary={actions.changeMercenary}
-          onHero={(heroId) => dispatch({ type: 'set-hero', heroId })}
-          onTitle={(title) => dispatch({ type: 'set-title', title })}
-          onAuthor={(author) => dispatch({ type: 'set-author', author })}
-          onAuthorDone={() => dispatch({ type: 'end-edit' })}
-          onReset={() => {
-            dispatch({ type: 'reset' });
-            toasts.undoToast.show(RESET_TEXT);
-          }}
-        />
-      </div>
+      <EditorHeader
+        build={build}
+        sides={sides}
+        catalog={catalog}
+        history={history}
+        share={{
+          getUrl: () => toAbsoluteUrl(toEditUrl(encodeBuild(build)), window.location.origin),
+          onCopied: () => showMessage(SHARE_TEXTS.copied),
+          onFailed: () => showMessage(SHARE_TEXTS.failed),
+        }}
+        onFaction={actions.changeFaction}
+        onMercenary={actions.changeMercenary}
+        onHero={(heroId) => dispatch({ type: 'set-hero', heroId })}
+        onTitle={(title) => dispatch({ type: 'set-title', title })}
+        onAuthor={(author) => dispatch({ type: 'set-author', author })}
+        onAuthorDone={() => dispatch({ type: 'end-edit' })}
+        onReset={() => {
+          dispatch({ type: 'reset' });
+          toasts.undoToast.show(RESET_TEXT);
+        }}
+      />
       {notices.map((text) => (
         <NoticeBanner key={text} text={text} />
       ))}
-      {/* Wide enough for four tiles a row with their price (Kieirra 2026-11-19). */}
-      <div className="grid grid-cols-[336px_minmax(0,1fr)] items-start gap-3.5">
-        <EditorPalette
-          build={simulated}
-          selectedStepUid={selectedUids.length === 1 ? selectedUids[0] : null}
-          context={context}
-          stickyTop={SITE_NAV_HEIGHT_PX + header.height}
-          dispatch={dispatch}
-        />
+      <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3.5">
+        <PaletteFold>
+          {(foldButton) => (
+            <EditorPalette
+              build={simulated}
+              selectedStepUid={selectedUids.length === 1 ? selectedUids[0] : null}
+              context={context}
+              headerAction={foldButton}
+              dispatch={dispatch}
+            />
+          )}
+        </PaletteFold>
         <EditorTimeline
           result={result}
           build={simulated}

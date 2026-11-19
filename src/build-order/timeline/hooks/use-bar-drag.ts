@@ -46,7 +46,9 @@ export const useBarDrag = (
     const handle = pressed && findClickHandle(pressed);
     const mark = handle ?? (pressed && findStepMark(pressed));
     const uid = handle ? handle.dataset.clickUid : mark?.dataset.stepUid;
-    if (!mark || !uid || (!handle && !editing.canDrag(uid)) || event.button !== 0 || !event.isPrimary || stopSession.current) return;
+    // A copy of a loop is never dragged.
+    const isFixed = !handle && (mark?.dataset.copy !== undefined || (uid !== undefined && !editing.canDrag(uid)));
+    if (!mark || !uid || isFixed || event.button !== 0 || !event.isPrimary || stopSession.current) return;
     const zone = event.currentTarget;
     const originRow = mark.closest<HTMLElement>('[data-lane-id]');
     const source: DragSource = handle ? { kind: 'click', uid } : { kind: 'step', uid, laneId: originRow?.dataset.laneId ?? null };

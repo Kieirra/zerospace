@@ -107,8 +107,6 @@ describe('Simulation of entities with unknown data', () => {
         'grell/unit/seedling',
         'grell/unit/arkanid',
         'valkaru/unit/valkaru-beast',
-        'the-legion/upgrade/command-module',
-        'the-xol/upgrade/molten-roller',
       ]),
     );
   });

@@ -17,7 +17,8 @@ export interface GameRules {
   startPriority: Rule<StartRank[]>;
   reservation: Rule<Reservation>;
   requiresMode: Record<BuildEntity['kind'], Rule<RequiresMode>>;
-  mercenaryAllowed: Rule<boolean>;
+  // A build without mercenary takes the default one (getDefaultMercenaryId).
+  mercenaryRequired: Rule<boolean>;
   // Copies of one mercenary building per match.
   mercenaryBuildingCopies: Rule<number>;
   heroes: {
@@ -44,7 +45,7 @@ export const BASE_RULES: GameRules = {
     upgrade: { value: 'all', status: 'provisional', note: 'Every required building is needed.' },
     hero: { value: 'all', status: 'provisional', note: 'Every required building is needed.' },
   },
-  mercenaryAllowed: { value: true, status: 'provisional', note: 'H1: mercenary optional for every faction.' },
+  mercenaryRequired: { value: true, status: 'confirmed', note: 'Kieirra 2026-11-19: no game without a mercenary.' },
   mercenaryBuildingCopies: {
     value: 1,
     status: 'confirmed',

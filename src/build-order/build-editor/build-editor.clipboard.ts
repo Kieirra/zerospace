@@ -34,8 +34,9 @@ export const toClipboardSteps = (build: Pick<Build, 'timed' | 'queued'>, uids: I
   return { timed: build.timed.filter(isSelected), queued: build.queued.filter(isSelected) };
 };
 
-// Timed steps keep their gaps, the earliest one at the pointer time (else the latest click of the build). Units go on
-// the hovered lane when it can make them all, else on their lane when it is still there, else Auto (Kieirra 2026-11-19).
+// Timed steps keep their gaps, the earliest one at the pointer time (else the latest click of the build). Units keep
+// their time and their loop, and go on the hovered lane when it can make them all, else on their lane when it is still
+// there, else Auto (Kieirra 2026-11-19).
 export const toPastedSteps = (build: Build, clip: ClipboardSteps, target: PasteTarget, catalog: BuildCatalog): ClipboardResult => {
   const plan = toCopyPlan(build, clip, catalog);
   if (plan.status !== 'copy') return plan;
@@ -56,7 +57,11 @@ export const toPastedSteps = (build: Build, clip: ClipboardSteps, target: PasteT
   );
   const queued = kept.queued.map((step, index) =>
     withOptional(
-      withOptional<QueuedStep, 'at'>({ uid: uids[kept.timed.length + index], entityId: step.entityId }, 'at', step.at),
+      withOptional(
+        withOptional<QueuedStep, 'at'>({ uid: uids[kept.timed.length + index], entityId: step.entityId }, 'at', step.at),
+        'repeat',
+        step.repeat,
+      ),
       'producerUid',
       hovered ?? keepLane(step.producerUid, laneUids),
     ),

@@ -1,10 +1,8 @@
-import { mercenaryNotAllowed } from './engine.diagnostics.ts';
 import { toSeconds, toTicks } from './engine.economy.ts';
 import type { ProductionCharges } from '../../wiki/wiki-data.types.ts';
-import type { Build } from '../build-order.types.ts';
 import type { ResolvedGameValues } from '../game-data/game-data.helpers.ts';
 import type { InstanceState, OrderState, SimulationState, StackState } from './engine.internal.types.ts';
-import type { Diagnostic, SimulationContext, StackGauge } from './engine.types.ts';
+import type { StackGauge } from './engine.types.ts';
 
 // Stacks of a mercenary building, received when it is ready: the charges of the data, else the game values.
 export const createStacks = (
@@ -49,9 +47,6 @@ export const consumeStack = (order: OrderState, instance: InstanceState, tick: n
   if (stacks.rechargeTicks !== null) stacks.nextTick ??= tick + stacks.rechargeTicks;
   stacks.points.push({ tick, count: stacks.count });
 };
-
-export const getMercenaryDiagnostics = (build: Build, context: SimulationContext): Diagnostic[] =>
-  !context.rules.mercenaryAllowed.value && build.mercenaryId !== null ? [mercenaryNotAllowed()] : [];
 
 export const toStackGauge = (stacks: StackState): StackGauge => ({
   max: stacks.max,

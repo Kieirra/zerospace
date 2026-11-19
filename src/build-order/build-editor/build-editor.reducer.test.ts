@@ -134,6 +134,13 @@ describe('Editor reducer: queue and pins', () => {
     expect(editorReducer(set, { type: 'set-queued-at', uids: ['s5'], at: null }).build?.queued.at(-1)).toEqual(queued('s5', SENTINEL.id, 's1'));
   });
 
+  it('should loop a unit until the end, then make it once again', () => {
+    const looped = run(ARMY, { type: 'set-repeat', uids: ['s5'], repeat: true });
+
+    expect(looped.build?.queued[0]).toEqual({ ...queued('s5', SENTINEL.id, 's1'), repeat: true });
+    expect(editorReducer(looped, { type: 'set-repeat', uids: ['s5'], repeat: false }).build).toEqual(ARMY);
+  });
+
   it('should shift each unit from its origin, held between 0 and the end', () => {
     const timedUnits = run(ARMY, { type: 'set-queued-at', uids: ['s6'], at: 100 });
     const shifted = run(

@@ -21,6 +21,3 @@ export const toAbsoluteUrl = (path: string, origin: string) => `${origin}${path}
 
 export const formatDataChangedText = (linkDataVersion: string, currentDataVersion: string) =>
   LINK_TEXTS.dataChanged.replace('{old}', linkDataVersion).replace('{current}', currentDataVersion);
-
-export const formatDroppedText = (droppedStepCount: number) =>
-  LINK_TEXTS.dropped.replace('{n}', String(droppedStepCount));

@@ -8,7 +8,7 @@ export const resolveRules = (factionId: string): GameRules => {
     startPriority: overrides.startPriority ?? BASE_RULES.startPriority,
     reservation: overrides.reservation ?? BASE_RULES.reservation,
     requiresMode: { ...BASE_RULES.requiresMode, ...overrides.requiresMode },
-    mercenaryAllowed: overrides.mercenaryAllowed ?? BASE_RULES.mercenaryAllowed,
+    mercenaryRequired: overrides.mercenaryRequired ?? BASE_RULES.mercenaryRequired,
     mercenaryBuildingCopies: overrides.mercenaryBuildingCopies ?? BASE_RULES.mercenaryBuildingCopies,
     heroes: { ...BASE_RULES.heroes, ...overrides.heroes },
   };

@@ -1,14 +1,16 @@
 import { hasStack, isRecruit } from './engine.mercenaries.ts';
 import { flushWait, insertSorted } from './engine.order-lists.ts';
+import { requeueRepeats } from './engine.repeat.ts';
 import { startOrders, toStartComparator } from './engine.starts.ts';
 import { areRequirementsReady, findFirstInLaneOrder, isReadyProducer } from './engine.state.ts';
 import type { InstanceState, OrderState, SimulationState } from './engine.internal.types.ts';
 import type { SimulationContext } from './engine.types.ts';
 
-// Phase 1: orders whose end has come leave their thread and apply their effect, in plan order; returns how many ended.
+// Phase 1: orders whose end has come leave their thread and apply their effect, in plan order, then the loops go on or
+// stop (`requeueRepeats`); returns how many ended.
 export const finishOrders = (state: SimulationState) => {
   const { running } = state;
-  let finished = 0;
+  const finished: OrderState[] = [];
   let kept = 0;
   for (const order of running) {
     if (order.endTick === undefined || order.endTick > state.tick) {
@@ -17,7 +19,7 @@ export const finishOrders = (state: SimulationState) => {
       continue;
     }
     order.isDone = true;
-    finished += 1;
+    finished.push(order);
     const { producer, created, entity } = order;
     if (producer?.productionOrder === order) producer.productionOrder = null;
     if (producer?.researchOrder === order) producer.researchOrder = null;
@@ -29,12 +31,15 @@ export const finishOrders = (state: SimulationState) => {
     }
   }
   running.length = kept;
-  if (finished > 0) state.hasPendingChanged = true;
-  return finished;
+  if (finished.length === 0) return 0;
+  requeueRepeats(state, finished);
+  state.hasPendingChanged = true;
+  return finished.length;
 };
 
 // Phases 1 to 3, repeated in the same tick while an order ends (a 0 s order ends in the tick it starts) or is
-// released. The last start pass tells why each released order still waits.
+// released: the copy of a loop starts in the tick its previous one ends. The last start pass tells why each released
+// order still waits.
 export const releaseAndStartOrders = (state: SimulationState, context: SimulationContext) => {
   releaseTimed(state, context);
   releaseQueued(state, context);

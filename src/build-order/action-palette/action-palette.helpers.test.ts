@@ -234,11 +234,11 @@ describe('Palette: research order (Kieirra 2026-11-19)', () => {
     expect(orderOf(twins)).toEqual(['twin-b', 'twin-a']);
   });
 
-  it('should order the Legion research by Citadel then Armory, the turrets without building last (real data)', () => {
+  it('should order the Legion research by Citadel then Armory, without the upgrades done on a unit (real data)', () => {
     const names = tabOf(tabsOf(legion()), 'research')?.tiles.map(({ entity: { name } }) => name) ?? [];
 
     expect(names.slice(0, 4)).toEqual(['Garrison Tower Turret', 'Battle Frenzy', 'Charged Shot', 'Performance Enhancers']);
     expect(names.indexOf('Ironhide Accord')).toBeLessThan(names.indexOf('Improved Charge'));
-    expect(names.slice(-2)).toEqual(['Anti-air Missile Turret', 'Shield Generator']);
+    expect(names).not.toContain('Anti-air Missile Turret');
   });
 });

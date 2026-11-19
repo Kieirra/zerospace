@@ -83,6 +83,31 @@ describe('Link v3: format', () => {
     expect(JSON.parse(json)[7]).toEqual([['u.sentinel', null, 30]]);
   });
 
+  it('should write a loop as a fourth value 1, its empty time as null, and read it back', () => {
+    const link = {
+      ...EXAMPLE_LINK,
+      queued: [
+        { ref: 'u.sentinel', producerIndex: 1, at: null, repeat: true as const },
+        { ref: 'u.sentinel', producerIndex: null, at: 30, repeat: true as const },
+      ],
+    };
+    const code = encodeBuildLink(link);
+    const json = atob(code.slice(2).replace(/-/g, '+').replace(/_/g, '/'));
+
+    expect(JSON.parse(json)[7]).toEqual([
+      ['u.sentinel', 1, null, 1],
+      ['u.sentinel', null, 30, 1],
+    ]);
+    expect(decodeBuildCode(code, SIDES)).toEqual({ status: 'ok', link });
+  });
+
+  it('should keep a link without loop byte for byte, and decode an existing one the same (CA5)', () => {
+    const decoded = decodeBuildCode(`3.${toBase64Url(EXAMPLE_JSON)}`, SIDES);
+
+    expect(decoded.status === 'ok' && decoded.link.queued.every((step) => !('repeat' in step))).toBe(true);
+    expect(decoded.status === 'ok' && encodeBuildLink(decoded.link)).toBe(`3.${toBase64Url(EXAMPLE_JSON)}`);
+  });
+
   it('should read back a title with accents and emoji', () => {
     const link = { ...EXAMPLE_LINK, title: 'Poussée 🚀', author: 'Zoë' };
 
@@ -117,6 +142,9 @@ describe('Link v3: invalid codes', () => {
     ['a queued step without ref', { 7: [[]] }],
     ['a queued producer as text', { 7: [['u.sentinel', '1']] }],
     ['a queued time as null', { 7: [['u.sentinel', null, null]] }],
+    ['a loop other than 1', { 7: [['u.sentinel', null, null, 2]] }],
+    ['a loop as true', { 7: [['u.sentinel', null, 30, true]] }],
+    ['a queued step with 5 values', { 7: [['u.sentinel', null, 30, 1, 1]] }],
     ['201 steps', { 6: [], 7: Array.from({ length: 201 }, () => ['u.sentinel']) }],
     ['201 steps over both lists', { 6: Array.from({ length: 101 }, () => ['b.barracks', 0]), 7: Array.from({ length: 100 }, () => ['u.sentinel']) }],
   ])('should be invalid with %s', (_, changes) => {

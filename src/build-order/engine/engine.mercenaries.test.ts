@@ -118,24 +118,3 @@ describe('Mercenaries: recruits never hold the others', () => {
     expect(recruitsOf(result)[0]).toMatchObject({ clickAt: 120, startAt: 120 });
   });
 });
-
-describe('Mercenaries: faction without mercenary', () => {
-  it('should report mercenary-not-allowed when the rules forbid a mercenary', () => {
-    const build = marranBuild(1);
-    const context = toRealContext(build);
-    const result = simulateReal(build, {
-      ...context,
-      rules: { ...context.rules, mercenaryAllowed: { ...context.rules.mercenaryAllowed, value: false } },
-    });
-
-    expect(result.diagnostics).toContainEqual({
-      code: 'mercenary-not-allowed',
-      severity: 'error',
-      message: 'This faction plays without a mercenary.',
-    });
-  });
-
-  it('should not report it when the mercenary is allowed', () => {
-    expect(simulateReal(marranBuild(1)).diagnostics).not.toContainEqual(expect.objectContaining({ code: 'mercenary-not-allowed' }));
-  });
-});

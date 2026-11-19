@@ -34,6 +34,7 @@ export const createState = (
     lastFullPassTick: -1,
     nextCheckTick: 0,
     running: [],
+    openCount: orders.filter(({ plan }) => !plan.repeat).length,
     setupHero,
   };
   const starting = context.startingBuildingId ? context.catalog.get(context.startingBuildingId) : undefined;
@@ -105,6 +106,7 @@ const hasOrder = (plan: PlannedStep): plan is PlannedStep & { entity: BuildEntit
 const createOrder = (plan: PlannedStep & { entity: BuildEntity }): OrderState => ({
   plan,
   entity: plan.entity,
+  occurrence: 0,
   isDone: false,
   isReleased: false,
   waits: {},

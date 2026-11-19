@@ -1,5 +1,7 @@
 import { formatClock } from '../build-order.helpers.ts';
 import { toSlotMarks } from './slot-marks/slot-marks.helpers.ts';
+import { toClickMarkAt, toContentInset } from './click-wait/click-wait.helpers.ts';
+import { toBarWidthPx } from './timeline-bar/timeline-bar.helpers.ts';
 import { MERCENARY_MARK_PX, SETUP_HERO_KEY } from './timeline.constants.ts';
 import { packRows } from './timeline.helpers.ts';
 import type { Lane } from '../engine/engine.types.ts';
@@ -26,14 +28,9 @@ export const toProducerLanes = (items: TimelineItem[], engineLanes: Lane[], scal
     .map(([id, laneItems]) => ({ id, laneItems, beginsAt: id === startingLaneId ? -Infinity : Math.min(...laneItems.map(toStartAt)) }))
     .sort((a, b) => a.beginsAt - b.beginsAt || (engineRank.get(a.id) ?? Infinity) - (engineRank.get(b.id) ?? Infinity))
     .map(({ id, laneItems }) => {
-      // One interval per order, from its click (else its never-starts mark) to its end.
-      const rows = packRows(
-        laneItems.map((item) => {
-          const start = toBeginAt(item);
-          const end = item.endAt ?? scale.totalSeconds;
-          return { start, end: item.shape === 'mercenary' ? Math.max(end, start + minSpan) : end };
-        }),
-      );
+      // One interval per order, from its click (else its never-starts mark) to the end of its mark: a chip wider than
+      // its time (Kieirra 2026-11-19) takes the next row rather than covering the next mark.
+      const rows = packRows(laneItems.map((item) => ({ start: toBeginAt(item), end: toMarkEnd(item, scale, minSpan) })));
       const placed = laneItems.map((item, index) => ({ ...item, row: rows[index] }));
       return {
         id,
@@ -47,6 +44,15 @@ export const toProducerLanes = (items: TimelineItem[], engineLanes: Lane[], scal
 
 // No lane at all only without a starting base: such an order joins the first lane (Kieirra 2026-11-19).
 const toGroupId = ({ stepUid, laneId }: TimelineItem, fallbackId: string) => (stepUid === SETUP_HERO_KEY ? SETUP_HERO_KEY : (laneId ?? fallbackId));
+
+const toMarkEnd = (item: TimelineItem, scale: TimeScale, mercenarySpan: number) => {
+  const end = item.endAt ?? scale.totalSeconds;
+  if (item.shape === 'mercenary') return Math.max(end, toBeginAt(item) + mercenarySpan);
+  if (item.startAt === null) return end;
+  const inset = toContentInset(item, toClickMarkAt(item), scale);
+  const width = toBarWidthPx(end - item.startAt, item.shape === 'unit', inset, scale.pixelsPerSecond);
+  return Math.max(end, item.startAt + width / scale.pixelsPerSecond);
+};
 
 const toBeginAt = ({ clickAt, startAt, neverStartsFrom }: TimelineItem) => clickAt ?? startAt ?? neverStartsFrom;
 

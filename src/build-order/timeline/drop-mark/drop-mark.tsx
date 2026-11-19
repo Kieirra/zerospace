@@ -1,4 +1,4 @@
-import { AXIS_HEIGHT_PX, LABEL_COLUMN_PX } from '../timeline.constants.ts';
+import { AXIS_HEIGHT_PX, DROP_COLOR, LABEL_COLUMN_PX } from '../timeline.constants.ts';
 import type { TimelineDrag } from '../hooks/use-bar-drag.ts';
 import type { TimeScale } from '../timeline.types.ts';
 
@@ -7,13 +7,11 @@ interface DropMarkProps {
   scale: TimeScale;
 }
 
-const DROP_COLOR = '#c8b6ff';
-
-// While dragging: the ghost of the dragged mark, a dashed line where it would start, and on the axis its click time
-// and when it would start ('Click 2:35 · starts ≈ 2:41').
+// While dragging: the ghost of the dragged mark and a dashed line where it would start; DropLabel gives its times on
+// the axis.
 export const DropMark = ({ drag, scale }: DropMarkProps) => {
   const left = LABEL_COLUMN_PX + drag.t * scale.pixelsPerSecond;
-  const { ghost, preview } = drag;
+  const { ghost } = drag;
   return (
     <>
       {ghost && (
@@ -30,13 +28,6 @@ export const DropMark = ({ drag, scale }: DropMarkProps) => {
         className="pointer-events-none absolute bottom-0 border-l-2 border-dashed"
         style={{ left, top: AXIS_HEIGHT_PX - 4, zIndex: 11, borderColor: DROP_COLOR }}
       />
-      <span
-        role="status"
-        className="pointer-events-none absolute rounded-sm px-1.5 text-[10.5px] leading-[18px] font-semibold whitespace-nowrap text-[#0b0b10]"
-        style={{ left: left + 3, top: 0, zIndex: 13, background: DROP_COLOR, opacity: preview.isSamePlace ? 0.7 : 1 }}
-      >
-        {preview.label}
-      </span>
     </>
   );
 };

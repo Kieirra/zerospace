@@ -5,9 +5,10 @@ import { fromBase64Url, toBase64Url } from './link.base64.ts';
 import { toEntityRef } from './link.refs.ts';
 import type { Build, BuildLink, BuildLinkQueued, BuildLinkTimed, DecodeResult, KnownSides } from '../build-order.types.ts';
 
-// `[ref, at]` or `[ref, at, producerIndex]`; `[ref]`, `[ref, producerIndex]` or `[ref, producerIndex | null, at]`.
+// `[ref, at]` or `[ref, at, producerIndex]`; `[ref]`, `[ref, producerIndex]`, `[ref, producerIndex | null, at]` or, for a
+// loop, `[ref, producerIndex | null, at | null, 1]`.
 type TimedTuple = [string, number, number?];
-type QueuedTuple = [string, (number | null)?, number?];
+type QueuedTuple = [string, (number | null)?, (number | null)?, 1?];
 // Data version, faction, mercenary ('' = none), hero ref ('' = none), title, author, timed, queued.
 type LinkTuple = [string, string, string, string, string, string, TimedTuple[], QueuedTuple[]];
 
@@ -30,7 +31,9 @@ export const toBuildLink = (build: Build): BuildLink => {
     timed: timed.map(({ step, ref }) => ({ ref, at: step.at, producerIndex: toProducerIndex(step.producerUid) })),
     queued: build.queued.flatMap((step) => {
       const ref = toEntityRef(step.entityId, build.factionId);
-      return ref === null ? [] : [{ ref, producerIndex: toProducerIndex(step.producerUid), at: step.at ?? null }];
+      if (ref === null) return [];
+      const repeat = step.repeat && { repeat: true as const };
+      return [{ ref, producerIndex: toProducerIndex(step.producerUid), at: step.at ?? null, ...repeat }];
     }),
   };
 };
@@ -69,7 +72,12 @@ export const decodeBuildCode = (code: string, sides: KnownSides): DecodeResult =
       title,
       author,
       timed: timed.map(([ref, at, producerIndex = null]) => ({ ref, at, producerIndex })),
-      queued: queued.map(([ref, producerIndex = null, at = null]) => ({ ref, producerIndex, at })),
+      queued: queued.map(([ref, producerIndex = null, at = null, repeat]) => ({
+        ref,
+        producerIndex,
+        at,
+        ...(repeat === 1 && { repeat: true as const }),
+      })),
     },
   };
 };
@@ -81,7 +89,8 @@ const toTimedTuple = ({ ref, at, producerIndex }: BuildLinkTimed): TimedTuple =>
   producerIndex === null ? [ref, at] : [ref, at, producerIndex];
 
 // The trailing null values are left out.
-const toQueuedTuple = ({ ref, producerIndex, at }: BuildLinkQueued): QueuedTuple => {
+const toQueuedTuple = ({ ref, producerIndex, at, repeat }: BuildLinkQueued): QueuedTuple => {
+  if (repeat) return [ref, producerIndex, at, 1];
   if (at !== null) return [ref, producerIndex, at];
   return producerIndex === null ? [ref] : [ref, producerIndex];
 };
@@ -116,10 +125,11 @@ const isTimedTuple = (value: unknown): value is TimedTuple =>
 const isQueuedTuple = (value: unknown): value is QueuedTuple =>
   Array.isArray(value) &&
   value.length >= 1 &&
-  value.length <= 3 &&
+  value.length <= 4 &&
   typeof value[0] === 'string' &&
   (value.length < 2 || value[1] === null || typeof value[1] === 'number') &&
-  (value.length < 3 || typeof value[2] === 'number');
+  (value.length < 3 || typeof value[2] === 'number' || (value[2] === null && value.length === 4)) &&
+  (value.length < 4 || value[3] === 1);
 
 const parseJson = (json: string): unknown => {
   try {

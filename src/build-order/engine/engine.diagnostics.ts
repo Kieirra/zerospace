@@ -26,7 +26,6 @@ const DIAGNOSTIC_SEVERITY: Record<DiagnosticCode, DiagnosticSeverity> = {
   'hero-duplicate': 'error',
   'hero-no-slot': 'error',
   'hero-not-buildable': 'error',
-  'mercenary-not-allowed': 'error',
   'unknown-stack-rule': 'warning',
   'unknown-research-location': 'warning',
   'unknown-duration': 'warning',
@@ -100,7 +99,6 @@ export const heroNoSlot = (max: number) => toDiagnostic('hero-no-slot', `No hero
 export const heroNotBuildable = () =>
   toDiagnostic('hero-not-buildable', 'Heroes are picked at match start for this faction.');
 
-export const mercenaryNotAllowed = () => toDiagnostic('mercenary-not-allowed', 'This faction plays without a mercenary.');
 
 export const unknownStackRule = (max: number) =>
   toDiagnostic(

@@ -22,6 +22,8 @@ export type Resource = 'hexite' | 'flux';
 export interface OrderTiming {
   stepUid: string;
   entityId: string;
+  // 0 for the step itself, then 1, 2… for the copies of its loop (same stepUid).
+  occurrence: number;
   // Producing instance, or created instance for a building; null outside any queue.
   laneId: string | null;
   // Click time of a timed step, time it entered its building's queue for a unit; null: never.
@@ -105,8 +107,7 @@ export type DiagnosticCode =
   | 'hero-duplicate'
   | 'hero-no-slot'
   | 'hero-not-buildable'
-  | 'unknown-stack-rule'
-  | 'mercenary-not-allowed';
+  | 'unknown-stack-rule';
 
 export type DiagnosticSeverity = 'error' | 'warning' | 'info';
 

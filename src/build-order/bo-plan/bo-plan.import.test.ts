@@ -11,6 +11,7 @@ const IDAL_CONDUIT = 'the-legion/building/idal-conduit';
 const BESTIARY = 'the-legion/building/bestiary';
 const CITADEL = 'the-legion/building/citadel';
 const ALTAR = 'the-legion/building/altar';
+const GARRISON_TOWER = 'the-legion/building/garrison-tower';
 const LABOURER = 'the-legion/unit/legion-labourer';
 const EXALTED = 'the-legion/unit/exalted';
 const GALAVAX = 'the-legion/hero/galavax';
@@ -41,14 +42,16 @@ const ceilOf = (seconds: number | null) => Math.ceil((seconds ?? Number.NaN) - 1
 const afterStartOf = (seconds: number | null) => Math.floor((seconds ?? Number.NaN) + 1e-9) + 1;
 
 describe('toBuild', () => {
-  it('should place the first group at 0, one step per copy, uids in the order of the build order', () => {
+  it('should start the first group at 0, each item after the start of the one before it, uids in the order of the build order', () => {
     const build = convert([group([item(IDAL_CONDUIT), item(BESTIARY, { count: 2 }), item(LABOURER)])]);
+    const startOf = (uid: string) => timingOf(build, uid).startAt;
+    const bestiariesAt = afterStartOf(startOf('s1'));
 
     expect(allSteps(build).map(({ uid, entityId, at }) => [uid, entityId, at])).toEqual([
       ['s1', IDAL_CONDUIT, 0],
-      ['s2', BESTIARY, 0],
-      ['s3', BESTIARY, 0],
-      ['s4', LABOURER, 0],
+      ['s2', BESTIARY, bestiariesAt],
+      ['s3', BESTIARY, bestiariesAt],
+      ['s4', LABOURER, afterStartOf(Math.max(startOf('s2') ?? 0, startOf('s3') ?? 0))],
     ]);
     expect(build.queued.map(({ entityId }) => entityId)).toEqual([LABOURER]);
     expect(build).toMatchObject({ version: 3, factionId: 'the-legion', mercenaryId: null, heroId: GALAVAX, title: 'Test', author: 'Kieirra' });
@@ -154,10 +157,48 @@ describe('toBuild', () => {
     expect(stepAt(build, 's2')).toBe(ceilOf(timingOf(build, 's1').endAt));
   });
 
-  it('should leave the loops out at this stage', () => {
-    const build = convert([group([item(IDAL_CONDUIT), item(BESTIARY, { loop: EXALTED })])]);
+  it('should loop the unit of `(loop X)` on each copy of its item, at the time of that item', () => {
+    const build = convert([group([item(IDAL_CONDUIT), item(BESTIARY, { count: 2, loop: EXALTED }), item(CITADEL)])]);
 
-    expect(build.queued).toEqual([]);
+    expect(build.queued).toEqual([
+      { uid: 's4', entityId: EXALTED, producerUid: 's2', at: 1, repeat: true },
+      { uid: 's5', entityId: EXALTED, producerUid: 's3', at: 1, repeat: true },
+    ]);
+    expect(build.timed.map(({ uid }) => uid)).toEqual(['s1', 's2', 's3', 's6']);
+  });
+
+  it('should skip a lost item, and keep the order in the groups of a trigger chain the same way', () => {
+    const chain = [group([item(LABOURER), item('the-legion/topbar/reanimate'), item(LABOURER)])];
+    const build = convert([group([item(GALAVAX), item('the-legion/topbar/reanimate'), item(IDAL_CONDUIT, { trigger: chain }), item(BESTIARY)])]);
+    const [conduit, bestiary, first, second] = allSteps(build);
+
+    expect(allSteps(build).map(({ entityId }) => entityId)).toEqual([IDAL_CONDUIT, BESTIARY, LABOURER, LABOURER]);
+    expect([conduit.at, bestiary.at]).toEqual([0, afterStartOf(timingOf(build, conduit.uid).startAt)]);
+    expect(first.at).toBe(afterStartOf(timingOf(build, conduit.uid).startAt));
+    expect(second.at).toBe(afterStartOf(timingOf(build, first.uid).startAt));
+  });
+
+  // Without Flux income, the Citadel (50 Flux) never starts.
+  it('should fall back one second after the item before when it never starts', () => {
+    const build = convert([group([item(CITADEL), item(IDAL_CONDUIT)])]);
+
+    expect(build.timed.map(({ at }) => at)).toEqual([0, 1]);
+  });
+
+  it('should make a `(loop X)` that is no unit once, without loop', () => {
+    const build = convert([group([item(GARRISON_TOWER, { loop: LABOURER })])]);
+
+    expect(build.queued).toEqual([{ uid: 's2', entityId: LABOURER, producerUid: 's1', at: 0 }]);
+  });
+
+  it('should never wait for a loop: neither `->` nor a trigger', () => {
+    const first = group([item(BESTIARY, { trigger: [group([item(IDAL_CONDUIT)])] })]);
+    const looped = group([item(BESTIARY, { loop: EXALTED, trigger: [group([item(IDAL_CONDUIT)])] })]);
+    const withoutLoop = convert([first, group([item(CITADEL)])]);
+    const build = convert([looped, group([item(CITADEL)])]);
+
+    expect(stepAt(build, 's3')).toBe(stepAt(withoutLoop, 's2'));
+    expect(stepAt(build, 's4')).toBe(ceilOf(timingOf(build, 's1').endAt));
   });
 
   it('should cut the build at MAX_STEPS steps, in the order of the build order', () => {

@@ -7,7 +7,7 @@ import { HORIZON_SECONDS, MIN_SAMPLED_SECONDS, TICK_PER_SECOND } from './engine.
 import { fluxNodesUnknown, supplyNotChecked } from './engine.diagnostics.ts';
 import { collectIncome, isSupplyChecked, toTicks } from './engine.economy.ts';
 import { getHeroDiagnostics, getSetupHeroTick, resolveHeroSlots, spawnSetupHero } from './engine.heroes.ts';
-import { getMercenaryDiagnostics, rechargeStacks } from './engine.mercenaries.ts';
+import { rechargeStacks } from './engine.mercenaries.ts';
 import { areAllOrdersDone } from './engine.order-lists.ts';
 import { finishOrders, flushWaits, recordWaits, releaseAndStartOrders } from './engine.orders.ts';
 import { toResult, toSample } from './engine.results.ts';
@@ -68,7 +68,7 @@ const isOver = (state: SimulationState, minSampledSeconds: number) => {
 };
 
 const getGlobalDiagnostics = (build: Build, plans: PlannedStep[], context: SimulationContext) => {
-  const diagnostics: Diagnostic[] = [...getHeroDiagnostics(build, context), ...getMercenaryDiagnostics(build, context)];
+  const diagnostics: Diagnostic[] = getHeroDiagnostics(build, context);
   if (!isSupplyChecked(context.values, context.factionEntities)) diagnostics.push(supplyNotChecked());
   const harvesterCount = plans.filter(({ entity, isIgnored }) => entity?.category === 'harvester' && !isIgnored).length;
   if (context.values.maxFluxNodes.value === null && harvesterCount > 0) {

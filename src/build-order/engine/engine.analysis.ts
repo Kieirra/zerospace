@@ -54,6 +54,11 @@ const toStartRank = (entity: BuildEntity): StartRank => {
   return 'other';
 };
 
+// A loop is a unit's only (a harvester has its cap, a recruit no duration), and a unit made in no time would loop
+// forever in one tick. Its start priority stays the one of any unit (D5).
+const isRepeated = (step: TimedStep | QueuedStep, entity: BuildEntity) =>
+  'repeat' in step && step.repeat === true && entity.category === 'unit' && toTicks(entity.duration ?? 0) > 0;
+
 interface Tracker {
   // Seconds of the first one, by research id and by exclusive group.
   researchAt: Map<string, number>;
@@ -104,6 +109,7 @@ const analyzeStep = (
     entity,
     isIgnored: false,
     producerUid: placement.producerUid,
+    repeat: isRepeated(step, entity),
     rank: toStartRank(entity),
     requires,
     producerIds: placement.producerIds,
@@ -121,6 +127,7 @@ const toIgnored = (
   ...base,
   entity,
   isIgnored: true,
+  repeat: false,
   rank: entity ? toStartRank(entity) : 'other',
   requires: [],
   producerIds: [],

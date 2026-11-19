@@ -7,10 +7,11 @@ import { clampAt, sortTimed } from '../build-editor/build-editor.timed.ts';
 import { getDefaultHeroId, getHeroPool } from '../catalog/catalog.helpers.ts';
 import { resolveRules } from '../rules/rules.helpers.ts';
 import { parseEntityRef } from './link.refs.ts';
-import type { BuildEntity, BuildLink, QueuedStep, ResolvedBuild, SideCatalog, TimedStep } from '../build-order.types.ts';
+import type { BuildLink, QueuedStep, ResolvedBuild, SideCatalog, TimedStep } from '../build-order.types.ts';
 
-// Tolerant: unknown steps, and units no building of the build can make, are dropped and counted; every other odd value
-// falls back to a valid one (a producer out of range or not a building is Auto, a time is held to whole seconds).
+// Tolerant: unknown steps, and units no building of the build can make, are dropped without a message; every other
+// odd value falls back to a valid one (a producer out of range or not a building is Auto, a time is held to whole seconds, a loop
+// on anything but a unit is dropped).
 export const resolveBuildLink = (link: BuildLink, factionCatalog: SideCatalog, mercenaryCatalog: SideCatalog | null): ResolvedBuild => {
   const catalog = toCatalogMap([...factionCatalog.entities, ...(mercenaryCatalog?.entities ?? [])]);
   const toEntity = (ref: string, kind: 'timed' | 'queued') => {
@@ -45,9 +46,19 @@ export const resolveBuildLink = (link: BuildLink, factionCatalog: SideCatalog, m
     if (!entity) return [];
     const producerUid = toProducerUid(step.producerIndex);
     const at = step.at === null ? undefined : clampAt(step.at);
-    return [{ uid: nextUid(), entityId: entity.id, ...(producerUid === undefined ? {} : { producerUid }), ...(at === undefined ? {} : { at }) }];
+    // A loop is a unit's only: a harvester, an Altar hero or a recruit is made once.
+    const repeat = step.repeat && entity.category === 'unit';
+    return [
+      {
+        uid: nextUid(),
+        entityId: entity.id,
+        ...(producerUid === undefined ? {} : { producerUid }),
+        ...(at === undefined ? {} : { at }),
+        ...(repeat && { repeat: true as const }),
+      },
+    ];
   });
-  const resolved = dropOrphanUnits(
+  const build = dropOrphanUnits(
     {
       version: 3,
       dataVersion: STEAM_BUILD_ID,
@@ -62,14 +73,11 @@ export const resolveBuildLink = (link: BuildLink, factionCatalog: SideCatalog, m
     catalog,
   );
   return {
-    build: resolved.build,
-    droppedStepCount: countDropped(timedEntities, queuedEntities) + resolved.droppedCount,
+    build,
     isDataVersionChanged: link.dataVersion !== STEAM_BUILD_ID,
     linkDataVersion: link.dataVersion,
   };
 };
-
-const countDropped = (...lists: (BuildEntity | undefined)[][]) => lists.flat().filter((entity) => entity === undefined).length;
 
 // No hero stays no hero; a hero outside the setup pool becomes the default one.
 const resolveHeroId = (link: BuildLink, factionCatalog: SideCatalog, mercenaryCatalog: SideCatalog | null) => {

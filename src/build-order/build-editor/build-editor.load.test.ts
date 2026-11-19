@@ -3,7 +3,7 @@ import { encodeBuildLink } from '../link/link.codec.ts';
 import { toLoadPlan } from './build-editor.load.ts';
 import type { BuildLink } from '../build-order.types.ts';
 
-const SIDES = { factionIds: ['protectorate'], mercenaryIds: ['marran'] };
+const SIDES = { factionIds: ['protectorate'], mercenaryIds: ['arandi', 'marran'] };
 
 const link = (title: string, stepCount: number): BuildLink => ({
   dataVersion: '1',
@@ -32,5 +32,19 @@ describe('Editor loading order', () => {
   it('should say an unreadable link cannot be read, an older v2 link included', () => {
     expect(kindOf('#b=2.oops')).toBe('invalid');
     expect(kindOf(`#b=2${SHARED.slice(1)}`)).toBe('invalid');
+  });
+});
+
+describe('Editor loading: mercenary', () => {
+  it('should open an old link without mercenary with the first one, as New build (Kieirra 2026-11-19)', () => {
+    const plan = toLoadPlan(`#b=${SHARED}`, SIDES);
+
+    expect(plan.kind === 'link' && plan.link.mercenaryId).toBe('arandi');
+  });
+
+  it('should keep the mercenary of a link', () => {
+    const plan = toLoadPlan(`#b=${encodeBuildLink({ ...link('Marran', 1), mercenaryId: 'marran' })}`, SIDES);
+
+    expect(plan.kind === 'link' && plan.link.mercenaryId).toBe('marran');
   });
 });

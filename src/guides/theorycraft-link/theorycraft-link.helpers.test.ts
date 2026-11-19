@@ -107,8 +107,20 @@ describe('Exalted Arandi, main build order', () => {
     expect(build).toMatchObject({ ...EXALTED_HEADER, heroId: 'the-legion/hero/galavax' });
   });
 
-  it('should place the 2 Bestiary, the Citadel and the first Idal Conduit at 0 (CA3)', () => {
-    expect([firstConduit, ...stepsOf(build, 'the-legion/building/bestiary').slice(0, 2), citadel].map(({ at }) => at)).toEqual([0, 0, 0, 0]);
+  it('should place the first Idal Conduit at 0, the 2 Bestiary after its start, the Citadel after theirs (CA3)', () => {
+    const bestiaries = stepsOf(build, 'the-legion/building/bestiary').slice(0, 2);
+    const bestiariesAt = afterStartOf(timingOf(build, firstConduit.uid).startAt);
+    const citadelAt = afterStartOf(Math.max(...bestiaries.map(({ uid }) => timingOf(build, uid).startAt ?? 0)));
+
+    expect([firstConduit, ...bestiaries, citadel].map(({ at }) => at)).toEqual([0, bestiariesAt, bestiariesAt, citadelAt]);
+  });
+
+  it('should start the first group in the order of the build order', () => {
+    const startOf = ({ uid }: { uid: string }) => timingOf(build, uid).startAt ?? Number.NaN;
+    const [bestiary] = stepsOf(build, 'the-legion/building/bestiary');
+
+    expect(startOf(firstConduit)).toBeLessThan(startOf(bestiary));
+    expect(startOf(bestiary)).toBeLessThan(startOf(citadel));
   });
 
   it('should place the second Idal Conduit just after the start of the Citadel, read before it is placed (CA3)', () => {
@@ -132,8 +144,23 @@ describe('Exalted Arandi, main build order', () => {
     expect(garrisonTower.at).toBe(afterStartOf(timingOf(build, kraegar.uid).startAt));
   });
 
-  it('should leave the loops out at this stage', () => {
-    expect(stepsOf(build, 'the-legion/unit/exalted')).toEqual([]);
+  it('should loop an Exalted on each of the first 2 Bestiary', () => {
+    const bestiaries = stepsOf(build, 'the-legion/building/bestiary').slice(0, 2);
+
+    expect(stepsOf(build, 'the-legion/unit/exalted')).toEqual(
+      bestiaries.map(({ uid }) => expect.objectContaining({ producerUid: uid, at: 1, repeat: true })),
+    );
+  });
+
+  it('should keep the loops in the link, and open them in the editor', () => {
+    const decoded = decodeBuildCode(encodeBuild(build), { factionIds: ['the-legion'], mercenaryIds: ['arandi'] });
+    if (decoded.status !== 'ok') throw new Error('invalid link');
+    const opened = resolveBuildLink(decoded.link, getCatalog('the-legion'), getCatalog('arandi'));
+
+    expect(opened.build.queued.filter(({ repeat }) => repeat).map(({ entityId }) => entityId)).toEqual([
+      'the-legion/unit/exalted',
+      'the-legion/unit/exalted',
+    ]);
   });
 });
 
@@ -141,19 +168,30 @@ describe('Paradox Opening, main build order (CA4)', () => {
   const build = convert('paradox-opening', PARADOX_HEADER);
   const orphans = ['synapse', 'defiant', 'echo', 'paradox', 'eradicator', 'aegis'].map((slug) => `the-xol/unit/${slug}`);
 
+  // Kieirra 2026-11-19: the order of the build order is kept, the World Engine waits for the Harvester to start.
+  it('should start its first group in the order of the build order: Harvester, World Engine, Power Core, Penumbra', () => {
+    const ids = ['the-xol/unit/xol-harvester', 'the-xol/building/world-engine', 'the-xol/building/power-core', 'arandi/building/arandi-penumbra'];
+    const starts = ids.map((entityId) => timingOf(build, stepsOf(build, entityId)[0].uid).startAt ?? Number.NaN);
+
+    expect(starts).toEqual([...starts].sort((a, b) => a - b));
+    expect(new Set(starts).size).toBe(starts.length);
+  });
+
   it('should lose Replicate and keep the units no building of the build makes', () => {
     expect(stepsOf(build, 'the-xol/topbar/replicate')).toEqual([]);
     expect(orphans.every((entityId) => stepsOf(build, entityId).length > 0)).toBe(true);
     expect(build.heroId).toBe('arandi/hero/iolin');
   });
 
-  it('should open in the editor without these units, counted as removed', () => {
+  it('should open in the editor without these units, every other step kept', () => {
     const decoded = decodeBuildCode(encodeBuild(build), { factionIds: ['the-xol'], mercenaryIds: ['arandi'] });
     if (decoded.status !== 'ok') throw new Error('invalid link');
     const opened = resolveBuildLink(decoded.link, getCatalog('the-xol'), getCatalog('arandi'));
 
     expect(opened.build.queued.filter(({ entityId }) => orphans.includes(entityId))).toEqual([]);
-    expect(opened.droppedStepCount).toBe(orphans.flatMap((entityId) => stepsOf(build, entityId)).length);
+    expect(opened.build.timed.length + opened.build.queued.length).toBe(
+      build.timed.length + build.queued.length - orphans.flatMap((entityId) => stepsOf(build, entityId)).length,
+    );
     expect(opened.build).toMatchObject({ title: 'Paradox Opening', author: 'Aureil', factionId: 'the-xol', mercenaryId: 'arandi' });
   });
 });

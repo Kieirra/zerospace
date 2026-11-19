@@ -1,6 +1,5 @@
 import { MAX_AUTHOR_LENGTH } from '../build-order.constants.ts';
 import { getSidesHeroPool, isEmptyBuild } from '../build-editor/build-editor.helpers.ts';
-import { resolveRules } from '../rules/rules.helpers.ts';
 import { toAuthorWidthCh, toHeroOptions, toSideOptions } from './editor-header.helpers.ts';
 import { HistoryButtons } from './history-buttons/history-buttons.tsx';
 import { ResetButton } from './reset-button/reset-button.tsx';
@@ -18,7 +17,7 @@ interface EditorHeaderProps {
   history: HistoryButtonsProps;
   share: ShareButtonProps;
   onFaction: (factionId: string) => void;
-  onMercenary: (mercenaryId: string | null) => void;
+  onMercenary: (mercenaryId: string) => void;
   onHero: (heroId: string) => void;
   onTitle: (title: string) => void;
   onAuthor: (author: string) => void;
@@ -26,8 +25,6 @@ interface EditorHeaderProps {
   onAuthorDone: () => void;
   onReset: () => void;
 }
-
-const NO_MERCENARY = '';
 
 const AUTHOR_PLACEHOLDER = 'your name';
 
@@ -70,15 +67,14 @@ export const EditorHeader = ({
       </div>
       <div className="ml-auto flex flex-wrap items-center gap-2">
         <SideSelect label="Faction" value={build.factionId} options={toSideOptions(sides, 'faction')} accent={faction?.accent} onChange={onFaction} />
-        {resolveRules(build.factionId).mercenaryAllowed.value && (
-          <SideSelect
-            label="Mercenary"
-            value={build.mercenaryId ?? NO_MERCENARY}
-            options={[{ value: NO_MERCENARY, label: 'No mercenary' }, ...toSideOptions(sides, 'mercenary')]}
-            accent={mercenary?.accent}
-            onChange={(value) => onMercenary(value === NO_MERCENARY ? null : value)}
-          />
-        )}
+        {/* No game without a mercenary (Kieirra 2026-11-19): no « No mercenary » choice. */}
+        <SideSelect
+          label="Mercenary"
+          value={build.mercenaryId ?? ''}
+          options={toSideOptions(sides, 'mercenary')}
+          accent={mercenary?.accent}
+          onChange={onMercenary}
+        />
         {heroOptions.length > 0 && (
           <SideSelect label="Hero" value={build.heroId ?? ''} options={heroOptions} accent={faction?.accent} onChange={onHero} />
         )}
