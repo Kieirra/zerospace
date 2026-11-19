@@ -8,7 +8,7 @@ interface Props {
 const { sections } = Astro.props;
 ---
 
-<nav aria-labelledby="guide-toc-title" class="bevel-sm bg-surface p-4 lg:sticky lg:top-16">
+<nav aria-labelledby="guide-toc-title" class="bevel-sm bg-surface p-4 lg:sticky lg:top-4">
   <h2 id="guide-toc-title" class="mb-3 text-xs text-muted label-caps">On this page</h2>
   <ol class="flex flex-col gap-1 text-sm">
     {
@@ -28,7 +28,7 @@ const { sections } = Astro.props;
 </nav>
 
 <script>
-  // The current section is the last one whose heading went above the sticky site header.
+  // The current section is the last one whose heading went near the top of the window.
   const HEADER_OFFSET = 96;
   const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
   const headings = links.flatMap((link) => document.getElementById(link.dataset.tocLink ?? '') ?? []);

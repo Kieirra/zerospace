@@ -613,7 +613,7 @@ describe('Exalted Arandi guide', () => {
     });
     expect(steps[3].groups[0].items[0].target).toEqual({
       name: 'Dreadnought',
-      kind: 'unit',
+      kind: 'building',
     });
     expect(steps.map(({ goal }) => goal)).toEqual([
       'Take map control and the 3 XP towers',

@@ -15,7 +15,9 @@ import {
   toMatchupTags,
   toReadingMinutes,
 } from './guides.helpers.ts';
-import type { Guide } from './guides.types.ts';
+import { toTheorycraft } from './theorycraft-link/theorycraft-link.data.ts';
+import type { Guide, ResolvedBuildOrder } from './guides.types.ts';
+import type { BoPlanHeader } from './theorycraft-link/theorycraft-link.helpers.ts';
 
 type GuideEntry = CollectionEntry<'guides'>;
 
@@ -72,6 +74,8 @@ const toGuide = (entry: GuideEntry, context: GuideContext): Guide => {
   const talentsOf = (factionId: string) =>
     context.entities.filter((entity) => entity.faction === factionId && entity.kind === 'talent');
   const { hero, talents, army, vs } = data;
+  const heroEntity =
+    hero === undefined ? undefined : findByName(hero, scope, ['hero'], `hero: "${hero}" is not a hero of ${label}.`);
   return {
     slug: entry.id,
     title: data.title,
@@ -87,7 +91,7 @@ const toGuide = (entry: GuideEntry, context: GuideContext): Guide => {
     style: data.style,
     faction,
     mercenary,
-    hero: hero === undefined ? undefined : findByName(hero, scope, ['hero'], `hero: "${hero}" is not a hero of ${label}.`),
+    hero: heroEntity,
     talents: talents && faction && mercenary ? resolveTalents(talents, talentsOf(faction.id), talentsOf(mercenary.id)) : [],
     army: (army ?? []).map((name) =>
       findByName(name, scope, ['unit', 'hero'], `army: "${name}" is not a unit or hero of ${label}.`),
@@ -99,9 +103,29 @@ const toGuide = (entry: GuideEntry, context: GuideContext): Guide => {
     matchupTags: faction && vs ? toMatchupTags(faction.id, Object.keys(vs)) : [],
     strengths: data.strengths ?? [],
     weaknesses: data.weaknesses ?? [],
-    mainBuildOrder: main,
+    mainBuildOrder:
+      main && faction
+        ? withTheorycraft(main, entry.id, context, {
+            factionId: faction.id,
+            mercenaryId: mercenary?.id ?? null,
+            heroId: heroEntity?.id ?? null,
+            title: data.title,
+            author: data.author,
+          })
+        : main,
     branches,
   };
+};
+
+// Best effort: a guide whose build order cannot be converted keeps its table, without the link.
+const withTheorycraft = (main: ResolvedBuildOrder, slug: string, context: GuideContext, header: BoPlanHeader) => {
+  try {
+    return { ...main, theorycraft: toTheorycraft(main, header, context) };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    console.warn(`data/guides/${slug}.md: no View timeline link, ${detail}`);
+    return main;
+  }
 };
 
 const findFaction = (id: string, { factions }: GuideContext) => {

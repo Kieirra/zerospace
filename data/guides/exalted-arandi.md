@@ -20,8 +20,8 @@ weaknesses:
 ---
 
 ```bo
-1. Idal Conduit + 2 Bestiary (loop Exalted) (-> 3 Legion Labourer) + Citadel
-   -> Idal Conduit + Altar
+1. Idal Conduit + 2 Bestiary (loop Exalted) (-> 3 Legion Labourer) + Citadel (-> Idal Conduit)
+   -> Altar
    -> Kraegar + Hallowed Strike
    goal: Take map control and the 3 XP towers
 2. when Kraegar starts: Garrison Tower + Idal Conduit + Terror Tower + Armory + Arandi Penumbra
@@ -30,7 +30,7 @@ weaknesses:
 3. Inquisitress + Arandi Judgement + Lightning Spear + Improved Charge + Wake of Fire + Burning Fireball
    -> Garrison Tower + Idal Conduit + 2 Bestiary^1
    goal: Late game, every hero upgrade, close the game
-4. Dreadnought [unit]
+4. Dreadnought [building]
    goal: Dreadnought finisher
 ^1: 2 Bestiary per Garrison Tower.
 ```
