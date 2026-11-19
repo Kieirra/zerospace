@@ -8,7 +8,7 @@ faction: protectorate
 mercenary: arandi
 style: expand
 hero: Marv
-talents: 1212111
+talents: 1211111
 army: [Marv, Titan, Bastion, Cyclops, Commando, Juggernaut]
 vs: { protectorate: 2, grell: 5, the-legion: 1, the-xol: 2 }
 strengths:
