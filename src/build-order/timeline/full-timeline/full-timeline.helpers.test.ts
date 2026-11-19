@@ -172,6 +172,15 @@ describe('toResourceTracks', () => {
     expect(toResourceTracks(result({ samples: capped, supply: { used: 2, cap: 20, isChecked: true } }), 60).supply?.label).toBe('18 free');
   });
 
+  it('should ignore the samples after the end of the axis, taken while a step never starts', () => {
+    const late = Array.from({ length: 1801 }, (_, t) => sample(t, { hexite: 10 * t, flux: 5 * t, supplyUsed: t, supplyCap: 2000 }));
+    const tracks = toResourceTracks(result({ samples: late, supply: { used: 1800, cap: 2000, isChecked: true } }), 300);
+
+    expect([tracks.hexite.label, tracks.hexite.max, tracks.flux.label, tracks.flux.max]).toEqual(['peak 3000', 3000, 'peak 1500', 1500]);
+    expect(tracks.supply?.label).toBe('1700 free');
+    expect([...tracks.hexite.points, ...tracks.flux.points, ...(tracks.supply?.points ?? [])].every(({ t }) => t <= 300)).toBe(true);
+  });
+
   it('should hold a flat line to the end of the axis for an empty build', () => {
     const tracks = toResourceTracks(result(), 60);
 

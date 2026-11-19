@@ -12,10 +12,9 @@ import type { EditorAction } from '../build-editor.reducer.ts';
 // A drop the target lane cannot take: no preview, the not-allowed cursor.
 export const REFUSED_DROP = 'refused';
 
-// What a drop does (Kieirra 2026-11-19): a mark moves its time by whole seconds, with the selection when it is part of
-// it, each step from the left edge of its mark (toDragOrigin); units only, released over another lane, are pinned
-// there; a timed card is added at the time under the pointer; a unit card goes on the lane under the pointer when that
-// lane can make it; a click handle moves the time of its step alone (toClickAction). null: nothing, or a card refused.
+// What a drop does (Kieirra 2026-11-19): a mark moves by whole seconds, with the selection if in it, each from its origin
+// (toDragOrigin); units only, over another lane, are pinned there and shifted alike; a card lands at the pointer's time,
+// a unit card on the lane under it if it can make it; a click handle moves its step alone. null: nothing, or a card refused.
 export const toDropAction = (
   build: Build,
   result: SimulationResult,
@@ -32,21 +31,23 @@ export const toDropAction = (
   }
   const entity = catalog.get(source.entityId);
   if (!entity) return null;
-  if (toStepKind(entity) === 'timed') return { type: 'add-timed', entityId: entity.id, at: clampAt(target.t) };
+  const at = clampAt(target.t);
+  if (toStepKind(entity) === 'timed') return { type: 'add-timed', entityId: entity.id, at };
   const laneUid = toLaneUid(target.laneId);
   return laneUid !== null && canProduceOn(entity, laneUid, build, catalog)
-    ? { type: 'add-queued', entityId: entity.id, producerUid: laneUid }
+    ? { type: 'add-queued', entityId: entity.id, producerUid: laneUid, at }
     : null;
 };
 
-// Units pinned on the lane under the pointer when it can make them all, placed before its first unit starting after
-// the drop time (Kieirra 2026-11-19); the time of the units is kept. A lane unable to make one of them refuses them.
+// Units pinned on the lane under the pointer if it can make them all, else refused (Kieirra 2026-11-19). Moved straight
+// up or down, they go before its first unit starting after the drop time; moved in time, each shifts from its origin so
+// the grabbed one lands under the pointer, and the queue is sorted by time, units without one first.
 export const toLaneMoveAction = (
   build: Build,
   result: SimulationResult,
   catalog: BuildCatalog,
   uids: string[],
-  target: Pick<DropTarget, 't' | 'laneId'>,
+  target: DropTarget,
 ): EditorAction | typeof REFUSED_DROP => {
   const laneUid = toLaneUid(target.laneId);
   const canMakeAll =
@@ -58,24 +59,38 @@ export const toLaneMoveAction = (
   if (!canMakeAll) return REFUSED_DROP;
   const moving = new Set(uids);
   const before = build.queued.find(({ uid }) => {
-    const timing = result.steps.find(({ stepUid }) => stepUid === uid);
+    const timing = toTiming(result, uid);
     return !moving.has(uid) && timing?.laneId === target.laneId && timing.startAt !== null && timing.startAt > target.t;
   });
-  return { type: 'move-to-lane', uids, laneUid, beforeUid: before?.uid ?? null };
+  const move = { type: 'move-to-lane' as const, uids, laneUid, beforeUid: before?.uid ?? null };
+  return target.delta ? { ...move, shift: { origins: toOrigins(build, result, uids), delta: target.delta } } : move;
 };
 
-// 'Click 2:35 · starts ≈ 2:41', 'Barracks #2 · starts ≈ 2:41', '… · never starts'.
+// 'Click 2:35 · starts ≈ 2:41', 'Barracks #2 · Click 3:00 · starts ≈ 3:04', 'Barracks #2 · starts ≈ 2:41', '… · never starts'.
 export const toDropLabel = (action: EditorAction, stepUid: string, build: Build, result: SimulationResult) => {
   const start = toStartAt(result, stepUid);
   const starts = start === null ? 'never starts' : `starts ≈ ${formatClock(start)}`;
+  const at = toStepAt(build, stepUid);
+  const time = `${at === undefined ? '' : `Click ${formatClock(at)} · `}${starts}`;
   // The lane the units go to, even when they would never start there.
   if (action.type === 'add-queued' || action.type === 'move-to-lane') {
     const laneUid = action.type === 'add-queued' ? action.producerUid : action.laneUid;
     const lane = laneUid === undefined ? undefined : result.lanes.find(({ id }) => id === toLaneId({ uid: laneUid }));
-    return `${lane?.label ?? 'Auto'} · ${starts}`;
+    return `${lane?.label ?? 'Auto'} · ${time}`;
   }
-  const at = toStepAt(build, stepUid);
-  return `${at === undefined ? '' : `Click ${formatClock(at)} · `}${starts}`;
+  return time;
+};
+
+// Unit a palette card adds, for its ghost (Kieirra 2026-11-19): where it starts, else its click time, its seconds and
+// its name. undefined: no unit, or no time to stand at.
+export const toAddedMark = (build: Build, result: SimulationResult, catalog: BuildCatalog, stepUid: string) => {
+  const step = build.queued.find(({ uid }) => uid === stepUid);
+  const entity = step && catalog.get(step.entityId);
+  const startAt = toDragOrigin(build, result, stepUid);
+  if (!entity || startAt === null) return undefined;
+  const timing = toTiming(result, stepUid);
+  const seconds = timing && timing.startAt !== null && timing.endAt !== null ? timing.endAt - timing.startAt : (entity.duration ?? 0);
+  return { startAt, seconds, label: entity.displayName };
 };
 
 // Time a drag of the step moves from (Kieirra 2026-11-19): the left edge of its mark, its simulated start, else its
@@ -113,13 +128,19 @@ const isLaneChange = (build: Build, uids: string[], from: string | null, to: str
 
 // The same whole seconds for every step, each from its origin; a step without one stays.
 const toShiftAction = (build: Build, result: SimulationResult, uids: string[], grabbedUid: string, delta: number): EditorAction | null => {
-  const origins = Object.fromEntries(
+  const origins = toOrigins(build, result, uids);
+  return grabbedUid in origins ? { type: 'shift-at', origins, delta } : null;
+};
+
+// Origin of each step by uid (toDragOrigin); a step without one is left out.
+const toOrigins = (build: Build, result: SimulationResult, uids: string[]): Record<string, number> =>
+  Object.fromEntries(
     uids.flatMap((uid) => {
       const origin = toDragOrigin(build, result, uid);
       return origin === null ? [] : [[uid, origin]];
     }),
   );
-  return grabbedUid in origins ? { type: 'shift-at', origins, delta } : null;
-};
 
-const toStartAt = (result: SimulationResult, uid: string) => result.steps.find(({ stepUid }) => stepUid === uid)?.startAt ?? null;
+const toStartAt = (result: SimulationResult, uid: string) => toTiming(result, uid)?.startAt ?? null;
+
+const toTiming = (result: SimulationResult, uid: string) => result.steps.find(({ stepUid }) => stepUid === uid);

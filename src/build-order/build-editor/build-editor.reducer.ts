@@ -38,12 +38,20 @@ export type EditorAction =
   | { type: 'set-title'; title: string }
   | { type: 'set-author'; author: string }
   | { type: 'add-timed'; entityId: string; at: number; producerUid?: string }
-  | { type: 'add-queued'; entityId: string; producerUid?: string }
+  // `at`: the time of a unit card dropped on a lane (Kieirra 2026-11-19); absent, as soon as possible.
+  | { type: 'add-queued'; entityId: string; producerUid?: string; at?: number }
   | { type: 'set-at'; uid: string; at: number }
   // `origins`: time each moved step leaves from, by uid, the left edge of its mark (the reducer never simulates).
   | { type: 'shift-at'; origins: Record<string, number>; delta: number }
   | { type: 'set-producer'; uid: string; producerUid?: string }
-  | { type: 'move-to-lane'; uids: string[]; laneUid: string; beforeUid: string | null }
+  // `shift`: the units also move in time (Kieirra 2026-11-19), as with `shift-at`, in the same action (one undo).
+  | {
+      type: 'move-to-lane';
+      uids: string[];
+      laneUid: string;
+      beforeUid: string | null;
+      shift?: { origins: Record<string, number>; delta: number };
+    }
   | { type: 'set-queued-at'; uids: string[]; at: number | null }
   | { type: 'set-repeat'; uids: string[]; repeat: boolean }
   | { type: 'remove-steps'; uids: string[]; catalog: BuildCatalog }
@@ -82,7 +90,8 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
       if (isFullBuild(build)) return { ...state, isFull: true };
       const [uid] = createStepUids(build, 1);
       const step: QueuedStep = { uid, entityId: action.entityId };
-      return toState(state, addQueued(build, withOptional(step, 'producerUid', action.producerUid)), [uid]);
+      const added = addQueued(build, withOptional(step, 'producerUid', action.producerUid));
+      return toState(state, action.at === undefined ? added : setQueuedAt(added, [uid], action.at), [uid]);
     }
     case 'set-at':
       return toState(state, setTimedAt(build, action.uid, action.at));
@@ -92,8 +101,10 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
       const isTimed = build.timed.some(({ uid }) => uid === action.uid);
       return toState(state, (isTimed ? setTimedProducer : setQueuedProducer)(build, action.uid, action.producerUid));
     }
-    case 'move-to-lane':
-      return toState(state, moveToLane(build, action.uids, action.laneUid, action.beforeUid));
+    case 'move-to-lane': {
+      const moved = moveToLane(build, action.uids, action.laneUid, action.beforeUid);
+      return toState(state, action.shift ? shiftQueuedAt(moved, action.shift.origins, action.shift.delta) : moved);
+    }
     case 'set-queued-at':
       return toState(state, setQueuedAt(build, action.uids, action.at));
     case 'set-repeat':

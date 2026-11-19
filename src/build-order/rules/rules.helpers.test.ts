@@ -9,7 +9,11 @@ describe('Game rules', () => {
     expect(rules.heroes.paidHeroSlots.value).toBe(2);
     expect(rules.heroes.mercenaryHeroInPool.value).toBe(false);
     expect(rules.heroes.setupHeroAtSeconds).toEqual(BASE_RULES.heroes.setupHeroAtSeconds);
-    expect(rules.startPriority.value).toEqual(['mercenary-unit', 'base', 'supply', 'unit', 'other']);
+  });
+
+  it('should start The Legion harvesters before its bases, and keep the base order elsewhere', () => {
+    expect(resolveRules('the-legion').startPriority.value).toEqual(['harvester', 'base', 'mercenary-unit', 'supply', 'unit', 'other']);
+    expect(resolveRules('protectorate').startPriority.value).toEqual(['base', 'mercenary-unit', 'supply', 'unit', 'other']);
   });
 
   it('should use the base rules for a faction without override', () => {

@@ -1,6 +1,8 @@
+import { toBarWidthPx } from '../timeline-bar/timeline-bar.helpers.ts';
 import { LABEL_COLUMN_PX, SETUP_HERO_KEY } from '../timeline.constants.ts';
 import type { PointerEvent } from 'react';
-import type { LanesPointer } from '../timeline-editing.ts';
+import type { AddedMark, LanesPointer } from '../timeline-editing.ts';
+import type { TimelineMetrics } from '../timeline.metrics.ts';
 import type { TimeScale } from '../timeline.types.ts';
 import type { Box } from './use-selection-rect.helpers.ts';
 
@@ -30,6 +32,21 @@ export const toDragGhost = (pointerX: number, grab: number, zone: Pick<Box, 'lef
   width: mark.width,
   height: mark.height,
   label,
+});
+
+// Ghost of the unit a palette card adds (Kieirra 2026-11-19), in the coordinates of the lanes zone: on the first row of
+// its lane like a unit mark (`laneTop`: top of the lane in the zone), from its start, as wide as its bar.
+export const toCardGhost = (
+  added: AddedMark,
+  laneTop: number,
+  pixelsPerSecond: number,
+  { rowHeight, barHeight }: Pick<TimelineMetrics, 'rowHeight' | 'barHeight'>,
+) => ({
+  left: LABEL_COLUMN_PX + added.startAt * pixelsPerSecond,
+  top: laneTop + (rowHeight - barHeight) / 2,
+  width: toBarWidthPx(added.seconds, true, 0, pixelsPerSecond),
+  height: barHeight,
+  label: added.label,
 });
 
 // Lane of the row holding the element, null outside any lane.

@@ -3,7 +3,16 @@ import { toCatalogMap } from '../../build-order.helpers.ts';
 import { BARRACKS, ENTITIES, LAB, SENTINEL, WORKER } from '../../engine/engine.fixtures.ts';
 import { lane, result, stepTiming } from '../../timeline/timeline.fixtures.ts';
 import { INITIAL_EDITOR_STATE, editorReducer } from '../build-editor.reducer.ts';
-import { REFUSED_DROP, toDragOrigin, toDropAction, toDropLabel, toLaneMoveAction, toLaneUid, toStepAt } from './use-editor-timeline-editing.helpers.ts';
+import {
+  REFUSED_DROP,
+  toAddedMark,
+  toDragOrigin,
+  toDropAction,
+  toDropLabel,
+  toLaneMoveAction,
+  toLaneUid,
+  toStepAt,
+} from './use-editor-timeline-editing.helpers.ts';
 import type { Build } from '../../build-order.types.ts';
 
 const CATALOG = toCatalogMap(ENTITIES);
@@ -46,6 +55,8 @@ const RESULT = result({
 
 const step = (uid: string, laneId: string) => ({ kind: 'step' as const, uid, laneId });
 const drop = (delta: number, laneId: string | null, t = 100) => ({ t, delta, laneId });
+const applyDrop = (action: ReturnType<typeof toDropAction>) =>
+  action && action !== REFUSED_DROP ? editorReducer({ ...INITIAL_EDITOR_STATE, build: BUILD }, action) : null;
 const NONE = new Set<string>();
 
 describe('Timeline drop: target lane', () => {
@@ -73,7 +84,7 @@ describe('Timeline drop: drag origin', () => {
 
   it('should record the start of a building delayed by resources plus the seconds, where the line was', () => {
     const action = toDropAction(BUILD, RESULT, CATALOG, step('b2', 'lane:b2'), drop(6, 'lane:b2'), NONE);
-    const dropped = action && action !== REFUSED_DROP ? editorReducer({ ...INITIAL_EDITOR_STATE, build: BUILD }, action).build : null;
+    const dropped = applyDrop(action)?.build;
 
     expect(action).toEqual({ type: 'shift-at', origins: { b2: 52 }, delta: 6 });
     expect(dropped && toStepAt(dropped, 'b2')).toBe(58);
@@ -140,21 +151,72 @@ describe('Timeline drop: units to another lane', () => {
       uids: ['u2'],
       laneUid: 'b1',
       beforeUid: 'u3',
+      shift: { origins: { u2: 70 }, delta: 25 },
     });
-    expect(toLaneMoveAction(BUILD, RESULT, CATALOG, ['u2'], { t: 200, laneId: 'lane:b1' })).toMatchObject({ beforeUid: null });
+    expect(toLaneMoveAction(BUILD, RESULT, CATALOG, ['u2'], { t: 200, delta: 0, laneId: 'lane:b1' })).toMatchObject({ beforeUid: null });
+  });
+
+  it('should move the units in time too, each from its origin, so the grabbed one lands under the pointer', () => {
+    const action = toDropAction(BUILD, RESULT, CATALOG, step('u2', 'lane:b2'), drop(110, 'lane:b1', 180), new Set(['u2', 'u3']));
+    const dropped = applyDrop(action)?.build;
+
+    expect(action).toMatchObject({ type: 'move-to-lane', laneUid: 'b1', shift: { origins: { u2: 70, u3: 120 }, delta: 110 } });
+    expect(dropped && [toStepAt(dropped, 'u2'), toStepAt(dropped, 'u3')]).toEqual([180, 230]);
+  });
+
+  it('should keep the time of the units moved straight up or down', () => {
+    expect(toDropAction(BUILD, RESULT, CATALOG, step('u2', 'lane:b2'), drop(0, 'lane:b1', 70), NONE)).toEqual({
+      type: 'move-to-lane',
+      uids: ['u2'],
+      laneUid: 'b1',
+      beforeUid: 'u3',
+    });
   });
 
   it('should refuse a lane unable to make one of the units, and the setup hero lane', () => {
     expect(toDropAction(BUILD, RESULT, CATALOG, step('u2', 'lane:b2'), drop(0, 'lane:l1'), NONE)).toBe(REFUSED_DROP);
-    expect(toLaneMoveAction(BUILD, RESULT, CATALOG, ['u2', 'w1'], { t: 90, laneId: 'lane:b1' })).toBe(REFUSED_DROP);
-    expect(toLaneMoveAction(BUILD, RESULT, CATALOG, ['u2'], { t: 90, laneId: 'setup-hero' })).toBe(REFUSED_DROP);
+    expect(toLaneMoveAction(BUILD, RESULT, CATALOG, ['u2', 'w1'], { t: 90, delta: 0, laneId: 'lane:b1' })).toBe(REFUSED_DROP);
+    expect(toLaneMoveAction(BUILD, RESULT, CATALOG, ['u2'], { t: 90, delta: 0, laneId: 'setup-hero' })).toBe(REFUSED_DROP);
   });
 
-  it('should label the preview with the lane the unit goes to', () => {
+  it('should label the preview with the lane the unit goes to, and its time when it has one', () => {
     const action = { type: 'move-to-lane' as const, uids: ['u2'], laneUid: 'b1', beforeUid: null };
-    const moved = result({ steps: [stepTiming('u2', { laneId: 'lane:b1', startAt: 96 })], lanes: RESULT.lanes });
+    const steps = [stepTiming('u2', { laneId: 'lane:b1', startAt: 96 }), stepTiming('u3', { laneId: 'lane:b1', startAt: 125 })];
+    const moved = result({ steps, lanes: RESULT.lanes });
 
     expect(toDropLabel(action, 'u2', BUILD, moved)).toBe('Barracks #1 · starts ≈ 1:36');
     expect(toDropLabel(action, 'u2', BUILD, result({ lanes: RESULT.lanes }))).toBe('Barracks #1 · never starts');
+    expect(toDropLabel({ ...action, uids: ['u3'] }, 'u3', BUILD, moved)).toBe('Barracks #1 · Click 2:00 · starts ≈ 2:05');
+  });
+});
+
+describe('Timeline drop: palette cards', () => {
+  it('should add a unit card on the lane under the pointer at the time under it, not as soon as possible', () => {
+    const action = toDropAction(BUILD, RESULT, CATALOG, { kind: 'entity', entityId: SENTINEL.id }, drop(0, 'lane:b2', 180.4), NONE);
+    const dropped = applyDrop(action);
+
+    expect(action).toEqual({ type: 'add-queued', entityId: SENTINEL.id, producerUid: 'b2', at: 180 });
+    expect(dropped?.build && toStepAt(dropped.build, dropped.lastAddedUids[0])).toBe(180);
+  });
+
+  it('should add a harvester card at the time under the pointer too', () => {
+    expect(toDropAction(BUILD, RESULT, CATALOG, { kind: 'entity', entityId: WORKER.id }, drop(0, 'lane:base', 95), NONE)).toEqual({
+      type: 'add-queued',
+      entityId: WORKER.id,
+      producerUid: 'base',
+      at: 95,
+    });
+  });
+
+  it('should give the ghost of the added unit its start and seconds, else its click time and its build time', () => {
+    const ready = result({ steps: [stepTiming('u3', { startAt: 125, endAt: 155 })] });
+
+    expect(toAddedMark(BUILD, ready, CATALOG, 'u3')).toEqual({ startAt: 125, seconds: 30, label: SENTINEL.displayName });
+    expect(toAddedMark(BUILD, result(), CATALOG, 'u3')).toEqual({ startAt: 120, seconds: SENTINEL.duration, label: SENTINEL.displayName });
+    expect(toAddedMark(BUILD, result(), CATALOG, 'u2')).toBeUndefined();
+  });
+
+  it('should refuse a unit card over a lane unable to make it', () => {
+    expect(toDropAction(BUILD, RESULT, CATALOG, { kind: 'entity', entityId: SENTINEL.id }, drop(0, 'lane:l1', 180), NONE)).toBeNull();
   });
 });

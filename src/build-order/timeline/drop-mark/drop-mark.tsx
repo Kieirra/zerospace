@@ -7,8 +7,8 @@ interface DropMarkProps {
   scale: TimeScale;
 }
 
-// While dragging: the ghost of the dragged mark and a dashed line where it would start; DropLabel gives its times on
-// the axis.
+// While dragging: the ghost of the dragged mark, or of the unit a palette card adds on its lane, and a dashed line where
+// it would start; DropLabel gives its times on the axis.
 export const DropMark = ({ drag, scale }: DropMarkProps) => {
   const left = LABEL_COLUMN_PX + drag.t * scale.pixelsPerSecond;
   const { ghost } = drag;

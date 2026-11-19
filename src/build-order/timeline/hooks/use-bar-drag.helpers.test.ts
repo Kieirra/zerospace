@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { LABEL_COLUMN_PX } from '../timeline.constants.ts';
-import { toDragDelta, toDragGhost, toEdgeScroll, toPointerTime } from './use-bar-drag.helpers.ts';
+import { LABEL_COLUMN_PX, MIN_CHIP_PX } from '../timeline.constants.ts';
+import { toCardGhost, toDragDelta, toDragGhost, toEdgeScroll, toPointerTime } from './use-bar-drag.helpers.ts';
 
 const SCALE = { totalSeconds: 600, pixelsPerSecond: 2 };
 
@@ -52,6 +52,24 @@ describe('toDragGhost', () => {
       height: 20,
       label: 'Barracks',
     });
+  });
+});
+
+describe('toCardGhost', () => {
+  const METRICS = { rowHeight: 24, barHeight: 18 };
+
+  it('should stand on the first row of its lane like a unit mark, from its start, as wide as its seconds', () => {
+    expect(toCardGhost({ startAt: 180, seconds: 60, label: 'Sentinel' }, 96, SCALE.pixelsPerSecond, METRICS)).toEqual({
+      left: LABEL_COLUMN_PX + 360,
+      top: 99,
+      width: 118,
+      height: 18,
+      label: 'Sentinel',
+    });
+  });
+
+  it('should keep a readable width for a unit without seconds', () => {
+    expect(toCardGhost({ startAt: 0, seconds: 0, label: 'Recruit' }, 0, SCALE.pixelsPerSecond, METRICS).width).toBe(MIN_CHIP_PX);
   });
 });
 

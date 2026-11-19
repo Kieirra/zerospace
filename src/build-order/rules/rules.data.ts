@@ -9,7 +9,7 @@ export interface Rule<T> {
 }
 
 export type RequiresMode = 'any' | 'all';
-export type StartRank = 'mercenary-unit' | 'base' | 'supply' | 'unit' | 'other';
+export type StartRank = 'mercenary-unit' | 'harvester' | 'base' | 'supply' | 'unit' | 'other';
 export type Reservation = 'strict' | 'none';
 
 export interface GameRules {
@@ -34,9 +34,9 @@ export type RuleOverrides = {
 
 export const BASE_RULES: GameRules = {
   startPriority: {
-    value: ['mercenary-unit', 'base', 'supply', 'unit', 'other'],
+    value: ['base', 'mercenary-unit', 'supply', 'unit', 'other'],
     status: 'confirmed',
-    note: 'Kieirra 2026-11-19: in-game order; a patch may change it, and the queue system with it.',
+    note: 'Kieirra 2026-11-19: in-game order, bases first; The Legion differs. A patch may change it, and the queue system with it.',
   },
   reservation: { value: 'strict', status: 'provisional', note: 'Q4 / H4: the first ready order without resources blocks the next ones.' },
   requiresMode: {
@@ -60,6 +60,11 @@ export const BASE_RULES: GameRules = {
 
 export const FACTION_RULES: Partial<Record<string, RuleOverrides>> = {
   'the-legion': {
+    startPriority: {
+      value: ['harvester', 'base', 'mercenary-unit', 'supply', 'unit', 'other'],
+      status: 'confirmed',
+      note: 'Kieirra 2026-11-19: harvesters before the bases, the base being a special unit.',
+    },
     heroes: {
       mercenaryHeroInPool: { value: false, status: 'confirmed', note: 'The Legion never gets the mercenary hero.' },
       paidHeroSlots: { value: 2, status: 'confirmed', note: 'Kieirra 2026-11-19: 3 heroes, the setup hero and 2 at the Altar.' },

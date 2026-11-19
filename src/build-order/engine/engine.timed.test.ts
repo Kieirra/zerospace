@@ -25,6 +25,7 @@ import {
   values,
   withBank,
 } from './engine.fixtures.ts';
+import { resolveRules } from '../rules/rules.helpers.ts';
 import type { BuildEntity } from '../build-order.types.ts';
 import type { GameRules } from '../rules/rules.data.ts';
 
@@ -110,10 +111,10 @@ describe('Simulation: start priority', () => {
     return { result, ...steps, trooper, corsair };
   };
 
-  it('should start a recruit, then the base, a supply building, a unit and another building', () => {
+  it('should start the base, then a recruit, a supply building, a unit and another building', () => {
     const { result, base, depot, citadel, trooper, corsair } = simulateAll();
 
-    expect([corsair, base, depot, trooper, citadel].map((step) => orderOf(result, step).startAt)).toEqual([30, 60, 90, 120, 150]);
+    expect([base, corsair, depot, trooper, citadel].map((step) => orderOf(result, step).startAt)).toEqual([30, 60, 90, 120, 150]);
     expect(orderOf(result, citadel).waits.hexite).toBe(120);
   });
 
@@ -121,6 +122,32 @@ describe('Simulation: start priority', () => {
     const { result, base, depot, citadel, trooper } = simulateAll(['other', 'unit', 'supply', 'base', 'mercenary-unit']);
 
     expect([citadel, trooper, depot, base].map((step) => orderOf(result, step).startAt)).toEqual([30, 60, 90, 120]);
+  });
+
+  it('should start the base before a recruit ready in the same tick, the bank paying for one', () => {
+    const base = building(SECOND_BASE.id, 30);
+    const corsair = recruit(PRICEY_CORSAIR.id, 30);
+    const result = simulate([base, building(MERCENARY_HALL.id, 0)], [corsair], withEntities([SECOND_BASE, MERCENARY_HALL, PRICEY_CORSAIR]));
+
+    expect([base, corsair].map((step) => orderOf(result, step).startAt)).toEqual([30, 60]);
+  });
+
+  describe('harvester and base ready in the same tick, the bank paying for one', () => {
+    const COSTED_HARVESTER = toCosted('unit/costed-harvester', { category: 'harvester', producedBy: [BASE.id] });
+    const simulatePair = (startPriority?: GameRules['startPriority']['value']) => {
+      const base = building(SECOND_BASE.id, 30);
+      const harvester = recruit(COSTED_HARVESTER.id, 30);
+      const result = simulate([base], [harvester], withEntities([SECOND_BASE, COSTED_HARVESTER], { rules: rules('strict', startPriority) }));
+      return [harvester, base].map((step) => orderOf(result, step).startAt);
+    };
+
+    it('should start the base first with the base order', () => {
+      expect(simulatePair()).toEqual([60, 30]);
+    });
+
+    it('should start the harvester first with The Legion order', () => {
+      expect(simulatePair(resolveRules('the-legion').startPriority.value)).toEqual([30, 60]);
+    });
   });
 });
 

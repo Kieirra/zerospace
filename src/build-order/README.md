@@ -52,11 +52,11 @@ The build is two lists:
   as soon as its cost is in the bank.
 - A transformation goes to its building, else to the first building of its kind not transformed yet; once done, the
   building also makes the units of its new form.
-- Start priority, read from `rules.startPriority` (`rules/rules.data.ts`) and never shown: mercenary recruits, then bases,
-  then supply buildings, then units, then everything else. Orders ready in the same tick start in that order, then by
-  click time, then by their place in their list. The first one (recruits aside) that lacks resources holds the start of
-  every later one: units that spend everything keep a Citadel waiting, as in the game. A lack of supply or of a
-  mercenary slot never holds the others.
+- Start priority, read from `rules.startPriority` (`rules/rules.data.ts`) and never shown: bases, then mercenary recruits,
+  then supply buildings, then units, then everything else. The Legion makes its harvesters before its bases. Orders
+  ready in the same tick start in that order, then by click time, then by their place in their list. The first one
+  (recruits aside) that lacks resources holds the start of every later one: units that spend everything keep a Citadel
+  waiting, as in the game. A lack of supply or of a mercenary slot never holds the others.
 - A requirement that is in the build but not finished yet is a wait (`waits Barracks`), never an error; a requirement
   absent from the build is an error. A unit no building of the build can make never stays in the build.
 
@@ -113,8 +113,9 @@ the name and the time of the step they refer to.
   research or transformation, the time `at` of a unit, becomes where its mark starts (its simulated start, else its
   click when it never starts) plus the whole seconds the pointer moved, wherever the step was grabbed; the dashed line,
   under the left edge of the dragged mark, shows the time the drop records. Units only,
-  dropped over another lane able to make them all, are pinned on it (their time is kept); a lane unable to make one of
-  them refuses the drop. Drop a palette card on the timeline to add it at that time (a unit: on the lane under the
+  dropped over another lane able to make them all, are pinned on it and move in time as above, so the grabbed one lands
+  under the pointer (a unit made as soon as possible gets a time); dropped straight up or down, they keep their time. A
+  lane unable to make one of them refuses the drop. Drop a palette card on the timeline to add it at that time (a unit: on the lane under the
   pointer). A click on a card adds a building after the latest click of the build, a unit to the queue (on the selected
   building when it can make it, else Auto). Cards that cannot be added are disabled, with the reason in their tooltip.
 - Right-click a step: Duplicate or Delete, on the whole selection when the step is part of it (else the step alone

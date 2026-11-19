@@ -45,9 +45,11 @@ export const toMissingRequires = (requires: string[], mode: RequiresMode, has: (
 
 export const toRequiresConjunction = (mode: RequiresMode): 'or' | 'and' => (mode === 'any' ? 'or' : 'and');
 
-// Class of the start priority (`rules.startPriority`), read from the data.
-const toStartRank = (entity: BuildEntity): StartRank => {
+// Class of the start priority (`rules.startPriority`), read from the data. A harvester is a unit, unless the order
+// gives it its own class (The Legion, Kieirra 2026-11-19).
+const toStartRank = (entity: BuildEntity, startPriority: StartRank[]): StartRank => {
   if (entity.category === 'mercenary-unit') return 'mercenary-unit';
+  if (entity.category === 'harvester' && startPriority.includes('harvester')) return 'harvester';
   if (entity.kind === 'building' && entity.economy?.kind === 'hexite-base') return 'base';
   if (entity.kind === 'building' && entity.supplyProvided !== undefined) return 'supply';
   if (entity.category === 'unit' || entity.category === 'harvester' || entity.category === 'hero') return 'unit';
@@ -94,12 +96,13 @@ const analyzeStep = (
   const base = { index, uid: step.uid, kind, tie, atTick: step.at === undefined ? undefined : toTicks(step.at) };
   const entity = context.catalog.get(step.entityId);
   if (!entity) return toIgnored(base, unknownEntity());
+  const rank = toStartRank(entity, context.rules.startPriority.value);
   const conflict = findResearchConflict(entity, tracker) ?? findMercenaryConflict(entity, context, tracker);
-  if (conflict) return toIgnored(base, conflict, entity);
+  if (conflict) return toIgnored(base, conflict, entity, rank);
   const hero = entity.category === 'hero' ? checkHeroStep(entity, heroSlots, tracker.heroUids) : undefined;
-  if (hero?.isIgnored && hero.diagnostic) return { ...toIgnored(base, hero.diagnostic, entity), firstUid: hero.firstUid };
+  if (hero?.isIgnored && hero.diagnostic) return { ...toIgnored(base, hero.diagnostic, entity, rank), firstUid: hero.firstUid };
   const diagnostics: Diagnostic[] = hero?.diagnostic ? [hero.diagnostic] : [];
-  if (!isHarvesterAllowed(entity, context, tracker)) return toIgnored(base, toHarvesterCap(entity, context), entity);
+  if (!isHarvesterAllowed(entity, context, tracker)) return toIgnored(base, toHarvesterCap(entity, context), entity, rank);
   const requires = resolveRequires(entity, context, scope, diagnostics);
   const placement = resolvePlacement(entity, step.producerUid, context, scope, diagnostics);
   if (entity.duration === null) diagnostics.push(unknownDuration());
@@ -110,7 +113,7 @@ const analyzeStep = (
     isIgnored: false,
     producerUid: placement.producerUid,
     repeat: isRepeated(step, entity),
-    rank: toStartRank(entity),
+    rank,
     requires,
     producerIds: placement.producerIds,
     thread: placement.thread,
@@ -123,12 +126,13 @@ const toIgnored = (
   base: Pick<PlannedStep, 'index' | 'uid' | 'kind' | 'tie' | 'atTick'>,
   diagnostic: Diagnostic,
   entity?: BuildEntity,
+  rank: StartRank = 'other',
 ): PlannedStep => ({
   ...base,
   entity,
   isIgnored: true,
   repeat: false,
-  rank: entity ? toStartRank(entity) : 'other',
+  rank,
   requires: [],
   producerIds: [],
   createsInstance: false,

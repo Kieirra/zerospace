@@ -3,6 +3,7 @@ import { simulateBuild } from '../../engine/engine.ts';
 import { INITIAL_EDITOR_STATE, editorReducer } from '../build-editor.reducer.ts';
 import {
   REFUSED_DROP,
+  toAddedMark,
   toDragOrigin,
   toDropAction,
   toDropLabel,
@@ -66,15 +67,15 @@ export const useEditorTimelineEditing = ({ build, context, result, selection, di
         // The very build the drop gives: its click time is the one the line shows.
         const next = editorReducer({ ...INITIAL_EDITOR_STATE, build }, action);
         const stepUid = source.kind === 'entity' ? next.lastAddedUids[0] : source.uid;
-        const preview =
-          next.build && stepUid
-            ? {
-                label: toDropLabel(action, stepUid, next.build, simulateBuild(next.build, context)),
-                isSamePlace: false,
-                at: toStepAt(next.build, stepUid) ?? null,
-                laneId: action.type === 'move-to-lane' ? target.laneId : null,
-              }
-            : toSamePlace(null);
+        if (!next.build || !stepUid) return toSamePlace(null);
+        const simulated = simulateBuild(next.build, context);
+        const preview = {
+          label: toDropLabel(action, stepUid, next.build, simulated),
+          isSamePlace: false,
+          at: toStepAt(next.build, stepUid) ?? null,
+          laneId: action.type === 'move-to-lane' || action.type === 'add-queued' ? target.laneId : null,
+          added: action.type === 'add-queued' ? toAddedMark(next.build, simulated, context.catalog, stepUid) : undefined,
+        };
         previews.set(key, preview);
         return preview;
       },

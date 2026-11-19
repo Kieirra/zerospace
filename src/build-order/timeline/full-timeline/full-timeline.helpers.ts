@@ -26,9 +26,11 @@ export const toFullLanes = (lanes: DisplayLane[], engineLanes: Lane[]): FullLane
   });
 };
 
-// Hexite and Flux banks and the free supply, from the samples of the simulation.
+// Hexite and Flux banks and the free supply, from the samples of the simulation up to the end of the axis.
+// A step that never starts keeps the simulation sampling up to the horizon: those later samples are not shown.
 export const toResourceTracks = (result: SimulationResult, totalSeconds: number): ResourceTracks => {
-  const samples = result.samples.length > 0 ? result.samples : [{ t: 0, hexite: 0, flux: 0, supplyUsed: 0, supplyCap: null }];
+  const shown = result.samples.filter(({ t }) => t <= totalSeconds);
+  const samples = shown.length > 0 ? shown : [{ t: 0, hexite: 0, flux: 0, supplyUsed: 0, supplyCap: null }];
   const hexite = toFlatEnd(samples.map(({ t, hexite: value }) => ({ t, value })), totalSeconds);
   const flux = toFlatEnd(samples.map(({ t, flux: value }) => ({ t, value })), totalSeconds);
   const hexitePeak = toPeak(hexite);
