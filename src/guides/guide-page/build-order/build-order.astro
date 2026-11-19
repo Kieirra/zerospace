@@ -29,6 +29,8 @@ const { title, factionId, buildOrder } = Astro.props;
         buildOrder.theorycraft && (
           <a
             href={toEditUrl(buildOrder.theorycraft.code)}
+            target="_blank"
+            rel="noopener"
             class="bevel-sm bg-surface-raised px-3 py-1 text-xs transition-colors hover:bg-surface-hover"
           >
             Open in Theorycraft
