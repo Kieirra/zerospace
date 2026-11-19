@@ -1,18 +1,11 @@
-# Build order tool (v3)
+# Theorycraft
 
 Place each building at the second you want, let the units follow, see the build simulated second by second on a timeline, and share it with a link.
 Mazar's tool, built on top of Kieirra's ZeroSpace wiki: it reads the wiki data and never changes it.
 
-## Run it
+## Open it
 
-Requirements: Node 22.18 or later, pnpm 10.19.
-
-```sh
-pnpm install
-pnpm dev
-```
-
-Then click **Theorycraft** in the site menu, or open http://localhost:4321/build-order/. One page, two screens:
+Click **Theorycraft** in the site menu, or open http://localhost:4321/build-order/. One page, two screens:
 
 | Screen | When | What it does |
 |---|---|---|
@@ -22,8 +15,6 @@ Then click **Theorycraft** in the site menu, or open http://localhost:4321/build
 The address is the only storage: the build lives entirely in its link (`#b=3.…`), rewritten 300 ms after each change
 (no new browser history entry). Reload the page to get the same build back; **⤴ Share** copies the link. Nothing is kept
 in the browser. Back from the editor returns to the side choice; another build link pasted in the address bar opens it.
-
-Testers: see [TESTING.md](TESTING.md) for the test sessions and the feedback template.
 
 ## How a build is simulated
 
@@ -36,7 +27,7 @@ A pure engine (`engine/`) plays the build in ticks of 0.1 s:
 - supply is capped at 200 for every faction;
 - a mercenary building has 1 slot when it completes, then gains 1 every 90 s, up to 4 (`productionCharges` in the data).
 
-The build is two lists (Kieirra 2026-11-19):
+The build is two lists:
 
 | List | Holds | The player sets | The engine computes |
 |---|---|---|---|
@@ -51,7 +42,7 @@ The build is two lists (Kieirra 2026-11-19):
   the slot until it is done, its wait for resources included. Three free Barracks and three Auto units: one each, in
   parallel.
 - A unit with a time `at` never enters before it, pinned or Auto; until then it holds no one: the next units of its
-  lane may enter before it (Kieirra 2026-11-19). Setting or moving a time sorts `queued` by time, the units without one
+  lane may enter before it. Setting or moving a time sorts `queued` by time, the units without one
   first, so the order of a lane follows the times.
 - A recruit enters when a slot of its own mercenary building is ready and, if set, its time `at` has come; it starts
   as soon as its cost is in the bank.
@@ -89,8 +80,9 @@ the name and the time of the step they refer to.
   upgraded entity, tier and name; transformations after the research of the building they transform; no building last.
   Costs one resource a line: Hexite, Flux, Supply.
 - Selection: a click on a step selects it and opens its panel; Ctrl/Cmd or Shift + click adds or takes out a step
-  (no panel); a press in the void of the lanes then a drag draws a rectangle that selects the steps it touches (added
-  with Ctrl/Cmd/Shift). A click in the void or Escape clears the selection.
+  (no panel); a press anywhere on the timeline but a step (curves, axis, void of the lanes, idle time) then a drag draws
+  a rectangle that selects the steps it touches (added with Ctrl/Cmd/Shift). A click in the void or Escape clears the
+  selection.
 - Step panel (one step selected): its errors, **Click at** (`m:ss` or seconds, Enter or leaving the field records it,
   Escape restores it; optional for a unit, « As soon as possible » when empty), **Made in** for a unit or a
   transformation (Auto or one of the lanes able to make it), then its times read only: Click (only for a unit made as
