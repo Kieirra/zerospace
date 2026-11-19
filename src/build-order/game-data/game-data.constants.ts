@@ -76,6 +76,16 @@ export const RESEARCH_LOCATIONS: Record<string, string> = {
   'protectorate/upgrade/eagle-tactics': 'protectorate/building/research-lab',
   'protectorate/upgrade/overpressure-nozzle': 'protectorate/building/research-lab',
   'protectorate/upgrade/retribution-protocol': 'protectorate/building/research-lab',
+  // The Legion (Kieirra 2026-11-19): hero upgrades in the Armory, unit upgrades in the Citadel, even when they also
+  // require the Terror Tower.
+  'the-legion/upgrade/beast-tamer': 'the-legion/building/armory',
+  'the-legion/upgrade/burning-fireball': 'the-legion/building/armory',
+  'the-legion/upgrade/explosive-warhead': 'the-legion/building/armory',
+  'the-legion/upgrade/fast-fireball': 'the-legion/building/armory',
+  'the-legion/upgrade/one-life-for-another': 'the-legion/building/armory',
+  'the-legion/upgrade/wake-of-fire': 'the-legion/building/armory',
+  'the-legion/upgrade/performance-enhancers': 'the-legion/building/citadel',
+  'the-legion/upgrade/performance-enhancers-steelsworn': 'the-legion/building/citadel',
 };
 
 // Dual heroes, confirmed by Mazar.
