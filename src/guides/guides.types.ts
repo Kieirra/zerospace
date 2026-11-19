@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import type { Build } from '../build-order/build-order.types.ts';
 import type { CostSegment, Entity, EntityKind, Faction } from '../wiki/wiki.types.ts';
 
 export type ResolvableKind = Exclude<EntityKind, 'talent'>;
@@ -145,6 +146,8 @@ export interface ResolvedBuildOrder {
   notes: BuildOrder['notes'];
   // Raw text of the block, for Copy.
   source: string;
+  // Main build order only: the build opened by `Open in Theorycraft` and its link code. Absent when it fails.
+  theorycraft?: { code: string; build: Build };
 }
 
 export interface Guide {

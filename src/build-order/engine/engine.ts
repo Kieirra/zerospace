@@ -34,8 +34,8 @@ export const createSimulationContext = (
 
 // Fixed step loop: ends (setup hero, stack recharge) → releases → starts (repeated) → sample → waits → income,
 // until every order is done or the horizon. Waits and income count the interval [tick, tick + 1),
-// so none is counted at the horizon.
-export const simulateBuild = (build: Build, context: SimulationContext) => {
+// so none is counted at the horizon. `minSampledSeconds` keeps sampling the resources until then, horizon at most.
+export const simulateBuild = (build: Build, context: SimulationContext, options?: { minSampledSeconds?: number }) => {
   const heroSlots = resolveHeroSlots(build, context);
   const plans = analyzeBuild(build, context, heroSlots);
   const state = createState(plans, context, heroSlots.setup);
@@ -48,7 +48,7 @@ export const simulateBuild = (build: Build, context: SimulationContext) => {
     rechargeStacks(state);
     releaseAndStartOrders(state, context);
     if (tick % TICK_PER_SECOND === 0) samples.push(toSample(state, context));
-    if (isOver(state) || tick === horizon) break;
+    if (isOver(state, options?.minSampledSeconds ?? MIN_SAMPLED_SECONDS) || tick === horizon) break;
     recordWaits(state);
     collectIncome(state, context);
   }
@@ -61,9 +61,9 @@ export const simulateBuild = (build: Build, context: SimulationContext) => {
 };
 
 // Every order done, and samples taken up to the whole second after the last end and the setup hero, one minute at least.
-const isOver = (state: SimulationState) => {
+const isOver = (state: SimulationState, minSampledSeconds: number) => {
   if (!areAllOrdersDone(state)) return false;
-  const lastEnd = Math.max(toTicks(MIN_SAMPLED_SECONDS), getSetupHeroTick(state), ...state.orders.map(({ endTick = 0 }) => endTick));
+  const lastEnd = Math.max(toTicks(minSampledSeconds), getSetupHeroTick(state), ...state.orders.map(({ endTick = 0 }) => endTick));
   return state.tick >= Math.ceil(lastEnd / TICK_PER_SECOND) * TICK_PER_SECOND;
 };
 

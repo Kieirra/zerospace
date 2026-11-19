@@ -17,7 +17,7 @@ export const sideFiles: FactionFile[] = readdirSync(WIKI_DIRECTORY)
   .filter((file) => file.endsWith('.json') && !NON_SIDE_FILES.includes(file))
   .map((file) => readJson(join(WIKI_DIRECTORY, file)));
 
-const entities: Entity[] = sideFiles.flatMap(({ id }) =>
+export const entities: Entity[] = sideFiles.flatMap(({ id }) =>
   readdirSync(join(WIKI_DIRECTORY, id)).flatMap((kind) =>
     readdirSync(join(WIKI_DIRECTORY, id, kind)).map((file) => readJson(join(WIKI_DIRECTORY, id, kind, file))),
   ),

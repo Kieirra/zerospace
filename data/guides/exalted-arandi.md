@@ -20,8 +20,8 @@ weaknesses:
 ---
 
 ```bo
-1. Idal Conduit + 2 Bestiary (loop Exalted) (-> 3 Legion Labourer) + Citadel
-   -> Idal Conduit + Altar
+1. Idal Conduit + 2 Bestiary (loop Exalted) (-> 3 Legion Labourer) + Citadel (-> Idal Conduit)
+   -> Altar
    -> Kraegar + Hallowed Strike
    goal: Take map control and the 3 XP towers
 2. when Kraegar starts: Garrison Tower + Idal Conduit + Terror Tower + Armory + Arandi Penumbra

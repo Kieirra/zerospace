@@ -1,4 +1,5 @@
 ---
+import { toEditUrl } from '../../../build-order/link/link.helpers.ts';
 import DensePanel from '../../../wiki/dense-panel/dense-panel.astro';
 import type { ResolvedBuildOrder } from '../../guides.types.ts';
 import BuildOrderPhases from './build-order-phases/build-order-phases.astro';
@@ -15,14 +16,26 @@ const { title, factionId, buildOrder } = Astro.props;
 <DensePanel factionId={factionId}>
   <div class="flex items-center justify-between gap-4">
     <h2 class="text-xs text-muted label-caps">Build order</h2>
-    <button
-      type="button"
-      data-copy-build-order
-      data-source={`## ${title}\n\n${buildOrder.source}`}
-      class="bevel-sm bg-surface-raised px-3 py-1 text-xs transition-colors hover:bg-surface-hover"
-    >
-      Copy
-    </button>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        data-copy-build-order
+        data-source={`## ${title}\n\n${buildOrder.source}`}
+        class="bevel-sm bg-surface-raised px-3 py-1 text-xs transition-colors hover:bg-surface-hover"
+      >
+        Copy
+      </button>
+      {
+        buildOrder.theorycraft && (
+          <a
+            href={toEditUrl(buildOrder.theorycraft.code)}
+            class="bevel-sm bg-surface-raised px-3 py-1 text-xs transition-colors hover:bg-surface-hover"
+          >
+            Open in Theorycraft
+          </a>
+        )
+      }
+    </div>
   </div>
   <BuildOrderPhases steps={buildOrder.steps} notes={buildOrder.notes} />
 </DensePanel>
