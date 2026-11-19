@@ -95,7 +95,7 @@ describe('Editor history', () => {
     expect(run([{ type: 'undo' }], retyped).present.build?.author).toBe('Ma');
   });
 
-  it('should start the history with the first build created, and again once the side choice opens again', () => {
+  it('should start the history with the first build created, and again once another address opens', () => {
     const created = run([CREATE]);
     const recreated = run([ADD, { type: 'new' }, CREATE], created);
 

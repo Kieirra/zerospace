@@ -1,8 +1,6 @@
 import { ConfirmDialog } from '../confirm-dialog/confirm-dialog.tsx';
 import { useConfirm } from '../confirm-dialog/hooks/use-confirm.ts';
 import { LINK_TEXTS } from '../link/link.constants.ts';
-import { SidePicker } from '../side-picker/side-picker.tsx';
-import { toDefaultHeroId } from './build-editor.helpers.ts';
 import { DataErrorMessage } from './data-error-message/data-error-message.tsx';
 import { EditorMessage } from './editor-message/editor-message.tsx';
 import { EditorSkeleton } from './editor-skeleton/editor-skeleton.tsx';
@@ -17,13 +15,13 @@ interface BuildEditorProps {
   sides: Side[];
 }
 
-// Editor island: opens the link or the side choice, then edits the build; the URL keeps it.
+// Editor island: opens the link, else an empty build, then edits the build; the URL keeps it.
 export const BuildEditor = ({ sides }: BuildEditorProps) => {
   const { state, dispatch, canUndo, canRedo } = useEditorHistory();
   const confirm = useConfirm();
   const load = useEditorLoad(sides, dispatch);
   const { build } = state;
-  const hashSync = useHashSync(load.phase === 'ready' ? build : null, load.reload);
+  useHashSync(load.phase === 'ready' ? build : null, load.reload);
   const { catalogs, ensure, retry } = useEditorCatalogs(build?.factionId ?? null, build?.mercenaryId ?? null);
 
   const renderContent = () => {
@@ -40,18 +38,7 @@ export const BuildEditor = ({ sides }: BuildEditorProps) => {
         </EditorMessage>
       );
     }
-    if (build === null) {
-      return (
-        <SidePicker
-          sides={sides}
-          onStart={(factionId, mercenaryId) => {
-            hashSync.startNewEntry();
-            dispatch({ type: 'create', factionId, mercenaryId, heroId: toDefaultHeroId(sides, factionId, mercenaryId) });
-          }}
-        />
-      );
-    }
-    if (catalogs.status !== 'ready') return <EditorSkeleton />;
+    if (build === null || catalogs.status !== 'ready') return <EditorSkeleton />;
     return (
       <EditorWorkspace
         state={{ ...state, build }}

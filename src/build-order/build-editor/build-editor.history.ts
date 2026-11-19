@@ -40,8 +40,8 @@ export const redo = <T>(history: History<T>): History<T> => {
 };
 
 // Every change of the build is one entry: a drag (`shift-at`, `move-to-lane`) or a paste is one action. A refused
-// paste changes the state, not the build: no entry. A load, the side choice opened again, or the first build created,
-// starts a new history.
+// paste changes the state, not the build: no entry. A load, an unreadable link, or the first build created starts a
+// new history.
 export const editorHistoryReducer = (history: EditorHistory, action: HistoryAction): EditorHistory => {
   switch (action.type) {
     case 'undo':

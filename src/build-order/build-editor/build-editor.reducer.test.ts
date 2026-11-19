@@ -48,7 +48,7 @@ describe('Editor reducer: build life', () => {
     expect(editorReducer({ ...editing(ARMY), lastAddedUids: ['s1'] }, { type: 'load', build: ARMY })).toEqual(editing(ARMY));
   });
 
-  it('should create an empty v3 build, and go back to the side choice on new', () => {
+  it('should create an empty v3 build, and drop it on new (an unreadable link)', () => {
     const created = editorReducer(INITIAL_EDITOR_STATE, { type: 'create', factionId: 'test', mercenaryId: null, heroId: 'h' });
 
     expect(created.build).toMatchObject({ version: 3, factionId: 'test', heroId: 'h', timed: [], queued: [] });

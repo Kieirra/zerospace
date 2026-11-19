@@ -5,16 +5,15 @@ Mazar's tool, built on top of Kieirra's ZeroSpace wiki: it reads the wiki data a
 
 ## Open it
 
-Click **Theorycraft** in the site menu, or open http://localhost:4321/build-order/. One page, two screens:
-
-| Screen | When | What it does |
-|---|---|---|
-| Side choice | The address has no build | Pick a faction and a mercenary faction (the first one preselected: no game without a mercenary), then **Start building** |
-| Editor | The address holds a build (`#b=3.…`) | Write the build with a live timeline |
+Click **Theorycraft** in the site menu, or open http://localhost:4321/build-order/: the editor opens on the build of the
+address (`#b=3.…`), else on an empty build of the last faction and mercenary picked in the header (`localStorage`,
+`theorycraft.lastSides.v1`; an opened link never changes them), at first The Legion (`DEFAULT_FACTION_ID`, the most
+reliable faction for the timeline) and the first mercenary (Arandi), with the default hero of the pair. An
+unreadable link shows its message and **Start a new build**.
 
 The address is the only storage: the build lives entirely in its link (`#b=3.…`), rewritten 300 ms after each change
-(no new browser history entry). Reload the page to get the same build back; **⤴ Share** copies the link. Nothing is kept
-in the browser. Back from the editor returns to the side choice; another build link pasted in the address bar opens it.
+(no new browser history entry). Reload the page to get the same build back; **⤴ Share** copies the link. The browser keeps
+only the last faction and mercenary picked. Another build link pasted in the address bar opens it.
 
 ## How a build is simulated
 
@@ -84,7 +83,7 @@ the name and the time of the step they refer to.
   (wheel, scrollbar or trackpad), the axis staying on top. Hold the wheel button and move to pan both ways. Ctrl +
   wheel is the browser's zoom. The time cursor card shows only over the curves or the void of the
   lanes: it hides over any mark, its ✕ or a click handle, and while dragging. Hovering a step shows no tooltip.
-  An empty build shows how to start under the axis; errors of no step are listed above the timeline.
+  An empty build shows the timeline alone, no message; errors of no step are listed above the timeline.
 - Colors: red only means an error. A step in error is filled red with « ✖ » before its name; researches and the
   buildings where they are done are indigo. A short or instant step keeps a chip wide enough for its icon, the start
   of its name and a click; when it runs over the next step of its lane, that step goes to the row below.

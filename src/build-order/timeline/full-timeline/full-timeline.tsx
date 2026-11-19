@@ -1,4 +1,3 @@
-import { isEmptyBuild } from '../../build-editor/build-editor.helpers.ts';
 import { useElementWidth } from '../../hooks/use-element-width.ts';
 import { useItemPopovers } from '../hooks/use-item-popovers.ts';
 import { IdleHatch } from '../idle-hatch/idle-hatch.tsx';
@@ -18,8 +17,6 @@ import { toProducerLanes } from '../timeline.lanes.ts';
 import { COMPACT_METRICS, TimelineMetricsContext } from '../timeline.metrics.ts';
 import { toFullLanes, toFullLegendKinds, toResourceTracks } from './full-timeline.helpers.ts';
 import type { FullLane, TimelineViewProps } from '../timeline.types.ts';
-
-const EMPTY_TEXT = 'Click or drag a card from Add to place your first building.';
 
 // The lanes (one per building, in the order they begin) under the Resources group, with idle time,
 // ready marks, queued time or stacks on the right, and the time cursor.
@@ -56,11 +53,6 @@ export const FullTimeline = ({ result, build, catalog, highlightedStepUid, onHig
           cursorAt={cursor?.t ?? null}
           announcement={cursor?.isFromKeyboard && cursorState ? toCursorAnnouncement(cursorState) : ''}
         >
-          {isEmptyBuild(build) && (
-            <p className="py-1.5 text-[12.5px] text-muted" style={{ paddingLeft: LABEL_COLUMN_PX }}>
-              {EMPTY_TEXT}
-            </p>
-          )}
           <ResourcesGroup tracks={toResourceTracks(result, scale.totalSeconds)} scale={scale} />
           {/* Two zones read apart: the resources above, the lanes below (Kieirra 2026-11-19). */}
           <div aria-hidden="true" className="my-2 border-t border-line" style={{ marginRight: -TRACK_END_PADDING_PX }} />
