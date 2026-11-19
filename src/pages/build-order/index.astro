@@ -1,0 +1,11 @@
+---
+import Layout from '../../shared/layout/layout.astro';
+import { getSides } from '../../build-order/build-order.data.ts';
+import { BuildEditor } from '../../build-order/build-editor/build-editor.tsx';
+
+const sides = await getSides();
+---
+
+<Layout title="Theorycraft">
+  <BuildEditor client:load sides={sides} />
+</Layout>
