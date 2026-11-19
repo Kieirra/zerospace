@@ -1,5 +1,6 @@
 import { MAX_AUTHOR_LENGTH } from '../build-order.constants.ts';
 import { getSidesHeroPool, isEmptyBuild } from '../build-editor/build-editor.helpers.ts';
+import { CopyBoButton } from './copy-bo-button/copy-bo-button.tsx';
 import { toAuthorWidthCh, toHeroOptions, toSideOptions } from './editor-header.helpers.ts';
 import { HistoryButtons } from './history-buttons/history-buttons.tsx';
 import { ResetButton } from './reset-button/reset-button.tsx';
@@ -7,6 +8,7 @@ import { ShareButton } from './share-button/share-button.tsx';
 import { SideSelect } from './side-select/side-select.tsx';
 import { TitleField } from './title-field/title-field.tsx';
 import type { Build, BuildCatalog, Side } from '../build-order.types.ts';
+import type { CopyBoButtonProps } from './copy-bo-button/copy-bo-button.tsx';
 import type { HistoryButtonsProps } from './history-buttons/history-buttons.tsx';
 import type { ShareButtonProps } from './share-button/share-button.tsx';
 
@@ -16,6 +18,7 @@ interface EditorHeaderProps {
   catalog: BuildCatalog;
   history: HistoryButtonsProps;
   share: ShareButtonProps;
+  copyBo: CopyBoButtonProps;
   onFaction: (factionId: string) => void;
   onMercenary: (mercenaryId: string) => void;
   onHero: (heroId: string) => void;
@@ -28,13 +31,14 @@ interface EditorHeaderProps {
 
 const AUTHOR_PLACEHOLDER = 'your name';
 
-// One line: title and author on the left; sides, setup hero, Undo, Redo, Reset and Share on the right.
+// One line: title and author on the left; sides, setup hero, Undo, Redo, Reset, Copy as BO and Share on the right.
 export const EditorHeader = ({
   build,
   sides,
   catalog,
   history,
   share,
+  copyBo,
   onFaction,
   onMercenary,
   onHero,
@@ -80,6 +84,7 @@ export const EditorHeader = ({
         )}
         <HistoryButtons {...history} />
         <ResetButton isDisabled={isEmptyBuild(build)} onReset={onReset} />
+        <CopyBoButton isDisabled={isEmptyBuild(build)} {...copyBo} />
         <ShareButton {...share} />
       </div>
     </header>

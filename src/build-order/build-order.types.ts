@@ -82,6 +82,8 @@ export interface BuildEntity {
 export interface SideCatalog {
   side: Side;
   entities: BuildEntity[];
+  // Wiki kinds by name key (`toNameKinds`): what a guide build order can cite.
+  nameKinds: Record<string, string[]>;
 }
 
 export type BuildCatalog = Map<string, BuildEntity>;

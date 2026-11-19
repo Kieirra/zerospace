@@ -8,15 +8,17 @@ interface HeaderButtonProps {
   onClick: () => void;
   // Tooltip and accessible name of a glyph.
   label?: string;
+  // Tooltip alone, the text staying the name (why Copy as BO is off).
+  tooltip?: string;
   children: ReactNode;
 }
 
-// Undo, Redo and Reset: off when there is nothing to do.
-export const HeaderButton = ({ size, isDisabled, onClick, label, children }: HeaderButtonProps) => (
+// Undo, Redo, Reset and Copy as BO: off when there is nothing to do.
+export const HeaderButton = ({ size, isDisabled, onClick, label, tooltip, children }: HeaderButtonProps) => (
   <button
     type="button"
     disabled={isDisabled}
-    title={label}
+    title={tooltip ?? label}
     aria-label={label}
     onClick={onClick}
     className={clsx(

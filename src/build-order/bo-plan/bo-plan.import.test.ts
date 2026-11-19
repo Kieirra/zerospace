@@ -102,10 +102,18 @@ describe('toBuild', () => {
       ]),
     ]);
     const startOf = (uid: string) => timingOf(build, uid).startAt ?? Number.NaN;
-    const bestiariesStart = Math.max(startOf('s2'), startOf('s3'));
+    const uidsOf = (entityId: string) => allSteps(build).flatMap((step) => (step.entityId === entityId ? [step.uid] : []));
+    const bestiariesStart = Math.max(...uidsOf(BESTIARY).map(startOf));
+    const [citadel] = uidsOf(CITADEL);
 
-    for (const uid of ['s5', 's6', 's7']) expect(startOf(uid)).toBeGreaterThan(bestiariesStart);
-    expect(startOf('s8')).toBeGreaterThan(startOf('s4'));
+    for (const uid of uidsOf(LABOURER)) expect(startOf(uid)).toBeGreaterThan(bestiariesStart);
+    expect(startOf(uidsOf(IDAL_CONDUIT)[1])).toBeGreaterThan(startOf(citadel));
+  });
+
+  it('should place the trigger of an item right after it, before the next item', () => {
+    const build = convert([group([item(IDAL_CONDUIT, { trigger: [group([item(LABOURER)])] }), item(BESTIARY)])]);
+
+    expect(allSteps(build).map(({ entityId }) => entityId)).toEqual([IDAL_CONDUIT, LABOURER, BESTIARY]);
   });
 
   it('should read the setup hero at its setup time and leave out its citation', () => {
@@ -170,9 +178,9 @@ describe('toBuild', () => {
   it('should skip a lost item, and keep the order in the groups of a trigger chain the same way', () => {
     const chain = [group([item(LABOURER), item('the-legion/topbar/reanimate'), item(LABOURER)])];
     const build = convert([group([item(GALAVAX), item('the-legion/topbar/reanimate'), item(IDAL_CONDUIT, { trigger: chain }), item(BESTIARY)])]);
-    const [conduit, bestiary, first, second] = allSteps(build);
+    const [conduit, first, second, bestiary] = allSteps(build);
 
-    expect(allSteps(build).map(({ entityId }) => entityId)).toEqual([IDAL_CONDUIT, BESTIARY, LABOURER, LABOURER]);
+    expect(allSteps(build).map(({ entityId }) => entityId)).toEqual([IDAL_CONDUIT, LABOURER, LABOURER, BESTIARY]);
     expect([conduit.at, bestiary.at]).toEqual([0, afterStartOf(timingOf(build, conduit.uid).startAt)]);
     expect(first.at).toBe(afterStartOf(timingOf(build, conduit.uid).startAt));
     expect(second.at).toBe(afterStartOf(timingOf(build, first.uid).startAt));

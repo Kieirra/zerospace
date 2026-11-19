@@ -2,6 +2,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { toSide, toSideEntities } from '../catalog/catalog.helpers.ts';
+import { toNameKinds } from '../catalog/catalog.names.ts';
 import { createSimulationContext, simulateBuild } from './engine.ts';
 import type { FactionFile } from '../../wiki/wiki-data.types.ts';
 import type { Entity } from '../../wiki/wiki.types.ts';
@@ -27,7 +28,7 @@ export const getCatalog = (sideId: string): SideCatalog => {
   const source = sideFiles.find(({ id }) => id === sideId);
   if (!source) throw new Error(`Unknown side ${sideId}`);
   const side = toSide(source, sideFiles);
-  return { side, entities: toSideEntities(side, entities, () => undefined) };
+  return { side, entities: toSideEntities(side, entities, () => undefined), nameKinds: toNameKinds(side.id, entities) };
 };
 
 // Timed steps as [entity id, at], queued steps as entity ids (Auto); uids are 'b1', 'b2'… then 'u1', 'u2'…

@@ -68,7 +68,8 @@ const AFTER_PREVIOUS = { kind: 'after-previous' } as const;
 // A group left empty by the losses is skipped: the next `->` waits for the group before it. The loops of a group are
 // never awaited, by `->` (D1) or by a trigger. `A + B + C` keeps its order (Kieirra 2026-11-19): each item placed waits
 // for the start of every copy of the one placed before it, like a trigger, else one second after its time; its copies
-// and loops share its time, a lost item is skipped.
+// and loops share its time, a lost item is skipped. The trigger of an item is placed right after it, before the next
+// item: the next item reads the start of this one with the trigger already there, as `Copy as BO` writes it back.
 const placeGroup = (state: ImportState, group: BoGroup, previous: PreviousGroup): PreviousGroup => {
   const at = resolveAnchor(group.anchor, previous, state.lookup);
   let before: PreviousGroup | null = null;
@@ -76,16 +77,14 @@ const placeGroup = (state: ImportState, group: BoGroup, previous: PreviousGroup)
     const itemAt = before === null ? at : resolveAnchor(AFTER_PREVIOUS, before, state.lookup);
     const uids = addCopies(state, item, itemAt);
     addLoops(state, item, uids, itemAt);
-    if (uids.length > 0) before = { at: itemAt + 1, uids, event: 'starts' };
-    return { item, uids };
-  });
-  for (const { item, uids } of placed) {
     (item.trigger ?? []).reduce<PreviousGroup>(
       (triggerPrevious, triggerGroup) => placeGroup(state, triggerGroup, triggerPrevious),
       { at, uids, event: 'starts' },
     );
-  }
-  const uids = placed.flatMap(({ uids }) => uids);
+    if (uids.length > 0) before = { at: itemAt + 1, uids, event: 'starts' };
+    return uids;
+  });
+  const uids = placed.flat();
   return uids.length === 0 ? previous : { at, uids, event: 'done' };
 };
 

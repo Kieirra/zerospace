@@ -31,9 +31,10 @@ const { title, factionId, buildOrder } = Astro.props;
             href={toEditUrl(buildOrder.theorycraft.code)}
             target="_blank"
             rel="noopener"
-            class="bevel-sm bg-surface-raised px-3 py-1 text-xs transition-colors hover:bg-surface-hover"
+            aria-label="View timeline in Theorycraft (new tab)"
+            class="bevel-sm bg-surface-raised px-3 py-1 text-xs text-accent-soft transition-colors hover:bg-surface-hover"
           >
-            Open in Theorycraft
+            View timeline <span aria-hidden="true">↗</span>
           </a>
         )
       }

@@ -1,4 +1,7 @@
 import { useMemo } from 'react';
+import { toBoPlan } from '../../bo-plan/bo-plan.export.ts';
+import { printBoPlan } from '../../bo-plan/bo-plan.print.ts';
+import { COPY_BO_TEXTS } from '../../editor-header/copy-bo-button/copy-bo-button.constants.ts';
 import { EditorHeader } from '../../editor-header/editor-header.tsx';
 import { SHARE_TEXTS } from '../../editor-header/share-button/share-button.constants.ts';
 import { createSimulationContext, simulateBuild } from '../../engine/engine.ts';
@@ -103,6 +106,11 @@ export const EditorWorkspace = ({ state, sides, faction, mercenary, notices, dis
           getUrl: () => toAbsoluteUrl(toEditUrl(encodeBuild(build)), window.location.origin),
           onCopied: () => showMessage(SHARE_TEXTS.copied),
           onFailed: () => showMessage(SHARE_TEXTS.failed),
+        }}
+        copyBo={{
+          getText: () => printBoPlan(toBoPlan(build, result, { faction, mercenary }), { faction, mercenary }),
+          onCopied: () => showMessage(COPY_BO_TEXTS.copied),
+          onFailed: () => showMessage(COPY_BO_TEXTS.failed),
         }}
         onFaction={actions.changeFaction}
         onMercenary={actions.changeMercenary}

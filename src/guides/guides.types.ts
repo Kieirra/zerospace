@@ -146,7 +146,7 @@ export interface ResolvedBuildOrder {
   notes: BuildOrder['notes'];
   // Raw text of the block, for Copy.
   source: string;
-  // Main build order only: the build opened by `Open in Theorycraft` and its link code. Absent when it fails.
+  // Main build order only: the build opened by `View timeline ↗` and its link code. Absent when it fails.
   theorycraft?: { code: string; build: Build };
 }
 
