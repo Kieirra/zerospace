@@ -1,5 +1,5 @@
 ---
-title: Cyclops Commando
+title: Fast Cyclops
 author: thomap
 patch: 19
 added: 2026-11-19
