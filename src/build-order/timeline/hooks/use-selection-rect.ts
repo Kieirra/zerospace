@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { SETUP_HERO_KEY } from '../timeline.constants.ts';
 import { toEdgeScroll } from './use-bar-drag.helpers.ts';
-import { isPastThreshold, toContentPoint, toHitUids, toSelectionBox } from './use-selection-rect.helpers.ts';
+import { isOnLabelColumn, isPastThreshold, OWN_GESTURE_SELECTOR, toContentPoint, toHitUids, toSelectionBox } from './use-selection-rect.helpers.ts';
 import { swallowNextClick } from './swallow-next-click.ts';
 import type { PointerEvent as ReactPointerEvent, RefObject } from 'react';
 import type { TimelineEditing } from '../timeline-editing.ts';
 import type { Box } from './use-selection-rect.helpers.ts';
 
-// Editor (Kieirra 2026-11-19): a press in the void of the lanes then a drag draws a rectangle; on release the steps it
-// touches are selected, added to the selection with Ctrl/Cmd/Shift. A press released in place is a click in the void:
-// it clears the selection. The frame scrolls near its edges; Escape cancels.
+// Editor (Kieirra 2026-11-19): a press anywhere on the timeline (curves, axis, void of the lanes, idle time) then a
+// drag draws a rectangle; on release the steps it touches are selected, added to the selection with Ctrl/Cmd/Shift.
+// A press released in place is a click in the void: it clears the selection. The marks, the click handles, the fold
+// of a lane group and the lane names keep their own gesture. The frame scrolls near its edges; Escape cancels.
 export const useSelectionRect = (frameRef: RefObject<HTMLElement | null>, editing: TimelineEditing) => {
   const [rect, setRect] = useState<Box | null>(null);
   const stopSession = useRef<(() => void) | null>(null);
@@ -18,12 +19,14 @@ export const useSelectionRect = (frameRef: RefObject<HTMLElement | null>, editin
   const onPointerDown = (event: ReactPointerEvent<HTMLElement>) => {
     const target = event.target instanceof Element ? event.target : null;
     if (!target || event.button !== 0 || !event.isPrimary || stopSession.current) return;
-    if (target.closest('[data-step-uid], [data-click-uid]') || !target.closest('[data-lane-id]')) return;
+    const frame = frameRef.current;
+    if (!frame || target.closest(OWN_GESTURE_SELECTOR)) return;
+    if (isOnLabelColumn(event.clientX, frame.getBoundingClientRect().left + frame.clientLeft)) return;
     const zone = event.currentTarget;
     const isAdditive = event.ctrlKey || event.metaKey || event.shiftKey;
     const start = toContentPoint({ x: event.clientX, y: event.clientY }, zone.getBoundingClientRect());
     let pointer = { x: event.clientX, y: event.clientY };
-    let scrollLeft = frameRef.current?.scrollLeft ?? 0;
+    let scrollLeft = frame.scrollLeft;
     let current: Box | null = null;
     let frameRequest = 0;
 

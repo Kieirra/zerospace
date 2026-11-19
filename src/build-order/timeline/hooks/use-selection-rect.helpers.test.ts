@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { intersects, isPastThreshold, toContentPoint, toHitUids, toSelectionBox } from './use-selection-rect.helpers.ts';
+import { intersects, isOnLabelColumn, isPastThreshold, toContentPoint, toHitUids, toSelectionBox } from './use-selection-rect.helpers.ts';
 
 const box = (left: number, top: number, width: number, height: number) => ({ left, top, width, height });
 
@@ -43,5 +43,16 @@ describe('Selection rectangle: hits', () => {
     ];
 
     expect(toHitUids(box(10, 5, 60, 40), marks)).toEqual(['s1', 's2']);
+  });
+});
+
+describe('Selection rectangle: where it starts', () => {
+  it('should leave the lane names column alone, from the left of the frame', () => {
+    expect(isOnLabelColumn(219, 100)).toBe(true);
+    expect(isOnLabelColumn(220, 100)).toBe(false);
+  });
+
+  it('should start anywhere right of the lane names, curves and axis included', () => {
+    expect(isOnLabelColumn(900, 100)).toBe(false);
   });
 });

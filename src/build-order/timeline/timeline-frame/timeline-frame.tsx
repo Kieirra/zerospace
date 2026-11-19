@@ -28,8 +28,9 @@ interface TimelineFrameProps {
 // Scrolling frame of a timeline: axis, lanes and the vertical line of the time cursor; scrolls sideways by its
 // scrollbar, the wheel (useWheelScroll), Shift + wheel or the trackpad, never by dragging (Kieirra 2026-11-19): a drag
 // moves a mark. Editor (TimelineEditing): a mark dragged sideways moves its time, a click handle its click time alone,
-// a palette card dropped on the lanes adds its step there, a press in the void of the lanes draws a selection rectangle, a right click on a mark opens its
-// menu; the pointer over the lanes is where a paste lands.
+// a palette card dropped on the lanes adds its step there, a press anywhere else on the timeline (curves, axis, void of
+// the lanes) draws a selection rectangle, a right click on a mark opens its menu; the pointer over the lanes is where a
+// paste lands.
 // Room of the scrollbar always kept (no jump past 3 minutes), thin thumb in the theme line color.
 export const TimelineFrame = ({ frameRef, scale, zoneProps, cursorAt, announcement, children }: TimelineFrameProps) => {
   const editing = useTimelineEditing();

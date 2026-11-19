@@ -1,3 +1,5 @@
+import { LABEL_COLUMN_PX } from '../timeline.constants.ts';
+
 export interface Box {
   left: number;
   top: number;
@@ -12,6 +14,12 @@ interface Point {
 
 // A press moved less than this is a click, never a rectangle.
 const THRESHOLD_PX = 4;
+
+// Presses that keep their own gesture, never a rectangle: a step mark, a click handle, the fold of a lane group.
+export const OWN_GESTURE_SELECTOR = '[data-step-uid], [data-click-uid], button[aria-expanded]';
+
+// The lane names, fixed on the left of the frame (its border aside), never start a rectangle.
+export const isOnLabelColumn = (pointerX: number, frameLeft: number) => pointerX - frameLeft < LABEL_COLUMN_PX;
 
 // Point in the coordinates of the lanes zone, its content: the zone moves on screen when the frame scrolls, a point
 // of its content does not.

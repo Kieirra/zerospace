@@ -32,8 +32,8 @@ export interface LanesPointer {
 }
 
 // Editor only. A click on a mark selects its step instead of opening the entity card (the setup hero, not a step,
-// keeps its card), Ctrl/Cmd or Shift + click adds or takes it out; a press in the void of the lanes draws a selection
-// rectangle. Dragging the mark of a step sideways moves its time `at`, with the selection, a unit's included; units
+// keeps its card), Ctrl/Cmd or Shift + click adds or takes it out; a press anywhere on the timeline but a mark draws a
+// selection rectangle. Dragging the mark of a step sideways moves its time `at`, with the selection, a unit's included; units
 // dragged to another lane are pinned there; a palette card dropped on the lanes is added at the time under the
 // pointer, or a unit on the lane under it (Kieirra 2026-11-19). Dragging the click handle of a step moves its time `at`
 // alone, its start left to the simulation. A refused drop has no preview.
