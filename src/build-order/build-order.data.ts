@@ -1,6 +1,7 @@
 import { findImageUrl } from '../wiki/game-image/game-image.helpers.ts';
 import { getEntities, getFactions } from '../wiki/wiki.data.ts';
 import { toSide, toSideEntities } from './catalog/catalog.helpers.ts';
+import { toNameKinds } from './catalog/catalog.names.ts';
 import type { Side, SideCatalog } from './build-order.types.ts';
 
 export const getSides = async (): Promise<Side[]> => {
@@ -11,5 +12,6 @@ export const getSides = async (): Promise<Side[]> => {
 export const getSideCatalog = async (sideId: string): Promise<SideCatalog | undefined> => {
   const side = (await getSides()).find(({ id }) => id === sideId);
   if (!side) return undefined;
-  return { side, entities: toSideEntities(side, await getEntities(), findImageUrl) };
+  const entities = await getEntities();
+  return { side, entities: toSideEntities(side, entities, findImageUrl), nameKinds: toNameKinds(side.id, entities) };
 };

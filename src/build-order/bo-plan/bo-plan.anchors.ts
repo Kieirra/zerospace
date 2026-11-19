@@ -34,7 +34,7 @@ export const toWholeSeconds = (seconds: number) => Math.ceil(seconds - CEIL_TOLE
 
 // A step clicked on the very tick a step starts may take its place: with startPriority, a supply or a unit goes first.
 // Waiting for a start lands one whole second after it, so the awaited step is always started.
-const toAfterStart = (seconds: number) => Math.floor(seconds + CEIL_TOLERANCE) + 1;
+export const toAfterStart = (seconds: number) => Math.floor(seconds + CEIL_TOLERANCE) + 1;
 
 const CEIL_TOLERANCE = 1e-9;
 

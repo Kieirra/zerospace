@@ -69,7 +69,13 @@ the name and the time of the step they refer to.
 ## Editor
 
 - Header: title and author; faction, mercenary (always one) and setup hero; Undo, Redo, **↺ Reset** (empties the build, Undo in its
-  toast) and **⤴ Share** (copies the link).
+  toast), **Copy as BO** and **⤴ Share** (copies the link).
+- **Copy as BO** (off on an empty build) copies the build as a ```bo block to paste in a guide, the reverse of the guide
+  import: a step clicked one second after the start of the item before it joins its group (`+`), or the trigger
+  `(-> …)` of an earlier item; copies at the same time count (`2 Bestiary`); a unit in a loop is `(loop X)` on its
+  building. A new group starts with `->` when the group before it is done, else `when X starts:`, `when X done:` or
+  `when m:ss:`; a base opens a new phase. Wiki names only, `[kind]` when a name is shared; a name the guide parser
+  cannot tell apart (Legion « Performance Enhancers ») is written as quoted text. No goal, no note, no setup hero.
 - Timeline: one lane per building, in the order they begin, under the Hexite and Flux curves and the free supply
   (cap minus used, never below 0, hidden when the supply is not checked), with idle time, ready marks and the time
   cursor; orange lines where a mercenary slot can be spent. It fits the width up to 3 minutes; a longer build keeps

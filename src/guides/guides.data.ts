@@ -123,7 +123,7 @@ const withTheorycraft = (main: ResolvedBuildOrder, slug: string, context: GuideC
     return { ...main, theorycraft: toTheorycraft(main, header, context) };
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error);
-    console.warn(`data/guides/${slug}.md: no Open in Theorycraft link, ${detail}`);
+    console.warn(`data/guides/${slug}.md: no View timeline link, ${detail}`);
     return main;
   }
 };

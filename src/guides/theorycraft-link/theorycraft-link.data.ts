@@ -1,5 +1,6 @@
 import { toBuild } from '../../build-order/bo-plan/bo-plan.import.ts';
 import { getDefaultMercenaryId, toSide, toSideEntities } from '../../build-order/catalog/catalog.helpers.ts';
+import { toNameKinds } from '../../build-order/catalog/catalog.names.ts';
 import { encodeBuild } from '../../build-order/link/link.codec.ts';
 import { resolveRules } from '../../build-order/rules/rules.helpers.ts';
 import { toBoPlan } from './theorycraft-link.helpers.ts';
@@ -13,7 +14,7 @@ export interface WikiSources {
   factions: Map<string, Faction>;
 }
 
-// Build of the main build order and its link code, for `Open in Theorycraft`.
+// Build of the main build order and its link code, for `View timeline ↗`.
 // A guide without mercenary opens with the first one, as New build (no game without a mercenary, Kieirra 2026-11-19).
 export const toTheorycraft = (buildOrder: Pick<ResolvedBuildOrder, 'steps'>, header: BoPlanHeader, sources: WikiSources) => {
   const mercenaryId = header.mercenaryId ?? toDefaultMercenaryId(header.factionId, sources);
@@ -36,7 +37,7 @@ const getSideCatalog = (sideId: string, { entities, factions }: WikiSources) => 
   const source = factions.get(sideId);
   if (!source) throw new Error(`side ${sideId} is missing from the wiki data.`);
   const side = toSide(source, [...factions.values()]);
-  const catalog: SideCatalog = { side, entities: toSideEntities(side, entities, () => undefined) };
+  const catalog: SideCatalog = { side, entities: toSideEntities(side, entities, () => undefined), nameKinds: toNameKinds(side.id, entities) };
   catalogs.set(sideId, catalog);
   return catalog;
 };
