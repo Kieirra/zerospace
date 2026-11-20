@@ -25,8 +25,16 @@ export const TRACK_END_PADDING_PX = 32;
 export const BAR_LABEL_MIN_PX = 48;
 // Smallest bar (Kieirra 2026-11-19): its icon, the start of its name and room to click it, beside its ✕.
 export const MIN_CHIP_PX = 64;
-// Horizontal room taken by a mercenary mark and its label, kept free when stacking rows.
-export const MERCENARY_MARK_PX = 120;
+// Height of a point mark (h-5).
+export const MARK_PX = 20;
+// Horizontal room taken by a point mark (recruit, Misc step) and its label, kept free when stacking rows.
+export const POINT_MARK_PX = 120;
+// Room taken by the point of a free unit and its icon (US-008).
+export const FREE_UNIT_MARK_PX = 24;
+// Room taken by the count of free units made at once ('6'), right of their icon.
+export const FREE_UNIT_COUNT_PX = 18;
+// Width of the ✕ of a mark (w-4), kept free at the right end of a point mark.
+export const REMOVE_BUTTON_PX = 16;
 
 // Pointer tip of the click icon: (7, 7) in its 20 × 20 box.
 export const CLICK_TIP_RATIO = 7 / 20;

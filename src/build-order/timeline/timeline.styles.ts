@@ -7,7 +7,7 @@ export const ERROR_COLOR = '#FF6B6B';
 export const ON_ERROR_COLOR = '#0b0b10';
 
 // Same recipes as apercu.html (.bar.k-bld, .k-unit, .k-res, .k-hero): the shape tells the type, never the color alone.
-export const BAR_STYLES: Record<Exclude<TimelineItemShape, 'mercenary' | 'setup-hero'>, CSSProperties> = {
+export const BAR_STYLES: Record<Exclude<TimelineItemShape, 'mercenary' | 'setup-hero' | 'misc'>, CSSProperties> = {
   building: {
     background: KIND_COLORS.building,
     clipPath: 'polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)',
@@ -40,6 +40,9 @@ export const toErrorFillStyle = (shapeStyle: CSSProperties) => ({
   color: ON_ERROR_COLOR,
   ...(shapeStyle.border === undefined ? {} : { border: `1.5px solid ${ERROR_COLOR}` }),
 });
+
+// A point mark in error (Kieirra 2026-11-19): its diamond and label on a solid red fill, the diamond still at its time.
+export const POINT_ERROR_FILL_STYLE: CSSProperties = { background: ERROR_COLOR, color: ON_ERROR_COLOR, paddingRight: 4, borderRadius: 2 };
 
 // Highlight shared by the timeline marks (brightness +45 %).
 export const toHighlightStyle = (isHighlighted: boolean): CSSProperties => ({

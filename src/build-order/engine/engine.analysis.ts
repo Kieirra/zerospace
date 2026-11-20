@@ -1,7 +1,8 @@
-import { isBuildingCategory, toLaneOrder } from '../build-order.helpers.ts';
+import { isBuildingCategory, isMiscCategory, toBuildingCopies, toLaneOrder } from '../build-order.helpers.ts';
 import {
   duplicateMercenaryBuilding,
   duplicateResearch,
+  duplicateTalent,
   exclusiveResearch,
   harvesterCap,
   missingRequirement,
@@ -23,13 +24,14 @@ import type { Diagnostic, SimulationContext } from './engine.types.ts';
 export const analyzeBuild = (build: Build, context: SimulationContext, heroSlots: HeroSlots): PlannedStep[] => {
   const scope = toBuildScope(build, context.catalog);
   const tracker = createTracker();
+  const talents = toTalents(build, context);
   const timed = new Array<PlannedStep>(build.timed.length);
   for (const step of toLaneOrder(build.timed)) {
     const index = build.timed.indexOf(step);
-    timed[index] = analyzeStep(step, 'timed', index, index, { context, scope, tracker, heroSlots });
+    timed[index] = analyzeStep(step, 'timed', index, index, { context, scope, tracker, heroSlots, talents });
   }
   const queued = build.queued.map((step, tie) =>
-    analyzeStep(step, 'queued', build.timed.length + tie, tie, { context, scope, tracker, heroSlots }),
+    analyzeStep(step, 'queued', build.timed.length + tie, tie, { context, scope, tracker, heroSlots, talents }),
   );
   return [...timed, ...queued];
 };
@@ -69,6 +71,9 @@ interface Tracker {
   harvesterCounts: Map<string, number>;
   // Paid heroes, entity id → uid of the step.
   heroUids: Map<string, string>;
+  talentIds: Set<string>;
+  // Flux nodes filled by the free harvesters of a talent (Lore of Flux), Harvesters per node each.
+  reservedNodes: number;
 }
 
 interface AnalysisInput {
@@ -76,7 +81,11 @@ interface AnalysisInput {
   scope: BuildScope;
   tracker: Tracker;
   heroSlots: HeroSlots;
+  // Talents of the whole build, whatever their time: the rules they change hold for the whole match.
+  talents: BuildEntity[];
 }
+
+type PlanBase = Pick<PlannedStep, 'index' | 'uid' | 'kind' | 'tie' | 'atTick'>;
 
 const createTracker = (): Tracker => ({
   researchAt: new Map(),
@@ -84,6 +93,8 @@ const createTracker = (): Tracker => ({
   mercenaryAt: new Map(),
   harvesterCounts: new Map(),
   heroUids: new Map(),
+  talentIds: new Set(),
+  reservedNodes: 0,
 });
 
 const analyzeStep = (
@@ -91,13 +102,14 @@ const analyzeStep = (
   kind: StepKind,
   index: number,
   tie: number,
-  { context, scope, tracker, heroSlots }: AnalysisInput,
+  { context, scope, tracker, heroSlots, talents }: AnalysisInput,
 ): PlannedStep => {
   const base = { index, uid: step.uid, kind, tie, atTick: step.at === undefined ? undefined : toTicks(step.at) };
   const entity = context.catalog.get(step.entityId);
   if (!entity) return toIgnored(base, unknownEntity());
+  if (isMiscCategory(entity)) return toEffectPlan(base, entity, tracker);
   const rank = toStartRank(entity, context.rules.startPriority.value);
-  const conflict = findResearchConflict(entity, tracker) ?? findMercenaryConflict(entity, context, tracker);
+  const conflict = findResearchConflict(entity, tracker) ?? findMercenaryConflict(entity, context, tracker, talents);
   if (conflict) return toIgnored(base, conflict, entity, rank);
   const hero = entity.category === 'hero' ? checkHeroStep(entity, heroSlots, tracker.heroUids) : undefined;
   if (hero?.isIgnored && hero.diagnostic) return { ...toIgnored(base, hero.diagnostic, entity, rank), firstUid: hero.firstUid };
@@ -118,12 +130,35 @@ const analyzeStep = (
     producerIds: placement.producerIds,
     thread: placement.thread,
     createsInstance: isBuildingCategory(entity),
+    isEffect: false,
     diagnostics,
   };
 };
 
+// A talent or an event (US-008): planned for the effect schedule, never an order. A talent counts once; its free
+// harvesters take their places under the harvester cap.
+const toEffectPlan = (base: PlanBase, entity: BuildEntity, tracker: Tracker): PlannedStep => {
+  if (entity.category === 'talent') {
+    if (tracker.talentIds.has(entity.id)) return toIgnored(base, duplicateTalent(), entity);
+    tracker.talentIds.add(entity.id);
+  }
+  for (const effect of entity.effects ?? []) if (effect.kind === 'spawn-harvesters') tracker.reservedNodes += 1;
+  return {
+    ...base,
+    entity,
+    isIgnored: false,
+    repeat: false,
+    rank: 'other',
+    requires: [],
+    producerIds: [],
+    createsInstance: false,
+    isEffect: true,
+    diagnostics: [],
+  };
+};
+
 const toIgnored = (
-  base: Pick<PlannedStep, 'index' | 'uid' | 'kind' | 'tie' | 'atTick'>,
+  base: PlanBase,
   diagnostic: Diagnostic,
   entity?: BuildEntity,
   rank: StartRank = 'other',
@@ -136,6 +171,7 @@ const toIgnored = (
   requires: [],
   producerIds: [],
   createsInstance: false,
+  isEffect: false,
   diagnostics: [diagnostic],
 });
 
@@ -147,10 +183,11 @@ const findResearchConflict = (entity: BuildEntity, tracker: Tracker) => {
   return group ? exclusiveResearch(group.name, group.at) : undefined;
 };
 
-const findMercenaryConflict = (entity: BuildEntity, context: SimulationContext, tracker: Tracker) => {
+// A talent of the build may allow more copies (Entrenched Hideouts).
+const findMercenaryConflict = (entity: BuildEntity, context: SimulationContext, tracker: Tracker, talents: BuildEntity[]) => {
   if (entity.category !== 'mercenary-building') return undefined;
   const times = tracker.mercenaryAt.get(entity.id) ?? [];
-  const copies = context.rules.mercenaryBuildingCopies.value;
+  const copies = toBuildingCopies(entity.id, talents, context.rules.mercenaryBuildingCopies.value);
   return times.length < copies ? undefined : duplicateMercenaryBuilding(entity.displayName, copies, times[0]);
 };
 
@@ -165,7 +202,7 @@ const resolveRequires = (entity: BuildEntity, context: SimulationContext, scope:
 
 const isHarvesterAllowed = (entity: BuildEntity, context: SimulationContext, tracker: Tracker) => {
   const limit = entity.category === 'harvester' ? getMaxHarvesters(entity, context.values) : undefined;
-  return !limit || (tracker.harvesterCounts.get(entity.id) ?? 0) < limit.max;
+  return !limit || (tracker.harvesterCounts.get(entity.id) ?? 0) + tracker.reservedNodes * limit.perNode < limit.max;
 };
 
 const toHarvesterCap = (entity: BuildEntity, context: SimulationContext) => {
@@ -183,3 +220,9 @@ const recordStep = (entity: BuildEntity, step: TimedStep | QueuedStep, tracker: 
     if (entity.exclusiveGroup) tracker.groupAt.set(entity.exclusiveGroup, { name: entity.name, at });
   }
 };
+
+const toTalents = (build: Build, context: SimulationContext) =>
+  build.timed.flatMap(({ entityId }) => {
+    const entity = context.catalog.get(entityId);
+    return entity?.category === 'talent' ? [entity] : [];
+  });

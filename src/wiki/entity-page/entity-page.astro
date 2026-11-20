@@ -25,6 +25,7 @@ import EntityUpgrades from './entity-upgrades/entity-upgrades.astro';
 import EntityUpdates from './entity-updates/entity-updates.astro';
 import EntityUpgradesTo from './entity-upgrades-to/entity-upgrades-to.astro';
 import EntityWeapons from './entity-weapons/entity-weapons.astro';
+import InterpolatedText from './interpolated-text/interpolated-text.astro';
 
 interface Props {
   entity: Entity;
@@ -42,7 +43,13 @@ const hasInfo = hasInfoColumn(entity) || absorbedBy.length > 0;
   <article class="flex flex-col gap-8">
     <div>
       <EntityHeader entity={entity} faction={faction} />
-      {entity.description && <p class="mt-4 whitespace-pre-line">{interpolate(entity.description, entity.values)}</p>}
+      {
+        entity.description && (
+          <p class="mt-4 whitespace-pre-line">
+            <InterpolatedText text={entity.description} values={entity.values} patchNotes={entity.patchNotes} />
+          </p>
+        )
+      }
       {entity.details && <p class="mt-2 text-sm whitespace-pre-line text-muted">{interpolate(entity.details, entity.values)}</p>}
     </div>
     <StatTiles tiles={toGameStatTiles(entity.stats)} />

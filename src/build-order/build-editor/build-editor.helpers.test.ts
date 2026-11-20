@@ -30,9 +30,9 @@ describe('Editor: side change confirmation', () => {
       ['protectorate/unit/prospector'],
     );
 
-    expect(countSideSteps(build, 'protectorate')).toBe(2);
-    expect(countSideSteps(build, 'marran')).toBe(1);
-    expect(countSideSteps(build, null)).toBe(0);
+    expect(countSideSteps(build, 'protectorate', new Map())).toBe(2);
+    expect(countSideSteps(build, 'marran', new Map())).toBe(1);
+    expect(countSideSteps(build, null, new Map())).toBe(0);
   });
 
   it('should word the confirmation', () => {

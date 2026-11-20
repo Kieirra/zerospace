@@ -1,5 +1,6 @@
 import { formatClock, toCapableProducerUids } from '../build-order.helpers.ts';
 import { getResearchLocation } from '../engine/engine.research-location.ts';
+import { MISC_LANE_ID } from '../engine/engine.constants.ts';
 import { toLaneId } from '../engine/engine.state.ts';
 import { RESEARCH_LOCATIONS } from '../game-data/game-data.constants.ts';
 import {
@@ -10,6 +11,7 @@ import {
   VISIBLE_SECONDS,
   WAIT_LABEL_MIN_SECONDS,
 } from './timeline.constants.ts';
+import { groupFreeUnits, isFreeUnit, toFreeUnitWhere, toMiscTimesLabel } from './timeline.misc.ts';
 import type { Build, BuildCatalog, BuildEntity, EntityCategory } from '../build-order.types.ts';
 import type { OrderTiming, SimulationResult } from '../engine/engine.types.ts';
 import type { LegendKind, TimelineItem, TimelineItemEvents, TimelineItemShape } from './timeline.types.ts';
@@ -45,7 +47,7 @@ export const packRows = (intervals: { start: number; end: number }[], minSpan = 
 // One item per order, plus the setup hero; rows are set by toProducerLanes. A unit never taken by a building shows on
 // its pinned lane, else on the first lane able to make it, with its never-starts mark. A unit with a time waits from
 // that time, not from its entry in the production queue (Kieirra 2026-11-19). A unit in a loop is named « ∞ Exalted »,
-// the copies of its loop « Exalted », each from its own click.
+// the copies of its loop « Exalted », each from its own click. The free units of a step made at once share one item.
 export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog, build: Pick<Build, 'timed' | 'queued'>): TimelineItem[] => {
   const laneLabels = new Map(result.lanes.map(({ id, label }) => [id, label]));
   const queuedAts = new Map(build.queued.flatMap(({ uid, at }) => (at === undefined ? [] : [[uid, at]])));
@@ -61,7 +63,8 @@ export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog,
   const items = result.orders.flatMap((order): TimelineItem[] => {
     const entity = catalog.get(order.entityId);
     if (!entity) return [];
-    const shape = SHAPES[entity.category];
+    // The free units of a talent or an event stay on its Misc lane.
+    const shape = order.laneId === MISC_LANE_ID ? 'misc' : SHAPES[entity.category];
     const laneId = order.laneId ?? toWaitingLaneId(order.stepUid, entity, build, catalog, laneLabels);
     const isCopy = order.occurrence > 0;
     const stepAt = isCopy ? undefined : queuedAts.get(order.stepUid);
@@ -72,12 +75,15 @@ export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog,
         stepUid: order.stepUid,
         occurrence: order.occurrence,
         entityId: order.entityId,
+        count: 1,
         shape,
         isMercenary: entity.category === 'mercenary-building',
         isResearchBuilding: entity.category === 'building' && researchBuildingIds.has(entity.id),
         laneId,
         label: shape === 'mercenary' ? `${entity.displayName} ×${entity.count}` : `${isLoopStep ? '∞ ' : ''}${entity.displayName}`,
-        where: laneId === null ? '' : (laneLabels.get(laneId) ?? ''),
+        where: isFreeUnit({ shape, occurrence: order.occurrence })
+          ? toFreeUnitWhere(order.stepUid, build, catalog)
+          : (laneLabels.get(laneId ?? '') ?? ''),
         clickAt: timing.clickAt,
         startAt: order.startAt,
         endAt: order.endAt,
@@ -91,7 +97,7 @@ export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog,
     ];
   });
   const setupHero = toSetupHeroItem(result, catalog);
-  return setupHero ? [...items, setupHero] : items;
+  return setupHero ? [...groupFreeUnits(items), setupHero] : groupFreeUnits(items);
 };
 
 // Kinds present in the build, in legend order (Hero always last).
@@ -106,9 +112,11 @@ export const toLegendKinds = (items: TimelineItem[]) => {
   return LEGEND_ORDER.filter((kind) => present.has(kind));
 };
 
-// 'Click 1:35 · Starts 1:47 · Ready 2:23'; the setup hero has no click.
-export const toItemTimesLabel = ({ shape, clickAt, startAt, endAt }: TimelineItem) => {
+// 'Click 1:35 · Starts 1:47 · Ready 2:23'; the setup hero has no click; a Misc step 'Applied at 2:10'.
+export const toItemTimesLabel = (item: TimelineItem) => {
+  const { shape, clickAt, startAt, endAt } = item;
   if (shape === 'setup-hero') return `free · picked at match start, at base ${formatClock(startAt ?? 0)}`;
+  if (shape === 'misc') return toMiscTimesLabel(item);
   return [
     clickAt === null ? null : `Click ${formatClock(clickAt)}`,
     startAt === null ? 'Never starts' : `Starts ${formatClock(startAt)}`,
@@ -167,6 +175,7 @@ const toSetupHeroItem = (result: SimulationResult, catalog: BuildCatalog): Timel
     stepUid: SETUP_HERO_KEY,
     occurrence: 0,
     entityId: hero.id,
+    count: 1,
     shape: 'setup-hero',
     isMercenary: false,
     isResearchBuilding: false,
@@ -204,6 +213,8 @@ const SHAPES: Record<EntityCategory, Exclude<TimelineItemShape, 'setup-hero'>> =
   transformation: 'research',
   'mercenary-unit': 'mercenary',
   hero: 'hero',
+  talent: 'misc',
+  event: 'misc',
 };
 
 const LEGEND_ORDER: LegendKind[] = [
@@ -212,6 +223,7 @@ const LEGEND_ORDER: LegendKind[] = [
   'unit',
   'research',
   'mercenary',
+  'misc',
   'clicked-early',
   'hero',
 ];

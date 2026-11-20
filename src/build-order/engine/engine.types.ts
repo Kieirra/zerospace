@@ -107,7 +107,9 @@ export type DiagnosticCode =
   | 'hero-duplicate'
   | 'hero-no-slot'
   | 'hero-not-buildable'
-  | 'unknown-stack-rule';
+  | 'unknown-stack-rule'
+  | 'duplicate-talent'
+  | 'never-applies';
 
 export type DiagnosticSeverity = 'error' | 'warning' | 'info';
 

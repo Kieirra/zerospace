@@ -1,7 +1,7 @@
 // Test fixtures only: catalogs rebuilt from the real `data/wiki/` files (read only).
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { toSide, toSideEntities } from '../catalog/catalog.helpers.ts';
+import { toSide, toSideCatalog, toSideEntities } from '../catalog/catalog.helpers.ts';
 import { toNameKinds } from '../catalog/catalog.names.ts';
 import { createSimulationContext, simulateBuild } from './engine.ts';
 import type { FactionFile } from '../../wiki/wiki-data.types.ts';
@@ -24,12 +24,20 @@ export const entities: Entity[] = sideFiles.flatMap(({ id }) =>
   ),
 );
 
-export const getCatalog = (sideId: string): SideCatalog => {
+const getSide = (sideId: string) => {
   const source = sideFiles.find(({ id }) => id === sideId);
   if (!source) throw new Error(`Unknown side ${sideId}`);
-  const side = toSide(source, sideFiles);
+  return toSide(source, sideFiles);
+};
+
+// The wiki entities of a side, without its Misc steps.
+export const getCatalog = (sideId: string): SideCatalog => {
+  const side = getSide(sideId);
   return { side, entities: toSideEntities(side, entities, () => undefined), nameKinds: toNameKinds(side.id, entities) };
 };
+
+// The catalog of the editor: the side and its Misc steps (US-008).
+export const getCatalogWithMisc = (sideId: string): SideCatalog => toSideCatalog(getSide(sideId), entities, () => undefined);
 
 // Timed steps as [entity id, at], queued steps as entity ids (Auto); uids are 'b1', 'b2'… then 'u1', 'u2'…
 export const toBuild = (factionId: string, mercenaryId: string | null, timed: [string, number][], queued: string[] = []): Build => ({

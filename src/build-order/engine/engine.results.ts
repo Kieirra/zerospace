@@ -1,11 +1,12 @@
-import { WAIT_REASONS } from './engine.constants.ts';
-import { neverStarts, unknownStackRule, withHeroStart, withStep } from './engine.diagnostics.ts';
+import { MISC_LANE_ID, WAIT_REASONS } from './engine.constants.ts';
+import { neverApplies, neverStarts, unknownStackRule, withHeroStart, withStep } from './engine.diagnostics.ts';
 import { getSupplyCap, isSupplyChecked, toSeconds } from './engine.economy.ts';
+import { getOrderCost } from './engine.effects.ts';
 import { getMissingResource } from './engine.starts.ts';
 import { isRecruit, toStackGauge } from './engine.mercenaries.ts';
 import { getLaneRank, toLaneId } from './engine.state.ts';
 import type { NeverStartsCause } from './engine.diagnostics.ts';
-import type { InstanceState, OrderState, PlannedStep, SimulationState } from './engine.internal.types.ts';
+import type { InstanceState, OrderState, PlannedStep, ScheduledEffect, SimulationState } from './engine.internal.types.ts';
 import type {
   Diagnostic,
   HeroSummary,
@@ -31,7 +32,11 @@ export const toResult = (
   context: SimulationContext,
   extras: { samples: ResourceSample[]; globalDiagnostics: Diagnostic[]; heroes: HeroSummary },
 ): SimulationResult => {
-  const orders = state.orders.map((order) => toOrderTiming(order, state));
+  const orders = [
+    ...state.orders.map((order) => toOrderTiming(order, state)),
+    ...state.effects.flatMap(toEffectOrderTimings),
+    ...plans.filter(isDuplicateTalent).map(toDuplicateTalentTiming),
+  ];
   const steps = plans.map((plan) => toStepTiming(plan, state, context));
   const lanes = state.instances.map((instance) => toLane(instance, state, context));
   return {
@@ -69,6 +74,7 @@ const toOrderLaneId = (order: OrderState, state: SimulationState) => {
 
 // The step itself (occurrence 0): the copies of its loop are orders only.
 const toStepTiming = (plan: PlannedStep, state: SimulationState, context: SimulationContext): StepTiming => {
+  if (plan.isEffect || isDuplicateTalent(plan)) return toEffectStepTiming(plan, state);
   const order = state.ordersByUid.get(plan.uid);
   const timing = order ? toOrderTiming(order, state) : undefined;
   const isNotStarted = order !== undefined && order.startTick === undefined;
@@ -96,10 +102,64 @@ const getNeverStartsCause = (order: OrderState, state: SimulationState, context:
   if (order.lastWait === 'producer-busy') return { kind: 'producer' };
   if (order.lastWait === 'requirement') return { kind: 'requirement' };
   if (order.lastWait === 'stack') return { kind: 'stack' };
-  const missing = getMissingResource(state.bank, order.entity.cost);
+  const cost = getOrderCost(order.entity, state);
+  const missing = getMissingResource(state.bank, cost);
   if (order.lastWait === 'reserved' || missing === undefined) return { kind: 'earlier-order' };
-  return { kind: 'resource', resource: missing, amount: Math.ceil(order.entity.cost[missing] - state.bank[missing]) };
+  return { kind: 'resource', resource: missing, amount: Math.ceil(cost[missing] - state.bank[missing]) };
 };
+
+// A talent or an event (US-008) on the Misc lane: clicked at its time, applied at once, else never (Reinforcements).
+const toEffectStepTiming = (plan: PlannedStep, state: SimulationState): StepTiming => {
+  const effect = state.effects.find((candidate) => candidate.plan === plan);
+  const appliedAt = toOptionalSeconds(effect?.appliedTick);
+  const neverApplied = effect && appliedAt === null ? [neverApplies(effect.entity.groupSupply ?? 0)] : [];
+  const diagnostics = [...plan.diagnostics, ...neverApplied];
+  return {
+    stepUid: plan.uid,
+    clickAt: toSeconds(plan.atTick ?? 0),
+    startAt: appliedAt,
+    endAt: appliedAt,
+    laneId: MISC_LANE_ID,
+    diagnostics: diagnostics.map((diagnostic) => withStep(diagnostic, plan.uid)),
+  };
+};
+
+// The mark of a talent or an event (occurrence 0), then one per free unit it made (1, 2…), all on the Misc lane. A
+// Reinforcements held by the supply waits for `supply`.
+const toEffectOrderTimings = ({ plan, entity, atTick, appliedTick, supplyWaitTicks, spawns }: ScheduledEffect): OrderTiming[] => {
+  const appliedAt = toOptionalSeconds(appliedTick);
+  const mark = { stepUid: plan.uid, laneId: MISC_LANE_ID };
+  return [
+    {
+      ...mark,
+      entityId: entity.id,
+      occurrence: 0,
+      clickAt: toSeconds(atTick),
+      startAt: appliedAt,
+      endAt: appliedAt,
+      waits: toWaitSeconds(supplyWaitTicks > 0 ? { supply: supplyWaitTicks } : {}),
+    },
+    ...spawns.map(({ tick, entityId }, index) => {
+      const at = toSeconds(tick);
+      return { ...mark, entityId, occurrence: index + 1, clickAt: at, startAt: at, endAt: at, waits: {} };
+    }),
+  ];
+};
+
+// A talent already in the build is ignored, yet keeps its mark on the Misc lane at its time: shown with its error, removed
+// with its ✕.
+const isDuplicateTalent = (plan: PlannedStep) => plan.isIgnored && plan.entity?.category === 'talent';
+
+const toDuplicateTalentTiming = ({ uid, entity, atTick }: PlannedStep): OrderTiming => ({
+  stepUid: uid,
+  entityId: entity?.id ?? '',
+  occurrence: 0,
+  laneId: MISC_LANE_ID,
+  clickAt: toSeconds(atTick ?? 0),
+  startAt: null,
+  endAt: null,
+  waits: {},
+});
 
 // 'Barracks #2': rank among the lanes of the same building, in lane order (Kieirra 2026-11-19).
 const toLane = (instance: InstanceState, state: SimulationState, context: SimulationContext): Lane => {

@@ -14,6 +14,7 @@ import { TimelinePopovers } from '../timeline-popovers/timeline-popovers.tsx';
 import { FALLBACK_FRAME_PX, LABEL_COLUMN_PX, RIGHT_LABEL_COLUMN_PX, TRACK_END_PADDING_PX } from '../timeline.constants.ts';
 import { toLegendKinds, toTimelineItems, toTimeScale } from '../timeline.helpers.ts';
 import { toProducerLanes } from '../timeline.lanes.ts';
+import { toMiscEndTime } from '../timeline.misc.ts';
 import { COMPACT_METRICS, TimelineMetricsContext } from '../timeline.metrics.ts';
 import { toFullLanes, toFullLegendKinds, toResourceTracks } from './full-timeline.helpers.ts';
 import type { FullLane, TimelineViewProps } from '../timeline.types.ts';
@@ -23,8 +24,8 @@ import type { FullLane, TimelineViewProps } from '../timeline.types.ts';
 export const FullTimeline = ({ result, build, catalog, highlightedStepUid, onHighlight }: TimelineViewProps) => {
   const { ref, width } = useElementWidth<HTMLDivElement>(FALLBACK_FRAME_PX);
   const trackWidth = width - LABEL_COLUMN_PX - RIGHT_LABEL_COLUMN_PX - TRACK_END_PADDING_PX;
-  const scale = toTimeScale(result.endTime, trackWidth);
   const items = toTimelineItems(result, catalog, build);
+  const scale = toTimeScale(Math.max(result.endTime, toMiscEndTime(items, trackWidth)), trackWidth);
   const lanes = toFullLanes(toProducerLanes(items, result.lanes, scale), result.lanes);
   const { opened, events, close } = useItemPopovers(onHighlight);
   const { cursor, zoneProps } = useTimeCursor(result.endTime, scale, ref);

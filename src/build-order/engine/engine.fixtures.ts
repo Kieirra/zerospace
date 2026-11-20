@@ -1,7 +1,7 @@
 // Test fixtures only: round numbers, injected values and rules.
 import { toCatalogMap } from '../build-order.helpers.ts';
 import { BASE_RULES } from '../rules/rules.data.ts';
-import type { Build, BuildEntity, QueuedStep, TimedStep } from '../build-order.types.ts';
+import type { Build, BuildEntity, MiscEffect, QueuedStep, TimedStep } from '../build-order.types.ts';
 import type { ResolvedGameValues, ResolvedValue } from '../game-data/game-data.helpers.ts';
 import type { GameRules, Reservation, StartRank } from '../rules/rules.data.ts';
 import { simulateBuild } from './engine.ts';
@@ -35,6 +35,10 @@ export const entity = (id: string, fields: Partial<BuildEntity> = {}): BuildEnti
     ...fields,
   };
 };
+
+// A talent or an event (US-008).
+export const miscEntity = (id: string, category: 'talent' | 'event', effects: MiscEffect[], fields: Partial<BuildEntity> = {}) =>
+  entity(id, { kind: category, category, duration: 0, effects, ...fields });
 
 const buildingEntity = (id: string, fields: Partial<BuildEntity> = {}) =>
   entity(`building/${id}`, { kind: 'building', category: 'building', ...fields });
@@ -202,6 +206,13 @@ export const stepOf = (result: SimulationResult, step: { uid: string }) => {
   if (!timing) throw new Error(`No step ${step.uid}`);
   return timing;
 };
+
+// The free units of a talent or an event: its orders past the step itself.
+export const freeUnitsOf = (result: SimulationResult, step: { uid: string }) =>
+  result.orders.filter(({ stepUid, occurrence }) => stepUid === step.uid && occurrence > 0);
+
+export const freeUnitTimes = (result: SimulationResult, step: { uid: string }) =>
+  freeUnitsOf(result, step).map(({ entityId, startAt }) => [entityId, startAt]);
 
 export const hasOrder = (result: SimulationResult, step: { uid: string }) => result.orders.some(({ stepUid }) => stepUid === step.uid);
 

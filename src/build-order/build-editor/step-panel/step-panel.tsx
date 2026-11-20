@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { EntityIcon } from '../../entity-icon/entity-icon.tsx';
 import { useElementHeight } from '../../hooks/use-element-height.ts';
-import { joinNames, toStepKind } from '../../build-order.helpers.ts';
+import { isMiscCategory, joinNames, toStepKind } from '../../build-order.helpers.ts';
 import { toRequiresConjunction } from '../../engine/engine.analysis.ts';
 import { toNames } from '../../engine/engine.placement.ts';
 import { ERROR_COLOR } from '../../timeline/timeline.styles.ts';
@@ -12,10 +12,11 @@ import { useFocusReturn } from './hooks/use-focus-return.ts';
 import { useStepAnchor } from './hooks/use-step-anchor.ts';
 import { usePanelDismiss } from './hooks/use-panel-dismiss.ts';
 import { MadeInSelect } from './made-in-select/made-in-select.tsx';
+import { MiscStepFacts } from './misc-step-facts/misc-step-facts.tsx';
 import { toMadeInOptions } from './made-in-select/made-in-select.helpers.ts';
 import { PanelButton } from './panel-button/panel-button.tsx';
 import { RepeatField } from './repeat-field/repeat-field.tsx';
-import { toPanelPosition, toStepErrors } from './step-panel.helpers.ts';
+import { toMiscSubtitle, toPanelPosition, toStepErrors } from './step-panel.helpers.ts';
 import { StepTimes } from './step-times/step-times.tsx';
 import type { Dispatch } from 'react';
 import type { Build } from '../../build-order.types.ts';
@@ -40,7 +41,8 @@ const PANEL_WIDTH_PX = 320;
 const AS_SOON_AS_POSSIBLE = 'As soon as possible';
 
 // The step selected on the timeline: its errors first, its click time and its building (Kieirra 2026-11-19), the loop
-// of a unit, its Click, Start and Ready times, its wiki page and Remove. Next to its first mark.
+// of a unit, its Click, Start and Ready times, its wiki page and Remove. Next to its first mark. An event has no wiki
+// page.
 export const StepPanel = ({ stepUid, build, result, context, dispatch, onRemove, onClose, onEscape }: StepPanelProps) => {
   const { ref, height } = useElementHeight<HTMLDivElement>();
   const anchor = useStepAnchor(stepUid);
@@ -57,6 +59,7 @@ export const StepPanel = ({ stepUid, build, result, context, dispatch, onRemove,
   const timing = result.steps.find((candidate) => candidate.stepUid === stepUid);
   if (!step || !entity || !timing) return null;
   const isTimed = toStepKind(entity) === 'timed';
+  const isMisc = isMiscCategory(entity);
   const order = result.orders.find((candidate) => candidate.stepUid === stepUid);
   const requirement = joinNames(toNames(entity.requires, context.catalog), toRequiresConjunction(context.rules.requiresMode[entity.kind].value));
   const position = anchor
@@ -80,6 +83,7 @@ export const StepPanel = ({ stepUid, build, result, context, dispatch, onRemove,
           ✕
         </button>
       </div>
+      {isMisc && <p className="-mt-1.5 text-muted">{toMiscSubtitle(entity)}</p>}
       {toStepErrors(timing).map((message) => (
         <p key={message} style={{ color: ERROR_COLOR }}>
           ✖ {message}
@@ -109,12 +113,18 @@ export const StepPanel = ({ stepUid, build, result, context, dispatch, onRemove,
           onChange={(repeat) => dispatch({ type: 'set-repeat', uids: [stepUid], repeat })}
         />
       )}
-      <StepTimes timing={timing} waits={order?.waits ?? {}} requirement={requirement} stepAt={step.at} />
+      {isMisc ? (
+        <MiscStepFacts effectLines={entity.effectLines ?? []} appliedAt={timing.startAt} />
+      ) : (
+        <StepTimes timing={timing} waits={order?.waits ?? {}} requirement={requirement} stepAt={step.at} />
+      )}
       <div className="flex items-center justify-between border-t border-line pt-2.5">
-        <WikiLink entityId={entity.id} />
-        <PanelButton title="Remove" onClick={onRemove}>
-          Remove
-        </PanelButton>
+        {entity.category !== 'event' && <WikiLink entityId={entity.id} />}
+        <div className="ml-auto">
+          <PanelButton title="Remove" onClick={onRemove}>
+            Remove
+          </PanelButton>
+        </div>
       </div>
     </div>
   );

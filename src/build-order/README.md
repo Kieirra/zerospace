@@ -30,7 +30,7 @@ The build is two lists:
 
 | List | Holds | The player sets | The engine computes |
 |---|---|---|---|
-| `timed` | Buildings, mercenary buildings, researches, transformations | A click time `at` (whole seconds); a transformation may name its building | The start: the first tick at or after `at` where the requirements are finished, a research slot is free and the resources and start priority allow |
+| `timed` | Buildings, mercenary buildings, researches, transformations, talents and events (Misc) | A click time `at` (whole seconds); a transformation may name its building | The start: the first tick at or after `at` where the requirements are finished, a research slot is free and the resources and start priority allow; for a Misc step, when it applies (see Misc steps) |
 | `queued` | Units, harvesters, Altar heroes, mercenary recruits | Their order, optionally a building (pinned) and a time `at` (not before, whole seconds) | The building that makes each one (Auto when not pinned) and its start |
 
 - Every building has one production slot (units, harvesters, Altar heroes, recruits: one at a time) and one research
@@ -65,6 +65,36 @@ There are no quantities, no click rules and no queue of 5 any more: one step is 
 The engine reports what it cannot place (missing producer, requirement, hero slot) as diagnostics on the steps, with
 the name and the time of the step they refer to.
 
+## Misc steps
+
+The tool does not simulate XP: the player places, at the time they choose, the talents that change the economy, the
+Tower XP creeps (8 Elder Arkanid × 5 Hexite, no respawn) and, for the Protectorate, the Reinforcements. Their
+numbers come from the wiki values of the talent (`game-data/game-data.misc.ts` says which, with their status and owner), or
+from `game-data.misc.ts` itself for an event.
+
+1. A Misc step is no order. It is kept in `timed` like a building, but the engine applies it from its own list: no
+   queue, no reservation, no start priority, and the loops never wait for it.
+2. At each tick, after the orders that end and before the starts, every Misc step whose time has come is applied, by
+   time then place in `timed`. A Reinforcements whose whole group does not fit in the free supply waits and is tried
+   again at the next tick.
+3. A talent or an event applies at its time; a Reinforcements at the first tick at or after it where the supply allows.
+4. One helper gives the cost of an order and one its duration, read when it starts: the multipliers of the applied
+   talents that target it, multiplied together. An order already started keeps its cost and time.
+5. Flux income: the harvesters × (1 + the Flux income percents / 100), one formula for the income and the start checks.
+6. Free units: no cost, no supply check (Reinforcements aside), their supply counted, even over the cap: the next paid
+   units then wait for supply. Free harvesters (Lore of Flux: one Flux node of them, the Harvesters per
+   node of the faction) join the harvesters, never past the harvester cap, and the harvester steps keep room for them
+   under that cap.
+7. The skipped start checks never jump over the time of a Misc step.
+8. The simulation ends when every order is done and no Misc step is still to come. A Reinforcements still held by the
+   supply then never applies: « Never applies: not enough free supply for 12. ».
+
+A talent is allowed once (« Already in the build. »), an event as often as wanted. Entrenched Hideouts raises the
+Outposts allowed to 3. Unending Army makes one Thrall per faction unit made after it (no harvester, no hero, no
+recruit); Hounds of War one Hound per recruit of the Valkaru War Vault.
+
+In the link, a faction talent is `t.<slug>`, a mercenary talent `mt.<slug>`, an event `e.<slug>`: the link stays `3.`.
+
 ## Editor
 
 - Header: title and author; faction, mercenary (always one) and setup hero; Undo, Redo, **↺ Reset** (empties the build, Undo in its
@@ -74,7 +104,8 @@ the name and the time of the step they refer to.
   `(-> …)` of an earlier item; copies at the same time count (`2 Bestiary`); a unit in a loop is `(loop X)` on its
   building. A new group starts with `->` when the group before it is done, else `when X starts:`, `when X done:` or
   `when m:ss:`; a base opens a new phase. Wiki names only, `[kind]` when a name is shared; a name the guide parser
-  cannot tell apart (Legion « Performance Enhancers ») is written as quoted text. No goal, no note, no setup hero.
+  cannot tell apart (Legion « Performance Enhancers ») is written as quoted text. No goal, no note, no setup hero, no
+  talent nor event.
 - Timeline: one lane per building, in the order they begin, under the Hexite and Flux curves and the free supply
   (cap minus used, never below 0, hidden when the supply is not checked), with idle time, ready marks and the time
   cursor; orange lines where a mercenary slot can be spent. It fits the width up to 3 minutes; a longer build keeps
@@ -83,17 +114,20 @@ the name and the time of the step they refer to.
   (wheel, scrollbar or trackpad), the axis staying on top. Hold the wheel button and move to pan both ways. Ctrl +
   wheel is the browser's zoom. The time cursor card shows only over the curves or the void of the
   lanes: it hides over any mark, its ✕ or a click handle, and while dragging. Hovering a step shows no tooltip.
-  An empty build shows the timeline alone, no message; errors of no step are listed above the timeline.
+  An empty build shows the timeline alone, no message; errors of no step are listed above the timeline. With a Misc
+  step, a Misc lane comes right under the starting base: a diamond per talent or event at the time it applies, a
+  point per free unit it made (neither moved nor deleted, a click on one selects its step).
 - Colors: red only means an error. A step in error is filled red with « ✖ » before its name; researches and the
   buildings where they are done are indigo. A short or instant step keeps a chip wide enough for its icon, the start
   of its name and a click; when it runs over the next step of its lane, that step goes to the row below.
-- Add panel, left of the timeline: Buildings, Units, Research and Merc, four cards a row; only the cards scroll,
+- Add panel, left of the timeline: Buildings, Units, Research, Merc and Misc, four cards a row; only the cards scroll,
   title, Find and tabs stay on top. ◂ at its top right folds it and the timeline takes the room; a narrow bar
   (▸ Add step) brings it back (for the page only). Two entities of a side with the same name show what they upgrade,
   else their kind: « Performance Enhancers (Thrall) », « Performance Enhancers (Steelsworn) ». Units: what the starting building makes first (harvesters, then the others), then
   the wiki order, then the Legion's Altar heroes. Research: by research building in the Buildings order, then by
   upgraded entity, tier and name; transformations after the research of the building they transform; no building last.
-  Costs one resource a line: Hexite, Flux, Supply.
+  Misc: the talents of the faction by level, then those of the mercenary, then the events; a Misc card shows its level
+  and effects (« +2 Harvesters ») where the others show their cost. Costs one resource a line: Hexite, Flux, Supply.
 - Selection: a click on a step selects it and opens its panel; Ctrl/Cmd or Shift + click adds or takes out a step
   (no panel); a press anywhere on the timeline but a step (curves, axis, void of the lanes, idle time) then a drag draws
   a rectangle that selects the steps it touches (added with Ctrl/Cmd/Shift). A click in the void or Escape clears the
@@ -104,7 +138,8 @@ the name and the time of the step they refer to.
   on the timeline; the copies of its loop can be neither moved nor deleted, a click on one selects the step), then its
   times read only: Click (only for a unit made as soon as possible: when it entered its building's queue; else the
   Click at field shows it), Start with why it waited (« Never starts » in red), Ready; **View on wiki** (new tab) and
-  Remove. A click on the setup hero opens its card, with the same link.
+  Remove. A Misc step: « Talent · Level 2 » or « Event », Click at, its effects, « Applied at 2:10 » (« Never
+  applies » in red), View on wiki for a talent, Remove. A click on the setup hero opens its card, with the same link.
 - Click handle: the click symbol of a step whose click waits (a building, research or transformation, or a unit with a
   time) turns the pointer into ↔; drag it sideways to move that step's time `at` alone, by whole seconds, between 0 and
   the end of the timeline, the dashed line on it (« Click 0:18 · starts ≈ 0:57 »). The step starts where the simulation

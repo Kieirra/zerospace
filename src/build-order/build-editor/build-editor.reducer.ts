@@ -70,10 +70,14 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
   switch (action.type) {
     case 'reset':
       return isEmptyBuild(build) ? state : toState(state, { ...build, timed: [], queued: [] });
-    case 'set-faction':
-      return toState(state, withoutOrphans(withoutSide({ ...build, factionId: action.factionId, heroId: action.heroId }, build.factionId), action.catalog));
-    case 'set-mercenary':
-      return toState(state, withoutOrphans(withoutSide({ ...build, mercenaryId: action.mercenaryId, heroId: action.heroId }, build.mercenaryId), action.catalog));
+    case 'set-faction': {
+      const changed = { ...build, factionId: action.factionId, heroId: action.heroId };
+      return toState(state, withoutOrphans(withoutSide(changed, build.factionId, action.catalog), action.catalog));
+    }
+    case 'set-mercenary': {
+      const changed = { ...build, mercenaryId: action.mercenaryId, heroId: action.heroId };
+      return toState(state, withoutOrphans(withoutSide(changed, build.mercenaryId, action.catalog), action.catalog));
+    }
     case 'set-hero':
       return toState(state, dropPickedHero(withBuild(build, { heroId: action.heroId }), action.heroId));
     case 'set-title':
@@ -145,9 +149,9 @@ const toCopiedState = (state: EditorState, result: ClipboardResult, catalog: Bui
 const withoutOrphans = (build: Build, catalog: BuildCatalog) => dropOrphanUnits(build, catalog);
 
 // The steps of the side left behind leave with it.
-const withoutSide = (build: Build, sideId: string | null): Build => {
+const withoutSide = (build: Build, sideId: string | null, catalog: BuildCatalog): Build => {
   if (sideId === null) return build;
-  const isKept = ({ entityId }: { entityId: string }) => !isOnSide(entityId, sideId);
+  const isKept = ({ entityId }: { entityId: string }) => !isOnSide(entityId, sideId, catalog);
   return { ...build, timed: build.timed.filter(isKept), queued: build.queued.filter(isKept) };
 };
 

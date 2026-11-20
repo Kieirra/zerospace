@@ -47,6 +47,10 @@ export const getFluxPerTick = (harvesters: BuildEntity[]) =>
     0,
   );
 
+// Flux income of the harvesters, raised by the Flux income talents applied so far (Lore of Flux): the only Flux formula.
+export const getFluxIncomePerTick = (state: Pick<SimulationState, 'harvesters' | 'modifiers'>) =>
+  getFluxPerTick(state.harvesters) * (1 + state.modifiers.fluxIncomePercent / PERCENT);
+
 export const collectIncome = (state: SimulationState, context: SimulationContext) => {
   const hexite = state.instances.reduce(
     (total, { mine, readyTick }) => total + (mine && readyTick <= state.tick ? mineHexite(mine, state.tick) : 0),
@@ -55,7 +59,7 @@ export const collectIncome = (state: SimulationState, context: SimulationContext
   const { passiveHexitePerMin, passiveFluxPerMin } = context.values;
   state.bank.hexite = roundAmount(state.bank.hexite + hexite + perTick(passiveHexitePerMin.value ?? 0));
   state.bank.flux = roundAmount(
-    state.bank.flux + getFluxPerTick(state.harvesters) + perTick(passiveFluxPerMin.value ?? 0),
+    state.bank.flux + getFluxIncomePerTick(state) + perTick(passiveFluxPerMin.value ?? 0),
   );
 };
 
@@ -72,6 +76,9 @@ export const getSupplyCap = (instances: InstanceState[], context: SimulationCont
     .reduce((total, instance) => total + (context.catalog.get(instance.originalEntityId)?.supplyProvided ?? 0), 0);
   return Math.min(context.values.supplyCap.value ?? Infinity, startingSupply + provided);
 };
+
+// 0 for a harvester without Flux economy: a number of the game is never guessed.
+export const toHarvestersPerNode = ({ economy }: BuildEntity) => (economy?.kind === 'flux-harvester' ? economy.harvestersPerNode : 0);
 
 // undefined: no known limit (unknown Flux nodes or harvester without economy).
 export const getMaxHarvesters = (harvester: BuildEntity, values: ResolvedGameValues) => {

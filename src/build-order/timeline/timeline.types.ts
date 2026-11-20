@@ -9,7 +9,8 @@ export interface TimelineViewProps {
   onHighlight: (stepUid: string | null) => void;
 }
 
-export type TimelineItemShape = 'building' | 'unit' | 'research' | 'mercenary' | 'hero' | 'setup-hero';
+// misc: a talent or an event (US-008), and the free units it makes (occurrence 1, 2…), on the Misc lane.
+export type TimelineItemShape = 'building' | 'unit' | 'research' | 'mercenary' | 'hero' | 'setup-hero' | 'misc';
 
 export interface TimelineItem {
   // 'setup-hero' for the setup hero.
@@ -17,6 +18,8 @@ export interface TimelineItem {
   // 0 for the step itself, then 1, 2… for the copies of its loop: neither moved nor removed, a click selects the step.
   occurrence: number;
   entityId: string;
+  // Units the mark stands for: the free units of a step made at the same time share one point (US-008); 1 otherwise.
+  count: number;
   shape: TimelineItemShape;
   // Mercenary building: same bevelled bar, mercenary color.
   isMercenary: boolean;
@@ -69,7 +72,8 @@ export type LegendKind =
   | 'mercenary-slot'
   | 'clicked-early'
   | 'idle'
-  | 'hero';
+  | 'hero'
+  | 'misc';
 
 export interface TimeScale {
   totalSeconds: number;

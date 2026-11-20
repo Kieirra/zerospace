@@ -1,9 +1,10 @@
 import { RESOURCES } from './engine.constants.ts';
 import { getSupplyCap, roundAmount } from './engine.economy.ts';
+import { getOrderCost, getOrderDurationTicks } from './engine.effects.ts';
 import { consumeStack, createStacks, hasStack, isRecruit } from './engine.mercenaries.ts';
 import { toNextCheckTick } from './engine.next-check.ts';
 import { comparePlanOrder, flushWait, insertSorted } from './engine.order-lists.ts';
-import { addInstance, areRequirementsReady, findFirstInLaneOrder, getDurationTicks, isReadyProducer } from './engine.state.ts';
+import { addInstance, areRequirementsReady, findFirstInLaneOrder, isReadyProducer } from './engine.state.ts';
 import type { BuildEntity } from '../build-order.types.ts';
 import type { CompareOrders } from './engine.order-lists.ts';
 import type { InstanceState, OrderState, SimulationState, StartCheck } from './engine.internal.types.ts';
@@ -70,7 +71,7 @@ const checkStart = (order: OrderState, state: SimulationState, context: Simulati
   if (plan.thread === 'research' && !instance) return { reason: 'producer-busy' };
   if (supplyCap !== null && entity.supply > 0 && state.supplyUsed + entity.supply > supplyCap) return { reason: 'supply' };
   if (isRecruit(order) && order.producer && !hasStack(order.producer)) return { reason: 'stack' };
-  return { reason: getMissingResource(state.bank, entity.cost), instance };
+  return { reason: getMissingResource(state.bank, getOrderCost(entity, state)), instance };
 };
 
 // Research thread (Kieirra 2026-11-19): the pinned instance, else the first ready one in lane order whose research
@@ -95,10 +96,11 @@ const isSameReasons = (checks: StartCheck[], previous: (StartCheck | undefined)[
 
 const startOrder = (order: OrderState, state: SimulationState, context: SimulationContext, researchInstance?: InstanceState) => {
   const { entity, plan } = order;
-  for (const resource of RESOURCES) state.bank[resource] = roundAmount(state.bank[resource] - entity.cost[resource]);
+  const cost = getOrderCost(entity, state);
+  for (const resource of RESOURCES) state.bank[resource] = roundAmount(state.bank[resource] - cost[resource]);
   state.supplyUsed += entity.supply;
   order.startTick = state.tick;
-  order.endTick = state.tick + getDurationTicks(entity);
+  order.endTick = state.tick + getOrderDurationTicks(entity, state);
   flushWait(order, state.tick);
   state.hasPendingChanged = true;
   insertSorted(state.running, order, comparePlanOrder);

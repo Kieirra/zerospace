@@ -1,4 +1,4 @@
-import { formatAmount, formatClock, joinNames } from '../build-order.helpers.ts';
+import { formatAmount, formatClock, formatSupply, joinNames } from '../build-order.helpers.ts';
 import { RESOURCE_NAMES } from './engine.constants.ts';
 import type { Diagnostic, DiagnosticCode, DiagnosticSeverity, Resource } from './engine.types.ts';
 
@@ -26,6 +26,8 @@ const DIAGNOSTIC_SEVERITY: Record<DiagnosticCode, DiagnosticSeverity> = {
   'hero-duplicate': 'error',
   'hero-no-slot': 'error',
   'hero-not-buildable': 'error',
+  'duplicate-talent': 'error',
+  'never-applies': 'error',
   'unknown-stack-rule': 'warning',
   'unknown-research-location': 'warning',
   'unknown-duration': 'warning',
@@ -53,6 +55,12 @@ export const duplicateMercenaryBuilding = (name: string, copies: number, at: num
     'duplicate-mercenary-building',
     `${copies === 1 ? 'Only one' : `At most ${copies}`} ${name} per match: already built at ${formatClock(at)}.`,
   );
+
+export const duplicateTalent = () => toDiagnostic('duplicate-talent', 'Already in the build.');
+
+// A Reinforcements whose group never fits in the free supply (US-008).
+export const neverApplies = (supply: number) =>
+  toDiagnostic('never-applies', `Never applies: not enough free supply for ${formatSupply(supply)}.`);
 
 export const unknownEntity = () => toDiagnostic('unknown-entity', 'Not in the current game data.');
 

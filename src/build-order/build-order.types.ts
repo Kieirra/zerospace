@@ -12,7 +12,9 @@ export type EntityCategory =
   | 'research'
   | 'mercenary-building'
   | 'mercenary-unit'
-  | 'hero';
+  | 'hero'
+  | 'talent'
+  | 'event';
 
 export interface Side {
   id: string;
@@ -50,7 +52,7 @@ export interface FluxHarvesterEconomy {
 export interface BuildEntity {
   id: string;
   sideId: string;
-  kind: 'building' | 'unit' | 'hero' | 'upgrade';
+  kind: 'building' | 'unit' | 'hero' | 'upgrade' | 'talent' | 'event';
   category: EntityCategory;
   name: string;
   // "Kraegar + Krag'vorn" for dual heroes, otherwise name.
@@ -77,7 +79,44 @@ export interface BuildEntity {
   economy?: HexiteBaseEconomy | FluxHarvesterEconomy;
   // Mercenary building: stacks at completion, max and recharge seconds. undefined = not in the data.
   productionCharges?: ProductionCharges;
+  // Talent: level of the talent tree; undefined otherwise.
+  level?: number;
+  // Misc steps only: card lines, already interpolated ('+2 Harvesters').
+  effectLines?: string[];
+  // Misc steps only: numbers resolved from the wiki values or game-data.misc.ts.
+  effects?: MiscEffect[];
+  // Event only: supply of the units it makes at once, from the wiki supply per unit. A Reinforcements waits until all
+  // of it fits in the free supply.
+  groupSupply?: number;
 }
+
+export interface EffectTarget {
+  categories?: EntityCategory[];
+  entityIds?: string[];
+}
+
+// A cost or duration multiplier and the orders it changes.
+export interface TargetMultiplier {
+  target: EffectTarget;
+  multiplier: number;
+}
+
+export type MiscEffect =
+  | { kind: 'flux-income'; percent: number }
+  | ({ kind: 'cost' } & TargetMultiplier)
+  | ({ kind: 'duration' } & TargetMultiplier)
+  | { kind: 'grant'; hexite: number; flux: number }
+  // Harvesters per node of the faction harvester (Lore of Flux fills one Flux node).
+  | { kind: 'spawn-harvesters' }
+  // Free units at the effect tick; waitsForSupply: the whole group waits for free supply (Reinforcements).
+  | { kind: 'spawn-units'; entityId: string; count: number; waitsForSupply: boolean }
+  // One free unit each time an order of `trigger` finishes after the effect tick.
+  | { kind: 'spawn-on-finish'; entityId: string; trigger: SpawnTrigger }
+  | { kind: 'building-copies'; entityId: string; copies: number };
+
+// faction-unit: a 'unit' order finished on an instance of a faction building (Unending Army, Kieirra 2026-11-20).
+// recruit-at: a 'mercenary-unit' order finished on an instance of `producerId` (Hounds of War).
+export type SpawnTrigger = { kind: 'faction-unit' } | { kind: 'recruit-at'; producerId: string };
 
 export interface SideCatalog {
   side: Side;

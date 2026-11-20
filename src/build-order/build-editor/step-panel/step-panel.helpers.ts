@@ -1,4 +1,5 @@
 import { formatClock, getLongestWait } from '../../build-order.helpers.ts';
+import type { BuildEntity } from '../../build-order.types.ts';
 import type { OrderTiming, StepTiming, WaitReason } from '../../engine/engine.types.ts';
 
 interface PanelBox {
@@ -30,6 +31,10 @@ export const toStepTimeRows = (
   { label: 'Start', value: toStartText(timing.startAt, waits, requirement), isError: timing.startAt === null },
   ...(timing.endAt === null ? [] : [{ label: 'Ready', value: formatClock(timing.endAt), isError: false }]),
 ];
+
+// 'Talent · Level 2', 'Event' (US-008).
+export const toMiscSubtitle = ({ category, level }: Pick<BuildEntity, 'category' | 'level'>) =>
+  category === 'talent' ? `Talent · Level ${level}` : 'Event';
 
 // Under the mark, else above it when the window is too short below; always inside the window.
 export const toPanelPosition = (anchor: Pick<DOMRect, 'left' | 'top' | 'bottom'>, panel: PanelBox, viewport: PanelViewport) => {

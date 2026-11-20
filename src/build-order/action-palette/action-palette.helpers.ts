@@ -1,16 +1,26 @@
 import { byOrderThenName } from '../../wiki/wiki.helpers.ts';
-import { formatSupply, joinNames, toCapableProducerUids, toCostParts, toDurationLabel, toStepKind } from '../build-order.helpers.ts';
+import {
+  formatSupply,
+  isMiscCategory,
+  isOncePerBuild,
+  joinNames,
+  toCapableProducerUids,
+  toCostParts,
+  toDurationLabel,
+  toStepKind,
+} from '../build-order.helpers.ts';
 import { BUILD_FULL_TEXT } from '../build-editor/build-editor.constants.ts';
 import { isEmptyBuild, isFullBuild, toAllSteps, toOnceRuleReason } from '../build-editor/build-editor.helpers.ts';
 import { toMissingRequires } from '../engine/engine.analysis.ts';
 import { missingRequirement } from '../engine/engine.diagnostics.ts';
 import { toBuildScope, toNames } from '../engine/engine.placement.ts';
+import { toMiscLabelParts, toMiscOrder } from './action-palette.misc.ts';
 import type { Build, BuildCatalog, BuildEntity, EntityCategory } from '../build-order.types.ts';
 import type { GameRules } from '../rules/rules.data.ts';
 
-export type PaletteTabId = 'buildings' | 'units' | 'research' | 'mercenary';
+export type PaletteTabId = 'buildings' | 'units' | 'research' | 'mercenary' | 'misc';
 
-// in-build: research or hero already in the steps; free-setup: setup hero, never a step.
+// in-build: research, talent or hero already in the steps; free-setup: setup hero, never a step.
 type TileStatus = 'available' | 'in-build' | 'free-setup';
 
 export interface PaletteTileData {
@@ -47,6 +57,7 @@ export const toPaletteTabs = (build: Build, context: PaletteContext): PaletteTab
     { id: 'research', label: 'Research', tiles: toResearchOrder(toTiles(['research', 'transformation']), context.catalog) },
     // Same label for every mercenary side (Kieirra 2026-11-19): the tiles are those of the chosen one.
     { id: 'mercenary', label: 'Merc', tiles: toTiles(['mercenary-building', 'mercenary-unit']) },
+    { id: 'misc', label: 'Misc', tiles: toMiscOrder(toTiles(['talent', 'event']), build.factionId) },
   ];
   return tabs.filter(({ tiles }) => tiles.length > 0);
 };
@@ -87,19 +98,24 @@ export const filterTiles = (tabs: PaletteTab[], query: string) => {
 export const findTileByHotkey = (tiles: PaletteTileData[], key: string) =>
   tiles.find(({ entity, disabledReason }) => disabledReason === null && entity.hotkey?.toUpperCase() === key.toUpperCase());
 
-// 'Add Barracks, 75 Hexite, 0:35, hotkey D', 'Add Thrall, 50 Hexite, 2 supply, 0:30, hotkey Q'
+// 'Add Barracks, 75 Hexite, 0:35, hotkey D', 'Add Thrall, 50 Hexite, 2 supply, 0:30, hotkey Q',
+// 'Add Lore of Flux, Level 2, +3 Harvesters, +10% Flux income'
 export const toTileLabel = ({ entity, disabledReason }: PaletteTileData) =>
   [
     `Add ${entity.displayName}`,
-    ...toCostParts(entity.cost),
-    ...(entity.supply > 0 ? [`${formatSupply(entity.supply)} supply`] : []),
-    toDurationLabel(entity.duration),
-    ...(entity.hotkey ? [`hotkey ${entity.hotkey}`] : []),
+    ...(isMiscCategory(entity) ? toMiscLabelParts(entity) : toCostLabelParts(entity)),
     ...(disabledReason === null ? [] : [disabledReason]),
   ].join(', ');
 
 // An empty build starts on the harvesters: the empty list proposes the harvester hotkey.
 export const toDefaultTabId = (build: Build): PaletteTabId => (isEmptyBuild(build) ? 'units' : 'buildings');
+
+const toCostLabelParts = (entity: BuildEntity) => [
+  ...toCostParts(entity.cost),
+  ...(entity.supply > 0 ? [`${formatSupply(entity.supply)} supply`] : []),
+  toDurationLabel(entity.duration),
+  ...(entity.hotkey ? [`hotkey ${entity.hotkey}`] : []),
+];
 
 // What the starting building makes leads, harvesters first, then the wiki order (Kieirra 2026-11-19); stable sort.
 const toUnitOrder = (tiles: PaletteTileData[], startingBuildingId?: string) => {
@@ -140,7 +156,7 @@ const toTile = (entity: BuildEntity, build: Build, context: PaletteContext): Pal
 
 const toTileStatus = (entity: BuildEntity, build: Build): TileStatus => {
   if (entity.category === 'hero' && entity.id === build.heroId) return 'free-setup';
-  const isOnce = entity.category === 'research' || entity.category === 'hero';
+  const isOnce = isOncePerBuild(entity) || entity.category === 'hero';
   return isOnce && toAllSteps(build).some(({ entityId }) => entityId === entity.id) ? 'in-build' : 'available';
 };
 

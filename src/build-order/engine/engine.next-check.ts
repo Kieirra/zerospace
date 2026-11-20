@@ -1,5 +1,6 @@
 import { PERCENT, RESOURCES } from './engine.constants.ts';
-import { getFluxPerTick, perTick } from './engine.economy.ts';
+import { getFluxIncomePerTick, perTick } from './engine.economy.ts';
+import { getNextEffectTick, getOrderCost } from './engine.effects.ts';
 import { getSetupHeroTick } from './engine.heroes.ts';
 import type { OrderState, SimulationState, StartCheck } from './engine.internal.types.ts';
 import type { Resource, SimulationContext } from './engine.types.ts';
@@ -36,6 +37,7 @@ const getNextEventTick = (state: SimulationState) => {
   for (const { plan } of state.queuedOrders) {
     if (plan.atTick !== undefined && plan.atTick > state.tick) tick = Math.min(tick, plan.atTick);
   }
+  tick = Math.min(tick, getNextEffectTick(state));
   const heroTick = getSetupHeroTick(state);
   return heroTick > state.tick ? Math.min(tick, heroTick) : tick;
 };
@@ -43,12 +45,13 @@ const getNextEventTick = (state: SimulationState) => {
 // Tick at which the missing resource of the order may change: one lacking resource gets paid. With two lacking,
 // the one missing the most may change before: checked every tick.
 const getResourceChangeTick = (order: OrderState, state: SimulationState, income: Record<Resource, number>) => {
-  const lacking = RESOURCES.filter((resource) => order.entity.cost[resource] > 0 && state.bank[resource] < order.entity.cost[resource]);
+  const cost = getOrderCost(order.entity, state);
+  const lacking = RESOURCES.filter((resource) => cost[resource] > 0 && state.bank[resource] < cost[resource]);
   if (lacking.length !== 1) return state.tick + 1;
   const [resource] = lacking;
   if (income[resource] <= 0) return Infinity;
   // One tick early: the amounts are rounded every tick.
-  return state.tick + Math.max(1, Math.floor((order.entity.cost[resource] - state.bank[resource]) / income[resource]) - 1);
+  return state.tick + Math.max(1, Math.floor((cost[resource] - state.bank[resource]) / income[resource]) - 1);
 };
 
 // Income of the current tick: the mines of the ready bases, the harvesters and the passive income.
@@ -61,6 +64,6 @@ const getIncomePerTick = (state: SimulationState, context: SimulationContext): R
   }, 0);
   return {
     hexite: mined + perTick(passiveHexitePerMin.value ?? 0),
-    flux: getFluxPerTick(state.harvesters) + perTick(passiveFluxPerMin.value ?? 0),
+    flux: getFluxIncomePerTick(state) + perTick(passiveFluxPerMin.value ?? 0),
   };
 };

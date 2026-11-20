@@ -18,3 +18,6 @@ export const RESOURCE_NAMES = { hexite: 'Hexite', flux: 'Flux' } as const;
 
 // Lane ids: 'lane:base' is the starting base, then 'lane:<uid>' per building step, stable across edits.
 export const LANE_ID_PREFIX = 'lane:';
+
+// Lane of the talents, events and free units of the build (US-008).
+export const MISC_LANE_ID = `${LANE_ID_PREFIX}misc`;

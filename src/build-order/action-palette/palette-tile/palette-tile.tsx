@@ -6,6 +6,7 @@ import { EntityIcon } from '../../entity-icon/entity-icon.tsx';
 import { SupplyAmount } from '../../supply-amount/supply-amount.tsx';
 import { ENTITY_DRAG_TYPE, draggedEntity } from '../../timeline/timeline-editing.ts';
 import { toTileLabel } from '../action-palette.helpers.ts';
+import { toMiscLabelParts } from '../action-palette.misc.ts';
 import { PaletteTileTooltip } from './palette-tile-tooltip/palette-tile-tooltip.tsx';
 import { toTileDetails } from './palette-tile.helpers.ts';
 import type { BuildEntity } from '../../build-order.types.ts';
@@ -63,11 +64,14 @@ export const PaletteTile = ({ tile, onAdd }: PaletteTileProps) => {
         )}
       </span>
       <span className="leading-tight font-semibold hyphens-auto [overflow-wrap:break-word]">{entity.displayName}</span>
-      {/* One resource a line, never cut (Kieirra 2026-11-19). */}
+      {/* One resource a line, never cut (Kieirra 2026-11-19); a Misc step: its level and effects (US-008). */}
       <span className="flex flex-col">
         {entity.cost.hexite > 0 && <CostAmount resource="hexite" amount={entity.cost.hexite} />}
         {entity.cost.flux > 0 && <CostAmount resource="flux" amount={entity.cost.flux} />}
         {entity.supply > 0 && <SupplyAmount amount={entity.supply} />}
+        {toMiscLabelParts(entity).map((line) => (
+          <span key={line}>{line}</span>
+        ))}
       </span>
       {status === 'in-build' && <span style={{ color: KIND_COLORS.hero }}>✔ In build</span>}
       {anchor && <PaletteTileTooltip name={entity.displayName} details={toTileDetails(tile)} anchor={anchor} />}

@@ -21,7 +21,7 @@ export const PaletteTileTooltip = ({ name, details, anchor }: PaletteTileTooltip
       style={{ left: anchor.left + anchor.width / 2, top: anchor.top - GAP_PX }}
     >
       <p className="font-semibold text-text">{name}</p>
-      <p className="mt-0.5 tabular-nums text-muted">{details.time}</p>
+      {details.time && <p className="mt-0.5 tabular-nums text-muted">{details.time}</p>}
       {details.requires && (
         <p className="mt-0.5 leading-snug" style={{ color: KIND_COLORS.idle }}>
           {details.requires}

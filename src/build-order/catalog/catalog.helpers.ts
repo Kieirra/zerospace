@@ -1,6 +1,8 @@
 import { byOrderThenName } from '../../wiki/wiki.helpers.ts';
 import { FACTION_ACCENTS } from '../../wiki/wiki.constants.ts';
 import { HERO_OVERRIDES, SUPPLY_PROVIDED_OVERRIDES } from '../game-data/game-data.constants.ts';
+import { toMiscEntities } from './catalog.misc.ts';
+import { toNameKinds } from './catalog.names.ts';
 import { toOfferedEntities } from './catalog.offer.ts';
 import type { EconomyStat } from '../../wiki/wiki-data.types.ts';
 import type { Entity } from '../../wiki/wiki.types.ts';
@@ -13,6 +15,7 @@ import type {
   HeroPoolEntry,
   HexiteBaseEconomy,
   Side,
+  SideCatalog,
   SideKind,
 } from '../build-order.types.ts';
 
@@ -58,6 +61,13 @@ export const toSideEntities = (
       .sort(byOrderThenName)
       .map((entity) => toBuildEntity(entity, side.kind, findImageUrl(entity.id))),
   );
+
+// A side as the editor loads it: its entities, then its Misc steps (US-008).
+export const toSideCatalog = (side: Side, entities: Entity[], findImageUrl: (id: string) => string | undefined): SideCatalog => ({
+  side,
+  entities: [...toSideEntities(side, entities, findImageUrl), ...toMiscEntities(side, entities, findImageUrl)],
+  nameKinds: toNameKinds(side.id, entities),
+});
 
 export const toBuildEntity = (
   entity: BuildableEntity,

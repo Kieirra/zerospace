@@ -49,6 +49,18 @@ export const toStepKind = ({ category }: Pick<BuildEntity, 'category'>): StepKin
 export const isBuildingCategory = ({ category }: Pick<BuildEntity, 'category'>) =>
   category === 'building' || category === 'mercenary-building';
 
+// Talents and events (US-008): a click time, an effect applied by the engine, never an order.
+export const isMiscCategory = ({ category }: Pick<BuildEntity, 'category'>) => category === 'talent' || category === 'event';
+
+// A research or a talent goes once in a build.
+export const isOncePerBuild = ({ category }: Pick<BuildEntity, 'category'>) => category === 'research' || category === 'talent';
+
+// Copies of a mercenary building per match: the limit a talent among `entities` sets (Entrenched Hideouts), else `fallback`.
+export const toBuildingCopies = (buildingId: string, entities: BuildEntity[], fallback: number) =>
+  entities
+    .flatMap(({ effects = [] }) => effects)
+    .flatMap((effect) => (effect.kind === 'building-copies' && effect.entityId === buildingId ? [effect.copies] : []))[0] ?? fallback;
+
 // Shared by the palette (disabled tiles), the reducer (invariant) and the engine analysis.
 export const canProduce = (unit: Pick<BuildEntity, 'producedBy'>, producer: Pick<BuildEntity, 'id'>, transformedInto: string[]) =>
   unit.producedBy.includes(producer.id) || transformedInto.some((id) => unit.producedBy.includes(id));

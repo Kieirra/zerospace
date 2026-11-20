@@ -1,4 +1,4 @@
-import type { BuildEntity, HexiteBaseEconomy } from '../build-order.types.ts';
+import type { BuildEntity, HexiteBaseEconomy, SpawnTrigger, TargetMultiplier } from '../build-order.types.ts';
 import type { StepKind } from '../build-order.helpers.ts';
 import type { StartRank } from '../rules/rules.data.ts';
 import type { Diagnostic, Resource, SetupHero, WaitReason } from './engine.types.ts';
@@ -31,6 +31,8 @@ export interface PlannedStep {
   producerIds: string[];
   thread?: Thread;
   createsInstance: boolean;
+  // Talent or event (US-008): applied by the effect schedule at its time, never an order.
+  isEffect: boolean;
   // Hero built twice: uid of the first one, whose start the message gives.
   firstUid?: string;
   diagnostics: Diagnostic[];
@@ -100,6 +102,26 @@ export interface OrderState {
   waitSince?: number;
 }
 
+// A talent or an event of the build (US-008), applied once at `atTick` or later.
+export interface ScheduledEffect {
+  plan: PlannedStep;
+  entity: BuildEntity;
+  atTick: number;
+  appliedTick?: number;
+  // Reinforcements held by the supply: ticks waited.
+  supplyWaitTicks: number;
+  // Free units created by this step: tick and entity, for the results.
+  spawns: { tick: number; entityId: string }[];
+}
+
+// What the applied effects change for the orders that start from then on.
+export interface Modifiers {
+  fluxIncomePercent: number;
+  costs: TargetMultiplier[];
+  durations: TargetMultiplier[];
+  spawnOnFinish: { source: ScheduledEffect; entity: BuildEntity; trigger: SpawnTrigger }[];
+}
+
 // Start check of an order; `reason` undefined: the order can start.
 export interface StartCheck {
   reason?: 'requirement' | 'producer-busy' | 'supply' | 'stack' | Resource;
@@ -137,4 +159,8 @@ export interface SimulationState {
   // Orders outside the loops not done yet: the loops go on while there is one.
   openCount: number;
   setupHero: SetupHero | null;
+  // Effects sorted by (atTick, tie); every one before `effectCursor` is applied.
+  effects: ScheduledEffect[];
+  effectCursor: number;
+  modifiers: Modifiers;
 }

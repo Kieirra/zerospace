@@ -35,6 +35,7 @@ const LABELS: Record<LegendKind, string> = {
   'clicked-early': 'Clicked, waiting to start',
   idle: 'Idle, no order',
   hero: 'Hero',
+  misc: 'Misc',
 };
 
 const BUILDING_SWATCH: CSSProperties = {
@@ -57,6 +58,7 @@ const SWATCHES: Record<Exclude<LegendKind, 'clicked-early'>, CSSProperties> = {
   mercenary: { width: 10, height: 10, background: KIND_COLORS.mercenary, transform: 'rotate(45deg)' },
   'mercenary-slot': { width: 2, height: 12, background: KIND_COLORS.mercenary },
   hero: { width: 18, height: 10, background: KIND_COLORS.hero, borderRadius: 6 },
+  misc: { width: 10, height: 10, background: KIND_COLORS.misc, transform: 'rotate(45deg)' },
   idle: {
     width: 18,
     height: 10,

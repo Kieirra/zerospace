@@ -1,4 +1,4 @@
-import { formatStepCount } from '../build-order.helpers.ts';
+import { formatStepCount, isOncePerBuild, toBuildingCopies } from '../build-order.helpers.ts';
 import { getDefaultHeroId, getHeroPool } from '../catalog/catalog.helpers.ts';
 import { MAX_STEPS } from '../link/link.constants.ts';
 import { resolveRules } from '../rules/rules.helpers.ts';
@@ -22,10 +22,12 @@ export const toKeptHeroId = (sides: Side[], factionId: string, mercenaryId: stri
 };
 
 // Steps of a side, removed when the side changes.
-export const countSideSteps = (build: Build, sideId: string | null) =>
-  sideId === null ? 0 : toAllSteps(build).filter(({ entityId }) => isOnSide(entityId, sideId)).length;
+export const countSideSteps = (build: Build, sideId: string | null, catalog: BuildCatalog) =>
+  sideId === null ? 0 : toAllSteps(build).filter(({ entityId }) => isOnSide(entityId, sideId, catalog)).length;
 
-export const isOnSide = (entityId: string, sideId: string) => entityId.startsWith(`${sideId}/`);
+// An event of one faction (Reinforcements) belongs to it, though its id names no side.
+export const isOnSide = (entityId: string, sideId: string, catalog: BuildCatalog) =>
+  entityId.startsWith(`${sideId}/`) || catalog.get(entityId)?.sideId === sideId;
 
 export const toAllSteps = (build: Pick<Build, 'timed' | 'queued'>) => [...build.timed, ...build.queued];
 
@@ -44,14 +46,18 @@ export const toUidNumber = (uid: string) => Number(UID_PATTERN.exec(uid)?.[1] ??
 
 const UID_PATTERN = /^s(\d+)$/;
 
-// Rules of a step allowed once (Kieirra 2026-11-19): a research, one of an exclusive group, the copies of a mercenary
-// building, a hero not picked yet and the hero slots. The reason it is refused, null when it is allowed.
+// Rules of a step allowed once (Kieirra 2026-11-19): a research, a talent, one of an exclusive group, the copies of a
+// mercenary building (a talent of the build may allow more), a hero not picked yet and the hero slots. The reason it is
+// refused, null when it is allowed. An event has no limit.
 export const toOnceRuleReason = (entity: BuildEntity, others: BuildEntity[], build: Pick<Build, 'heroId'>, rules: GameRules) => {
   const isSame = (other: BuildEntity) => other.id === entity.id;
-  if (entity.category === 'research' && others.some(isSame)) return 'Already in the build.';
+  if (isOncePerBuild(entity) && others.some(isSame)) return 'Already in the build.';
   const rival = entity.exclusiveGroup === undefined ? undefined : others.find((other) => other.exclusiveGroup === entity.exclusiveGroup);
   if (entity.category === 'research' && rival) return `${rival.name} is already in the build.`;
-  if (entity.category === 'mercenary-building' && others.filter(isSame).length >= rules.mercenaryBuildingCopies.value) return 'Only one per match.';
+  if (entity.category === 'mercenary-building') {
+    const copies = toBuildingCopies(entity.id, others, rules.mercenaryBuildingCopies.value);
+    if (others.filter(isSame).length >= copies) return `Only ${copies === 1 ? 'one' : copies} per match.`;
+  }
   if (entity.category !== 'hero') return null;
   if (entity.id === build.heroId || others.some(isSame)) return 'Already picked.';
   const slots = rules.heroes.paidHeroSlots.value;

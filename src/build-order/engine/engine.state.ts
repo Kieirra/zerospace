@@ -1,7 +1,8 @@
 import { BASE_UID } from '../build-order.types.ts';
 import { isRequirementMet } from './engine.analysis.ts';
 import { LANE_ID_PREFIX } from './engine.constants.ts';
-import { createHexiteMine, getStartingWorkers, toTicks } from './engine.economy.ts';
+import { createHexiteMine, getStartingWorkers } from './engine.economy.ts';
+import { createEffectSchedule } from './engine.effects.ts';
 import type { BuildEntity } from '../build-order.types.ts';
 import type { InstanceState, OrderState, PlannedStep, SimulationState } from './engine.internal.types.ts';
 import type { SetupHero, SimulationContext } from './engine.types.ts';
@@ -36,6 +37,9 @@ export const createState = (
     running: [],
     openCount: orders.filter(({ plan }) => !plan.repeat).length,
     setupHero,
+    effects: createEffectSchedule(plans),
+    effectCursor: 0,
+    modifiers: { fluxIncomePercent: 0, costs: [], durations: [], spawnOnFinish: [] },
   };
   const starting = context.startingBuildingId ? context.catalog.get(context.startingBuildingId) : undefined;
   if (starting) addStartingInstance(state, starting, context);
@@ -81,10 +85,6 @@ export const findFirstInLaneOrder = (
     undefined,
   );
 
-// A mercenary recruit is instant: the duration of the data is ignored.
-export const getDurationTicks = (entity: BuildEntity) =>
-  entity.category === 'mercenary-unit' ? 0 : toTicks(entity.duration ?? 0);
-
 const isReady = (instance: InstanceState, tick: number) => instance.readyTick <= tick;
 
 export const hasReadyId = (state: SimulationState, id: string) =>
@@ -101,7 +101,9 @@ export const isReadyProducer = (instance: InstanceState, order: OrderState, tick
 const toLaneRank = (timedOrders: OrderState[]) =>
   new Map([BASE_UID, ...timedOrders.filter(({ plan }) => plan.createsInstance).map(({ plan }) => plan.uid)].map((uid, rank) => [uid, rank]));
 
-const hasOrder = (plan: PlannedStep): plan is PlannedStep & { entity: BuildEntity } => plan.entity !== undefined && !plan.isIgnored;
+// A talent or an event is no order: the effect schedule applies it.
+const hasOrder = (plan: PlannedStep): plan is PlannedStep & { entity: BuildEntity } =>
+  plan.entity !== undefined && !plan.isIgnored && !plan.isEffect;
 
 const createOrder = (plan: PlannedStep & { entity: BuildEntity }): OrderState => ({
   plan,

@@ -162,6 +162,8 @@ export interface UnitFile {
   description?: string;
   details?: string;
   values?: DescriptionValues;
+  // Description variable → value the patch notes announce where the game files differ.
+  patchNotes?: Record<string, PatchNoteMismatch>;
   hotkey?: string;
   // Rank in the game menu, smaller first.
   order?: number;
@@ -241,6 +243,8 @@ export interface BuildingFile {
   description?: string;
   details?: string;
   values?: DescriptionValues;
+  // Description variable → value the patch notes announce where the game files differ.
+  patchNotes?: Record<string, PatchNoteMismatch>;
   hotkey?: string;
   // Rank in the game menu, smaller first.
   order?: number;
@@ -325,6 +329,8 @@ export interface UpgradeFile {
   description?: string;
   details?: string;
   values?: DescriptionValues;
+  // Description variable → value the patch notes announce where the game files differ.
+  patchNotes?: Record<string, PatchNoteMismatch>;
   stats?: Stat[];
   hotkey?: string;
   // Rank in the game menu, smaller first.

@@ -6,11 +6,16 @@
   "description": "+{Speed}% Research Speed.\n-{Cost}% Research Cost.",
   "values": {
     "Speed": 40,
-    "Cost": 60
+    "Cost": 40
   },
   "researchTime": 0,
   "level": 2,
   "position": "A",
   "portrait": "needsUpdate",
-  "asset": "Archetypes_ResearchItems/Arandi/RI_HeroXP_Legion_T2CheapUpgrades"
+  "asset": "Archetypes_ResearchItems/Arandi/RI_HeroXP_Legion_T2CheapUpgrades",
+  "patchNotes": {
+    "Cost": {
+      "tooltip": "In-game: -60%. Game files: -40%."
+    }
+  }
 }

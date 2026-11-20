@@ -1,4 +1,4 @@
-import { toCatalogMap } from '../build-order.helpers.ts';
+import { isMiscCategory, toCatalogMap } from '../build-order.helpers.ts';
 import { toUidNumber } from '../build-editor/build-editor.helpers.ts';
 import { toAfterStart, toWholeSeconds } from './bo-plan.anchors.ts';
 import { toBoName } from './bo-plan.names.ts';
@@ -33,7 +33,7 @@ interface ExportStep {
 // item of the group (`(-> …)`); copies at the same time count (`2 Bestiary`). Else a new group: `->` when it is
 // clicked once the group before it is done, `when X starts:` or `when X done:` on the first step of an entity, else
 // `when m:ss:`. A base opens a new group and a new phase. A unit in a loop is `(loop X)` on its building; the copies
-// of a loop and the setup hero are never written.
+// of a loop, the setup hero, the talents and the events (Kieirra 2026-11-20) are never written.
 export const toBoPlan = (build: Build, result: SimulationResult, catalogs: BoCatalogs): BoPlan => {
   const catalog = toCatalogMap([...catalogs.faction.entities, ...(catalogs.mercenary?.entities ?? [])]);
   const timings = new Map(result.steps.map((timing) => [timing.stepUid, timing]));
@@ -154,10 +154,12 @@ const findEntityAnchor = (
   return null;
 };
 
-// Steps outside the loops, by time then uid. A unit without time takes the whole second of its simulated click.
+// Steps outside the loops, talents and events aside, by time then uid. A unit without time takes the whole second of its
+// simulated click.
 const toExportSteps = (build: Build, timings: Map<string, SimulationResult['steps'][number]>, catalog: BuildCatalog) => {
   const steps = [...build.timed, ...build.queued.filter(({ repeat }) => !repeat)].flatMap((step): ExportStep[] => {
-    if (!catalog.has(step.entityId)) return [];
+    const entity = catalog.get(step.entityId);
+    if (!entity || isMiscCategory(entity)) return [];
     const clickAt = timings.get(step.uid)?.clickAt;
     const at = step.at ?? (clickAt === null || clickAt === undefined ? null : toWholeSeconds(clickAt));
     return [{ uid: step.uid, entityId: step.entityId, at: at ?? Infinity }];

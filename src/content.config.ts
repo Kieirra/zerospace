@@ -175,6 +175,7 @@ const entities = defineCollection({
     details: z.string().optional(),
     stats: gameStats.optional(),
     values: descriptionValues.optional(),
+    patchNotes: z.record(z.string(), patchNoteMismatch).optional(),
     hotkey: z.string().optional(),
     cost: cost.optional(),
     count: z.number().optional(),

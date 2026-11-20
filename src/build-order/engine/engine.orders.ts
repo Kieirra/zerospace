@@ -1,3 +1,4 @@
+import { spawnOnFinish } from './engine.effects.ts';
 import { hasStack, isRecruit } from './engine.mercenaries.ts';
 import { flushWait, insertSorted } from './engine.order-lists.ts';
 import { requeueRepeats } from './engine.repeat.ts';
@@ -6,8 +7,8 @@ import { areRequirementsReady, findFirstInLaneOrder, isReadyProducer } from './e
 import type { InstanceState, OrderState, SimulationState } from './engine.internal.types.ts';
 import type { SimulationContext } from './engine.types.ts';
 
-// Phase 1: orders whose end has come leave their thread and apply their effect, in plan order, then the loops go on or
-// stop (`requeueRepeats`); returns how many ended.
+// Phase 1: orders whose end has come leave their thread and apply their effect (free units of a talent included), in
+// plan order, then the loops go on or stop (`requeueRepeats`); returns how many ended.
 export const finishOrders = (state: SimulationState) => {
   const { running } = state;
   const finished: OrderState[] = [];
@@ -29,6 +30,7 @@ export const finishOrders = (state: SimulationState) => {
       producer.ids.add(entity.transformsInto);
       producer.entityId = entity.transformsInto;
     }
+    spawnOnFinish(order, state);
   }
   running.length = kept;
   if (finished.length === 0) return 0;

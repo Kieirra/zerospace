@@ -9,6 +9,7 @@ export const KIND_COLORS = {
   hero: '#FFD45C',
   click: '#ECEBFF',
   idle: '#FFB347',
+  misc: '#5FD3C6',
 } as const;
 
 export const MAX_TITLE_LENGTH = 60;

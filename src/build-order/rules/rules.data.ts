@@ -44,6 +44,8 @@ export const BASE_RULES: GameRules = {
     unit: { value: 'all', status: 'provisional', note: 'Every required building is needed.' },
     upgrade: { value: 'all', status: 'provisional', note: 'Every required building is needed.' },
     hero: { value: 'all', status: 'provisional', note: 'Every required building is needed.' },
+    talent: { value: 'all', status: 'confirmed', note: 'Misc steps have no requirement.' },
+    event: { value: 'all', status: 'confirmed', note: 'Misc steps have no requirement.' },
   },
   mercenaryRequired: { value: true, status: 'confirmed', note: 'Kieirra 2026-11-19: no game without a mercenary.' },
   mercenaryBuildingCopies: {

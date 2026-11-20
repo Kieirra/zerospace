@@ -21,7 +21,7 @@ interface EditorActionsInput {
 // one a new build opens with (Kieirra 2026-11-19); an opened link never is.
 export const useEditorActions = ({ build, sides, catalog, dispatch, ask, ensureSides }: EditorActionsInput) => {
   const confirmSideChange = async (kind: 'faction' | 'mercenary', oldSideId: string | null) => {
-    const count = countSideSteps(build, oldSideId);
+    const count = countSideSteps(build, oldSideId, catalog);
     if (count === 0) return true;
     const label = kind === 'faction' ? 'Change faction' : 'Change mercenary';
     const message = toSideChangeText(kind, count, toSideName(sides, oldSideId) ?? oldSideId ?? '');
