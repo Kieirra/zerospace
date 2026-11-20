@@ -34,7 +34,8 @@ export const STARTING_SUPPLY: GameValue<number> = { label: 'Starting supply', va
 // of Kieirra gives it; then read it from `data/wiki/` and drop this constant.
 export const SUPPLY_CAP: GameValue<number> = { label: 'Supply cap', value: 200, fallback: 200, owner: 'Mazar' };
 
-// PO6: out of scope (Mazar 2026-11-11), income tied to XP levels.
+// PO6: 0 measured in a Versus game (Kieirra 2026-11-20): 1030 Hexite at 2:00 at level 0 and 2158 at 4:30 at level 1,
+// mining only. The HQ ResourceDripComponent of the game files is not on the Versus starting bases.
 export const PASSIVE_HEXITE_PER_MIN: GameValue<number> = { label: 'Passive Hexite', value: 0, fallback: 0, owner: 'Mazar' };
 
 // PO6: out of scope (Mazar 2026-11-11), income tied to XP levels.

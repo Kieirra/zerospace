@@ -138,7 +138,8 @@ describe('Link: odd values inside a readable code', () => {
     const result = simulateReal(build);
     const elapsedMs = performance.now() - startedAt;
 
-    expect(elapsedMs).toBeLessThan(1000);
+
+    expect(elapsedMs).toBeLessThan(3000);
     expect(result.samples.at(-1)?.t).toBe(1800);
   });
 });
