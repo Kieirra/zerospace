@@ -6,8 +6,6 @@ import { HistoryButtons } from './history-buttons/history-buttons.tsx';
 import { ResetButton } from './reset-button/reset-button.tsx';
 import { ShareButton } from './share-button/share-button.tsx';
 import { SideSelect } from './side-select/side-select.tsx';
-import { SIDE_WARNINGS } from './side-warning/side-warning.constants.ts';
-import { SideWarning } from './side-warning/side-warning.tsx';
 import { TitleField } from './title-field/title-field.tsx';
 import type { Build, BuildCatalog, Side } from '../build-order.types.ts';
 import type { CopyBoButtonProps } from './copy-bo-button/copy-bo-button.tsx';
@@ -51,7 +49,6 @@ export const EditorHeader = ({
 }: EditorHeaderProps) => {
   const faction = sides.find(({ id }) => id === build.factionId);
   const mercenary = sides.find(({ id }) => id === build.mercenaryId);
-  const factionWarning = SIDE_WARNINGS[build.factionId];
   const heroOptions = toHeroOptions(getSidesHeroPool(sides, build.factionId, build.mercenaryId), catalog, build);
   return (
     <header className="flex flex-wrap items-center gap-x-4 gap-y-3 border border-line bg-panel px-5 py-3">
@@ -81,7 +78,6 @@ export const EditorHeader = ({
           imageUrl={faction?.imageUrl}
           onChange={onFaction}
         />
-        {factionWarning && <SideWarning text={factionWarning} />}
         {/* No game without a mercenary (Kieirra 2026-11-19): no « No mercenary » choice. */}
         <SideSelect
           label="Mercenary"
