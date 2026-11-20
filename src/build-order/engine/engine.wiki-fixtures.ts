@@ -3,10 +3,11 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { toSide, toSideCatalog, toSideEntities } from '../catalog/catalog.helpers.ts';
 import { toNameKinds } from '../catalog/catalog.names.ts';
+import { known, unknown } from './engine.fixtures.ts';
 import { createSimulationContext, simulateBuild } from './engine.ts';
 import type { FactionFile } from '../../wiki/wiki-data.types.ts';
 import type { Entity } from '../../wiki/wiki.types.ts';
-import type { Build, SideCatalog } from '../build-order.types.ts';
+import type { Build, QueuedStep, SideCatalog } from '../build-order.types.ts';
 import type { SimulationContext } from './engine.types.ts';
 
 const WIKI_DIRECTORY = join(process.cwd(), 'data', 'wiki');
@@ -61,3 +62,16 @@ export const toRealContext = (build: Build): SimulationContext =>
 
 export const simulateReal = (build: Build, context: SimulationContext = toRealContext(build)) =>
   simulateBuild(build, context);
+
+// A Xol build (US-009): timed steps as [entity id, at] ('b1', 'b2'…), queued steps with their pin, time, loop or
+// Replicate ('u1', 'u2'…).
+export const toXolBuild = (timed: [string, number][], queued: Omit<QueuedStep, 'uid'>[] = []): Build => ({
+  ...toBuild('the-xol', null, timed),
+  queued: queued.map((step, index) => ({ uid: `u${index + 1}`, ...step })),
+});
+
+// The Xol catalog with its talents, a full bank and the supply left unchecked: the rules of US-009 alone.
+export const toXolContext = (build: Build): SimulationContext => {
+  const context = createSimulationContext(build, getCatalogWithMisc('the-xol'), null);
+  return { ...context, values: { ...context.values, startingHexite: known(5000), startingFlux: known(5000), startingSupply: unknown() } };
+};

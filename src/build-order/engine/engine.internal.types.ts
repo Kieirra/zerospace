@@ -1,4 +1,4 @@
-import type { BuildEntity, HexiteBaseEconomy, SpawnTrigger, TargetMultiplier } from '../build-order.types.ts';
+import type { BuildEntity, HexiteBaseEconomy, ProductionChargesBoost, SpawnTrigger, TargetMultiplier } from '../build-order.types.ts';
 import type { StepKind } from '../build-order.helpers.ts';
 import type { StartRank } from '../rules/rules.data.ts';
 import type { Diagnostic, Resource, SetupHero, WaitReason } from './engine.types.ts';
@@ -100,6 +100,21 @@ export interface OrderState {
   waitReason?: WaitReason;
   // Tick since which it waits for `lastWait`: those ticks are not in `waits` yet.
   waitSince?: number;
+  // Merge: the units it took at its start (US-009).
+  inputs?: ArmyUnit[];
+  // Merge or Replicate copy, once started: the lane it shows on, it has no producer.
+  laneId?: string;
+}
+
+// A unit of the army (US-009): made by an order, a merge, a copy or a talent, never lost.
+export interface ArmyUnit {
+  entityId: string;
+  readyTick: number;
+  // Lane of the order that made it (producer instance, else `order.laneId` of a merge or a copy).
+  laneId: string;
+  stepUid: string;
+  occurrence: number;
+  takenBy?: { stepUid: string; occurrence: number };
 }
 
 // A talent or an event of the build (US-008), applied once at `atTick` or later.
@@ -120,11 +135,13 @@ export interface Modifiers {
   costs: TargetMultiplier[];
   durations: TargetMultiplier[];
   spawnOnFinish: { source: ScheduledEffect; entity: BuildEntity; trigger: SpawnTrigger }[];
+  // Overclocked Production (US-009): for the producers completed from then on.
+  productionCharges: ProductionChargesBoost[];
 }
 
 // Start check of an order; `reason` undefined: the order can start.
 export interface StartCheck {
-  reason?: 'requirement' | 'producer-busy' | 'supply' | 'stack' | Resource;
+  reason?: 'requirement' | 'producer-busy' | 'supply' | 'stack' | 'units' | Resource;
   // Research or transformation: the instance whose research thread takes it.
   instance?: InstanceState;
 }
@@ -163,4 +180,6 @@ export interface SimulationState {
   effects: ScheduledEffect[];
   effectCursor: number;
   modifiers: Modifiers;
+  // Every unit made so far by entity id, by ready tick then lane order (US-009).
+  army: Map<string, ArmyUnit[]>;
 }

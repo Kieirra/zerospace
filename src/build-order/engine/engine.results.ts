@@ -1,9 +1,11 @@
+import { toArmyTiming, toMissingInputs } from './engine.army.ts';
 import { MISC_LANE_ID, WAIT_REASONS } from './engine.constants.ts';
 import { neverApplies, neverStarts, unknownStackRule, withHeroStart, withStep } from './engine.diagnostics.ts';
 import { getSupplyCap, isSupplyChecked, toSeconds } from './engine.economy.ts';
 import { getOrderCost } from './engine.effects.ts';
 import { getMissingResource } from './engine.starts.ts';
 import { isRecruit, toStackGauge } from './engine.mercenaries.ts';
+import { toFallbackLaneId } from './engine.merges.ts';
 import { getLaneRank, toLaneId } from './engine.state.ts';
 import type { NeverStartsCause } from './engine.diagnostics.ts';
 import type { InstanceState, OrderState, PlannedStep, ScheduledEffect, SimulationState } from './engine.internal.types.ts';
@@ -33,7 +35,7 @@ export const toResult = (
   extras: { samples: ResourceSample[]; globalDiagnostics: Diagnostic[]; heroes: HeroSummary },
 ): SimulationResult => {
   const orders = [
-    ...state.orders.map((order) => toOrderTiming(order, state)),
+    ...state.orders.map((order) => toOrderTiming(order, state, context)),
     ...state.effects.flatMap(toEffectOrderTimings),
     ...plans.filter(isDuplicateTalent).map(toDuplicateTalentTiming),
   ];
@@ -56,18 +58,22 @@ export const toResult = (
 };
 
 // An order outside any thread (unknown producer or research location) shows on the base lane.
-const toOrderTiming = (order: OrderState, state: SimulationState): OrderTiming => ({
+const toOrderTiming = (order: OrderState, state: SimulationState, context: SimulationContext): OrderTiming => ({
   stepUid: order.plan.uid,
   entityId: order.entity.id,
   occurrence: order.occurrence,
-  laneId: toOrderLaneId(order, state),
+  laneId: toOrderLaneId(order, state, context),
   clickAt: toOptionalSeconds(order.clickTick),
   startAt: toOptionalSeconds(order.startTick),
   endAt: toOptionalSeconds(order.endTick),
   waits: toWaitSeconds(order.waits),
+  ...toArmyTiming(order, state),
 });
 
-const toOrderLaneId = (order: OrderState, state: SimulationState) => {
+// A merge or a copy (US-009) shows on the lane it got at its start, else on the lane of its tier 1 producers.
+const toOrderLaneId = (order: OrderState, state: SimulationState, context: SimulationContext) => {
+  if (order.laneId !== undefined) return order.laneId;
+  if (order.entity.category === 'merge' || order.entity.category === 'replicate') return toFallbackLaneId(order.entity, state, context);
   const instance = order.producer ?? order.created ?? (order.plan.thread === undefined ? state.instances.find(({ isStarting }) => isStarting) : undefined);
   return instance ? toLaneId(instance) : null;
 };
@@ -76,7 +82,7 @@ const toOrderLaneId = (order: OrderState, state: SimulationState) => {
 const toStepTiming = (plan: PlannedStep, state: SimulationState, context: SimulationContext): StepTiming => {
   if (plan.isEffect || isDuplicateTalent(plan)) return toEffectStepTiming(plan, state);
   const order = state.ordersByUid.get(plan.uid);
-  const timing = order ? toOrderTiming(order, state) : undefined;
+  const timing = order ? toOrderTiming(order, state, context) : undefined;
   const isNotStarted = order !== undefined && order.startTick === undefined;
   const firstStart = plan.firstUid === undefined ? null : toOptionalSeconds(state.ordersByUid.get(plan.firstUid)?.startTick);
   const diagnostics = [
@@ -102,11 +108,18 @@ const getNeverStartsCause = (order: OrderState, state: SimulationState, context:
   if (order.lastWait === 'producer-busy') return { kind: 'producer' };
   if (order.lastWait === 'requirement') return { kind: 'requirement' };
   if (order.lastWait === 'stack') return { kind: 'stack' };
+  if (order.lastWait === 'units') return toUnitsCause(order, state, context);
   const cost = getOrderCost(order.entity, state);
   const missing = getMissingResource(state.bank, cost);
   if (order.lastWait === 'reserved' || missing === undefined) return { kind: 'earlier-order' };
   return { kind: 'resource', resource: missing, amount: Math.ceil(cost[missing] - state.bank[missing]) };
 };
+
+// A merge without its inputs, by input type in recipe order; a copy without a free unit of its target (US-009).
+const toUnitsCause = ({ entity }: OrderState, state: SimulationState, context: SimulationContext): NeverStartsCause =>
+  entity.category === 'replicate'
+    ? { kind: 'replicate-target', name: entity.name }
+    : { kind: 'units', missing: toMissingInputs(state, entity).map(({ entityId, count }) => ({ name: context.catalog.get(entityId)?.name ?? entityId, count })) };
 
 // A talent or an event (US-008) on the Misc lane: clicked at its time, applied at once, else never (Reinforcements).
 const toEffectStepTiming = (plan: PlannedStep, state: SimulationState): StepTiming => {

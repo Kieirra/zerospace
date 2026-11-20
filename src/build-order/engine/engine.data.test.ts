@@ -97,13 +97,12 @@ const toSingleStepBuild = (entity: BuildEntity, isMercenary: boolean) => {
 };
 
 describe('Simulation of entities with unknown data', () => {
+  // The Xol Roller (charges) and merges (Aegis) are known since US-009.
   it('should find the entities reported by the QA', () => {
     const ids = problematic.map(({ entity }) => entity.id);
 
     expect(ids).toEqual(
       expect.arrayContaining([
-        'the-xol/unit/roller',
-        'the-xol/unit/aegis',
         'grell/unit/seedling',
         'grell/unit/arkanid',
         'valkaru/unit/valkaru-beast',

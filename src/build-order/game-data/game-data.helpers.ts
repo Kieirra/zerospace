@@ -5,6 +5,7 @@ import {
   MERCENARY_STACK_RECHARGE_SECONDS,
   PASSIVE_FLUX_PER_MIN,
   PASSIVE_HEXITE_PER_MIN,
+  REPLICATE_STUN_SECONDS,
   RESEARCH_LOCATIONS,
   STARTING_FLUX,
   STARTING_HEXITE,
@@ -33,6 +34,7 @@ export interface ResolvedGameValues {
   mercenaryMaxStacks: ResolvedValue<number>;
   mercenaryInitialStacks: ResolvedValue<number>;
   mercenaryStackRechargeSeconds: ResolvedValue<number>;
+  replicateStunSeconds: ResolvedValue<number>;
   supplyProvidedOverrides: Record<string, number>;
   researchLocations: Record<string, string>;
 }
@@ -59,6 +61,7 @@ export const resolveGameValues = (factionId: string, mercenaryId: string | null)
   mercenaryMaxStacks: resolveGameValue(MERCENARY_MAX_STACKS, mercenaryId),
   mercenaryInitialStacks: resolveGameValue(MERCENARY_INITIAL_STACKS, mercenaryId),
   mercenaryStackRechargeSeconds: resolveGameValue(MERCENARY_STACK_RECHARGE_SECONDS, mercenaryId),
+  replicateStunSeconds: resolveGameValue(REPLICATE_STUN_SECONDS, factionId),
   supplyProvidedOverrides: SUPPLY_PROVIDED_OVERRIDES,
   researchLocations: RESEARCH_LOCATIONS,
 });

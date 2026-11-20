@@ -1,3 +1,5 @@
+import type { ProductionCharges } from '../../wiki/wiki-data.types.ts';
+
 // Game values the wiki extraction does not give. value null = unknown; fallback = provisional value (null = not checked).
 export interface GameValue<T> {
   label: string;
@@ -104,3 +106,40 @@ export const HERO_OVERRIDES: Record<string, HeroOverride> = {
   'the-legion/hero/kraegar': { displayName: "Kraegar + Krag'vorn" },
   'valkaru/hero/mondar-and-torq': { unitCount: 2 },
 };
+
+// Xol producers (US-009). initial and recharge: NovaProduction of Building_Xol_MP_*Producer (build 26680201). max 4:
+// absent from the assets, Kieirra 2026-11-20, provisional. A charge makes the unit at once.
+const XOL_PRODUCTION_CHARGES: ProductionCharges = { initial: 1, max: 4, recharge: 35 };
+export const PRODUCTION_CHARGES_OVERRIDES: Record<string, ProductionCharges> = {
+  'the-xol/building/gyroforge': XOL_PRODUCTION_CHARGES,
+  'the-xol/building/spectral-foundry': XOL_PRODUCTION_CHARGES,
+  'the-xol/building/xyther-assembler': XOL_PRODUCTION_CHARGES,
+};
+
+// PlayerOwnerLimit of the assets (build 26680201): units owned at a time.
+export const UNIT_OWNER_LIMITS: Record<string, number> = {
+  'the-xol/unit/paradox': 1,
+  'the-xol/unit/cataclyst': 1,
+};
+
+// World Forge: Only 3 upgrade types can be researched. Any other exclusive group allows one.
+export const EXCLUSIVE_GROUP_LIMITS: Record<string, number> = { 'Research.T1': 3 };
+
+// TopbarAbility_Xol_MP_Replicate: copy stunned 16 s.
+export const REPLICATE_STUN_SECONDS: GameValue<number> = { label: 'Replicate stun', value: 16, fallback: 16, owner: 'Kieirra' };
+
+// Topbar ability whose energy each Xol unit gives (`topbarEnergyCosts`); its id stands for every copy in a ```bo block.
+export const REPLICATE_TOPBAR_ID = 'the-xol/topbar/replicate';
+export const REPLICATE_NAME = 'Replicate';
+
+// Merges of the Units tab, in the game menu order (Kieirra 2026-11-20): the data gives them all the same `order`.
+export const MERGE_ORDER = [
+  'the-xol/unit/echo',
+  'the-xol/unit/gravitron',
+  'the-xol/unit/defiant',
+  'the-xol/unit/aegis',
+  'the-xol/unit/synapse',
+  'the-xol/unit/eradicator',
+  'the-xol/unit/paradox',
+  'the-xol/unit/cataclyst',
+];

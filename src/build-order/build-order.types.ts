@@ -14,7 +14,11 @@ export type EntityCategory =
   | 'mercenary-unit'
   | 'hero'
   | 'talent'
-  | 'event';
+  | 'event'
+  // Xol unit obtained by merging others (data `mergedFrom`, US-009).
+  | 'merge'
+  // A Replicate copy of a Xol unit (US-009): only the engine makes such an entity, from its target.
+  | 'replicate';
 
 export interface Side {
   id: string;
@@ -88,6 +92,12 @@ export interface BuildEntity {
   // Event only: supply of the units it makes at once, from the wiki supply per unit. A Reinforcements waits until all
   // of it fits in the free supply.
   groupSupply?: number;
+  // Merge only: units consumed at the start, one entry per input type (data `mergedFrom`).
+  mergedFrom?: { entityId: string; count: number }[];
+  // Energy of one Replicate copy of one unit (data `topbarEnergyCosts`); undefined = not replicable.
+  replicateEnergy?: number;
+  // Units owned at a time in game (PlayerOwnerLimit); warning only, the tool never loses units.
+  ownerLimit?: number;
 }
 
 export interface EffectTarget {
@@ -112,7 +122,15 @@ export type MiscEffect =
   | { kind: 'spawn-units'; entityId: string; count: number; waitsForSupply: boolean }
   // One free unit each time an order of `trigger` finishes after the effect tick.
   | { kind: 'spawn-on-finish'; entityId: string; trigger: SpawnTrigger }
-  | { kind: 'building-copies'; entityId: string; copies: number };
+  | { kind: 'building-copies'; entityId: string; copies: number }
+  // Producers of `entityIds` completed after the effect tick: more charges, faster recharge (Overclocked Production).
+  | ({ kind: 'production-charges' } & ProductionChargesBoost);
+
+export interface ProductionChargesBoost {
+  entityIds: string[];
+  maxDelta: number;
+  rechargeMultiplier: number;
+}
 
 // faction-unit: a 'unit' order finished on an instance of a faction building (Unending Army, Kieirra 2026-11-20).
 // recruit-at: a 'mercenary-unit' order finished on an instance of `producerId` (Hounds of War).
@@ -138,6 +156,9 @@ export interface HeroPoolEntry {
 
 // Lane id of the starting building in `producerUid` (Kieirra 2026-11-19).
 export const BASE_UID = 'base';
+
+// producerUid of a Replicate step (Kieirra 2026-11-20).
+export const REPLICATE_UID = 'replicate';
 
 // Building, mercenary building, research, transformation: placed at a click time.
 export interface TimedStep {

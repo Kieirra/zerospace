@@ -1,5 +1,6 @@
 import { isBuildableEntity } from '../../build-order/catalog/catalog.helpers.ts';
 import { SECONDS_PER_MINUTE } from '../../build-order/engine/engine.constants.ts';
+import { REPLICATE_TOPBAR_ID } from '../../build-order/game-data/game-data.constants.ts';
 import type { BoAnchor, BoGroup, BoItem, BoPlan } from '../../build-order/bo-plan/bo-plan.types.ts';
 import type { CostSegment } from '../../wiki/wiki.types.ts';
 import type {
@@ -11,7 +12,8 @@ import type {
 
 export type BoPlanHeader = Omit<BoPlan, 'phases'>;
 
-// Lost on the way: free text, notes, goals, and the entities the tool cannot build (topbar). A free text condition is `->`.
+// Lost on the way: free text, notes, goals, and the entities the tool cannot build (topbar), Replicate aside when it names
+// its target (`Replicate (on Synapse)`, US-009). A free text condition is `->`.
 export const toBoPlan = ({ steps }: Pick<ResolvedBuildOrder, 'steps'>, header: BoPlanHeader): BoPlan => ({
   ...header,
   phases: steps.map(({ number, groups }) => ({ number, groups: groups.map(toBoGroup) })),
@@ -22,12 +24,13 @@ const toBoGroup = ({ condition, items }: ResolvedBuildOrderGroup): BoGroup => ({
   items: items.flatMap(toBoItems),
 });
 
-const toBoItems = ({ entity, count, loop, trigger }: ResolvedBuildOrderItem): BoItem[] =>
-  entity && isBuildableEntity(entity)
+const toBoItems = ({ entity, count, on, loop, trigger }: ResolvedBuildOrderItem): BoItem[] =>
+  entity && (isBuildableEntity(entity) || (entity.id === REPLICATE_TOPBAR_ID && on))
     ? [
         {
           entityId: entity.id,
           count,
+          ...(on && { on: on.id }),
           ...(loop && { loop: loop.id }),
           ...(trigger && { trigger: trigger.map(toBoGroup) }),
         },

@@ -1,5 +1,9 @@
+import { joinArmy } from './engine.army.ts';
+import { MISC_LANE_ID } from './engine.constants.ts';
 import { getMaxHarvesters, getSupplyCap, roundAmount, toHarvestersPerNode, toTicks } from './engine.economy.ts';
+import { boostUnfinishedStacks } from './engine.mercenaries.ts';
 import type { BuildEntity, EffectTarget, MiscEffect, TargetMultiplier } from '../build-order.types.ts';
+import type { GameRules } from '../rules/rules.data.ts';
 import type { OrderState, PlannedStep, ScheduledEffect, SimulationState } from './engine.internal.types.ts';
 import type { SimulationContext } from './engine.types.ts';
 
@@ -41,9 +45,13 @@ export const getOrderCost = (entity: BuildEntity, state: SimulationState) => {
   return { hexite: roundAmount(entity.cost.hexite * multiplier), flux: roundAmount(entity.cost.flux * multiplier) };
 };
 
-// Duration of an order that starts now. A mercenary recruit is instant: the duration of the data is ignored.
-export const getOrderDurationTicks = (entity: BuildEntity, state: SimulationState) =>
-  entity.category === 'mercenary-unit' ? 0 : toTicks((entity.duration ?? 0) * toMultiplier(entity, state.modifiers.durations));
+// Duration of an order that starts now. A mercenary recruit is instant: the duration of the data is ignored. A Xol merge
+// is done in a power field: its build time divided by `rules.mergeTimeDivisor` (US-009).
+export const getOrderDurationTicks = (entity: BuildEntity, state: SimulationState, rules: GameRules) => {
+  if (entity.category === 'mercenary-unit') return 0;
+  const divisor = entity.category === 'merge' ? rules.mergeTimeDivisor.value : 1;
+  return toTicks(((entity.duration ?? 0) / divisor) * toMultiplier(entity, state.modifiers.durations));
+};
 
 // Unending Army, Hounds of War: one free unit each time an order of the trigger ends after the talent. A free unit is no
 // order: it never triggers anything. A faction unit only, made in a building (Kieirra 2026-11-20): no harvester, no hero.
@@ -110,6 +118,10 @@ const applyEffect = (change: MiscEffect, effect: ScheduledEffect, state: Simulat
     case 'building-copies':
       // A rule of the static analysis.
       return;
+    case 'production-charges':
+      modifiers.productionCharges.push(change);
+      boostUnfinishedStacks(state, context);
+      return;
   }
 };
 
@@ -125,10 +137,14 @@ const spawnHarvesters = (effect: ScheduledEffect, state: SimulationState, contex
   addSpawns(harvester, spawned, effect, state);
 };
 
-// Free units: no cost, no supply check, their supply counted, even over the cap.
+// Free units: no cost, no supply check, their supply counted, even over the cap. They join the army (US-009).
 const addSpawns = (unit: BuildEntity, count: number, effect: ScheduledEffect, state: SimulationState) => {
   state.supplyUsed += toSupplyPerUnit(unit) * count;
-  for (let index = 0; index < count; index += 1) effect.spawns.push({ tick: state.tick, entityId: unit.id });
+  for (let index = 0; index < count; index += 1) {
+    effect.spawns.push({ tick: state.tick, entityId: unit.id });
+    const occurrence = effect.spawns.length;
+    joinArmy(state, { entityId: unit.id, readyTick: state.tick, laneId: MISC_LANE_ID, stepUid: effect.plan.uid, occurrence });
+  }
 };
 
 // A production is a pack of `count` units: a free unit is one of them.

@@ -1,4 +1,5 @@
-import { isBuildingCategory, isMiscCategory, toBuildingCopies, toLaneOrder } from '../build-order.helpers.ts';
+import { canRepeat, isBuildingCategory, isMiscCategory, toBuildingCopies, toLaneOrder } from '../build-order.helpers.ts';
+import { EXCLUSIVE_GROUP_LIMITS } from '../game-data/game-data.constants.ts';
 import {
   duplicateMercenaryBuilding,
   duplicateResearch,
@@ -11,7 +12,9 @@ import {
 } from './engine.diagnostics.ts';
 import { getMaxHarvesters, toTicks } from './engine.economy.ts';
 import { checkHeroStep } from './engine.heroes.ts';
+import { toMergeDiagnostics } from './engine.merges.ts';
 import { resolvePlacement, toBuildScope, toNames } from './engine.placement.ts';
+import { toStepEntity } from './engine.replicate.ts';
 import type { StepKind } from '../build-order.helpers.ts';
 import type { Build, BuildEntity, QueuedStep, TimedStep } from '../build-order.types.ts';
 import type { RequiresMode, StartRank } from '../rules/rules.data.ts';
@@ -54,19 +57,18 @@ const toStartRank = (entity: BuildEntity, startPriority: StartRank[]): StartRank
   if (entity.category === 'harvester' && startPriority.includes('harvester')) return 'harvester';
   if (entity.kind === 'building' && entity.economy?.kind === 'hexite-base') return 'base';
   if (entity.kind === 'building' && entity.supplyProvided !== undefined) return 'supply';
-  if (entity.category === 'unit' || entity.category === 'harvester' || entity.category === 'hero') return 'unit';
+  if (['unit', 'harvester', 'hero', 'merge', 'replicate'].includes(entity.category)) return 'unit';
   return 'other';
 };
 
-// A loop is a unit's only (a harvester has its cap, a recruit no duration), and a unit made in no time would loop
-// forever in one tick. Its start priority stays the one of any unit (D5).
-const isRepeated = (step: TimedStep | QueuedStep, entity: BuildEntity) =>
-  'repeat' in step && step.repeat === true && entity.category === 'unit' && toTicks(entity.duration ?? 0) > 0;
+// A loop keeps the start priority of any unit (D5); which units may loop: `canRepeat`.
+const isRepeated = (step: TimedStep | QueuedStep, entity: BuildEntity, context: SimulationContext) =>
+  'repeat' in step && step.repeat === true && canRepeat(entity, context.catalog);
 
 interface Tracker {
-  // Seconds of the first one, by research id and by exclusive group.
+  // Seconds of the first one, by research id; the researches of each exclusive group.
   researchAt: Map<string, number>;
-  groupAt: Map<string, { name: string; at: number }>;
+  groupAt: Map<string, { name: string; at: number }[]>;
   mercenaryAt: Map<string, number[]>;
   harvesterCounts: Map<string, number>;
   // Paid heroes, entity id → uid of the step.
@@ -74,6 +76,8 @@ interface Tracker {
   talentIds: Set<string>;
   // Flux nodes filled by the free harvesters of a talent (Lore of Flux), Harvesters per node each.
   reservedNodes: number;
+  // Merges and copies by unit id (US-009), for the owner limit.
+  ownedCounts: Map<string, number>;
 }
 
 interface AnalysisInput {
@@ -95,6 +99,7 @@ const createTracker = (): Tracker => ({
   heroUids: new Map(),
   talentIds: new Set(),
   reservedNodes: 0,
+  ownedCounts: new Map(),
 });
 
 const analyzeStep = (
@@ -105,7 +110,7 @@ const analyzeStep = (
   { context, scope, tracker, heroSlots, talents }: AnalysisInput,
 ): PlannedStep => {
   const base = { index, uid: step.uid, kind, tie, atTick: step.at === undefined ? undefined : toTicks(step.at) };
-  const entity = context.catalog.get(step.entityId);
+  const entity = toStepEntity(step, context);
   if (!entity) return toIgnored(base, unknownEntity());
   if (isMiscCategory(entity)) return toEffectPlan(base, entity, tracker);
   const rank = toStartRank(entity, context.rules.startPriority.value);
@@ -118,13 +123,14 @@ const analyzeStep = (
   const requires = resolveRequires(entity, context, scope, diagnostics);
   const placement = resolvePlacement(entity, step.producerUid, context, scope, diagnostics);
   if (entity.duration === null) diagnostics.push(unknownDuration());
+  diagnostics.push(...toMergeDiagnostics(entity, scope.available, context.catalog, tracker.ownedCounts.get(entity.id) ?? 0));
   recordStep(entity, step, tracker);
   return {
     ...base,
     entity,
     isIgnored: false,
     producerUid: placement.producerUid,
-    repeat: isRepeated(step, entity),
+    repeat: isRepeated(step, entity, context),
     rank,
     requires,
     producerIds: placement.producerIds,
@@ -179,8 +185,10 @@ const findResearchConflict = (entity: BuildEntity, tracker: Tracker) => {
   if (entity.category !== 'research') return undefined;
   const firstAt = tracker.researchAt.get(entity.id);
   if (firstAt !== undefined) return duplicateResearch(firstAt);
-  const group = entity.exclusiveGroup ? tracker.groupAt.get(entity.exclusiveGroup) : undefined;
-  return group ? exclusiveResearch(group.name, group.at) : undefined;
+  if (!entity.exclusiveGroup) return undefined;
+  const group = tracker.groupAt.get(entity.exclusiveGroup) ?? [];
+  const limit = EXCLUSIVE_GROUP_LIMITS[entity.exclusiveGroup] ?? 1;
+  return group.length >= limit ? exclusiveResearch(group, limit) : undefined;
 };
 
 // A talent of the build may allow more copies (Entrenched Hideouts).
@@ -215,9 +223,10 @@ const recordStep = (entity: BuildEntity, step: TimedStep | QueuedStep, tracker: 
   if (entity.category === 'hero') tracker.heroUids.set(entity.id, step.uid);
   if (entity.category === 'mercenary-building') tracker.mercenaryAt.set(entity.id, [...(tracker.mercenaryAt.get(entity.id) ?? []), at]);
   if (entity.category === 'harvester') tracker.harvesterCounts.set(entity.id, (tracker.harvesterCounts.get(entity.id) ?? 0) + 1);
+  if (entity.category === 'merge' || entity.category === 'replicate') tracker.ownedCounts.set(entity.id, (tracker.ownedCounts.get(entity.id) ?? 0) + 1);
   if (entity.category === 'research') {
     tracker.researchAt.set(entity.id, at);
-    if (entity.exclusiveGroup) tracker.groupAt.set(entity.exclusiveGroup, { name: entity.name, at });
+    if (entity.exclusiveGroup) tracker.groupAt.set(entity.exclusiveGroup, [...(tracker.groupAt.get(entity.exclusiveGroup) ?? []), { name: entity.name, at }]);
   }
 };
 

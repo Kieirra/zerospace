@@ -9,7 +9,10 @@ export type NeverStartsCause =
   | { kind: 'no-producer' }
   | { kind: 'requirement' }
   | { kind: 'earlier-order' }
-  | { kind: 'stack' };
+  | { kind: 'stack' }
+  // A merge without its inputs, a Replicate copy without a free target (US-009).
+  | { kind: 'units'; missing: { name: string; count: number }[] }
+  | { kind: 'replicate-target'; name: string };
 
 const DIAGNOSTIC_SEVERITY: Record<DiagnosticCode, DiagnosticSeverity> = {
   'missing-requirement': 'error',
@@ -28,12 +31,15 @@ const DIAGNOSTIC_SEVERITY: Record<DiagnosticCode, DiagnosticSeverity> = {
   'hero-not-buildable': 'error',
   'duplicate-talent': 'error',
   'never-applies': 'error',
+  'missing-merge-input': 'error',
+  'owner-limit': 'warning',
   'unknown-stack-rule': 'warning',
   'unknown-research-location': 'warning',
   'unknown-duration': 'warning',
   'unknown-producer': 'warning',
   'supply-not-checked': 'info',
   'flux-nodes-unknown': 'info',
+  'energy-not-checked': 'info',
 };
 
 export const missingRequirement = (names: string[], conjunction: 'or' | 'and') =>
@@ -47,8 +53,15 @@ export const wrongProducer = (name: string) => toDiagnostic('wrong-producer', `$
 // Times in seconds: the click time of the first one (Kieirra 2026-11-19, no step numbers any more).
 export const duplicateResearch = (at: number) => toDiagnostic('duplicate-research', `Already researched at ${formatClock(at)}.`);
 
-export const exclusiveResearch = (otherName: string, at: number) =>
-  toDiagnostic('exclusive-research', `Only one of this group: ${otherName} is already at ${formatClock(at)}.`);
+// The researches of the group already in the build, in time order; at most `limit` of them (World Forge: 3, US-009).
+export const exclusiveResearch = (others: { name: string; at: number }[], limit: number) =>
+  toDiagnostic(
+    'exclusive-research',
+    limit === 1 ? `Only one of this group: ${others[0]?.name} is already at ${formatClock(others[0]?.at ?? 0)}.` : toGroupLimitText(others, limit),
+  );
+
+export const toGroupLimitText = (others: { name: string }[], limit: number) =>
+  `At most ${limit} of this group: ${joinNames(others.map(({ name }) => name), 'and')} are already in the build.`;
 
 export const duplicateMercenaryBuilding = (name: string, copies: number, at: number) =>
   toDiagnostic(
@@ -61,6 +74,16 @@ export const duplicateTalent = () => toDiagnostic('duplicate-talent', 'Already i
 // A Reinforcements whose group never fits in the free supply (US-008).
 export const neverApplies = (supply: number) =>
   toDiagnostic('never-applies', `Never applies: not enough free supply for ${formatSupply(supply)}.`);
+
+// A merge or a copy whose tier 1 unit no building of the build makes (US-009): kept in the build, in error.
+export const missingMergeInput = (name: string, producerNames: string[]) =>
+  toDiagnostic('missing-merge-input', `Needs ${name}: no ${joinNames(producerNames, 'or')} in the build.`);
+
+export const ownerLimit = (name: string, limit: number) =>
+  toDiagnostic('owner-limit', `${limit} ${name} at a time in game: the tool never loses units.`);
+
+export const energyNotChecked = (total: number) =>
+  toDiagnostic('energy-not-checked', `Top bar energy not checked: ${formatAmount(total)} spent by Replicate.`);
 
 export const unknownEntity = () => toDiagnostic('unknown-entity', 'Not in the current game data.');
 
@@ -138,5 +161,9 @@ const toCause = (cause: NeverStartsCause) => {
       return 'held behind an order that never starts';
     case 'stack':
       return 'never a mercenary slot';
+    case 'units':
+      return `${joinNames(cause.missing.map(({ name, count }) => `${count} ${name}`), 'and')} missing`;
+    case 'replicate-target':
+      return `no ${cause.name} to replicate`;
   }
 };

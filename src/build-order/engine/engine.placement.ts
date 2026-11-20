@@ -24,7 +24,8 @@ export const toBuildScope = (build: Build, catalog: BuildCatalog): BuildScope =>
   return { lanes, available: new Set(lanes.flatMap(({ entity, transformedInto }) => [entity.id, ...transformedInto])) };
 };
 
-// Without a producer in the data or in the build, the order stays outside any thread (shown on the base lane).
+// Without a producer in the data or in the build, the order stays outside any thread (shown on the base lane). A merge
+// or a Replicate copy has none by design (US-009): its lane is the one of its inputs.
 export const resolvePlacement = (
   entity: BuildEntity,
   producerUid: string | undefined,
@@ -32,6 +33,7 @@ export const resolvePlacement = (
   scope: BuildScope,
   diagnostics: Diagnostic[],
 ): Placement => {
+  if (entity.category === 'merge' || entity.category === 'replicate') return { producerIds: [] };
   if (toStepKind(entity) === 'queued') {
     if (entity.producedBy.length === 0) {
       diagnostics.push(unknownProducer());

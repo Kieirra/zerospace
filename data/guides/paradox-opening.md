@@ -27,7 +27,7 @@ weaknesses:
 2. when Molten Core done: World Forge
    -> 2 Roller + 2 Xyther + 2 Spectron
    -> 1 Synapse + 1 Defiant + 1 Echo
-   -> Replicate^2
+   -> Replicate (on Synapse)
    -> Paradox + World Engine + Gyroforge + Xyther Assembler + Spectral Foundry^1 + Xol Harvester
    goal: Hit a powerful Paradox timing push with Synapses and Tier 1 units, destroy the enemy's third base and reclaim XP tower control with Rollers
 3. Damage -> Vitals -> Weapon Range^3
@@ -36,7 +36,6 @@ weaknesses:
 4. Eradicator + Aegis + Echo + Paradox
    goal: Transition into a powerful high-tech late-game army
 ^1: 3 production buildings per base.
-^2: On a Synapse.
 ^3: Or Armor against large numbers of Tier 1 units.
 ```
 

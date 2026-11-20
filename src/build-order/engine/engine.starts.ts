@@ -1,7 +1,9 @@
+import { findLastFreeUnit, hasArmyInputs, takeUnits, toLaneRank } from './engine.army.ts';
 import { RESOURCES } from './engine.constants.ts';
 import { getSupplyCap, roundAmount } from './engine.economy.ts';
 import { getOrderCost, getOrderDurationTicks } from './engine.effects.ts';
-import { consumeStack, createStacks, hasStack, isRecruit } from './engine.mercenaries.ts';
+import { consumeStack, createStacks, hasStack, isRecruit, toChargeBoosts } from './engine.mercenaries.ts';
+import { toMergeLaneId, toSupplyDelta } from './engine.merges.ts';
 import { toNextCheckTick } from './engine.next-check.ts';
 import { comparePlanOrder, flushWait, insertSorted } from './engine.order-lists.ts';
 import { addInstance, areRequirementsReady, findFirstInLaneOrder, isReadyProducer } from './engine.state.ts';
@@ -69,8 +71,10 @@ const checkStart = (order: OrderState, state: SimulationState, context: Simulati
   if (plan.kind === 'timed' && !areRequirementsReady(order, state, context)) return { reason: 'requirement' };
   const instance = plan.thread === 'research' ? findResearchInstance(order, state) : undefined;
   if (plan.thread === 'research' && !instance) return { reason: 'producer-busy' };
-  if (supplyCap !== null && entity.supply > 0 && state.supplyUsed + entity.supply > supplyCap) return { reason: 'supply' };
-  if (isRecruit(order) && order.producer && !hasStack(order.producer)) return { reason: 'stack' };
+  if (!hasArmyInputs(order, state)) return { reason: 'units' };
+  const supply = toOrderSupply(order, context);
+  if (supplyCap !== null && supply > 0 && state.supplyUsed + supply > supplyCap) return { reason: 'supply' };
+  if (usesStack(order) && order.producer && !hasStack(order.producer)) return { reason: 'stack' };
   return { reason: getMissingResource(state.bank, getOrderCost(entity, state)), instance };
 };
 
@@ -98,9 +102,11 @@ const startOrder = (order: OrderState, state: SimulationState, context: Simulati
   const { entity, plan } = order;
   const cost = getOrderCost(entity, state);
   for (const resource of RESOURCES) state.bank[resource] = roundAmount(state.bank[resource] - cost[resource]);
-  state.supplyUsed += entity.supply;
+  state.supplyUsed += toOrderSupply(order, context);
   order.startTick = state.tick;
-  order.endTick = state.tick + getOrderDurationTicks(entity, state);
+  order.endTick = state.tick + getOrderDurationTicks(entity, state, context.rules);
+  if (entity.category === 'merge') order.laneId = toMergeLaneId(takeUnits(state, order), (laneId) => toLaneRank(state, laneId));
+  if (entity.category === 'replicate') order.laneId = findLastFreeUnit(state, entity.id)?.laneId;
   flushWait(order, state.tick);
   state.hasPendingChanged = true;
   insertSorted(state.running, order, comparePlanOrder);
@@ -110,11 +116,19 @@ const startOrder = (order: OrderState, state: SimulationState, context: Simulati
     if (entity.category === 'transformation') researchInstance.hasTransformation = true;
   }
   if (plan.createsInstance) order.created = addInstance(state, entity, plan.uid, order.startTick, order.endTick);
-  if (order.created && entity.category === 'mercenary-building') {
-    order.created.stacks = createStacks(context.values, order.endTick, entity.productionCharges);
+  if (order.created && (entity.category === 'mercenary-building' || entity.productionCharges)) {
+    const boosts = toChargeBoosts(entity.id, state.modifiers);
+    order.created.stacks = createStacks(context.values, order.endTick, entity.productionCharges, boosts);
   }
-  if (isRecruit(order) && order.producer) consumeStack(order, order.producer, state.tick);
+  if (usesStack(order) && order.producer) consumeStack(order, order.producer, state.tick);
 };
+
+// A merge adds the supply its inputs did not have (US-009); any other order its own.
+const toOrderSupply = ({ entity }: OrderState, context: SimulationContext) =>
+  entity.category === 'merge' ? toSupplyDelta(entity, context.catalog) : entity.supply;
+
+// A unit made on a building with stacks or charges spends one (a recruit, a Xol unit); never a research.
+const usesStack = (order: OrderState) => order.plan.thread === 'production' && order.producer?.stacks !== undefined;
 
 // Share of the cost still missing.
 const getLack = (bank: Record<Resource, number>, cost: BuildEntity['cost'], resource: Resource) =>

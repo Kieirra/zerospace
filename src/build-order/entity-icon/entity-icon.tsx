@@ -22,6 +22,8 @@ const BEVEL = 'polygon(3px 0,100% 0,100% calc(100% - 3px),calc(100% - 3px) 100%,
 
 const MISC_SHAPE: CSSProperties = { width: 10, height: 10, background: KIND_COLORS.misc, transform: 'rotate(45deg)' };
 
+const UNIT_SHAPE: CSSProperties = { width: 12, height: 12, background: KIND_COLORS.unit, borderRadius: '50%' };
+
 const TYPE_SHAPES: Record<EntityCategory, CSSProperties> = {
   building: { width: 12, height: 12, background: KIND_COLORS.building, clipPath: BEVEL },
   transformation: { width: 12, height: 12, border: `1.5px solid ${KIND_COLORS.research}` },
@@ -33,4 +35,6 @@ const TYPE_SHAPES: Record<EntityCategory, CSSProperties> = {
   hero: { width: 12, height: 12, background: KIND_COLORS.hero, borderRadius: 3 },
   talent: MISC_SHAPE,
   event: MISC_SHAPE,
+  merge: UNIT_SHAPE,
+  replicate: UNIT_SHAPE,
 };

@@ -21,6 +21,8 @@ export interface GameRules {
   mercenaryRequired: Rule<boolean>;
   // Copies of one mercenary building per match.
   mercenaryBuildingCopies: Rule<number>;
+  // Xol merge time = build time / this (US-009).
+  mergeTimeDivisor: Rule<number>;
   heroes: {
     setupHeroAtSeconds: Rule<number>;
     mercenaryHeroInPool: Rule<boolean>;
@@ -52,6 +54,11 @@ export const BASE_RULES: GameRules = {
     value: 1,
     status: 'confirmed',
     note: 'Mazar 2026-11-13: never twice the same mercenary building; a mercenary with two buildings may have both.',
+  },
+  mergeTimeDivisor: {
+    value: 1.5,
+    status: 'provisional',
+    note: 'Kieirra 2026-11-20: every merge is done inside a power field (Topbar_XolMerge Get Merge Time, ÷ 1.5).',
   },
   heroes: {
     setupHeroAtSeconds: { value: 15, status: 'confirmed', note: 'Free setup hero chosen at 0:15.' },

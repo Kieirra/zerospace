@@ -15,8 +15,9 @@ export const collectPreviewEntities = ({ hero, talents, army, mainBuildOrder, br
 
 const collectGroupEntities = (groups: ResolvedBuildOrderGroup[]): Entity[] =>
   groups.flatMap(({ items }) =>
-    items.flatMap(({ entity, loop, trigger = [] }) => [
+    items.flatMap(({ entity, on, loop, trigger = [] }) => [
       ...(entity ? [entity] : []),
+      ...(on ? [on] : []),
       ...(loop ? [loop] : []),
       ...collectGroupEntities(trigger),
     ]),

@@ -157,6 +157,7 @@ export const EditorWorkspace = ({ state, sides, faction, mercenary, notices, dis
           onRemove={removeSelected}
           onClose={selection.closePanel}
           onEscape={selection.clear}
+          onSelect={selection.select}
         />
       )}
       <EditorToasts toasts={toasts} onUndo={() => dispatch({ type: 'undo' })} />

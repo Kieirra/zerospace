@@ -1,6 +1,6 @@
 import { STEAM_BUILD_ID } from '../../shared/site.constants.ts';
-import { BASE_UID } from '../build-order.types.ts';
-import { LINK_PREFIX, MAX_STEPS } from './link.constants.ts';
+import { BASE_UID, REPLICATE_UID } from '../build-order.types.ts';
+import { BASE_INDEX, LINK_PREFIX, MAX_STEPS, REPLICATE_INDEX } from './link.constants.ts';
 import { fromBase64Url, toBase64Url } from './link.base64.ts';
 import { toEntityRef } from './link.refs.ts';
 import type { Build, BuildLink, BuildLinkQueued, BuildLinkTimed, DecodeResult, KnownSides } from '../build-order.types.ts';
@@ -13,14 +13,18 @@ type QueuedTuple = [string, (number | null)?, (number | null)?, 1?];
 type LinkTuple = [string, string, string, string, string, string, TimedTuple[], QueuedTuple[]];
 
 // Always stamped with the current data version: a build opened then shared again takes it. A producer is written as
-// its position in the encoded `timed` (-1 = base), so the link needs no uid.
+// its position in the encoded `timed` (-1 = base, -2 = Replicate, US-009), so the link needs no uid.
 export const toBuildLink = (build: Build): BuildLink => {
   const timed = build.timed.flatMap((step) => {
     const ref = toEntityRef(step.entityId, build.factionId);
     return ref === null ? [] : [{ step, ref }];
   });
   const indexByUid = new Map(timed.map(({ step }, index) => [step.uid, index]));
-  const toProducerIndex = (uid: string | undefined) => (uid === undefined ? null : uid === BASE_UID ? -1 : (indexByUid.get(uid) ?? null));
+  const toProducerIndex = (uid: string | undefined) => {
+    if (uid === undefined) return null;
+    if (uid === BASE_UID) return BASE_INDEX;
+    return uid === REPLICATE_UID ? REPLICATE_INDEX : (indexByUid.get(uid) ?? null);
+  };
   return {
     dataVersion: STEAM_BUILD_ID,
     factionId: build.factionId,

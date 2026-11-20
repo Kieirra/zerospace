@@ -1,4 +1,5 @@
 import { toCapableProducerUids, toLaneProducers, toStepKind } from '../build-order.helpers.ts';
+import { REPLICATE_UID } from '../build-order.types.ts';
 import { withOptional } from './build-editor.helpers.ts';
 import { clampAt } from './build-editor.timed.ts';
 import type { Build, BuildCatalog, QueuedStep } from '../build-order.types.ts';
@@ -14,6 +15,10 @@ export const setQueuedProducer = (build: Build, uid: string, producerUid?: strin
 // Any unit may have a time `at`: not released before it (Kieirra 2026-11-19). null: as soon as possible.
 export const setQueuedAt = (build: Build, uids: string[], at: number | null) =>
   updateQueuedAt(build, uids, () => (at === null ? undefined : clampAt(at)));
+
+// Target of a Replicate copy (US-009): the unit it copies.
+export const setReplicateTarget = (build: Build, uid: string, entityId: string) =>
+  updateQueued(build, uid, (step) => (step.entityId === entityId ? step : { ...step, entityId }));
 
 // Loop until the end (D6): the units of `uids` are made again on their building, or once.
 export const setQueuedRepeat = (build: Build, uids: string[], repeat: boolean) => {
@@ -42,15 +47,22 @@ export const moveToLane = (build: Build, uids: string[], laneUid: string, before
 };
 
 // Invariant (Kieirra 2026-11-19): no unit without a building able to make it. A unit pinned on a lane gone goes back
-// to Auto first; then every unit no lane of the build can make leaves. Unknown entities are kept.
+// to Auto first; then every unit no lane of the build can make leaves. Unknown entities are kept, so are the merges and
+// the Replicate copies (US-009): they have no building, they show their missing input instead.
 export const dropOrphanUnits = (build: Build, catalog: BuildCatalog) => {
-  const laneUids = new Set(toLaneProducers(build, catalog).map(({ uid }) => uid));
+  const laneUids = new Set([...toLaneProducers(build, catalog).map(({ uid }) => uid), REPLICATE_UID]);
   const unpinned = build.queued.map((step) =>
     step.producerUid === undefined || laneUids.has(step.producerUid) ? step : withOptional(step, 'producerUid', undefined),
   );
   const queued = unpinned.filter((step) => {
     const entity = catalog.get(step.entityId);
-    return !entity || toStepKind(entity) !== 'queued' || toCapableProducerUids(entity, build, catalog).length > 0;
+    return (
+      !entity ||
+      toStepKind(entity) !== 'queued' ||
+      entity.category === 'merge' ||
+      step.producerUid === REPLICATE_UID ||
+      toCapableProducerUids(entity, build, catalog).length > 0
+    );
   });
   const isSame = queued.length === build.queued.length && queued.every((step, index) => step === build.queued[index]);
   return isSame ? build : { ...build, queued };

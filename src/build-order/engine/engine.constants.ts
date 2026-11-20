@@ -12,7 +12,7 @@ export const AMOUNT_PRECISION = 1_000_000;
 
 export const RESOURCES = ['hexite', 'flux'] as const;
 
-export const WAIT_REASONS = ['hexite', 'flux', 'supply', 'producer-busy', 'requirement', 'reserved', 'stack'] as const;
+export const WAIT_REASONS = ['hexite', 'flux', 'supply', 'producer-busy', 'requirement', 'reserved', 'stack', 'units'] as const;
 
 export const RESOURCE_NAMES = { hexite: 'Hexite', flux: 'Flux' } as const;
 

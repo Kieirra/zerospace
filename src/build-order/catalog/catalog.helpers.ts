@@ -1,6 +1,7 @@
 import { byOrderThenName } from '../../wiki/wiki.helpers.ts';
 import { FACTION_ACCENTS } from '../../wiki/wiki.constants.ts';
-import { HERO_OVERRIDES, SUPPLY_PROVIDED_OVERRIDES } from '../game-data/game-data.constants.ts';
+import { HERO_OVERRIDES, PRODUCTION_CHARGES_OVERRIDES, SUPPLY_PROVIDED_OVERRIDES } from '../game-data/game-data.constants.ts';
+import { isMadeByCharge, toMergeCost, toXolFields } from './catalog.merges.ts';
 import { toMiscEntities } from './catalog.misc.ts';
 import { toNameKinds } from './catalog.names.ts';
 import { toOfferedEntities } from './catalog.offer.ts';
@@ -59,7 +60,10 @@ export const toSideEntities = (
       .filter(isBuildableEntity)
       .filter((entity) => entity.faction === side.id)
       .sort(byOrderThenName)
-      .map((entity) => toBuildEntity(entity, side.kind, findImageUrl(entity.id))),
+      .map((entity) => {
+        const built = toBuildEntity(entity, side.kind, findImageUrl(entity.id));
+        return built.category === 'merge' ? { ...built, cost: toMergeCost(entity, entities) } : built;
+      }),
   );
 
 // A side as the editor loads it: its entities, then its Misc steps (US-008).
@@ -91,8 +95,8 @@ export const toBuildEntity = (
     count: entity.count ?? 1,
     // Data supply is per unit: a pack of `count` units costs supply × count (Mazar 2026-11-11).
     supply: (entity.supply ?? 0) * (entity.count ?? 1) * (heroOverride?.unitCount ?? 1),
-    // A recruit spends a stack and arrives at once: the data gives it no build time.
-    duration: category === 'mercenary-unit' ? 0 : (entity.buildTime ?? entity.researchTime ?? null),
+    // A recruit spends a stack and arrives at once: the data gives it no build time. So does a Xol unit (US-009).
+    duration: category === 'mercenary-unit' || isMadeByCharge(entity) ? 0 : (entity.buildTime ?? entity.researchTime ?? null),
     producedBy: entity.producedBy ?? [],
     requires: entity.requires ?? [],
     appliesTo: entity.appliesTo ?? [],
@@ -101,18 +105,20 @@ export const toBuildEntity = (
     isVariant: entity.kind === 'building' && entity.upgradedFrom !== undefined,
     supplyProvided: toSupplyProvided(entity),
     economy: toEconomy(entity),
-    productionCharges: entity.productionCharges,
+    productionCharges: entity.productionCharges ?? PRODUCTION_CHARGES_OVERRIDES[entity.id],
+    ...toXolFields(entity),
   };
 };
 
 export const getCategory = (
-  entity: Pick<Entity, 'kind' | 'economy' | 'transformsInto'>,
+  entity: Pick<Entity, 'kind' | 'economy' | 'transformsInto' | 'mergedFrom'>,
   sideKind: SideKind,
 ): EntityCategory => {
   if (sideKind === 'mercenary' && entity.kind === 'building') return 'mercenary-building';
   if (sideKind === 'mercenary' && entity.kind === 'unit') return 'mercenary-unit';
   if (entity.kind === 'hero') return 'hero';
   if (entity.kind === 'upgrade') return entity.transformsInto === undefined ? 'research' : 'transformation';
+  if (entity.kind === 'unit' && entity.mergedFrom !== undefined) return 'merge';
   if (entity.kind === 'unit') return hasEconomyStat(entity.economy, FLUX_PER_MIN) ? 'harvester' : 'unit';
   return 'building';
 };

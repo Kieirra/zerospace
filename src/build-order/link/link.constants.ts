@@ -4,6 +4,9 @@ export const LINK_PREFIX = `${LINK_VERSION}.`;
 // Total of `timed` and `queued`.
 export const MAX_STEPS = 200;
 export const HASH_KEY = 'b';
+// producerIndex of the starting base and of a Replicate copy (US-009).
+export const BASE_INDEX = -1;
+export const REPLICATE_INDEX = -2;
 
 // Texts shown by the editor; {old} and {current} are filled by the link helpers.
 export const LINK_TEXTS = {

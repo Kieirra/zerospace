@@ -23,6 +23,8 @@ export interface BuildOrderItem {
   note?: number;
   // Unit or hero produced in a loop by the item.
   loop?: BuildOrderName;
+  // Replicate only: the unit it copies, `(on Synapse)` (US-009).
+  on?: BuildOrderName;
   // Groups started as soon as the item is started.
   trigger?: BuildOrderGroup[];
   // Source line, for the resolution errors.
@@ -106,6 +108,8 @@ export interface ResolvedBuildOrderItem {
   base?: number;
   note?: number;
   loop?: Entity;
+  // Replicate only: the unit it copies.
+  on?: Entity;
   trigger?: ResolvedBuildOrderGroup[];
 }
 

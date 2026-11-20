@@ -1,5 +1,6 @@
 import { STEAM_BUILD_ID } from '../../shared/site.constants.ts';
 import { toStepKind } from '../build-order.helpers.ts';
+import { REPLICATE_UID } from '../build-order.types.ts';
 import { sortTimed } from '../build-editor/build-editor.timed.ts';
 import { getDefaultHeroId, getHeroPool } from '../catalog/catalog.helpers.ts';
 import { HORIZON_SECONDS } from '../engine/engine.constants.ts';
@@ -88,13 +89,14 @@ const placeGroup = (state: ImportState, group: BoGroup, previous: PreviousGroup)
   return uids.length === 0 ? previous : { at, uids, event: 'done' };
 };
 
-const addCopies = (state: ImportState, { entityId, count }: BoItem, at: number) => {
-  const entity = state.context.catalog.get(entityId);
-  if (!entity || entityId === state.build.heroId) return [];
+// `Replicate (on X)` (US-009): one copy step of X per count, made by the top bar.
+const addCopies = (state: ImportState, { entityId, count, on }: BoItem, at: number) => {
+  const entity = state.context.catalog.get(on ?? entityId);
+  if (!entity || entityId === state.build.heroId || (on !== undefined && entity.replicateEnergy === undefined)) return [];
   const uids: string[] = [];
   for (let copy = 0; copy < count && state.stepCount < MAX_STEPS; copy += 1) {
     const steps = toStepKind(entity) === 'timed' ? state.build.timed : state.build.queued;
-    uids.push(addStep(state, steps, { entityId, at }));
+    uids.push(addStep(state, steps, { entityId: entity.id, at, ...(on !== undefined && { producerUid: REPLICATE_UID }) }));
   }
   return uids;
 };

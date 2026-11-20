@@ -1,17 +1,21 @@
 import { toSeconds, toTicks } from './engine.economy.ts';
 import type { ProductionCharges } from '../../wiki/wiki-data.types.ts';
+import type { ProductionChargesBoost } from '../build-order.types.ts';
 import type { ResolvedGameValues } from '../game-data/game-data.helpers.ts';
-import type { InstanceState, OrderState, SimulationState, StackState } from './engine.internal.types.ts';
-import type { StackGauge } from './engine.types.ts';
+import type { InstanceState, Modifiers, OrderState, SimulationState, StackState } from './engine.internal.types.ts';
+import type { SimulationContext, StackGauge } from './engine.types.ts';
 
-// Stacks of a mercenary building, received when it is ready: the charges of the data, else the game values.
+// Stacks of a mercenary building or charges of a Xol producer (US-009), received when it is ready: the charges of the
+// data, else the game values; raised by the boosts in force (Overclocked Production).
 export const createStacks = (
   values: ResolvedGameValues,
   readyTick: number,
   charges?: ProductionCharges,
+  boosts: ProductionChargesBoost[] = [],
 ): StackState => {
-  const max = charges?.max ?? values.mercenaryMaxStacks.value ?? 0;
-  const recharge = charges?.recharge ?? values.mercenaryStackRechargeSeconds.value;
+  const max = boosts.reduce((total, { maxDelta }) => total + maxDelta, charges?.max ?? values.mercenaryMaxStacks.value ?? 0);
+  const baseRecharge = charges?.recharge ?? values.mercenaryStackRechargeSeconds.value;
+  const recharge = baseRecharge === null ? null : boosts.reduce((seconds, { rechargeMultiplier }) => seconds * rechargeMultiplier, baseRecharge);
   const rechargeTicks = recharge === null ? null : toTicks(recharge);
   const count = Math.min(charges?.initial ?? values.mercenaryInitialStacks.value ?? max, max);
   return {
@@ -33,8 +37,21 @@ export const rechargeStacks = (state: SimulationState) => {
 
 export const isRecruit = (order: OrderState) => order.entity.category === 'mercenary-unit';
 
-// A recruit spends a stack of the building it is given to, never another one (Kieirra 2026-11-19). Unknown recharge:
-// a recruit beyond the stacks is still launched.
+// The production charge boosts in force for a producer.
+export const toChargeBoosts = (producerId: string, modifiers: Modifiers) =>
+  modifiers.productionCharges.filter(({ entityIds }) => entityIds.includes(producerId));
+
+// A boost applies to the producers completed after it (Kieirra 2026-11-20): one still being built gets its charges again.
+export const boostUnfinishedStacks = (state: SimulationState, context: SimulationContext) => {
+  for (const instance of state.instances) {
+    const entity = context.catalog.get(instance.originalEntityId);
+    if (instance.isComplete || !instance.stacks || !entity) continue;
+    instance.stacks = createStacks(context.values, instance.readyTick, entity.productionCharges, toChargeBoosts(entity.id, state.modifiers));
+  }
+};
+
+// A recruit, or a Xol unit (US-009), spends a stack of the building it is given to, never another one (Kieirra
+// 2026-11-19). Unknown recharge: a recruit beyond the stacks is still launched.
 export const hasStack = ({ stacks }: InstanceState) =>
   stacks !== undefined && (stacks.count > 0 || stacks.rechargeTicks === null);
 

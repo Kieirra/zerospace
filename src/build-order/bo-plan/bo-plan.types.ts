@@ -15,6 +15,8 @@ export interface BoItem {
   count: number;
   // Entity id of the unit of `(loop X)`.
   loop?: string;
+  // Replicate only (US-009): entity id of the unit of `(on X)`, its target.
+  on?: string;
   // `(-> A -> B)`, a chain of groups.
   trigger?: BoGroup[];
 }

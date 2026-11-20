@@ -81,5 +81,5 @@ describe('Game value resolution', () => {
 
 describe('Open data points', () => {
   it.todo('PO8: research location when the data gives two buildings or none (RESEARCH_LOCATIONS)');
-  it.todo('PO10: production rule of units without producer (Xol merges, Arkanid, Seedling, Valkaru Beast)');
+  it.todo('PO10: production rule of units without producer (Arkanid, Seedling, Valkaru Beast)');
 });

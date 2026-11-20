@@ -12,6 +12,8 @@ import type { PaletteContext, PaletteTabId } from './action-palette.helpers.ts';
 interface ActionPaletteProps {
   build: Build;
   context: PaletteContext;
+  // Step selected on the timeline: what the Replicate card copies (US-009).
+  selectedStepUid?: string | null;
   // Top right of the header, beside the title.
   headerAction?: ReactNode;
   onAdd: (entity: BuildEntity) => void;
@@ -25,14 +27,14 @@ const MIN_HEIGHT_PX = 240;
 // 'Add step': Find across every tab, or the tiles of the active tab (kept for the page) and its hotkeys.
 // Only the tiles scroll (Kieirra 2026-11-19), title, Find and tabs stay on top, the page never scrolls with them. Gutter
 // kept so the tiles never shift when a long tab brings the scrollbar, set in the right padding; thin thumb.
-export const ActionPalette = ({ build, context, headerAction, onAdd }: ActionPaletteProps) => {
+export const ActionPalette = ({ build, context, selectedStepUid = null, headerAction, onAdd }: ActionPaletteProps) => {
   const [activeTabId, setActiveTabId] = useState<PaletteTabId>(() => toDefaultTabId(build));
   const [query, setQuery] = useState('');
   const findRef = useRef<HTMLInputElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const maxHeight = useWindowFitHeight(sectionRef, BOTTOM_CHROME_PX, MIN_HEIGHT_PX);
   const baseId = useId();
-  const tabs = toPaletteTabs(build, context);
+  const tabs = toPaletteTabs(build, context, selectedStepUid);
   const activeTab = tabs.find(({ id }) => id === activeTabId) ?? tabs[0];
   const results = query.trim() === '' ? null : filterTiles(tabs, query);
   usePaletteHotkeys(activeTab?.tiles ?? [], onAdd, findRef);

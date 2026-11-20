@@ -61,6 +61,13 @@ const resolveEffects = (sources: MiscEffectSource[], values: DescriptionValues, 
         return { ...source, count: read(source.count) };
       case 'building-copies':
         return { ...source, copies: read(source.copies) };
+      case 'production-charges':
+        return {
+          kind: source.kind,
+          entityIds: source.entityIds,
+          maxDelta: read(source.maxDelta),
+          rechargeMultiplier: toMultiplier(source.recharge, read),
+        };
       default:
         return source;
     }

@@ -10,6 +10,7 @@ export const resolveRules = (factionId: string): GameRules => {
     requiresMode: { ...BASE_RULES.requiresMode, ...overrides.requiresMode },
     mercenaryRequired: overrides.mercenaryRequired ?? BASE_RULES.mercenaryRequired,
     mercenaryBuildingCopies: overrides.mercenaryBuildingCopies ?? BASE_RULES.mercenaryBuildingCopies,
+    mergeTimeDivisor: overrides.mergeTimeDivisor ?? BASE_RULES.mergeTimeDivisor,
     heroes: { ...BASE_RULES.heroes, ...overrides.heroes },
   };
 };

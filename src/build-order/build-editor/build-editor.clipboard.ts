@@ -1,4 +1,5 @@
 import { canProduceOn, toLaneProducers } from '../build-order.helpers.ts';
+import { REPLICATE_UID } from '../build-order.types.ts';
 import { MAX_STEPS } from '../link/link.constants.ts';
 import { resolveRules } from '../rules/rules.helpers.ts';
 import { createStepUids, toAllSteps, toOnceRuleReason, withOptional } from './build-editor.helpers.ts';
@@ -36,18 +37,20 @@ export const toClipboardSteps = (build: Pick<Build, 'timed' | 'queued'>, uids: I
 
 // Timed steps keep their gaps, the earliest one at the pointer time (else the latest click of the build). Units keep
 // their time and their loop, and go on the hovered lane when it can make them all, else on their lane when it is still
-// there, else Auto (Kieirra 2026-11-19).
+// there, else Auto (Kieirra 2026-11-19). A merge stays without lane, a Replicate copy a copy (US-009).
 export const toPastedSteps = (build: Build, clip: ClipboardSteps, target: PasteTarget, catalog: BuildCatalog): ClipboardResult => {
   const plan = toCopyPlan(build, clip, catalog);
   if (plan.status !== 'copy') return plan;
   const { kept, uids } = plan;
   const offset = (target.at ?? toLatestAt(build)) - Math.min(...kept.timed.map(({ at }) => at));
   const laneUids = new Set(toLaneProducers(build, catalog).map(({ uid }) => uid));
+  const isPinnable = (step: QueuedStep) => step.producerUid !== REPLICATE_UID && catalog.get(step.entityId)?.category !== 'merge';
   const canGoOnHovered = (step: QueuedStep) => {
     const entity = catalog.get(step.entityId);
     return target.laneUid !== null && entity !== undefined && canProduceOn(entity, target.laneUid, build, catalog);
   };
-  const hovered = kept.queued.every(canGoOnHovered) ? (target.laneUid ?? undefined) : undefined;
+  const pinnable = kept.queued.filter(isPinnable);
+  const hovered = pinnable.length > 0 && pinnable.every(canGoOnHovered) ? (target.laneUid ?? undefined) : undefined;
   const timed = kept.timed.map((step, index) =>
     withOptional<TimedStep, 'producerUid'>(
       { uid: uids[index], entityId: step.entityId, at: clampAt(step.at + offset) },
@@ -63,7 +66,7 @@ export const toPastedSteps = (build: Build, clip: ClipboardSteps, target: PasteT
         step.repeat,
       ),
       'producerUid',
-      hovered ?? keepLane(step.producerUid, laneUids),
+      isPinnable(step) ? (hovered ?? keepLane(step.producerUid, laneUids)) : keepLane(step.producerUid, laneUids),
     ),
   );
   return {
@@ -112,4 +115,4 @@ const toAllowedSteps = (build: Build, clip: ClipboardSteps, catalog: BuildCatalo
 };
 
 const keepLane = (producerUid: string | undefined, laneUids: Set<string>) =>
-  producerUid !== undefined && laneUids.has(producerUid) ? producerUid : undefined;
+  producerUid !== undefined && (laneUids.has(producerUid) || producerUid === REPLICATE_UID) ? producerUid : undefined;

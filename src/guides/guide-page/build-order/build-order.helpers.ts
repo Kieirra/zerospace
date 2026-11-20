@@ -1,6 +1,7 @@
 import { HEADQUARTER_IDS } from '../../guides.constants.ts';
 import { findClosestName, normalizeName } from '../../guides.helpers.ts';
 import { findBuildOrderBlocks } from '../../strip-build-order.ts';
+import { REPLICATE_TOPBAR_ID } from '../../../build-order/game-data/game-data.constants.ts';
 import { RESOURCES } from '../../../wiki/wiki.helpers.ts';
 import type { CostSegment, Entity } from '../../../wiki/wiki.types.ts';
 import type {
@@ -31,8 +32,8 @@ const CONDITION_PATTERN = /^when\s+(.+?):(?!\d)\s*(.*)$/;
 const ENTITY_CONDITION_PATTERN = /^(.+?)\s+(starts|done)$/;
 const RESOURCES_CONDITION_PATTERN = /^\d+\s+[a-z]+(?:\s+and\s+\d+\s+[a-z]+)*$/i;
 const TIMER_CONDITION_PATTERN = /^\d+:(\d{2})$/;
-// An item, its loop and its trigger: `2 Bestiary (loop Exalted) (-> 3 Legion Labourer)`.
-const SUFFIXES_PATTERN = /^((?:"[^"]*"|[^"(])*?)\s*(?:\(loop\s+([^()]*)\))?\s*(?:\((.*)\))?$/;
+// An item, its target, its loop and its trigger: `2 Bestiary (loop Exalted) (-> 3 Legion Labourer)`, `Replicate (on Synapse)`.
+const SUFFIXES_PATTERN = /^((?:"[^"]*"|[^"(])*?)\s*(?:\(on\s+([^()]*)\))?\s*(?:\(loop\s+([^()]*)\))?\s*(?:\((.*)\))?$/;
 const ITEM_PATTERN = /^(?:([1-9]\d*)\s+)?(?:"([^"]*)"|([^"()[\]^]+?))\s*(?:\[([a-z]+)\])?\s*(?:\^(\d+))?$/;
 const NAME_PATTERN = /^([^"()[\]^]+?)\s*(?:\[([a-z]+)\])?$/;
 const RESOLVABLE_KINDS: ResolvableKind[] = ['unit', 'hero', 'building', 'upgrade', 'topbar'];
@@ -154,13 +155,17 @@ export const resolveBuildOrder = (
       throw lineError(line, `"${name}" must appear earlier in the build order.`);
     return { type: 'entity', entity, event };
   };
-  const resolveItem = ({ count, target, note, loop, trigger, line }: BuildOrderItem): ResolvedBuildOrderItem => ({
-    count,
-    ...resolveTarget(target, line),
-    note,
-    loop: loop && see(findLoopEntity(loop, scope, line), line),
-    trigger: trigger?.map(resolveGroup),
-  });
+  const resolveItem = ({ count, target, note, on, loop, trigger, line }: BuildOrderItem): ResolvedBuildOrderItem => {
+    const resolved = resolveTarget(target, line);
+    return {
+      count,
+      ...resolved,
+      note,
+      on: on && findReplicateTarget(on, resolved.entity, 'text' in target ? target.text : target.name, scope, line),
+      loop: loop && see(findLoopEntity(loop, scope, line), line),
+      trigger: trigger?.map(resolveGroup),
+    };
+  };
   const resolveGroup = ({ condition, items }: BuildOrderGroup): ResolvedBuildOrderGroup => ({
     condition: condition && resolveCondition(condition),
     items: items.map(resolveItem),
@@ -277,7 +282,7 @@ const parseResources = (condition: string, line: number) =>
   }, []);
 
 const parseItem = (text: string, line: number, isTrigger: boolean): BuildOrderItem => {
-  const [, head, loop, trigger] = text.match(SUFFIXES_PATTERN) ?? [];
+  const [, head, on, loop, trigger] = text.match(SUFFIXES_PATTERN) ?? [];
   const item = head?.match(ITEM_PATTERN);
   const [, count, freeText, name, kind, note] = item ?? [];
   if (!item || (kind !== undefined && !isResolvableKind(kind))) throw lineError(line, `cannot read "${text}".`);
@@ -286,6 +291,7 @@ const parseItem = (text: string, line: number, isTrigger: boolean): BuildOrderIt
     count: count === undefined ? 1 : Number(count),
     target,
     note: note === undefined ? undefined : Number(note),
+    on: on === undefined ? undefined : parseName(on, text, line),
     loop: loop === undefined ? undefined : parseName(loop, text, line),
     trigger: trigger === undefined ? undefined : parseTrigger(trigger, line, isTrigger),
     line,
@@ -360,6 +366,14 @@ const findLoopEntity = (loop: BuildOrderName, scope: ResolutionScope, line: numb
   if (entity.kind !== 'unit' && entity.kind !== 'hero')
     throw lineError(line, `"${loop.name}" cannot be looped (not a unit or hero).`);
   return entity;
+};
+
+// `(on X)` only after Replicate, on a unit (US-009).
+const findReplicateTarget = (on: BuildOrderName, item: Entity | undefined, itemName: string, scope: ResolutionScope, line: number) => {
+  if (item?.id !== REPLICATE_TOPBAR_ID) throw lineError(line, `"${itemName}" cannot target a unit (only Replicate).`);
+  const target = findEntity(on, scope, line);
+  if (target.kind !== 'unit') throw lineError(line, `"${on.name}" cannot be replicated (not a unit).`);
+  return target;
 };
 
 const isResolvableKind = (kind: string): kind is ResolvableKind =>

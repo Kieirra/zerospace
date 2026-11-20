@@ -1,4 +1,5 @@
 import { canProduceOn, formatClock, toStepKind } from '../../build-order.helpers.ts';
+import { REPLICATE_UID } from '../../build-order.types.ts';
 import { LANE_ID_PREFIX } from '../../engine/engine.constants.ts';
 import { toLaneId } from '../../engine/engine.state.ts';
 import { toTimelineSeconds } from '../../timeline/timeline.helpers.ts';
@@ -14,7 +15,8 @@ export const REFUSED_DROP = 'refused';
 
 // What a drop does (Kieirra 2026-11-19): a mark moves by whole seconds, with the selection if in it, each from its origin
 // (toDragOrigin); units only, over another lane, are pinned there and shifted alike; a card lands at the pointer's time,
-// a unit card on the lane under it if it can make it; a click handle moves its step alone. null: nothing, or a card refused.
+// a unit card on the lane under it if it can make it, a merge card whatever the lane (US-009); a click handle moves its
+// step alone. null: nothing, or a card refused.
 export const toDropAction = (
   build: Build,
   result: SimulationResult,
@@ -26,13 +28,14 @@ export const toDropAction = (
   if (source.kind === 'click') return toClickAction(build, result, source.uid, target.delta);
   if (source.kind === 'step') {
     const uids = selectedUids.has(source.uid) ? [...selectedUids] : [source.uid];
-    if (isLaneChange(build, uids, source.laneId, target.laneId)) return toLaneMoveAction(build, result, catalog, uids, target);
+    if (isLaneChange(build, catalog, uids, source.laneId, target.laneId)) return toLaneMoveAction(build, result, catalog, uids, target);
     return target.delta === 0 ? null : toShiftAction(build, result, uids, source.uid, target.delta);
   }
   const entity = catalog.get(source.entityId);
   if (!entity) return null;
   const at = clampAt(target.t);
   if (toStepKind(entity) === 'timed') return { type: 'add-timed', entityId: entity.id, at };
+  if (entity.category === 'merge') return { type: 'add-queued', entityId: entity.id, at };
   const laneUid = toLaneUid(target.laneId);
   return laneUid !== null && canProduceOn(entity, laneUid, build, catalog)
     ? { type: 'add-queued', entityId: entity.id, producerUid: laneUid, at }
@@ -122,9 +125,15 @@ const toClickAction = (build: Build, result: SimulationResult, uid: string, delt
   return build.timed.some((step) => step.uid === uid) ? { type: 'set-at', uid, at } : { type: 'set-queued-at', uids: [uid], at };
 };
 
-// Units only, released over another lane than the grabbed one's: a mixed selection only moves in time.
-const isLaneChange = (build: Build, uids: string[], from: string | null, to: string | null) =>
-  to !== null && to !== from && uids.every((uid) => build.queued.some((step) => step.uid === uid));
+// Units only, released over another lane than the grabbed one's: a mixed selection only moves in time, so does one with
+// a merge or a Replicate copy, never pinned (US-009).
+const isLaneChange = (build: Build, catalog: BuildCatalog, uids: string[], from: string | null, to: string | null) =>
+  to !== null &&
+  to !== from &&
+  uids.every((uid) => {
+    const step = build.queued.find((candidate) => candidate.uid === uid);
+    return step !== undefined && step.producerUid !== REPLICATE_UID && catalog.get(step.entityId)?.category !== 'merge';
+  });
 
 // The same whole seconds for every step, each from its origin; a step without one stays.
 const toShiftAction = (build: Build, result: SimulationResult, uids: string[], grabbedUid: string, delta: number): EditorAction | null => {

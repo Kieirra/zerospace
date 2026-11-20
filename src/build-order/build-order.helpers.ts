@@ -1,6 +1,7 @@
 import { BASE_UID } from './build-order.types.ts';
 import { getStartingBuildingId } from './catalog/catalog.helpers.ts';
 import { WAIT_REASONS } from './engine/engine.constants.ts';
+import { toTicks } from './engine/engine.economy.ts';
 import type { Build, BuildCatalog, BuildEntity, EntityCategory, Side, TimedStep } from './build-order.types.ts';
 import type { OrderTiming, WaitReason } from './engine/engine.types.ts';
 
@@ -40,9 +41,9 @@ export const toCatalogMap = (entities: BuildEntity[]): BuildCatalog =>
 
 export type StepKind = 'timed' | 'queued';
 
-const QUEUED_CATEGORIES = new Set<EntityCategory>(['unit', 'harvester', 'hero', 'mercenary-unit']);
+const QUEUED_CATEGORIES = new Set<EntityCategory>(['unit', 'harvester', 'hero', 'mercenary-unit', 'merge']);
 
-// Units, harvesters, Altar heroes and recruits are made as soon as possible; everything else has a click time.
+// Units, harvesters, Altar heroes, recruits and merges are made as soon as possible; everything else has a click time.
 export const toStepKind = ({ category }: Pick<BuildEntity, 'category'>): StepKind =>
   QUEUED_CATEGORIES.has(category) ? 'queued' : 'timed';
 
@@ -60,6 +61,13 @@ export const toBuildingCopies = (buildingId: string, entities: BuildEntity[], fa
   entities
     .flatMap(({ effects = [] }) => effects)
     .flatMap((effect) => (effect.kind === 'building-copies' && effect.entityId === buildingId ? [effect.copies] : []))[0] ?? fallback;
+
+// A loop is a unit's only (a harvester has its cap, a recruit no duration, a merge or a copy its inputs), and a unit made
+// in no time would loop forever in one tick, unless each of its producers waits for a charge (Xol, US-009).
+export const canRepeat = (entity: BuildEntity, catalog: BuildCatalog) =>
+  entity.category === 'unit' &&
+  (toTicks(entity.duration ?? 0) > 0 ||
+    (entity.producedBy.length > 0 && entity.producedBy.every((id) => catalog.get(id)?.productionCharges !== undefined)));
 
 // Shared by the palette (disabled tiles), the reducer (invariant) and the engine analysis.
 export const canProduce = (unit: Pick<BuildEntity, 'producedBy'>, producer: Pick<BuildEntity, 'id'>, transformedInto: string[]) =>

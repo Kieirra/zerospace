@@ -14,8 +14,9 @@ export interface SimulationContext {
   heroPoolIds: string[];
 }
 
-// requirement: a required building not finished yet; reserved: held behind an order that saves for its resources.
-export type WaitReason = 'hexite' | 'flux' | 'supply' | 'producer-busy' | 'requirement' | 'reserved' | 'stack';
+// requirement: a required building not finished yet; reserved: held behind an order that saves for its resources;
+// units: a merge or a Replicate copy without the units it needs (US-009).
+export type WaitReason = 'hexite' | 'flux' | 'supply' | 'producer-busy' | 'requirement' | 'reserved' | 'stack' | 'units';
 
 export type Resource = 'hexite' | 'flux';
 
@@ -32,6 +33,14 @@ export interface OrderTiming {
   endAt: number | null;
   // Seconds between click and start, by reason.
   waits: Partial<Record<WaitReason, number>>;
+  // Merge (US-009): the units it took, by order that made them.
+  inputs?: { stepUid: string; occurrence: number; laneId: string; readyAt: number; count: number }[];
+  // Unit, merge or copy: the merges that took its units.
+  takenBy?: { stepUid: string; startAt: number; count: number }[];
+  // Merge that never starts: each input type, how many it needs, how many are free and which merges took the others.
+  inputStatus?: { entityId: string; count: number; free: number; takenBy: { stepUid: string; startAt: number; count: number }[] }[];
+  // Replicate copy: its top bar energy.
+  energy?: number;
 }
 
 export interface StepTiming {
@@ -109,7 +118,10 @@ export type DiagnosticCode =
   | 'hero-not-buildable'
   | 'unknown-stack-rule'
   | 'duplicate-talent'
-  | 'never-applies';
+  | 'never-applies'
+  | 'missing-merge-input'
+  | 'owner-limit'
+  | 'energy-not-checked';
 
 export type DiagnosticSeverity = 'error' | 'warning' | 'info';
 

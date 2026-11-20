@@ -166,7 +166,7 @@ describe('Exalted Arandi, main build order', () => {
 
 describe('Paradox Opening, main build order (CA4)', () => {
   const build = convert('paradox-opening', PARADOX_HEADER);
-  const orphans = ['synapse', 'defiant', 'echo', 'paradox', 'eradicator', 'aegis'].map((slug) => `the-xol/unit/${slug}`);
+  const merges = ['synapse', 'defiant', 'echo', 'paradox', 'eradicator', 'aegis'].map((slug) => `the-xol/unit/${slug}`);
 
   // Kieirra 2026-11-19: the order of the build order is kept, the World Engine waits for the Harvester to start.
   it('should start its first group in the order of the build order: Harvester, World Engine, Power Core, Penumbra', () => {
@@ -177,21 +177,32 @@ describe('Paradox Opening, main build order (CA4)', () => {
     expect(new Set(starts).size).toBe(starts.length);
   });
 
-  it('should lose Replicate and keep the units no building of the build makes', () => {
-    expect(stepsOf(build, 'the-xol/topbar/replicate')).toEqual([]);
-    expect(orphans.every((entityId) => stepsOf(build, entityId).length > 0)).toBe(true);
+  // US-009: the merges and `Replicate (on Synapse)` are kept.
+  it('should keep the merges and the copy of a Synapse (CA9)', () => {
+    expect(merges.every((entityId) => stepsOf(build, entityId).length > 0)).toBe(true);
+    expect(build.queued.filter(({ producerUid }) => producerUid === 'replicate').map(({ entityId }) => entityId)).toEqual(['the-xol/unit/synapse']);
     expect(build.heroId).toBe('arandi/hero/iolin');
   });
 
-  it('should open in the editor without these units, every other step kept', () => {
+  it('should start each merge after its inputs, and warn on the 2nd Paradox (CA9)', () => {
+    const result = simulateReal(build);
+    const started = result.orders.filter(({ inputs, startAt }) => inputs !== undefined && startAt !== null);
+    const [, secondParadox] = stepsOf(build, 'the-xol/unit/paradox');
+
+    expect(started.length).toBeGreaterThan(0);
+    expect(started.every(({ inputs = [], startAt }) => inputs.every(({ readyAt }) => readyAt <= (startAt ?? 0)))).toBe(true);
+    expect(result.steps.find(({ stepUid }) => stepUid === secondParadox.uid)?.diagnostics.map(({ message }) => message)).toContain(
+      '1 Paradox at a time in game: the tool never loses units.',
+    );
+  });
+
+  it('should open in the editor with every step kept', () => {
     const decoded = decodeBuildCode(encodeBuild(build), { factionIds: ['the-xol'], mercenaryIds: ['arandi'] });
     if (decoded.status !== 'ok') throw new Error('invalid link');
     const opened = resolveBuildLink(decoded.link, getCatalog('the-xol'), getCatalog('arandi'));
 
-    expect(opened.build.queued.filter(({ entityId }) => orphans.includes(entityId))).toEqual([]);
-    expect(opened.build.timed.length + opened.build.queued.length).toBe(
-      build.timed.length + build.queued.length - orphans.flatMap((entityId) => stepsOf(build, entityId)).length,
-    );
+    expect(opened.build.timed.length + opened.build.queued.length).toBe(build.timed.length + build.queued.length);
+    expect(opened.build.queued.filter(({ producerUid }) => producerUid === 'replicate')).toHaveLength(1);
     expect(opened.build).toMatchObject({ title: 'Paradox Opening', author: 'Aureil', factionId: 'the-xol', mercenaryId: 'arandi' });
   });
 });

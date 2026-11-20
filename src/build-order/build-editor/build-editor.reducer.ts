@@ -9,6 +9,7 @@ import {
   setQueuedAt,
   setQueuedProducer,
   setQueuedRepeat,
+  setReplicateTarget,
   shiftQueuedAt,
 } from './build-editor.queued.ts';
 import { addTimed, setTimedAt, setTimedProducer, shiftTimedAt } from './build-editor.timed.ts';
@@ -54,6 +55,8 @@ export type EditorAction =
     }
   | { type: 'set-queued-at'; uids: string[]; at: number | null }
   | { type: 'set-repeat'; uids: string[]; repeat: boolean }
+  // The unit a Replicate copy targets (US-009).
+  | { type: 'set-replicate-target'; uid: string; entityId: string }
   | { type: 'remove-steps'; uids: string[]; catalog: BuildCatalog }
   | { type: 'paste-steps'; steps: ClipboardSteps; target: PasteTarget; catalog: BuildCatalog }
   | { type: 'duplicate-steps'; uids: string[]; catalog: BuildCatalog };
@@ -113,6 +116,8 @@ export const editorReducer = (state: EditorState, action: EditorAction): EditorS
       return toState(state, setQueuedAt(build, action.uids, action.at));
     case 'set-repeat':
       return toState(state, setQueuedRepeat(build, action.uids, action.repeat));
+    case 'set-replicate-target':
+      return toState(state, setReplicateTarget(build, action.uid, action.entityId));
     case 'remove-steps':
       return toState(state, withoutOrphans(removeSteps(build, action.uids), action.catalog));
     case 'paste-steps':

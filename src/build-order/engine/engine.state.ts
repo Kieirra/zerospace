@@ -39,7 +39,8 @@ export const createState = (
     setupHero,
     effects: createEffectSchedule(plans),
     effectCursor: 0,
-    modifiers: { fluxIncomePercent: 0, costs: [], durations: [], spawnOnFinish: [] },
+    modifiers: { fluxIncomePercent: 0, costs: [], durations: [], spawnOnFinish: [], productionCharges: [] },
+    army: new Map(),
   };
   const starting = context.startingBuildingId ? context.catalog.get(context.startingBuildingId) : undefined;
   if (starting) addStartingInstance(state, starting, context);

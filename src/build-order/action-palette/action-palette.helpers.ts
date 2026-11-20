@@ -11,10 +11,13 @@ import {
 } from '../build-order.helpers.ts';
 import { BUILD_FULL_TEXT } from '../build-editor/build-editor.constants.ts';
 import { isEmptyBuild, isFullBuild, toAllSteps, toOnceRuleReason } from '../build-editor/build-editor.helpers.ts';
+import { toMergeRecipeLine } from '../catalog/catalog.merges.ts';
 import { toMissingRequires } from '../engine/engine.analysis.ts';
 import { missingRequirement } from '../engine/engine.diagnostics.ts';
+import { toUnobtainableInputs } from '../engine/engine.merges.ts';
 import { toBuildScope, toNames } from '../engine/engine.placement.ts';
-import { toMiscLabelParts, toMiscOrder } from './action-palette.misc.ts';
+import { MERGE_ORDER } from '../game-data/game-data.constants.ts';
+import { toMiscLabelParts, toMiscOrder, toTopBarTiles } from './action-palette.misc.ts';
 import type { Build, BuildCatalog, BuildEntity, EntityCategory } from '../build-order.types.ts';
 import type { GameRules } from '../rules/rules.data.ts';
 
@@ -28,6 +31,10 @@ export interface PaletteTileData {
   // Why it cannot be added now (Kieirra 2026-11-19): the tile is disabled; null when it can.
   disabledReason: string | null;
   status: TileStatus;
+  // Title of the section the tile opens or belongs to in its tab ('MERGE', 'TOP BAR', US-009); none for most tabs.
+  section?: string;
+  // Lines the tile shows in place of its supply: the recipe of a merge, the energy of a Replicate copy.
+  lines?: string[];
 }
 
 export interface PaletteTab {
@@ -43,7 +50,8 @@ export interface PaletteContext {
   startingBuildingId?: string;
 }
 
-export const toPaletteTabs = (build: Build, context: PaletteContext): PaletteTab[] => {
+// `selectedStepUid`: the step selected on the timeline, the target of the Replicate card (US-009).
+export const toPaletteTabs = (build: Build, context: PaletteContext, selectedStepUid: string | null = null): PaletteTab[] => {
   const entities = [...context.catalog.values()].sort(byOrderThenName);
   const toTiles = (categories: EntityCategory[], sideId?: string) =>
     entities
@@ -53,11 +61,19 @@ export const toPaletteTabs = (build: Build, context: PaletteContext): PaletteTab
   const heroes = context.rules.heroes.paidHeroSlots.value > 0 ? toTiles(['hero'], build.factionId) : [];
   const tabs: PaletteTab[] = [
     { id: 'buildings', label: 'Buildings', tiles: toTiles(['building']) },
-    { id: 'units', label: 'Units', tiles: [...toUnitOrder(toTiles(['harvester', 'unit']), context.startingBuildingId), ...heroes] },
+    {
+      id: 'units',
+      label: 'Units',
+      tiles: [...toUnitOrder(toTiles(['harvester', 'unit']), context.startingBuildingId), ...toMergeTiles(toTiles(['merge']), context.catalog), ...heroes],
+    },
     { id: 'research', label: 'Research', tiles: toResearchOrder(toTiles(['research', 'transformation']), context.catalog) },
     // Same label for every mercenary side (Kieirra 2026-11-19): the tiles are those of the chosen one.
     { id: 'mercenary', label: 'Merc', tiles: toTiles(['mercenary-building', 'mercenary-unit']) },
-    { id: 'misc', label: 'Misc', tiles: toMiscOrder(toTiles(['talent', 'event']), build.factionId) },
+    {
+      id: 'misc',
+      label: 'Misc',
+      tiles: [...toMiscOrder(toTiles(['talent', 'event']), build.factionId), ...toTopBarTiles(build, context.catalog, selectedStepUid)],
+    },
   ];
   return tabs.filter(({ tiles }) => tiles.length > 0);
 };
@@ -76,11 +92,15 @@ export const toTileDisabledReason = (entity: BuildEntity, build: Build, context:
   const { catalog, rules } = context;
   if (isFullBuild(build)) return BUILD_FULL_TEXT;
   const others = toAllSteps(build).flatMap(({ entityId }) => catalog.get(entityId) ?? []);
-  if (toStepKind(entity) === 'queued' && entity.producedBy.length === 0) return 'Producer unknown in the game data.';
-  if (toStepKind(entity) === 'queued' && toCapableProducerUids(entity, build, catalog).length === 0) {
-    return `Build a ${joinNames(toNames(entity.producedBy, catalog), 'or')} first.`;
-  }
   const { available } = toBuildScope(build, catalog);
+  const isQueued = toStepKind(entity) === 'queued';
+  // A merge has no producer: the producers of its tier 1 units (US-009).
+  const producerIds =
+    entity.category === 'merge' ? toUnobtainableInputs(entity, available, catalog).flatMap(({ producedBy }) => producedBy) : entity.producedBy;
+  if (isQueued && entity.category !== 'merge' && producerIds.length === 0) return 'Producer unknown in the game data.';
+  if (isQueued && producerIds.length > 0 && (entity.category === 'merge' || toCapableProducerUids(entity, build, catalog).length === 0)) {
+    return `Build a ${joinNames(toNames([...new Set(producerIds)], catalog), 'or')} first.`;
+  }
   const missing = toMissingRequires(entity.requires, rules.requiresMode[entity.kind].value, (id) => available.has(id));
   if (missing) return missingRequirement(toNames(missing.ids, catalog), missing.conjunction).message;
   return toOnceRuleReason(entity, others, build, rules);
@@ -100,15 +120,22 @@ export const findTileByHotkey = (tiles: PaletteTileData[], key: string) =>
 
 // 'Add Barracks, 75 Hexite, 0:35, hotkey D', 'Add Thrall, 50 Hexite, 2 supply, 0:30, hotkey Q',
 // 'Add Lore of Flux, Level 2, +3 Harvesters, +10% Flux income'
-export const toTileLabel = ({ entity, disabledReason }: PaletteTileData) =>
+export const toTileLabel = ({ entity, disabledReason, lines }: PaletteTileData) =>
   [
     `Add ${entity.displayName}`,
     ...(isMiscCategory(entity) ? toMiscLabelParts(entity) : toCostLabelParts(entity)),
+    ...(lines ?? []),
     ...(disabledReason === null ? [] : [disabledReason]),
   ].join(', ');
 
 // An empty build starts on the harvesters: the empty list proposes the harvester hotkey.
 export const toDefaultTabId = (build: Build): PaletteTabId => (isEmptyBuild(build) ? 'units' : 'buildings');
+
+// Merges of the Units tab, in their section, with their recipe (US-009).
+const toMergeTiles = (tiles: PaletteTileData[], catalog: BuildCatalog) =>
+  [...tiles]
+    .sort((a, b) => MERGE_ORDER.indexOf(a.entity.id) - MERGE_ORDER.indexOf(b.entity.id))
+    .map((tile): PaletteTileData => ({ ...tile, section: 'MERGE', lines: [toMergeRecipeLine(tile.entity, catalog)] }));
 
 const toCostLabelParts = (entity: BuildEntity) => [
   ...toCostParts(entity.cost),

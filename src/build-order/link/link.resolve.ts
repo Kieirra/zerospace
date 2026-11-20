@@ -1,17 +1,18 @@
 import { STEAM_BUILD_ID } from '../../shared/site.constants.ts';
 import { MAX_AUTHOR_LENGTH, MAX_TITLE_LENGTH } from '../build-order.constants.ts';
 import { isBuildingCategory, toCatalogMap, toStepKind } from '../build-order.helpers.ts';
-import { BASE_UID } from '../build-order.types.ts';
+import { BASE_UID, REPLICATE_UID } from '../build-order.types.ts';
 import { dropOrphanUnits } from '../build-editor/build-editor.queued.ts';
 import { clampAt, sortTimed } from '../build-editor/build-editor.timed.ts';
 import { getDefaultHeroId, getHeroPool } from '../catalog/catalog.helpers.ts';
 import { resolveRules } from '../rules/rules.helpers.ts';
+import { BASE_INDEX, REPLICATE_INDEX } from './link.constants.ts';
 import { parseEntityRef } from './link.refs.ts';
 import type { BuildLink, QueuedStep, ResolvedBuild, SideCatalog, TimedStep } from '../build-order.types.ts';
 
 // Tolerant: unknown steps, and units no building of the build can make, are dropped without a message; every other
 // odd value falls back to a valid one (a producer out of range or not a building is Auto, a time is held to whole seconds, a loop
-// on anything but a unit is dropped).
+// on anything but a unit is dropped). A merge has no producer; a Replicate copy of a unit without energy cost is dropped (US-009).
 export const resolveBuildLink = (link: BuildLink, factionCatalog: SideCatalog, mercenaryCatalog: SideCatalog | null): ResolvedBuild => {
   const catalog = toCatalogMap([...factionCatalog.entities, ...(mercenaryCatalog?.entities ?? [])]);
   const toEntity = (ref: string, kind: 'timed' | 'queued') => {
@@ -30,7 +31,7 @@ export const resolveBuildLink = (link: BuildLink, factionCatalog: SideCatalog, m
   timedEntities.forEach((entity, index) => entity && uidByLinkIndex.set(index, nextUid()));
   const toProducerUid = (producerIndex: number | null) => {
     if (producerIndex === null) return undefined;
-    if (producerIndex === -1) return BASE_UID;
+    if (producerIndex === BASE_INDEX) return BASE_UID;
     const entity = timedEntities[producerIndex];
     return entity && isBuildingCategory(entity) ? uidByLinkIndex.get(producerIndex) : undefined;
   };
@@ -43,11 +44,12 @@ export const resolveBuildLink = (link: BuildLink, factionCatalog: SideCatalog, m
   });
   const queued = link.queued.flatMap((step, index): QueuedStep[] => {
     const entity = queuedEntities[index];
-    if (!entity) return [];
-    const producerUid = toProducerUid(step.producerIndex);
+    const isCopy = step.producerIndex === REPLICATE_INDEX;
+    if (!entity || (isCopy && entity.replicateEnergy === undefined)) return [];
+    const producerUid = isCopy ? REPLICATE_UID : entity.category === 'merge' ? undefined : toProducerUid(step.producerIndex);
     const at = step.at === null ? undefined : clampAt(step.at);
-    // A loop is a unit's only: a harvester, an Altar hero or a recruit is made once.
-    const repeat = step.repeat && entity.category === 'unit';
+    // A loop is a unit's only: a harvester, an Altar hero, a recruit, a merge or a copy is made once.
+    const repeat = step.repeat && entity.category === 'unit' && !isCopy;
     return [
       {
         uid: nextUid(),

@@ -24,7 +24,8 @@ export type MiscEffectSource =
   | { kind: 'spawn-harvesters' }
   | { kind: 'spawn-units'; entityId: string; count: Amount; waitsForSupply: boolean }
   | { kind: 'spawn-on-finish'; entityId: string; trigger: SpawnTrigger }
-  | { kind: 'building-copies'; entityId: string; copies: Amount };
+  | { kind: 'building-copies'; entityId: string; copies: Amount }
+  | { kind: 'production-charges'; entityIds: string[]; maxDelta: Amount; recharge: MultiplierOf };
 
 export interface MiscSource {
   effects: MiscEffectSource[];
@@ -44,6 +45,7 @@ export interface MiscEventSource extends MiscSource {
 const RESEARCH: EffectTarget = { categories: ['research'] };
 const OUTPOST = 'free-corsairs/building/free-corsair-mercenary-outpost';
 const REINFORCEMENTS_NOTE = 'Cast refused without free supply for the whole group.';
+const XOL_PRODUCERS = ['the-xol/building/gyroforge', 'the-xol/building/spectral-foundry', 'the-xol/building/xyther-assembler'];
 
 // Key: wiki talent id. Talents are instant and cost one talent point, no resource (game files, build 26680201).
 export const MISC_TALENTS: Record<string, MiscSource> = {
@@ -127,6 +129,41 @@ export const MISC_TALENTS: Record<string, MiscSource> = {
     status: 'confirmed',
     owner: 'Kieirra',
     note: 'No supply check.',
+  },
+  'the-xol/talent/instant-power-core': {
+    effects: [{ kind: 'duration', target: { entityIds: ['the-xol/building/power-core'] }, multiplier: { reductionPercent: 99.5 } }],
+    lines: ['Power Cores build instantly'],
+    status: 'confirmed',
+    owner: 'Kieirra',
+    note: 'Kieirra 2026-11-20: Power Core time x 0.005 (RI_Talent_Xol_MP_InstantPowerCore).',
+  },
+  'the-xol/talent/overclocked-production': {
+    effects: [
+      {
+        kind: 'production-charges',
+        entityIds: XOL_PRODUCERS,
+        maxDelta: { key: 'charges' },
+        recharge: { speedPercent: { key: 'rate' } },
+      },
+    ],
+    lines: ['+{charges} max production charges', '+{rate}% charge recharge speed'],
+    status: 'confirmed',
+    owner: 'Kieirra',
+    note: 'Kieirra 2026-11-20: producers completed after the talent only.',
+  },
+  'the-xol/talent/improved-systems': {
+    effects: [{ kind: 'duration', target: { categories: ['merge'] }, multiplier: { reductionPercent: { key: 'merge_time' } } }],
+    lines: ['-{merge_time}% merging time'],
+    status: 'confirmed',
+    owner: 'Kieirra',
+    note: 'Kieirra 2026-11-20: Overclock duration ignored (combat).',
+  },
+  'the-xol/talent/efficient-replication': {
+    effects: [{ kind: 'duration', target: { categories: ['replicate'] }, multiplier: { reductionPercent: { key: 'timereduc' } } }],
+    lines: ['-{timereduc}% Replicate time'],
+    status: 'confirmed',
+    owner: 'Kieirra',
+    note: 'Kieirra 2026-11-20: 16 s to 6 s (RI_Talent_Xol_MP_ReplicateTimeReduce).',
   },
 };
 

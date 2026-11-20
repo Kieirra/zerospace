@@ -22,9 +22,11 @@ interface PaletteTileProps {
 // The tile shows the price and the supply a unit takes (Mazar 2026-11-17); build time and what it needs come in a
 // tooltip on hover or focus.
 export const PaletteTile = ({ tile, onAdd }: PaletteTileProps) => {
-  const { entity, disabledReason, status } = tile;
+  const { entity, disabledReason, status, lines } = tile;
   const isGreyed = disabledReason !== null && status !== 'free-setup';
   const isDisabled = disabledReason !== null;
+  // The Replicate card copies the selected step: nothing to place by a drop (US-009).
+  const isDraggable = !isDisabled && entity.category !== 'replicate';
   const [anchor, setAnchor] = useState<DOMRect | null>(null);
   const show = (element: HTMLElement) => setAnchor(element.getBoundingClientRect());
   const hide = () => setAnchor(null);
@@ -35,7 +37,7 @@ export const PaletteTile = ({ tile, onAdd }: PaletteTileProps) => {
       title={disabledReason ?? undefined}
       disabled={isDisabled}
       onClick={() => onAdd(entity)}
-      draggable={!isDisabled}
+      draggable={isDraggable}
       onDragStart={(event) => {
         hide();
         draggedEntity.id = entity.id;
@@ -64,11 +66,15 @@ export const PaletteTile = ({ tile, onAdd }: PaletteTileProps) => {
         )}
       </span>
       <span className="leading-tight font-semibold hyphens-auto [overflow-wrap:break-word]">{entity.displayName}</span>
-      {/* One resource a line, never cut (Kieirra 2026-11-19); a Misc step: its level and effects (US-008). */}
+      {/* One resource a line, never cut (Kieirra 2026-11-19); a Misc step: its level and effects (US-008); a merge: its
+          recipe before its cost, in place of its supply; the Replicate card: its energy (US-009). */}
       <span className="flex flex-col">
+        {lines?.map((line) => (
+          <span key={line}>{line}</span>
+        ))}
         {entity.cost.hexite > 0 && <CostAmount resource="hexite" amount={entity.cost.hexite} />}
         {entity.cost.flux > 0 && <CostAmount resource="flux" amount={entity.cost.flux} />}
-        {entity.supply > 0 && <SupplyAmount amount={entity.supply} />}
+        {entity.supply > 0 && !lines && <SupplyAmount amount={entity.supply} />}
         {toMiscLabelParts(entity).map((line) => (
           <span key={line}>{line}</span>
         ))}

@@ -1,4 +1,6 @@
 import { isMiscCategory, toCatalogMap } from '../build-order.helpers.ts';
+import { REPLICATE_UID } from '../build-order.types.ts';
+import { REPLICATE_TOPBAR_ID } from '../game-data/game-data.constants.ts';
 import { toUidNumber } from '../build-editor/build-editor.helpers.ts';
 import { toAfterStart, toWholeSeconds } from './bo-plan.anchors.ts';
 import { toBoName } from './bo-plan.names.ts';
@@ -26,6 +28,8 @@ interface ExportStep {
   uid: string;
   entityId: string;
   at: number;
+  // A Replicate copy (US-009): its target, the step is written `Replicate (on X)`.
+  on?: string;
 }
 
 // The build as a ```bo build order (Kieirra 2026-11-19), the reverse of toBuild: steps by time, then in their order.
@@ -33,7 +37,8 @@ interface ExportStep {
 // item of the group (`(-> …)`); copies at the same time count (`2 Bestiary`). Else a new group: `->` when it is
 // clicked once the group before it is done, `when X starts:` or `when X done:` on the first step of an entity, else
 // `when m:ss:`. A base opens a new group and a new phase. A unit in a loop is `(loop X)` on its building; the copies
-// of a loop, the setup hero, the talents and the events (Kieirra 2026-11-20) are never written.
+// of a loop, the setup hero, the talents and the events (Kieirra 2026-11-20) are never written. A copy is
+// `Replicate (on X)`, copies of one target at the same time count (`2 Replicate (on Synapse)`).
 export const toBoPlan = (build: Build, result: SimulationResult, catalogs: BoCatalogs): BoPlan => {
   const catalog = toCatalogMap([...catalogs.faction.entities, ...(catalogs.mercenary?.entities ?? [])]);
   const timings = new Map(result.steps.map((timing) => [timing.stepUid, timing]));
@@ -45,16 +50,21 @@ export const toBoPlan = (build: Build, result: SimulationResult, catalogs: BoCat
     return starts.length === 0 ? null : toAfterStart(Math.max(...starts));
   };
   const nextAt = (draft: ItemDraft) => afterStartOf(draft) ?? draft.at + 1;
+  // Time `->` reads after the group: the end of its direct steps; null when none ends.
+  const doneAtOf = ({ items }: GroupDraft) => {
+    const ends = endsOf(items.flatMap(({ uids }) => uids));
+    return ends.length === 0 ? null : toWholeSeconds(Math.max(...ends));
+  };
   const loops = toLoopsByBuilding(build, timings);
   const firstUids = new Map<string, string>();
   const phases: GroupDraft[][] = [];
   let group: GroupDraft | null = null;
   let last: ItemDraft | null = null;
 
-  const toDraft = ({ uid, entityId, at }: ExportStep): ItemDraft => {
+  const toDraft = ({ uid, entityId, at, on }: ExportStep): ItemDraft => {
     if (!firstUids.has(entityId)) firstUids.set(entityId, uid);
     const loop = loops.get(uid);
-    return { item: { entityId, count: 1, ...(loop && { loop }) }, at, uids: [uid] };
+    return { item: { entityId, count: 1, ...(on && { on }), ...(loop && { loop }) }, at, uids: [uid] };
   };
 
   const toAnchor = (at: number, before: GroupDraft | null): BoAnchor => {
@@ -66,7 +76,7 @@ export const toBoPlan = (build: Build, result: SimulationResult, catalogs: BoCat
 
   const steps = toExportSteps(build, timings, catalog);
   for (const [index, step] of steps.entries()) {
-    if (last && last.item.entityId === step.entityId && last.at === step.at) {
+    if (last && isSameItem(last.item, step) && last.at === step.at) {
       last.item.count += 1;
       last.uids.push(step.uid);
       continue;
@@ -76,11 +86,12 @@ export const toBoPlan = (build: Build, result: SimulationResult, catalogs: BoCat
     // of this one: toBuild placed this one as the trigger of the item before, the other one as the next item.
     const hasRival = steps
       .slice(index + 1)
-      .some((other) => other.at === step.at && other.entityId !== step.entityId && !isBaseStep(other, catalog));
-    const copies = steps.filter(({ entityId, at }) => entityId === step.entityId && at === step.at).map(({ uid }) => uid);
+      .some((other) => other.at === step.at && !isSameItem(other, step) && !isBaseStep(other, catalog));
+    const copies = steps.filter((other) => isSameItem(other, step) && other.at === step.at).map(({ uid }) => uid);
     const continuesAt = afterStartOf({ item: { entityId: step.entityId, count: 1 }, at: step.at, uids: copies });
     const isTriggerFirst = hasRival && !steps.some(({ at }) => at === continuesAt);
-    const target = isBase || group === null ? null : findPlace(group, { at: step.at, isTriggerFirst }, nextAt, afterStartOf);
+    const isAfterGroup = group !== null && doneAtOf(group) === step.at;
+    const target = isBase || group === null ? null : findPlace(group, { at: step.at, isTriggerFirst, isAfterGroup }, nextAt, afterStartOf);
     if (target) {
       last = toDraft(step);
       target.push(last);
@@ -105,21 +116,25 @@ export const toBoPlan = (build: Build, result: SimulationResult, catalogs: BoCat
 
 const AFTER_PREVIOUS: BoAnchor = { kind: 'after-previous' };
 
+const isSameItem = (a: Pick<BoItem, 'entityId' | 'on'>, b: Pick<BoItem, 'entityId' | 'on'>) => a.entityId === b.entityId && a.on === b.on;
+
 const isBaseStep = ({ entityId }: ExportStep, catalog: BuildCatalog) => catalog.get(entityId)?.economy?.kind === 'hexite-base';
 
 // The list the step joins: after the last item of the group (`+`), after the last item of a trigger, or a new trigger
 // on an earlier item that started one second before. On the last item `+` reads the same and wins, unless the step
 // comes first among others at that time (`isTriggerFirst`): toBuild places the trigger of an item right after it,
-// before the next item. null: a new group.
+// before the next item. A step clicked when the group is done is the next group (`->`) rather than a new trigger: with
+// instant units (Xol, US-009) both read the same, `->` keeps the order of the steps. null: a new group.
 const findPlace = (
   group: GroupDraft,
-  { at, isTriggerFirst }: { at: number; isTriggerFirst: boolean },
+  { at, isTriggerFirst, isAfterGroup }: { at: number; isTriggerFirst: boolean; isAfterGroup: boolean },
   nextAt: (draft: ItemDraft) => number,
   afterStartOf: (draft: ItemDraft) => number | null,
 ) => {
   if (!isTriggerFirst && at === nextAt(group.items[group.items.length - 1])) return group.items;
   const withTrigger = group.items.find(({ trigger }) => trigger && at === nextAt(trigger[trigger.length - 1]));
   if (withTrigger?.trigger) return withTrigger.trigger;
+  if (isAfterGroup) return null;
   const candidates = isTriggerFirst ? group.items : group.items.slice(0, -1);
   const triggered = candidates.find((draft) => !draft.trigger && at === afterStartOf(draft));
   if (!triggered && at === nextAt(group.items[group.items.length - 1])) return group.items;
@@ -162,7 +177,8 @@ const toExportSteps = (build: Build, timings: Map<string, SimulationResult['step
     if (!entity || isMiscCategory(entity)) return [];
     const clickAt = timings.get(step.uid)?.clickAt;
     const at = step.at ?? (clickAt === null || clickAt === undefined ? null : toWholeSeconds(clickAt));
-    return [{ uid: step.uid, entityId: step.entityId, at: at ?? Infinity }];
+    const copy = step.producerUid === REPLICATE_UID ? { entityId: REPLICATE_TOPBAR_ID, on: step.entityId } : { entityId: step.entityId };
+    return [{ uid: step.uid, ...copy, at: at ?? Infinity }];
   });
   const latest = Math.max(0, ...steps.flatMap(({ at }) => (Number.isFinite(at) ? [at] : [])));
   return steps

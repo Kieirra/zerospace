@@ -1,5 +1,7 @@
 import { formatStepCount, isOncePerBuild, toBuildingCopies } from '../build-order.helpers.ts';
 import { getDefaultHeroId, getHeroPool } from '../catalog/catalog.helpers.ts';
+import { toGroupLimitText } from '../engine/engine.diagnostics.ts';
+import { EXCLUSIVE_GROUP_LIMITS } from '../game-data/game-data.constants.ts';
 import { MAX_STEPS } from '../link/link.constants.ts';
 import { resolveRules } from '../rules/rules.helpers.ts';
 import type { Build, BuildCatalog, BuildEntity, QueuedStep, Side, TimedStep } from '../build-order.types.ts';
@@ -46,14 +48,17 @@ export const toUidNumber = (uid: string) => Number(UID_PATTERN.exec(uid)?.[1] ??
 
 const UID_PATTERN = /^s(\d+)$/;
 
-// Rules of a step allowed once (Kieirra 2026-11-19): a research, a talent, one of an exclusive group, the copies of a
-// mercenary building (a talent of the build may allow more), a hero not picked yet and the hero slots. The reason it is
-// refused, null when it is allowed. An event has no limit.
+// Rules of a step allowed once (Kieirra 2026-11-19): a research, a talent, one of an exclusive group (3 at the World
+// Forge, US-009), the copies of a mercenary building (a talent of the build may allow more), a hero not picked yet and
+// the hero slots. The reason it is refused, null when it is allowed. An event has no limit.
 export const toOnceRuleReason = (entity: BuildEntity, others: BuildEntity[], build: Pick<Build, 'heroId'>, rules: GameRules) => {
   const isSame = (other: BuildEntity) => other.id === entity.id;
   if (isOncePerBuild(entity) && others.some(isSame)) return 'Already in the build.';
-  const rival = entity.exclusiveGroup === undefined ? undefined : others.find((other) => other.exclusiveGroup === entity.exclusiveGroup);
-  if (entity.category === 'research' && rival) return `${rival.name} is already in the build.`;
+  const rivals = entity.exclusiveGroup === undefined ? [] : others.filter((other) => other.exclusiveGroup === entity.exclusiveGroup);
+  const limit = EXCLUSIVE_GROUP_LIMITS[entity.exclusiveGroup ?? ''] ?? 1;
+  if (entity.category === 'research' && rivals.length >= limit) {
+    return limit === 1 ? `${rivals[0].name} is already in the build.` : toGroupLimitText(rivals, limit);
+  }
   if (entity.category === 'mercenary-building') {
     const copies = toBuildingCopies(entity.id, others, rules.mercenaryBuildingCopies.value);
     if (others.filter(isSame).length >= copies) return `Only ${copies === 1 ? 'one' : copies} per match.`;

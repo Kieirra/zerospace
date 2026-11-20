@@ -124,6 +124,7 @@ export const values = (overrides: Partial<ResolvedGameValues> = {}): ResolvedGam
   mercenaryMaxStacks: known(4),
   mercenaryInitialStacks: known(4),
   mercenaryStackRechargeSeconds: unknown(),
+  replicateStunSeconds: known(16),
   supplyProvidedOverrides: {},
   researchLocations: {},
   ...overrides,

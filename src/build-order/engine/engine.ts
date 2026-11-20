@@ -5,13 +5,14 @@ import { resolveGameValues } from '../game-data/game-data.helpers.ts';
 import { resolveRules } from '../rules/rules.helpers.ts';
 import { analyzeBuild } from './engine.analysis.ts';
 import { HORIZON_SECONDS, MIN_SAMPLED_SECONDS, TICK_PER_SECOND } from './engine.constants.ts';
-import { fluxNodesUnknown, supplyNotChecked } from './engine.diagnostics.ts';
+import { energyNotChecked, fluxNodesUnknown, supplyNotChecked } from './engine.diagnostics.ts';
 import { collectIncome, isSupplyChecked, toTicks } from './engine.economy.ts';
 import { applyDueEffects, hasPendingEffects } from './engine.effects.ts';
 import { getHeroDiagnostics, getSetupHeroTick, resolveHeroSlots, spawnSetupHero } from './engine.heroes.ts';
 import { rechargeStacks } from './engine.mercenaries.ts';
 import { areAllOrdersDone } from './engine.order-lists.ts';
 import { finishOrders, flushWaits, recordWaits, releaseAndStartOrders } from './engine.orders.ts';
+import { toEnergySpent } from './engine.replicate.ts';
 import { toResult, toSample } from './engine.results.ts';
 import { createState } from './engine.state.ts';
 import type { Build, SideCatalog } from '../build-order.types.ts';
@@ -58,7 +59,7 @@ export const simulateBuild = (build: Build, context: SimulationContext, options?
   flushWaits(state);
   return toResult(plans, state, context, {
     samples,
-    globalDiagnostics: getGlobalDiagnostics(build, plans, context),
+    globalDiagnostics: getGlobalDiagnostics(build, plans, context, state),
     heroes: { setup: heroSlots.setup },
   });
 };
@@ -76,12 +77,14 @@ const isOver = (state: SimulationState, minSampledSeconds: number) => {
   return state.tick >= Math.ceil(lastEnd / TICK_PER_SECOND) * TICK_PER_SECOND;
 };
 
-const getGlobalDiagnostics = (build: Build, plans: PlannedStep[], context: SimulationContext) => {
+const getGlobalDiagnostics = (build: Build, plans: PlannedStep[], context: SimulationContext, state: SimulationState) => {
   const diagnostics: Diagnostic[] = getHeroDiagnostics(build, context);
   if (!isSupplyChecked(context.values, context.factionEntities)) diagnostics.push(supplyNotChecked());
   const harvesterCount = plans.filter(({ entity, isIgnored }) => entity?.category === 'harvester' && !isIgnored).length;
   if (context.values.maxFluxNodes.value === null && harvesterCount > 0) {
     diagnostics.push(fluxNodesUnknown(harvesterCount));
   }
+  // The top bar energy is not simulated (Kieirra 2026-11-20): what Replicate spent is told, never checked (US-009).
+  if (plans.some(({ entity, isIgnored }) => entity?.category === 'replicate' && !isIgnored)) diagnostics.push(energyNotChecked(toEnergySpent(state.orders)));
   return diagnostics;
 };

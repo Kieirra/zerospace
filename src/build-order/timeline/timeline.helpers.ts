@@ -3,6 +3,7 @@ import { getResearchLocation } from '../engine/engine.research-location.ts';
 import { MISC_LANE_ID } from '../engine/engine.constants.ts';
 import { toLaneId } from '../engine/engine.state.ts';
 import { RESEARCH_LOCATIONS } from '../game-data/game-data.constants.ts';
+import { isReplicateStep } from '../engine/engine.replicate.ts';
 import {
   AXIS_LABEL_SECONDS,
   END_MARGIN_SECONDS,
@@ -47,11 +48,13 @@ export const packRows = (intervals: { start: number; end: number }[], minSpan = 
 // One item per order, plus the setup hero; rows are set by toProducerLanes. A unit never taken by a building shows on
 // its pinned lane, else on the first lane able to make it, with its never-starts mark. A unit with a time waits from
 // that time, not from its entry in the production queue (Kieirra 2026-11-19). A unit in a loop is named « ∞ Exalted »,
-// the copies of its loop « Exalted », each from its own click. The free units of a step made at once share one item.
+// the copies of its loop « Exalted », each from its own click; a Replicate copy « Replicate Synapse » (US-009). The free
+// units of a step made at once share one item.
 export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog, build: Pick<Build, 'timed' | 'queued'>): TimelineItem[] => {
   const laneLabels = new Map(result.lanes.map(({ id, label }) => [id, label]));
   const queuedAts = new Map(build.queued.flatMap(({ uid, at }) => (at === undefined ? [] : [[uid, at]])));
   const repeatedUids = new Set(build.queued.filter(({ repeat }) => repeat).map(({ uid }) => uid));
+  const copyUids = new Set(build.queued.filter(isReplicateStep).map(({ uid }) => uid));
   const stepsWithError = new Set(
     result.steps.filter(({ diagnostics }) => diagnostics.some(({ severity }) => severity === 'error')).map(({ stepUid }) => stepUid),
   );
@@ -80,7 +83,10 @@ export const toTimelineItems = (result: SimulationResult, catalog: BuildCatalog,
         isMercenary: entity.category === 'mercenary-building',
         isResearchBuilding: entity.category === 'building' && researchBuildingIds.has(entity.id),
         laneId,
-        label: shape === 'mercenary' ? `${entity.displayName} ×${entity.count}` : `${isLoopStep ? '∞ ' : ''}${entity.displayName}`,
+        label:
+          shape === 'mercenary'
+            ? `${entity.displayName} ×${entity.count}`
+            : `${isLoopStep ? '∞ ' : ''}${copyUids.has(order.stepUid) ? 'Replicate ' : ''}${entity.displayName}`,
         where: isFreeUnit({ shape, occurrence: order.occurrence })
           ? toFreeUnitWhere(order.stepUid, build, catalog)
           : (laneLabels.get(laneId ?? '') ?? ''),
@@ -215,6 +221,8 @@ const SHAPES: Record<EntityCategory, Exclude<TimelineItemShape, 'setup-hero'>> =
   hero: 'hero',
   talent: 'misc',
   event: 'misc',
+  merge: 'unit',
+  replicate: 'unit',
 };
 
 const LEGEND_ORDER: LegendKind[] = [

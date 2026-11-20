@@ -1,5 +1,6 @@
+import { addToArmy } from './engine.army.ts';
 import { spawnOnFinish } from './engine.effects.ts';
-import { hasStack, isRecruit } from './engine.mercenaries.ts';
+import { hasStack } from './engine.mercenaries.ts';
 import { flushWait, insertSorted } from './engine.order-lists.ts';
 import { requeueRepeats } from './engine.repeat.ts';
 import { startOrders, toStartComparator } from './engine.starts.ts';
@@ -30,6 +31,7 @@ export const finishOrders = (state: SimulationState) => {
       producer.ids.add(entity.transformsInto);
       producer.entityId = entity.transformsInto;
     }
+    addToArmy(state, order);
     spawnOnFinish(order, state);
   }
   running.length = kept;
@@ -121,11 +123,9 @@ const tryRelease = (order: OrderState, state: SimulationState, context: Simulati
 
 const isBeforeItsTime = ({ plan }: OrderState, state: SimulationState) => plan.atTick !== undefined && plan.atTick > state.tick;
 
-// A recruit also needs a stack of that building to be released.
+// A building with stacks or charges (mercenary, Xol producer) also needs one left to take an order.
 const canTake = (instance: InstanceState, order: OrderState, state: SimulationState) =>
-  instance.productionOrder === null &&
-  isReadyProducer(instance, order, state.tick) &&
-  (!isRecruit(order) || hasStack(instance));
+  instance.productionOrder === null && isReadyProducer(instance, order, state.tick) && (instance.stacks === undefined || hasStack(instance));
 
 const findPinnedInstance = (order: OrderState, state: SimulationState, heldLanes: Set<string>) => {
   const uid = order.plan.producerUid;

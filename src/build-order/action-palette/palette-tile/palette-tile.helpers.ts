@@ -15,9 +15,10 @@ export const toTileDetails = ({ entity, disabledReason }: PaletteTileData) => ({
   requires: disabledReason,
 });
 
-// 'Build time 0:35', 'Research time 1:20', 'Instant, spends a mercenary slot'.
+// 'Build time 0:35', 'Research time 1:20', 'Instant, spends a mercenary slot'. The Replicate card: none, its lines tell
+// what it costs (US-009).
 const toTimeText = ({ kind, category, duration }: Pick<BuildEntity, 'kind' | 'category' | 'duration'>) => {
-  if (isMiscCategory({ category })) return null;
+  if (isMiscCategory({ category }) || category === 'replicate') return null;
   if (category === 'mercenary-unit') return 'Instant, spends a mercenary slot';
   const label = kind === 'upgrade' ? 'Research time' : 'Build time';
   return `${label} ${duration === null ? 'unknown' : formatClock(duration)}`;
